@@ -45,7 +45,8 @@ session_start();
                   {{$conviviente->nombre_y_apellido}}
                   @endif
                   @endforeach
-
+ <strong>  <a style="color:red"href="/eliminar/{{$conviviente->id}}">
+              ELIMINAR</a></strong>
           </li>
                 @endif
 
@@ -71,7 +72,6 @@ session_start();
             {{$conviviente->nombre_y_apellido}}<br>
            <div id="btn-1"><input type ='button' style="width:150px;background-color:#97c93f;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar relación' onclick="window.open('/duplicarreferente/{{$conviviente->id}}', 'width=800,height=600')"/></button></div><br>
 
-          <div id="btn-2"> <input type ='button' style="width:150px;background-color:red;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Eliminar relación' onclick="window.open('/eliminarreferente/{{$conviviente->id}}', 'width=800,height=600');"/></button></div><br><br>
 
           </li>
         </div>

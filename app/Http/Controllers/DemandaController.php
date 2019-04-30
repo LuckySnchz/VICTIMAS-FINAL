@@ -67,6 +67,7 @@ $reglas = [
   $demanda->modalidad_ingreso= $form["modalidad_ingreso"];
   $demanda->organismo= $form["organismo"];
   $demanda->otro_organismo= $form["otro_organismo"];
+  $demanda->activo= 1;
   $demanda->userID_create= Auth::id();
   $demanda->sede=$user->getSede();
 

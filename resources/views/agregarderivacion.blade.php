@@ -265,7 +265,7 @@ session_start();
   <button type="submit" class="btn btn-primary col-xl" name="button">GUARDAR</button><br><br>
   </form>
   </section>
-  <button class="btn btn-primary col-xl" onclick="window.open('agregarseguimiento', 'width=800,height=600')" name="button">AGREGAR SEGUIMIENTO</button><br><br>
+  
 
   </div>
 

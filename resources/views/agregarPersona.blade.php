@@ -34,7 +34,8 @@
 
 
     <label class="font-weight-bold">Victima: </label>
-  {{$victimActual->victima_nombre_y_apellido}}</h5></div>
+  {{$victimActual->victima_nombre_y_apellido}}</h5>
+
 
   <div class="" style="margin-left: 43.5%">
   <label class="font-weight-bold">Personas Asistidas para esta víctima: </label>
@@ -48,6 +49,8 @@
                   {{$persona->nombre_persona_asistida}}
                   @endif
                   @endforeach
+                  <strong>  <a style="color:red"href="/eliminar/{{$persona->id}}">
+              ELIMINAR</a></strong>
 
           </li>
                 @endif
@@ -75,7 +78,7 @@
 
            <div id="btn-1"><input type ='button' style="width:150px;background-color:#97c93f;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar relación' onclick="window.open('/duplicar/{{$persona->id}}', 'width=800,height=600')"/></button></div><br>
 
-          <div id="btn-2"> <input type ='button' style="width:150px;background-color:red;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Eliminar relación' onclick="window.open('/eliminar/{{$persona->id}}', 'width=800,height=600');"/></button></div><br><br>
+       
 
 
           </li>
