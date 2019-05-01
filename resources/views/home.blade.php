@@ -10,6 +10,7 @@
 
 <h2 style="text-align: center">Bienvenido/a {{Auth::user()->getName()}}</h2>
 <br>
+<h4 style="text-align: center"> Agregar Casos, Incidencias o Derivaciones</h4>
 <br>
 
 
@@ -71,12 +72,20 @@
 
 
 <section class="container jumbotron shadow p-3 mb-5 bg-white rounded">
-<div class="form-group">
-<label>Buscar por Nombre de Referencia, por Nombre de la víctima o por modalidad de ingreso</label>
+<div class="form-group" >
+
+<h4 style="text-align: center"> Buscar</h4>
+<div class="buscar" style="margin-left: 38%">
+  <input type="radio" name="Buscar" value="1"> Casos
+  <input type="radio" name="Buscar" value="2"> Incidencias
+  <input type="radio" name="Buscar" value="3"> Derivaciones
+</div>
+<h4 style="text-align: center"> Casos, Incidencias o Derivaciones</h4>
 <form action="/search" method="GET">
  {{csrf_field()}}
- <input type="text" name="search" style="margin-left: 13%;width: 45%">
- <button type="submit" class="btn" style="color:white;background-color:rgb(137, 210, 14)">BUSCAR</button>
+ <input type="text" name="search" style="margin-left: 25%;width: 45%">
+ <button type="submit" class="btn" style="color:white;background-color:rgb(137, 210, 14)">BUSCAR</button><br><br>
+ <h5  style="text-align: center" >Buscar por Nombre de Referencia, por Nombre de la víctima o por modalidad de ingreso</h5>
 </form><br>
 </div>
 
@@ -87,8 +96,7 @@
  @foreach ($casos as $caso)
    <li>
     @if($user->hasRole('user'))
-      <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
-        <p class="mr-4 mb-0"><strong>{{$caso->nombre_referencia}}</strong></p>
+     <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Caso: </span><strong>{{$caso->nombre_referencia}}</strong></p>
     <ul class="list-unstyled list-inline mb-0">
       <li class="list-inline-item"><a href='/informe/{{$caso->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
     </ul>
@@ -108,7 +116,7 @@
   </li>
   @else
       <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
-        <p class="mr-4 mb-0"><strong>{{$caso->nombre_referencia}}</strong></p>
+      <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Caso: </span><strong>{{$caso->nombre_referencia}}</strong></p>
     <ul class="list-unstyled list-inline mb-0">
       <li class="list-inline-item"><a href='/paneldecontrol/{{$caso->id}}' class="mr-3"><i class="fas fa-envelope mr-1"></i>Editar</a></li>
       <li class="list-inline-item"><a href='/informe/{{$caso->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
@@ -138,12 +146,11 @@
     <li>
      @if($user->hasRole('user'))
        <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
-     <p class="mr-4 mb-0"><strong>{{$demanda->nombre_y_apellido_de_la_victima}}</strong></p><br>
-     <li class="list-inline-item"><a href='/informedemanda/{{$demanda->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
+    <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Demanda: </span><strong>{{$demanda->nombre_y_apellido_de_la_victima}}</strong></p>
      </li>
    @else
        <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
-         <p class="mr-4 mb-0"><strong>{{$demanda->nombre_y_apellido_de_la_victima}}</strong></p>
+          <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Demanda: </span><strong>{{$demanda->nombre_y_apellido_de_la_victima}}</strong></p>
      <ul class="list-unstyled list-inline mb-0">
        <li class="list-inline-item"><a href='/informedemanda/{{$demanda->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
        <li class="list-inline-item"><a href="javascript:AlertDemandaaCaso();" class="mr-3"><i class="fas fa-user mr-1"></i>Pasar a Caso</a></li>
@@ -186,12 +193,12 @@
      <li>
       @if($user->hasRole('user'))
         <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
-      <p class="mr-4 mb-0"><strong>{{$derivacion->nombre_y_apellido}}</strong></p><br>
+      <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Derivación: </span>{{$derivacion->nombre_y_apellido}}</strong></p>
       <li class="list-inline-item"><a href='/informederivacion/{{$derivacion->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
       </li>
     @else
         <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
-          <p class="mr-4 mb-0"><strong>{{$derivacion->nombre_y_apellido}}</strong></p>
+          <p class="mr-4 mb-0"><strong><span style="text-decoration: underline"> Derivación: </span>{{$derivacion->nombre_y_apellido}}</strong></p>
       <ul class="list-unstyled list-inline mb-0">
         <li class="list-inline-item"><a href='/informederivacion/{{$derivacion->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
         <li class="list-inline-item"><a href='/agregarseguimiento/{{$derivacion->id}}' class="mr-3"><i class="fas fa-rss mr-1"></i>Agregar seguimiento</a></li>

@@ -15,6 +15,7 @@
    <body>
      @include('navbar')
     <h1 class="text-center" style="padding: 15px;">Informe</h1>
+
     <section class="container jumbotron shadow p-3 mb-5 rounded">
     <div id="imprimir">
 
@@ -982,18 +983,18 @@
 @else
 @endif
   <br>
-  </section>
+ 
 </div>
 
-<button class="btn btn-primary col-xl" onclick="imprimir();">
+
+
+ <button class="btn btn-primary col-xl" onclick="imprimir();">
   IMPRIMIR
 </button><br><br>
+  </section>
+<a type="button" style="width:100%;color:white text-decoration: none" class="btn btn-primary col-xl" href="/home" target="_self">Inicio</button></a><br><br>
 
 
-<input type ='button' class="btn btn-primary col-xl" value = 'Home' onclick="window.open('/home', 'width=800,height=600');"/> <br><br>
-
-</section>
-</section>
 
 <script>
     function imprimir(){

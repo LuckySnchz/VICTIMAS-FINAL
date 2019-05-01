@@ -317,7 +317,14 @@ session_start();
   </div>
   </form>
   </section>
-  <div class="btn-2"><button style="width:100%;color:white;background-color:rgb(137, 210, 14)" class="btn col-xl"  onclick="window.open('agregarimputado', 'width=800,height=600')"; >AGREGAR IMPUTADO</button><br><br></div>
+ 
+ <a type="button" style="width:100%;color:white;background-color:rgb(137, 210, 14);color:white; text-decoration: none" class="btn col-xl" href="/agregarimputado" target="_self">AGREGAR IMPUTADO</button></a><br><br>
+
+
+
+
+
+
 
 
 <script>

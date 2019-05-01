@@ -313,8 +313,9 @@
       </div>
       </form>
       </section>
-      <button style="width:100%; color:white;background-color:rgb(137, 210, 14)" class="btn col-XL" name="button" onclick="window.open('agregarconviviente', 'width=800,height=600')"; >AGREGAR REFERENTES AFECTIVOS </button><br><br>
-
+      
+    <a type="button" style="width:100%;color:white;background-color:rgb(137, 210, 14);color:white; text-decoration: none" class="btn col-xl" href="/agregarconviviente" target="_self">AGREGAR REFERENTES AFECTIVOS</button></a><br><br>
+<!--onclick="window.open('agregarconviviente', 'width=800,height=600')"-->
 
       <script>
 

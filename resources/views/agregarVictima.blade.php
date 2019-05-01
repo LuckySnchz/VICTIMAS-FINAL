@@ -1059,9 +1059,13 @@ document.getElementById('victima_numero_documento').style.background="white";
 
     <div class="botones">
     <div class="btn-1"> <button type="submit" class="btn btn-primary col-xl" name="button"  >Agregar/Enviar</button><br><br></div>
+
+
+
+
     </div>
     </form>
     </section>
-
+agregarconviviente
     </body>
  </html>

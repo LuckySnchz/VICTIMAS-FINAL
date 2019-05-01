@@ -207,11 +207,13 @@ return view("detalleCaso", compact("delitos", "cavajs","usuarios","organismos","
 
                 case "derivacion":
                   $search =3 ;
+
+                  
                 break;}
 
 
             if($user->hasRole('admin')){
-
+        
                $casos = Caso::where("activo", 1)
               ->where("nombre_referencia", "like", "%$search%")
             ->orWhere("nombre_y_apellido_de_la_victima", "like", "%$search%")

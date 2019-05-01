@@ -117,9 +117,9 @@
       </form>
       </section>
 
-      <div class="btn-4">   <button style="width:100%;color:white;background-color:rgb(137, 210, 14)" class="btn col-xL" name="button" onclick="window.open('agregarIntervencion', 'width=800,height=600')"; >SIGUIENTE </button><br><br></div>
+      
 
-
+<a type="button" style="width:100%;color:white;background-color:rgb(137, 210, 14);color:white; text-decoration: none" class="btn col-xl" href="/agregarIntervencion" target="_self">SIGUIENTE</button></a><br><br>
 
 
       </body>

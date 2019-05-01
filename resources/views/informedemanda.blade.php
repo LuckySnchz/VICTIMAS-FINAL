@@ -105,7 +105,7 @@
 </button><br><br>
 
 
-<input type ='button' class="btn btn-primary col-xl" value = 'Home' onclick="window.open('/home', 'width=800,height=600');"/> <br><br>
+<input type ='button' class="btn btn-primary col-xl" value = 'Inicio' onclick="window.open('/home', 'width=800,height=600');"/> <br><br>
 
 </section>
 </section>
