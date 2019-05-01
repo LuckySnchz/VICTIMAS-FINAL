@@ -192,7 +192,7 @@ return view("detalleCaso", compact("delitos", "cavajs","usuarios","organismos","
              $casos=[];
              $demandas=[];
              $derivaciones=[];
-
+             $buscar=$req["buscar"];
 
               $search = $req["search"];
 
@@ -213,25 +213,81 @@ return view("detalleCaso", compact("delitos", "cavajs","usuarios","organismos","
 
 
             if($user->hasRole('admin')){
-        
+
+        switch ($req["buscar"]) {
+                case "1":
+                
                $casos = Caso::where("activo", 1)
               ->where("nombre_referencia", "like", "%$search%")
             ->orWhere("nombre_y_apellido_de_la_victima", "like", "%$search%")
             ->orWhere("modalidad_ingreso", "like", "%$search%")
             ->get();
+         break;
+            case "2":
+                 
               $demandas = Demanda::where("activo", 1)
             ->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
             ->orWhere("modalidad_ingreso", "like", "%$search%")
             ->get();
+             break;
+            case "3":
+                
               $derivaciones = Derivacion::where("activo", 1)
               ->where("nombre_y_apellido", "like", "%$search%")
               ->orWhere("modalidad_ingreso", "like", "%$search%")
               ->get();
+              break;
+              default:
 
+
+        $casos = Caso::where("activo", 1)
+              ->where("nombre_referencia", "like", "%$search%")
+            ->orWhere("nombre_y_apellido_de_la_victima", "like", "%$search%")
+            ->orWhere("modalidad_ingreso", "like", "%$search%")
+            ->get();
+      
+                 
+              $demandas = Demanda::where("activo", 1)
+            ->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
+            ->orWhere("modalidad_ingreso", "like", "%$search%")
+            ->get();  
+           
+                
+              $derivaciones = Derivacion::where("activo", 1)
+              ->where("nombre_y_apellido", "like", "%$search%")
+              ->orWhere("modalidad_ingreso", "like", "%$search%")
+              ->get();
+ 
+
+        }
             }
          if($user->hasRole('profesional')){
+          switch ($req["buscar"]) {
+                case "1":
 
              $casos = Caso::where("activo", 1)
+             ->where("userID_create",$user->getId())->where("nombre_referencia", "like", "%$search%")
+             ->orwhere("userID_create",$user->getId())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
+
+             ->orwhere("userID_create",$user->getId())->where("modalidad_ingreso", "like", "%$search%")
+                      ->get();
+                      break;
+               case "2":       
+            $demandas = Demanda::where("activo", 1)
+            ->where("userID_create",$user->getId())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
+            ->orwhere("userID_create",$user->getId())->where("modalidad_ingreso", "like", "%$search%")
+                     ->get();
+                     break;
+                     case "3":
+           $derivaciones = Derivacion::where("activo", 1)
+           ->where("userID_create",$user->getId())->where("nombre_y_apellido", "like", "%$search%")
+           ->orwhere("userID_create",$user->getId())->where("modalidad_ingreso", "like", "%$search%")
+                    ->get();
+
+
+            break;
+            default:
+            $casos = Caso::where("activo", 1)
              ->where("userID_create",$user->getId())->where("nombre_referencia", "like", "%$search%")
              ->orwhere("userID_create",$user->getId())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
 
@@ -246,10 +302,30 @@ return view("detalleCaso", compact("delitos", "cavajs","usuarios","organismos","
            ->orwhere("userID_create",$user->getId())->where("modalidad_ingreso", "like", "%$search%")
                     ->get();
 
-              }
+
+              }}
 
               if($user->hasRole('user')){
-
+              switch ($req["buscar"]) {
+                case "1":
+                $casos=Caso::where("activo", 1)
+                ->where("sede",$user->getSede())->where("nombre_referencia", "like", "%$search%")
+                ->orwhere("sede",$user->getSede())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
+                ->orwhere("sede",$user->getSede())->where("modalidad_ingreso", "like", "%$search%")
+                ->get();
+                break;
+                 case "2":
+                $demandas=Demanda::where("activo", 1)
+                ->where("sede",$user->getSede())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
+                ->orwhere("sede",$user->getSede())->where("modalidad_ingreso", "like", "%$search%")
+                ->get();
+                break;
+                 case "3":
+                $derivaciones=Derivacion::where("activo", 1)
+                ->where("sede",$user->getSede())->where("nombre_y_apellido", "like", "%$search%")
+                ->orwhere("sede",$user->getSede())->where("modalidad_ingreso", "like", "%$search%")
+                ->get();
+                default:
                 $casos=Caso::where("activo", 1)
                 ->where("sede",$user->getSede())->where("nombre_referencia", "like", "%$search%")
                 ->orwhere("sede",$user->getSede())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
@@ -263,11 +339,11 @@ return view("detalleCaso", compact("delitos", "cavajs","usuarios","organismos","
                 ->where("sede",$user->getSede())->where("nombre_y_apellido", "like", "%$search%")
                 ->orwhere("sede",$user->getSede())->where("modalidad_ingreso", "like", "%$search%")
                 ->get();
-              }
+              }}
 
 
 
-        return view("home", compact("casos","demandas","derivaciones","tipo_demandas","oderivados","delitos","cavajs","user"));
+        return view("home", compact("casos","demandas","derivaciones","tipo_demandas","oderivados","delitos","cavajs","user","buscar"));
       }
 
 

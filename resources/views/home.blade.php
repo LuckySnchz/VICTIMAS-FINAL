@@ -74,15 +74,16 @@
 <section class="container jumbotron shadow p-3 mb-5 bg-white rounded">
 <div class="form-group" >
 
-<h4 style="text-align: center"> Buscar</h4>
-<div class="buscar" style="margin-left: 38%">
-  <input type="radio" name="Buscar" value="1"> Casos
-  <input type="radio" name="Buscar" value="2"> Incidencias
-  <input type="radio" name="Buscar" value="3"> Derivaciones
-</div>
-<h4 style="text-align: center"> Casos, Incidencias o Derivaciones</h4>
+
+
 <form action="/search" method="GET">
  {{csrf_field()}}
+ <h4 style="text-align: center"> Buscar</h4>
+<div class="buscar" style="margin-left: 38%">
+  <input type="radio" name="buscar" value="1"> Casos
+  <input type="radio" name="buscar" value="2"> Incidencias
+  <input type="radio" name="buscar" value="3"> Derivaciones
+</div>
  <input type="text" name="search" style="margin-left: 25%;width: 45%">
  <button type="submit" class="btn" style="color:white;background-color:rgb(137, 210, 14)">BUSCAR</button><br><br>
  <h5  style="text-align: center" >Buscar por Nombre de Referencia, por Nombre de la víctima o por modalidad de ingreso</h5>
@@ -146,11 +147,11 @@
     <li>
      @if($user->hasRole('user'))
        <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
-    <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Demanda: </span><strong>{{$demanda->nombre_y_apellido_de_la_victima}}</strong></p>
+    <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Incidencia: </span><strong>{{$demanda->nombre_y_apellido_de_la_victima}}</strong></p>
      </li>
    @else
        <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
-          <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Demanda: </span><strong>{{$demanda->nombre_y_apellido_de_la_victima}}</strong></p>
+          <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Incidencia: </span><strong>{{$demanda->nombre_y_apellido_de_la_victima}}</strong></p>
      <ul class="list-unstyled list-inline mb-0">
        <li class="list-inline-item"><a href='/informedemanda/{{$demanda->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
        <li class="list-inline-item"><a href="javascript:AlertDemandaaCaso();" class="mr-3"><i class="fas fa-user mr-1"></i>Pasar a Caso</a></li>

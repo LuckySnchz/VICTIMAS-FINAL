@@ -7,6 +7,9 @@
       <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
       <link rel="stylesheet" href="css/app.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.css"/>
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <title>Eje A: Datos institucionales</title>
       <style>
@@ -17,43 +20,154 @@
       </style>
    </head>
    <header>
-     @include('navbar')
-
+         @include('navbar')
+<br>
+  
    </header>
+
+
    <body>
 
-    <h1 class="text-center" style="padding: 15px;">Eje A: Datos institucionales</h1>
+ 
+    <section class="container jumbotron shadow p-3 mb-5 bg-white rounded">
+    <div class="divpersona" id="divpersona">  <h2 class="text-center" style="padding: -20px;">Personas Asistidas</h2><h5 class="text-center" style="padding: -20px;">
 
-    <div class="divpersona" id="divpersona">  <h2 class="text-center" style="padding: -20px;">Persona Asistida</h2></div>
+      <label class="font-weight-bold">Caso: </label>
+    {{$casoActual->nombre_referencia}}<br>
 
+
+    <label class="font-weight-bold">Victima: </label>
+  {{$victimActual->victima_nombre_y_apellido}}</h5>
+
+ <!-- 
+  <div class="" style="margin-left: 43.5%">
+  <label class="font-weight-bold">Personas Asistidas para esta víctima: </label>
+  <ul style="list-style:none">
+  @foreach($personas_nuevas as $persona_nueva)
+  @if($persona_nueva->idVictim==session("idVictim"))
+
+  <li>
+          @foreach($personas as $persona)
+          @if($persona->id==$persona_nueva->idPersona)
+                  {{$persona->nombre_persona_asistida}}
+                  @endif
+                  @endforeach
+                  <strong>  <a style="color:red"href="/eliminar/{{$persona->id}}">
+              ELIMINAR</a></strong>
+
+          </li>
+                @endif
+
+            @endforeach
+  </ul>
+
+    </div>
+</section>
     <section class="container jumbotron shadow p-3 mb-5 bg-white rounded" >
 
-<!Listado Personas asistidas>
+    <!Listado Personas asistidas>
 
-        <ul>
-        @foreach($personas as $persona)
-          @if($persona->idCaso==session("idCaso"))
-            <li>
-              <a href="detallePersona/{{$persona->id}}">
-              {{$persona->nombre_persona_asistida}}</a>
-            </li>
-          @endif
-        @endforeach
-        </ul>
-        <br>
+  @if($cantdeVictimas>1)
+  <div class="flex-container" style="display: flex;
+  flex-direction: column;
+  ">
+  <label style="margin-left: 43.5%" class="font-weight-bold">Personas Asistidas en este Caso: </label>
+  <ul style="list-style:none">
+      @foreach($personas as $persona)
+        @if ($persona->idCaso == session("idCaso"))
+        <div style="text-align: center">
+          <li>
+            {{$persona->nombre_persona_asistida}}<br>
+
+           <div id="btn-1"><input type ='button' style="width:150px;background-color:#97c93f;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar relación' onclick="window.open('/duplicar/{{$persona->id}}', 'width=800,height=600')"/></button></div><br>
+
+       
 
 
-    <form class="" action="/detalleagregarPersona" method="post">
-      {{csrf_field()}}
-    <input type="hidden" name="idCaso" value="{{session("idCaso")}}">
+          </li>
+        </div>
+        @endif
+      @endforeach
+  </ul>
+
+
+
+
+  @else
+  <div id="listado" style="display: none">
+  @endif
+  </div>
+  </div>
+
+
+-->
+
+
+  <div class="">
+
+<form class="" action="/detalleagregarPersona" method="post">
+  {{csrf_field()}}
+<input type="hidden" name="idCaso" value="{{session("idCaso")}}">
+<input type="hidden" name="idVictim" value="{{session("idVictim")}}">
+<input type="hidden" name="cantVictimas" value="{{$cantdeVictimas}}">
+
+
+  @if($cantdeVictimas>1)
+ <div id="agregar"class="form-group"  {{ $errors->has('agregar_persona') ? 'has-error' : ''}}>
+      <label for="agregar_persona">Desea agregar una nueva persona asistida? </label>
+      <select class="form-control" name="agregar_persona" id="agregar_persona" onChange="selectOnChangeA14I(this)">
+            <option value="" selected=disabled>Seleccionar...</option>
+              @if(old("agregar_persona")==1)
+              <option value="1" selected >Sí</option>
+              @else <option value="1">Sí</option>@endif
+
+              @if(old("agregar_persona")==2)
+              <option value="2" selected >No</option>
+              @else  <option value="2" >No</option>@endif
+              </select>
+              {!! $errors->first('agregar_persona', '<p class="help-block" style="color:red";>:message</p>') !!}
+
+      @else
+ <div id="agregar"class="form-group" style="display: none">
+  @endif
+</div></div>
+
+      @if(old("agregar_persona") == 1||$cantdeVictimas==1)
+        <div id="agregar_persona_si" {{ $errors->has('agregar_persona_si') ? 'has-error' : ''}}>
+        @else
+          <div id="agregar_persona_si" style="display: none;">
+      @endif
+
+
+
 
 <!-A14I Persona Asistida>
 
       <div class="form-group" {{ $errors->has('nombre_persona_asistida') ? 'has-error' : ''}}>
-      <label for="nombre_persona_asistida">A 14I. Nombre y apellido de la persona asistida: </label>
-      <input type="text" class="form-control" name="nombre_persona_asistida" id="Nombre_apellido_persona_asistida" value="{{old("nombre_persona_asistida")}}">
-      {!! $errors->first('nombre_persona_asistida', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
+    <label for="">A14I. Nombre y apellido persona asistida:</label>
+
+    <input type="text" class="form-control" name="nombre_persona_asistida" id="nombre_persona_asistida" value="{{old("nombre_persona_asistida")}}">
+
+    <label for="bloqueo1" class="form-check-label">Se desconoce</label>
+    <input type="checkbox" id="bloqueo1" name="nombre_persona_asistida" value="Se desconoce" onchange="checkA14I(this)">
+    {!! $errors->first('nombre_persona_asistida', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div>
+
+    <script>
+         function checkA14I(checkbox)
+         {
+             if (checkbox.checked)
+                 {
+                     $('#nombre_persona_asistida').val('Se desconoce');
+                     document.getElementById('nombre_persona_asistida').setAttribute("readonly", "readonly");
+                 }else
+                     {
+                         $('#nombre_persona_asistida').val('');
+                         document.getElementById('nombre_persona_asistida').removeAttribute("readonly");
+                     }
+         }
+      </script>
+
 
 <!-A14II Tipo de vínculo>
 
@@ -91,31 +205,109 @@
       {!! $errors->first('otro_vinculo_persona_asistida_cual', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
       </div>
-      </div>
+
 
 <!-A14III telefono>
 
-      <div class="form-group"{{ $errors->has('telefono_persona_asistida') ? 'has-error' : ''}}>
-      <label for="telefono_persona_asistida">A 14III. Teléfono de contacto: </label>
-      <input type="text" class="form-control" name="telefono_persona_asistida" id="telefono_contacto" value="{{old("telefono_persona_asistida")}}">
-      {!! $errors->first('telefono_persona_asistida', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
+       <div class="form-group"{{ $errors->has('telefono_persona_asistida') ? 'has-error' : ''}}>
+
+
+    @if(old('telefono_persona_asistida')=="0")
+
+<label >A 14III teléfono de persona asistida:</label>
+    <input name="telefono_persona_asistida" style="background-color: #e9ecef;color:black" value="{{old('telefono_persona_asistida')}}"   id="telefono_persona_asistida" class="form-control" type="text" readonly="readonly"/><br>
+
+    <label class="form-check-label">Se desconoce</label>
+    <input name="telefono_persona_asistida" value="0" id="bloqueo1" type="checkbox" checked onchange="checkA14(this)">
+    @else
+
+<label for="edad">A 14III teléfono de persona asistida:</label>
+    <input name="telefono_persona_asistida" style="background-color: white;color:black" value="{{old('telefono_persona_asistida')}}"   id="telefono_persona_asistida" class="form-control" type="text"><br>
+    <label class="form-check-label" >Se desconoce</label>
+    <input name="telefono_persona_asistida" value="0" id="bloqueo1" type="checkbox" onchange="checkA14(this)">
+  @endif
+
+    {!! $errors->first('telefono_persona_asistida', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div>
+
+
+</script>
+
+<script type="text/javascript">
+       function checkA14(checkbox) {
+          if (checkbox.checked)
+                {
+                    $('#telefono_persona_asistida').val('Se Desconoce');
+                    document.getElementById('telefono_persona_asistida').setAttribute("readonly","readonly");
+                    document.getElementById('telefono_persona_asistida').style.background="#e9ecef";
+                    divAY= document.getElementById("telefono_persona_asistida").disabled=true;
+
+           }
+           else{
+                    $('#telefono_persona_asistida').val('');
+                  document.getElementById('telefono_persona_asistida').style.background="white";
+                    document.getElementById('telefono_persona_asistida').removeAttribute("readonly");
+                  divA = document.getElementById("telefono_persona_asistida").disabled=false;
+
+           }}
+    </script>
+
 
 <!-A14IV Domicilio>
 
-      <div class="form-group"{{ $errors->has('domicilio_persona_asistida') ? 'has-error' : ''}}>
-      <label for="domicilio_persona_asistida">A 14 IV. Domicilio del contacto: </label>
-      <input type="text" class="form-control" name="domicilio_persona_asistida" id="domicilio_contacto"value="{{old("domicilio_persona_asistida")}}">
-      {!! $errors->first('domicilio_persona_asistida', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
+     <div class="form-group" {{ $errors->has('domicilio_persona_asistida') ? 'has-error' : ''}}>
+    <label for="">A14IV. Domicilio persona asistida:</label>
+
+    <input type="text" class="form-control" name="domicilio_persona_asistida" id="domicilio_persona_asistida" value="{{old("domicilio_persona_asistida")}}">
+
+    <label for="bloqueo1" class="form-check-label">Se desconoce</label>
+    <input type="checkbox" id="bloqueo1" name="domicilio_persona_asistida" value="Se desconoce" onchange="checkA14IV(this)">
+    {!! $errors->first('domicilio_persona_asistida', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div>
+
+    <script>
+         function checkA14IV(checkbox)
+         {
+             if (checkbox.checked)
+                 {
+                     $('#domicilio_persona_asistida').val('Se desconoce');
+                     document.getElementById('domicilio_persona_asistida').setAttribute("readonly", "readonly");
+                 }else
+                     {
+                         $('#domicilio_persona_asistida').val('');
+                         document.getElementById('domicilio_persona_asistida').removeAttribute("readonly");
+                     }
+         }
+      </script>
 
 <!-A14V Localidad de residencia>
 
       <div class="form-group"{{ $errors->has('localidad_persona_asistida') ? 'has-error' : ''}}>
       <label for="localidad_persona_asistida">A 14 V. Localidad de residencia: </label>
-      <input type="text" class="form-control" name="localidad_persona_asistida" id="localidad_residencia" value="{{old("localidad_persona_asistida")}}">
+      <input type="text" class="form-control" name="localidad_persona_asistida" id="localidad_persona_asistida" value="{{old("localidad_persona_asistida")}}">
+      <label for="bloqueo1" class="form-check-label">Se desconoce</label>
+      <input type="checkbox" id="bloqueo1" name="localidad_persona_asistida" value="Se desconoce" onchange="checkA14V(this)">
       {!! $errors->first('localidad_persona_asistida', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
+       {!! $errors->first('agregar_persona_si', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div>
+</div>
+
+      <script>
+           function checkA14V(checkbox)
+           {
+               if (checkbox.checked)
+                   {
+                       $('#localidad_persona_asistida').val('Se desconoce');
+                       document.getElementById('localidad_persona_asistida').setAttribute("readonly", "readonly");
+                   }else
+                       {
+                           $('#localidad_persona_asistida').val('');
+                           document.getElementById('localidad_persona_asistida').removeAttribute("readonly");
+                       }
+           }
+        </script>
+
 
 <!BOTONES>
 
@@ -123,9 +315,9 @@
       <div class="btn-1"> <button type="submit" class="btn btn-primary col-xl" name="button"  >Agregar/Enviar</button><br><br></div>
       </div>
       </form>
-
-     
       </section>
+      
+
 
       <script>
 
@@ -222,6 +414,34 @@
                 divC.style.display = "none";}
          }
       </script>
+
+<script>
+         function selectOnChangeA14I(sel) {
+
+           if (sel.value=="1"){
+             divC = document.getElementById("agregar_persona_si");
+             divC.style.display = "";}
+             else{
+                divC = document.getElementById("agregar_persona_si");
+
+
+                divC.style.display = "none";}
+          }
+
+      </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
       <script>
          function selectOnChangeA14II(sel) {
            if (sel.value=="4"){
@@ -246,6 +466,8 @@
                 divC.style.display = "none";}
          }
       </script>
+
+
 
       </body>
 </html>

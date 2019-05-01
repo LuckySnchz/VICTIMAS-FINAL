@@ -316,6 +316,10 @@ Route::get("/detallePersona/{id}", "PersonaPanelController@detalle")->middleware
 Route::post("/detallePersona", "PersonaPanelController@editar")->middleware('auth');
 Route::get("/detallePersona/deletePersona/{id}", "PersonaPanelController@eliminar")->middleware('auth');
 //EJE B: VICTIMA//
+
+Route::get("/victima/{idCaso}/{idVictima}", "VictimaPanelController@victima")->middleware('auth');
+
+
 Route::get("/detalleVictima/{id}", "VictimaPanelController@detalle")->middleware('auth');
 Route::post("/detalleVictima", "VictimaPanelController@editar")->middleware('auth');
 Route::get("/detalleVictima/deleteVictima/{id}", "VictimaPanelController@eliminar")->middleware('auth');
@@ -342,8 +346,17 @@ Route::get("/deleteDocumento/{id}", "DocumentoPanelController@eliminar")->middle
 //RURA DETALLEAGREGA AGREGA en el C.Panel//
 //AGREGA EJE A:PERSONA//
 Route::get("/detalleagregarPersona",function(){
-    $personas = App\Persona::all();
-  return view("detalleagregarPersona",compact("personas"));
+  $personas = App\Persona::all();
+  $personas_nuevas = App\Persona_nueva::all();
+  $casoActual = App\Caso::find(session("idCaso"));
+  $victimActual = App\Victim::find(session("idVictim"));
+  $casoActualenPersona = App\Persona::where("idCaso",session("idCaso"))->count();
+  $cantdeVictimas = App\Victim::where("idCaso",session("idCaso"))->count();
+  $cantdePersonas = App\Persona::where("idCaso",session("idCaso"))->count();
+  $vistas=App\Vista::all();
+  $instituciones = App\Institucion::all();
+  $institucionnav= App\Institucion::where("idCaso",session("idCaso"))->count();
+return view("detalleagregarPersona",compact("casoActual","cantdeVictimas","casoActualenPersona","victimActual","personas","vistas","instituciones","institucionnav","cantdePersonas","personas_nuevas"));
 })->middleware('auth');
 Route::post("/detalleagregarPersona","PersonaPanelController@agregar")->middleware('auth');
 
@@ -430,8 +443,8 @@ $instituciones = App\Institucion::all();
 $institucion = App\Institucion::find($id);
 $organismo = App\Institucion::where("idCaso",$id)->get();
 $intervenciones = App\Intervencion::all();
-
-  return view("paneldecontrol",compact("imputados","convivientes","victimas","personas","profesionales", "caso","delitos","cavajs","usuarios","documentos","instituciones","hechos","intervenciones","organismo","idCaso"));
+$instituciocount= App\Institucion::where("idCaso",session("idCaso"))->count();
+  return view("paneldecontrol",compact("imputados","convivientes","victimas","personas","profesionales", "caso","delitos","cavajs","usuarios","documentos","instituciones","hechos","intervenciones","organismo","idCaso","instituciocount"));
 }
 
 

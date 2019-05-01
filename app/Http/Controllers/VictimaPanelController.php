@@ -177,7 +177,15 @@ session(["idVictim" => $idVictim]);
 
     }
 
+public function victima($id,$idCaso) {
+   
+   session(["idVictim" => $id]);
+   session(["idCaso" => $idCaso]);
+   
 
+return redirect("paneldecontrol/{$idCaso}");
+
+    }
 
       public function eliminar($id) {
         $victima = Victim::find($id);

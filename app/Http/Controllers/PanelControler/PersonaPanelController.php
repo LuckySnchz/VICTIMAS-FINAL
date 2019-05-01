@@ -97,13 +97,12 @@ $localidad_persona_asistida=$persona->localidad_persona_asistida;
     return view("detallePersona", compact("persona","personas","nombre_persona_asistida","vinculo_persona_asistida","otro_vinculo_persona_asistida_cual","telefono_persona_asistida","domicilio_persona_asistida","localidad_persona_asistida"));
   }
 
+
   public function eliminar($id) {
-    $persona = Persona::find($id);
-    $persona->delete();
+   $persona_nueva= Persona_nueva::where("idVictim",session("idVictim"))->where("idPersona",$id);
+   $persona_nueva->delete();
 
- return redirect("paneldecontrol/{$persona->idCaso}");
-
-  }
+   return redirect("paneldecontrol/{$persona->idCaso}");}
 
 
   }

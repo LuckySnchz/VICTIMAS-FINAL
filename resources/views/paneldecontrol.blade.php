@@ -32,30 +32,78 @@ session_start();
 
     
        <div class="Auno">
+
+        <div class="card">
+  
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
+
+     <h4 class="text-center" style="padding: 15px;">Selecciona una Víctima</h4>
+
+{{session("idCaso")}}<br>
+{{session("idVictim")}}
+        <h5 class="text-center" style="padding: 15px;">
+          <ul>
+            @foreach($victimas as $victima)
+
+          @if($victima->idCaso==session("idCaso"))
+                   <li>
+          
+             
+     <div class="botones">
+            <input type="radio" onclick="window.open('/victima/{{$victima->id}}/{{$victima->idCaso}}', 'width=800,height=600');"/>{{$victima->victima_nombre_y_apellido}}</div>
+            
+               
+       
+                     </li>
+
+
+               @endif
+                 @endforeach
+
+               </ul>
+             </h6>
+           </div>
+</h5></div>
+
   <div class="card">
 
 
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center">Víctima:
+ @foreach($victimas as $victima)
 
-         <h4 class="text-center" style="padding:5%;margin-bottom:-5%">Eje A: Datos institucionales</h4><p style="margin-left:28%">Caso Referencia</spam>:{{$caso->nombre_referencia}}<br>
-           Nombre Víctima:{{$caso->nombre_y_apellido_de_la_victima}}</p><br>
+          @if($victima->idCaso==session("idCaso")&&$victima->id==session("idVictim"))
+            <br>
+          
+                  <strong style="margin-left:15%;color:red">{{$victima->victima_nombre_y_apellido}}</strong>
+
+           @endif
+           @endforeach
+
+         <h4 class="text-center" style="padding:5%;margin-bottom:-5%">Eje A: Datos institucionales</h4><p style="margin-left:28%">Caso:</spam>{{$caso->nombre_referencia}}<br>
+        
+
+           
+         </p><br>
            <input type ='button' style="width:317px;background-color:#ffffcc;margin-left:22%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'EDITAR' onclick="window.open('/detalleCaso/{{$caso->id}}')"/></button>
 
         <h4 class="text-center" style="padding: 15px;">Personas Asistidas</h4>
 
 
-<input type ='button' style="width:317px;background-color:grey;margin-left:22%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/detalleagregarPersona')"/></button>
-    <h5 class="text-center" style="padding: 15px;">
+
+    <a type="button" style="width:317px;background-color:grey;margin-left:22%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarPersona" target="_self">Agregar</button></a><br><br>
+
+
       <ul>
         @foreach($personas as $persona)
 
-      @if($persona->idCaso==session("idCaso"))
+      @if($persona->idCaso==session("idCaso")&&$persona->idVictim==session("idVictim"))
                <li>
 
               <strong style="margin-left:-15%">{{$persona->nombre_persona_asistida}}</strong>
 
 <div class="botones" style="overflow:hidden;margin-left:15%">
         <div class="btn1" style="float:left">  <input type ='button' style="width:150px;background-color:#97c93f;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Editar' onclick="window.open('/detallePersona/{{$persona->id}}', 'width=800,height=600');"/></button></div>
+        
         <div class="btn2" style="float:left">   <input type ='button' style="width:150px; margin-left:13%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Eliminar' onclick="window.open('/detallePersona/deletePersona/{{$persona->id}}', 'width=800,height=600');"/></button></div>
         </div>
             </li>
@@ -105,7 +153,7 @@ session_start();
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
 
      <h4 class="text-center" style="padding: 15px;">Eje B: La victima y su contexto</h4>
-     <input type ='button' style="width:317px;background-color:grey;margin-left:22%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/detalleagregarVictima')"/></button>
+     <input type ='button' style="width:317px;background-color:grey;margin-left:22%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/agregarVictima')"/></button>
         <h5 class="text-center" style="padding: 15px;">
           <ul>
             @foreach($victimas as $victima)
@@ -134,7 +182,7 @@ session_start();
        
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
 
-     <h4 class="text-center" style="padding: 15px;">Eje C: Grupo Conviviente</h4>
+     <h4 class="text-center" style="padding: 15px;">Eje C: Referentes Afectivos</h4>
 
 
 
@@ -143,7 +191,7 @@ session_start();
           <ul>
             @foreach($convivientes as $conviviente)
 
-          @if($conviviente->idCaso==session("idCaso"))
+          @if($conviviente->idCaso==session("idCaso")&&$conviviente->idVictim==session("idVictim"))
                    <li>
 
                   <strong style="margin-left:-20%">{{$conviviente->nombre_y_apellido}}</strong>
@@ -162,38 +210,19 @@ session_start();
                              </h6>
                            </div>
 </div>
-      <div class="card">
-        
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
-
-        <h4 class="text-center" style="padding: 15px;">Eje D: Datos del delito</h4>
-
-             @foreach($hechos as $hecho)
-
-    @if($hecho->idCaso==session("idCaso"))
-    
-
-              <input type ='button' style="width:317px;background-color:#ffffcc;margin-left:21%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'EDITAR' onclick="window.open('/detalleDelito/{{$hecho->id}}', 'width=800,height=600');"/></button>
-
-
- @endif 
-
-      
-@endforeach
-
-  </div>
+  
 
       <div class="card">
 
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
 
-     <h4 class="text-center" style="padding: 15px;">Eje E: Datos del imputado</h4>
+     <h4 class="text-center" style="padding: 15px;">Eje D: Datos del imputado</h4>
 <input type ='button' style="width:317px;background-color:grey;margin-left:22%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/detalleagregarimputado')"/></button>
       <h5 class="text-center" style="padding: 15px;">
         <ul >
           @foreach($imputados as $imputado)
 
-        @if($imputado->idCaso==session("idCaso"))
+        @if($imputado->idCaso==session("idCaso")&&$imputado->idVictim==session("idVictim"))
                  <li >
 
                 <strong style="margin-left:-15%">{{$imputado->nombre_y_apellido}}</strong>
@@ -216,20 +245,22 @@ session_start();
       
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
 
-      <h4 class="text-center" style="padding: 15px;">Eje F: Atención del caso</h4>
+      <h4 class="text-center" style="padding: 15px;">Eje E: Atención del caso</h4>
 
-      @foreach($instituciones as $institucion)
-
+      
+  @if($instituciocount==0)
+  <input type ='button' style="width:317px;background-color:grey;margin-left:21%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/agregarOrganismo', 'width=800,height=600');"/></button>@endif
+  @if($instituciocount>0)
+  @foreach($instituciones as $institucion)
     @if($institucion->idCaso==session("idCaso"))
-    
-
-              <input type ='button' style="width:317px;background-color:#ffffcc;margin-left:21%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'EDITAR' onclick="window.open('/detalleOrganismo/{{$institucion->id}}', 'width=800,height=600');"/></button>
-
-
+ 
+   @endif          
+@endforeach
+   <input type ='button' style="width:317px;background-color:#ffffcc;margin-left:21%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'EDITAR' onclick="window.open('/detalleOrganismo/{{$institucion->id}}', 'width=800,height=600');"/></button> 
  @endif 
 
       
-@endforeach
+
 
 
              
@@ -243,7 +274,7 @@ session_start();
 
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
 
-<h4 class="text-center" style="padding: 15px;">Eje G: Documentación</h4>
+<h4 class="text-center" style="padding: 15px;">Eje F: Documentación</h4>
 <input type ='button' style="width:317px;background-color:grey;margin-left:23%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/detalleagregarDocumento')"/></button>
 <h5 class="text-center" style="padding: 15px;">
   <ul >

@@ -27,6 +27,9 @@
 
 
    <body>
+
+ 
+    <section class="container jumbotron shadow p-3 mb-5 bg-white rounded">
     <div class="divpersona" id="divpersona">  <h2 class="text-center" style="padding: -20px;">Personas Asistidas</h2><h5 class="text-center" style="padding: -20px;">
 
       <label class="font-weight-bold">Caso: </label>
@@ -59,7 +62,7 @@
   </ul>
 
     </div>
-
+</section>
     <section class="container jumbotron shadow p-3 mb-5 bg-white rounded" >
 
       <!Listado Personas asistidas>
