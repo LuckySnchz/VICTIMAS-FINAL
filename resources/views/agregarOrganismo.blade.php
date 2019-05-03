@@ -730,8 +730,8 @@ if (sel.value=="3"){
       </section>
       <div class="botones">
       <div class="btn-1"> <button type="submit" style="color:white; background-color:rgb(137, 210, 14)" class="btn col-xl" name="button">SIGUIENTE</button><br><br></div>
-    </div>
 
+            </div>
          </form>
 
    </body>

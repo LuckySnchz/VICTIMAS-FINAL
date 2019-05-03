@@ -17,4 +17,14 @@ class Profesional extends MiModelo
   public function casos(){
     return $this->hasOne(Caso::class,"id");
   }
+
+
+public function getIdCaso()
+  {
+    return $this->idCaso;
+  }
+
+
+
+
 }

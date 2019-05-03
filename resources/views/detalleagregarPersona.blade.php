@@ -27,19 +27,12 @@
 
 
    <body>
+<div class="divpersona" id="divpersona">  <h2 class="text-center" style="padding: -20px;">Personas Asistidas</h2><h5 class="text-center" style="padding: -20px;">
 
- 
-    <section class="container jumbotron shadow p-3 mb-5 bg-white rounded">
-    <div class="divpersona" id="divpersona">  <h2 class="text-center" style="padding: -20px;">Personas Asistidas</h2><h5 class="text-center" style="padding: -20px;">
+   </h5>
+</div>
+<div class="ocultar" style="display: none">
 
-      <label class="font-weight-bold">Caso: </label>
-    {{$casoActual->nombre_referencia}}<br>
-
-
-    <label class="font-weight-bold">Victima: </label>
-  {{$victimActual->victima_nombre_y_apellido}}</h5>
-
- <!-- 
   <div class="" style="margin-left: 43.5%">
   <label class="font-weight-bold">Personas Asistidas para esta víctima: </label>
   <ul style="list-style:none">
@@ -52,8 +45,7 @@
                   {{$persona->nombre_persona_asistida}}
                   @endif
                   @endforeach
-                  <strong>  <a style="color:red"href="/eliminar/{{$persona->id}}">
-              ELIMINAR</a></strong>
+                 
 
           </li>
                 @endif
@@ -62,10 +54,10 @@
   </ul>
 
     </div>
-</section>
+
     <section class="container jumbotron shadow p-3 mb-5 bg-white rounded" >
 
-    <!Listado Personas asistidas>
+      <!Listado Personas asistidas>
 
   @if($cantdeVictimas>1)
   <div class="flex-container" style="display: flex;
@@ -100,9 +92,10 @@
   </div>
 
 
--->
 
 
+
+<section class="container jumbotron shadow p-3 mb-5 bg-white rounded" >
   <div class="">
 
 <form class="" action="/detalleagregarPersona" method="post">
@@ -316,7 +309,7 @@
       </div>
       </form>
       </section>
-      
+     
 
 
       <script>

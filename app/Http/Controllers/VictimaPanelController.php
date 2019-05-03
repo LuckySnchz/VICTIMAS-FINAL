@@ -145,16 +145,16 @@ public function agregar(Request $form){
     $victim->tipo_enfermedad_cronica= $form ["tipo_enfermedad_cronica"];
     $victim->tiene_limitacion= $form ["tiene_limitacion"];
     $victim->limitacion_otro= $form ["limitacion_otro"];
+    $victim->persona_asistida= $form["persona_asistida"];
+    $victim->otras_personas_asistidas= $form["otras_personas_asistidas"];
     $victim->idCaso= session("idCaso");
     $victim->userID_create= Auth::id();
 
-
     $victim->save();
 
-    $idVictim = $victim->id;
+    $idVictim= $victim->id;
 
-session(["idVictim" => $idVictim]);
-
+    session(["idVictim" => $idVictim]);
 
 
     if (is_array($form["necesidades"])){
@@ -173,7 +173,7 @@ session(["idVictim" => $idVictim]);
     foreach ($form["limitaciones"] as $limitacion) {
     $victim->limitaciones()->attach($limitacion);}}
 
-  return redirect ("agregarPersona");
+  return redirect("paneldecontrol/$victim->idCaso");
 
     }
 

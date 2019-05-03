@@ -19,6 +19,11 @@ public function caso() {
 public function victims() {
   return $this->belongsToMany(Victim::class,"victim_ra","idConviviente","idVictim");
 }
+public function getIdCaso()
+  {
+    return $this->idCaso;
+  }
+  
 }
 
 ?>

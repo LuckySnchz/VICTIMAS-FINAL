@@ -43,8 +43,7 @@
                   {{$imputado->nombre_y_apellido}}
                   @endif
                   @endforeach
-                   <strong>  <a style="color:red"href="/eliminar/{{$imputado->id}}">
-              ELIMINAR</a></strong>
+                  
 
           </li>
                 @endif
@@ -545,14 +544,8 @@
 
   </form>
   </section>
-
-<a type="button" style="width:100%;color:white; text-decoration: none" class="btn btn-primary col-xL" href="/agregarVictima" target="_self">AGREGAR NUEVA VICTIMA</button></a><br><br>
-
-<a type="button" style="width:100%;color:white;background-color:rgb(137, 210, 14);color:white; text-decoration: none" class="btn col-xl" href="/agregarOrganismo" target="_self">SIGUIENTE</button></a><br><br>
-
-
-
-
+  <div  class="btn-4">   <button  style="width:100%" class="btn btn-primary col-xL" name="button" onclick="window.open('agregarVictima', 'width=800,height=600')";>AGREGAR NUEVA VICTIMA</button><br><br></div>
+  <div class="btn-4">   <button  style="width:100%;color:white;background-color:rgb(137, 210, 14)" class="btn col-xL" name="button" onclick="window.open('agregarOrganismo', 'width=800,height=600')";>SIGUIENTE</button><br><br></div>
 
 <script>
          function selectOnChangeA14I(sel) {

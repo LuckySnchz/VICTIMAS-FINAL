@@ -13,13 +13,16 @@ session_start();
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
       <link rel="stylesheet" href="css/app.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
       <title>Eje B: Caracterización de la victima y su contexto</title>
       <style>
       </style>
    </head>
    <header>
      @include('navbar')
-     
+ <br>
+
    </header>
    <body>
 
@@ -27,18 +30,20 @@ session_start();
 
      <section class="container jumbotron shadow p-3 mb-5 bg-white rounded">
 
-     <div class="form-group">
-      <ul>
-      @foreach($victims as $victim)
-          @if ($victim->idCaso == session("idCaso"))
-            <li>
-            <a href="detallevictima/{{$victim->id}}">
-              {{$victim->victima_nombre_y_apellido}}</a>
-            </li>
-          @endif
-      @endforeach
-      </ul>
-    </div>
+
+       <ul>
+           @foreach($victims as $victim)
+             @if ($victim->idCaso == session("idCaso"))
+               <li>
+
+                       {{$victim->victima_nombre_y_apellido}}
+
+               </li>
+             @endif
+           @endforeach
+       </ul>
+
+
 
 
     <form class="" action="/detalleagregarVictima" method="post">
@@ -49,10 +54,29 @@ session_start();
 
     <div class="form-group"{{ $errors->has('victima_nombre_y_apellido') ? 'has-error' : ''}}>
     <input type="hidden" name="idCaso" value="{{session("idCaso")}}">
+
     <label for="">B 1. Nombre y apellido:</label>
     <input type="text" class="form-control" name="victima_nombre_y_apellido" id="victima_nombre_y_apellido" value="{{old('victima_nombre_y_apellido')}}">
+    <label for="bloqueo1" class="form-check-label">Se desconoce</label>
+
+    <input type="checkbox" id="bloqueo1" name="victima_nombre_y_apellido" value="Se desconoce" onchange="checkC1(this)">
     {!! $errors->first('victima_nombre_y_apellido', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
+
+    <script>
+         function checkC1(checkbox)
+         {
+             if (checkbox.checked)
+                 {
+                     $('#victima_nombre_y_apellido').val('Se desconoce');
+                     document.getElementById('victima_nombre_y_apellido').setAttribute("readonly", "readonly");
+                 }else
+                     {
+                         $('#victima_nombre_y_apellido').val('');
+                         document.getElementById('victima_nombre_y_apellido').removeAttribute("readonly");
+                     }
+         }
+      </script>
 
 <!B2 Género>
 
@@ -122,35 +146,54 @@ session_start();
 
 <!B4 Edad>
 
+
     <div class="form-group"{{ $errors->has('victima_edad') ? 'has-error' : ''}}>
-    <label for="victima_edad">B 4. Edad:</label>
-    <input name="victima_edad" value="{{old('victima_edad')}}"  id="victima_edad" class="form-control" type="text" onchange="mostrarValorB4(this.value);">
-    <label class="form-check-label" for="victima_edad_desconoce">Se desconoce</label>
-    <input name="victima_edad_desconoce" value="Se desconoce" id="victima_edad_desconoce" placeholder="" type="checkbox" onchange="checkB4(this)">
+
+    @if(old('victima_edad')=="0")
+      <label for="victima_edad">B 4. Edad:</label>
+    <input name="victima_edad"  style="background-color: #e9ecef;color:black"value="{{old('victima_edad')}}" onchange="mostrarValorB4(this.value);" id="victima_edad" class="form-control" type="text" readonly="readonly"/><br>
+
+
+    <label class="form-check-label" >Se desconoce</label>
+    <input name="victima_edad" value="0" id="bloqueo1" type="checkbox" checked onchange="checkB4(this)">
+
+
+    @else
+
+  <label for="victima_edad">B 4. Edad:</label>
+    <input name="victima_edad" style="background-color: white;color: black" value="{{old('victima_edad')}}" onchange="mostrarValorB4(this.value);" id="victima_edad" class="form-control" type="text"><br>
+    <label class="form-check-label" >Se desconoce</label>
+    <input name="victima_edad" value="0" id="bloqueo1" type="checkbox" onchange="checkB4(this)">
+  @endif
+
     {!! $errors->first('victima_edad', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
 
-    <!-- si clickeo el check de se desconoce automaticamente en la franja etaria ingresa el valor se desconoce y se bloquea el input text para asignar la edad -->
-    <script type="text/javascript">
+
+</script>
+
+<script type="text/javascript">
        function checkB4(checkbox) {
           if (checkbox.checked)
                 {
-                    $('#victima_edad').val('0');
-                    $('#franjaetaria_id').val('7');
+                    $('#victima_edad').val('Se Desconoce');
                     document.getElementById('victima_edad').setAttribute("readonly","readonly");
-                    divAZ = document.getElementById("victima_edad");
-                 divAZ.style.display="none"
+                    document.getElementById('victima_edad').style.background="#e9ecef";
+                    $('#franjaetaria_id').val('7');
+
+                    divAY= document.getElementById("victima_edad").disabled=true;
+
            }
            else{
                     $('#victima_edad').val('');
-                    $('#franjaetaria_id').val('');
+                    document.getElementById('victima_edad').style.background="white";
                     document.getElementById('victima_edad').removeAttribute("readonly");
-                  divA = document.getElementById("victima_edad");
-                 divA.style.display="block"
+                    $('#franjaetaria_id').val('').disabled=false;
+                  divA = document.getElementById("victima_edad").disabled=false;
+
            }}
     </script>
-    <!-- FIN UNDECIMA PREGUNTA -->
-    <!-- DUODECIMA PREGUNTA -->
+
 
 <!B5 Franja Etaria>
 
@@ -172,8 +215,13 @@ session_start();
     <!-- de acuerdo al valor que se seleccione le asigno una franja etaria  -->
     <script type="text/javascript">
        var mostrarValorB4 = function(x){
+        if(x==0){
+            dicv=document.getElementById('victima_edad').value=1;
+        }
        if(x<12){
            document.getElementById('franjaetaria_id').value=1;
+
+
        }
        if(x>11){if(x<19){
 
@@ -215,39 +263,45 @@ session_start();
     {!! $errors->first('tienedoc', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
 
-    <script>
-         function selectOnChangeB6(sel)
-         {
-             if (sel.value == "3"){
-                 divA = document.getElementById("tipodoc");
-                 divB = document.getElementById("nrodoc");
-                 divA.style.display="none";
-                 divB.style.display="none";
-                 $('#tipodocumento_id').val('7');
-                 $('#victima_documento').val('No posee');
-             }else if(sel.value == "6"){
-                 divA = document.getElementById("tipodoc");
-                 divB = document.getElementById("nrodoc");
-                 divA.style.display="none";
-                 divB.style.display="none";
-                 $('#tipodocumento_id').val('8');
-                 $('#victima_documento').val('Se desconoce');
-             }else{
-                 $('#tipodocumento_id').val('');
-                 $('#victima_documento').val('');
-                 divA.style.display="";
-                 divB.style.display="";
 
-             }
+
+ <script>
+         function selectOnChangeB6(sel) {
+          if (sel.value=="1"||sel.value=="5"){
+              divV = document.getElementById("que_doc");
+              divV.style.display = "";
+              divV = document.getElementById("que_doc8");
+              divV.style.display = "";}
+
+
+              if (sel.value=="3"||sel.value=="6"){
+                divV = document.getElementById("que_doc");
+                divV.style.display = "none";
+                divV = document.getElementById("que_doc8");
+                divV.style.display = "none";
+                divVC = document.getElementById("cual_b2");
+              $('#victima_tipo').val('');
+              divVC.style.display="none";
+              $('#tipodocumento_id').val('0');
+
+
+          }
          }
       </script>
 
+
+
 <!B7 Tipo documentación>
 
-    <div class="form-group " id="tipodoc" {{ $errors->has('tipodocumento') ? 'has-error' : ''}}>
+
+    @if (old("tienedoc") == 1) <div id="que_doc" {{ $errors->has('tipodocumento') ? 'has-error' : ''}}>
+    @else
+    <div id="que_doc" style="display: none">
+    @endif
+
     <label for="">B 7. Tipo de documentación:</label>
     <select class="form-control" id="tipodocumento_id" name="tipodocumento" onChange="selectOnChangeB7(this)">
-        <option value="" selected=disabled>Seleccionar...</option>
+        <option value="0" selected=disabled>Seleccionar...</option>
         @if(old("tipodocumento") ==1)<option value="1" selected>D.N.I.</option> @else<option value="1" >D.N.I.</option>@endif
 
         @if(old("tipodocumento") ==2)<option value="2" selected>Documento Extranjero</option>
@@ -332,27 +386,55 @@ session_start();
 
 <!B8 Nro documento>
 
-    <div class="form-group " id="nrodoc" {{ $errors->has('victima_numero_documento') ? 'has-error' : ''}}>
-    <label for="">B 8. Nro Documento:</label>
-    <input type="text" class="form-control" name="victima_numero_documento" placeholder="" id="victima_documento" value="{{old("victima_numero_documento")}}">
-    <label for="bloqueo3" class="form-check-label">Se desconoce</label>
-    <input type="checkbox" id="bloqueo3" name="victima_documento_se_desconoce" value="Se desconoce" onchange="check3(this)">
+  @if (old("tienedoc") == 1) <div id="que_doc8" {{ $errors->has('tipodocumento') ? 'has-error' : ''}}>
+    @else
+    <div id="que_doc8" style="display: none">
+    @endif
+    <div class="form-group" {{ $errors->has('victima_numero_documento') ? 'has-error' : ''}}>
+
+
+    @if(old('victima_numero_documento')=="0")
+
+ <label for="">B 8. Nro Documento:</label>
+    <input name="victima_numero_documento" value="{{old('victima_numero_documento')}}"   id="victima_numero_documento" class="form-control"style="background-color: #e9ecef;color:black" type="text" readonly="readonly"/><br>
+
+    <label class="form-check-label" >Se desconoce</label>
+    <input name="victima_numero_documento" value="0" id="bloqueo1" type="checkbox" checked onchange="checkB8(this)">
+
+    @else
+     <label for="">B 8. Nro Documento:</label>
+        <input name="victima_numero_documento" style="background-color: white;color:black" value="{{old('victima_numero_documento')}}"   id="victima_numero_documento" class="form-control" type="text"><br>
+
+    <label class="form-check-label" >Se desconoce</label>
+    <input name="victima_numero_documento" value="0" id="bloqueo1" type="checkbox" onchange="checkB8(this)">
+  @endif
+
     {!! $errors->first('victima_numero_documento', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
-      <script>
-         function check3(checkbox)
-         {
-             if (checkbox.checked)
-             {
-                 $('#victima_documento').val('Se desconoce');
-                 document.getElementById('victima_documento').setAttribute("readonly", "readonly");
-             }else
-                 {
-                     $('#victima_documento').val('');
-                     document.getElementById('victima_documento').removeAttribute("readonly");
-                 }
-         }
-      </script>
+</div>
+
+
+
+<script type="text/javascript">
+       function checkB8(checkbox) {
+          if (checkbox.checked)
+                {
+                    $('#victima_numero_documento').val('Se Desconoce');
+                    document.getElementById('victima_numero_documento').setAttribute("readonly","readonly");
+                      document.getElementById('victima_numero_documento').style.background="#e9ecef";
+                    divAY= document.getElementById("victima_numero_documento").disabled=true;
+
+           }
+           else{
+                    $('#victima_numero_documento').val('');
+document.getElementById('victima_numero_documento').style.background="white";
+                    document.getElementById('victima_numero_documento').removeAttribute("readonly");
+                  divA = document.getElementById("victima_numero_documento").disabled=false;
+
+           }}
+    </script>
+
+
 
 <!B9 Nivel educativo>
 
@@ -435,10 +517,10 @@ session_start();
               @foreach ($necesidades as $necesidad)
                 <label class="form-check-inline form-check-label">
                   @if(is_array(old("necesidades")) && in_array($necesidad->id, old("necesidades")))
-                    <input type="checkbox" value="{{ $necesidad->id }}" class="form-check-inline neceSocio" name="necesidades[]" checked>
+                    <input type="checkbox" value="{{ $necesidad->id }}" id="{{ $necesidad->id }}" class="form-check-inline neceSocio" name="necesidades[]" checked>
                   @else
 
-                <input type="checkbox" value="{{ $necesidad->id }}" class="form-check-inline neceSocio" name="necesidades[]">
+                <input type="checkbox" value="{{ $necesidad->id }}" id="{{ $necesidad->id }}" class="form-check-inline neceSocio" name="necesidades[]">
               @endif
                 {{ $necesidad->nombre }}
                 </label><br>
@@ -485,6 +567,7 @@ session_start();
     var otro = varios[varios.length-1]
 
     otro.onclick = function(){
+       $('#necesidades_insatisfechas_otro').val('');
         $("#cualB11").toggle()
 
 
@@ -513,157 +596,118 @@ session_start();
                    document.querySelector('#cualB11').style.display = 'none';
 
                    document.querySelector('#necesidades_insatisfechas_otro').value = '';
-             }
-
-
-            }
+             }}
 
          </script>
-         <script>
-          function muestroCualB11() {
-             var checkBox = document.getElementById("checkeadoB11");
-             var text = document.getElementById("cualB11");
-             if (checkBox.checked == true){
-                 text.style.display = "block";
 
-             } else {
-               	$('#necesidades_insatisfechas_otro').val('');
-                text.style.display = "none";
-             }
-         }</script>
 
-<!B12 Programa o subsidio social>
+
+  <!B12 Programa o subsidio social>
 
    <div class="form-group"{{ $errors->has('programa_subsidio') ? 'has-error' : ''}}>
    <label for="modalidad_id">B 12.¿Percibe algún tipo de programa o subsidio social?:</label>
    <select class="form-control" name="programa_subsidio" id="programa_subsidio" onChange="selectOnChangeB12(this)">
-         <option value="" selected=disabled>Seleccionar...</option>
-         @if(old("programa_subsidio") == 1)<option value="1" selected>Sí</option>
-         @else<option value="1" >Sí</option>@endif
+              <option value="" selected=disabled>Seleccionar...</option>
+              @if(old("programa_subsidio") == 1)<option value="1" selected>Sí</option>
+              @else<option value="1" >Sí</option>@endif
+              @if(old("programa_subsidio") == 2)<option value="2" selected>No</option>
+              @else<option value="2" >No</option>@endif
+              @if(old("programa_subsidio") == 3)<option value="3" selected>Se desconoce</option>
+              @else<option value="3" >Se desconoce</option>@endif
+  </select>
+  {!! $errors->first('programa_subsidio', '<p class="help-block" style="color:red";>:message</p>') !!}
+  </div>
 
-         @if(old("programa_subsidio") == 2)<option value="2" selected>No</option>
-         @else<option value="2">No</option>@endif
-
-         @if(old("programa_subsidio") == 3)<option value="3" selected>Se desconoce</option>
-         @else<option value="3" >Se desconoce</option>@endif
-   </select>
-   {!! $errors->first('programa_subsidio', '<p class="help-block" style="color:red";>:message</p>') !!}
-   </div>
-
-   @if(old("programa_subsidio") == 1)
-
-   <div class="form-group" {{ $errors->has('programas') ? 'has-error' : ''}} id="programa_subsidio_si">
-   <label>B 12 I. ¿Cuál?  </label><br>
+@if(old("programa_subsidio") == 1)
+  <div class="form-group" id="programa_subsidio_si"
+  {{ $errors->has('programas') ? 'has-error' : ''}}>
+ <label>B 12 I. ¿Cuál?  </label><br>
    <label class="" >En caso de requerir, tildar todas las opciones que considere correspondientes.</label><br>
-       @foreach ($programas as $programa)
-         <label class="form-check-inline form-check-label">
-          @if(is_array(old("programas")) && in_array($programa->id, old("programas")))
-         <input type="checkbox" value="{{ $programa->id }}" class="form-check-inline progra2" name="programas[]" checked>
-       @else
-         <input type="checkbox" value="{{ $programa->id }}" class="form-check-inline progra2" name="programas[]">
-       @endif
+              @foreach ($programas as $programa)
+                <label class="form-check-inline form-check-label">
+                  @if(is_array(old("programas")) && in_array($programa->id, old("programas")))
+                    <input type="checkbox" value="{{ $programa->id }}" id="{{ $programa->id }}" class="form-check-inline progra2" name="programas[]" checked>
+                  @else
 
-        {{ $programa->nombre }}
-         </label>
-       @endforeach
-
-     @else
-
-       <div class="form-group" id="programa_subsidio_si" style="display:none">
-       <label>B 12 I. ¿Cuál?  </label><br>
-       <label class="" >En caso de requerir, tildar todas las opciones que considere correspondientes.</label><br>
-           @foreach ($programas as $programa)
-             <label class="form-check-inline form-check-label">
-              @if(is_array(old("programas")) && in_array($programa->id, old("programas")))
-             <input type="checkbox" value="{{ $programa->id }}" class="form-check-inline progra2" name="programas[]" checked>
-           @else
-             <input type="checkbox" value="{{ $programa->id }}" class="form-check-inline progra2" name="programas[]">
-           @endif
-
-            {{ $programa->nombre }}
-             </label>
-           @endforeach
-
-        @endif
-
+                <input type="checkbox" value="{{ $programa->id }}" id="{{ $programa->id }}" class="form-check-inline progra2" name="programas[]">
+              @endif
+                {{ $programa->nombre }}
+                </label><br>
+              @endforeach
 
 
   {!! $errors->first('programas', '<p class="help-block" style="color:red";>:message</p>') !!}
-  </div><br>
+  </div>
+
+@else
+  <div class="form-group" id="programa_subsidio_si" style="display:none">
+<label>B 12 I. ¿Cuál?  </label><br>
+   <label class="" >En caso de requerir, tildar todas las opciones que considere correspondientes.</label><br>
+              @foreach ($programas as $programa)
+                <label class="form-check-inline form-check-label">
+                @if(is_array(old("programas")) && in_array($programa->id, old("programas")))
+                  <input type="checkbox" value="{{ $programa->id }}" class="form-check-inline progra2" name="programas[]" checked>
+                @else
+                <input type="checkbox" value="{{ $programa->id }}" class="form-check-inline progra2" name="programas[]">
+                @endif
+                {{ $programa->nombre }}
+                </label><br>
+              @endforeach
+              </div>
+              @endif
 
   @if (is_array(old("programas")) && in_array("5", old("programas")))
     <div id="cualB12" {{ $errors->has('programa_subsidio_otro') ? 'has-error' : ''}}>
-       <label for="">Cual?</label>
-       <input type="text" class="form-control" name="programa_subsidio_otro" value="{{old("programa_subsidio_otro")}}" id="programa_subsidio_otro">
-       {!! $errors->first('programa_subsidio_otro', '<p class="help-block" style="color:red";>:message</p>') !!}
-       <br>
-    </div>
+    <label for="">Cual?</label>
+    <input type="text" class="form-control" name="programa_subsidio_otro" value="{{old("programa_subsidio_otro")}}" id="programa_subsidio_otro">
+    {!! $errors->first('programa_subsidio_otro', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div><br>
   @else
-    <div id="cualB12" style="display:none">
-       <label for="">Cual?</label>
-       <input type="text" class="form-control" name="programa_subsidio_otro" value="{{old("programa_subsidio_otro")}}" id="programa_subsidio_otro">
-       <br>
-    </div>
+
+  <div id="cualB12" style="display:none">
+  <label for="">Cual?</label>
+  <input type="text" class="form-control" name="programa_subsidio_otro" value="{{old("programa_subsidio_otro")}}" id="programa_subsidio_otro">
+  </div><br>
   @endif
 
+  <script type="text/javascript">
+    var varios = document.querySelectorAll(".progra2")
 
-  <script>
-        function selectOnChangeB12(sel) {
-                if (sel.value=="1"){
-                    divC = document.getElementById("programa_subsidio_si");
-                    divC.style.display = "";}
+    var otro = varios[varios.length-1]
 
-
-                    if (sel.value=="2"||sel.value=="3"){
-                      divC = document.getElementById("programa_subsidio_si");
-                      divC.style.display = "none";
-
-
-                    document.getElementById("jubilacion").checked= false;
-                    document.getElementById("asignacion").checked= false;
-                    document.getElementById("progresar").checked= false;
-                    document.getElementById("pension").checked= false;
-                    document.getElementById("checkeadoB12").checked= false;
-                    divC = document.getElementById("cualB12");
-                    $('#programa_subsidio_otro').val('');
-                    divC.style.display="none";
-
-                }
-
-
-        }
-     </script>
-
-     <script type="text/javascript">
-       var progra = document.querySelectorAll(".progra2")
-       var otro = progra[progra.length-1]
-
-       otro.onclick = function(){
-           $("#cualB12").toggle()
+    otro.onclick = function(){
+       $('#programa_subsidio_otro').val('');
+        $("#cualB12").toggle()
 
 
 
-        }
-     </script>
-
-
-  <!-- VER ESTA MANERA TERMINA ACA -->
-  <script>
-     function muestroCualB12() {
-     var checkBox = document.getElementById("checkeadoB12");
-     var text = document.getElementById("cualB12");
-     if (checkBox.checked == true){
-     text.style.display = "block";
-
-     } else {
-     $('#programa_subsidio_otro').val('');
-     text.style.display = "none";
      }
-     }
-
-
   </script>
 
+
+         <script>
+            function selectOnChangeB12(sel) {
+             if (sel.value=="1"){
+                 divCB12 = document.getElementById("programa_subsidio_si");
+                 divCB12.style.display = "";}
+
+
+                 if (sel.value=="2"||sel.value=="3"){
+                   divCB12 = document.getElementById("programa_subsidio_si");
+                   divCB12.style.display = "none";
+                   var checkboxes = divCB12.querySelectorAll('input');
+
+
+                   checkboxes.forEach(function (oneCheckbox) {
+                     oneCheckbox.checked = false;
+                   })
+
+                   document.querySelector('#cualB12').style.display = 'none';
+
+                   document.querySelector('#programa_subsidio_otro').value = '';
+             }}
+
+         </script>
 <!B13 Embarazo>
 
 
@@ -877,6 +921,9 @@ session_start();
          }
       </script>
 
+
+
+
 <!B17 Limitaciones>
 
 <div class="form-group"{{ $errors->has('tiene_limitacion') ? 'has-error' : ''}}>
@@ -939,6 +986,15 @@ session_start();
       </div>
       <br><br>
     </div>
+       <script type="text/javascript">
+        var limita = document.querySelectorAll(".limi2")
+        var otro = limita[limita.length-1]
+
+        otro.onclick = function(){
+               $('#victima_limitacion_otra').val('');
+            $("#cualB17").toggle()
+         }
+         </script>
 
       <script>
          function selectOnChangeB17(sel) {
@@ -948,9 +1004,9 @@ session_start();
 
 
               if (sel.value=="2"||sel.value=="3"){
-                divC = document.getElementById("limitacionesSi");
-                divC.style.display = "none";
-                var checkboxes = divC.querySelectorAll('input');
+                divCB17 = document.getElementById("limitacionesSi");
+                divCB17.style.display = "none";
+                var checkboxes = divCB17.querySelectorAll('input');
 
 
                 checkboxes.forEach(function (oneCheckbox) {
@@ -968,32 +1024,48 @@ session_start();
       </script>
 
 
-      <script type="text/javascript">
-        var limita = document.querySelectorAll(".limi2")
-        var otro = limita[limita.length-1]
+<!-B18 Persona asistida es la víctima?->
 
-        otro.onclick = function(){
-            $("#cualB17").toggle()
-         }
-         </script>
+  <div class="form-group"{{ $errors->has('persona_asistida') ? 'has-error' : ''}}>
+  <label for="persona_asistida">B 18. ¿Es la persona asistida la víctima directa?:</label>
+  <select class="form-control" name="persona_asistida">
+      <option value="" selected=disabled>Seleccionar...</option>
+          @if(old("persona_asistida") == 1)<option value="1"selected>Sí</option>
+          @else<option value="1">Sí</option>@endif
 
+          @if(old("persona_asistida") == 2)<option value="2"selected>No</option>
+          @else<option value="2">No</option>@endif
+  </select>
+  {!! $errors->first('persona_asistida', '<p class="help-block" style="color:red";>:message</p>') !!}
+  </div>
 
+  <!-B19 Mas Personas asistidas relacionadas a la víctima?->
+
+    <div class="form-group"{{ $errors->has('otras_personas_asistidas') ? 'has-error' : ''}}>
+    <label>B 19. ¿Se asisten a mas personas relacionadas a la víctima?:</label>
+    <select class="form-control" name="otras_personas_asistidas">
+        <option value="" selected=disabled>Seleccionar...</option>
+            @if(old("otras_personas_asistidas") == 1)<option value="1"selected>Sí</option>
+            @else<option value="1">Sí</option>@endif
+
+            @if(old("otras_personas_asistidas") == 2)<option value="2"selected>No</option>
+            @else<option value="2">No</option>@endif
+    </select>
+    {!! $errors->first('otras_personas_asistidas', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div>
 
 
 <!BOTONES>
 
     <div class="botones">
     <div class="btn-1"> <button type="submit" class="btn btn-primary col-xl" name="button"  >Agregar/Enviar</button><br><br></div>
+
+
+
+
     </div>
     </form>
     </section>
-    
-
-
-
-
-
-
 
     </body>
  </html>

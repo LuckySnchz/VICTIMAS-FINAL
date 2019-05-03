@@ -14,7 +14,7 @@ session_start();
       <link rel="stylesheet" href="https:stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
       <link rel="stylesheet" href="css/app.css">
       <script src="https:ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <title>Eje A: Datos institucionalessssssss</title>
+      <title>Eje A: Datos institucionales</title>
       <style>
          .Auno,.Ados{float: left;
          width: 40%
@@ -463,78 +463,59 @@ session_start();
       </div>
 
 
+<!-D3 País del hecho->
 
-  <!-D3 País del hecho->
-
-      <div class="form-group" {{ $errors->has('pais_hecho') ? 'has-error' : ''}}>
-      <label for="countryId2">A 13. País del hecho:</label>
-      <select name="pais_hecho" class="countries2 order-alpha form-control" id="countryId2">
-        <option value="" selected=disabled>Seleccionar...</option>
-        @if((old("pais_hecho")==1))
-        <option value="1" selected>Argentina</option>
-        @else
-        <option value="1">Argentina</option>
-        @endif
-      </select>
-      <br>
-      {!! $errors->first('pais_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
-
-  <!-D4 Provincia del hecho->
-
-      <div class="form-group" {{ $errors->has('provincia_hecho') ? 'has-error' : ''}}>
-      <label for="stateId2">A 14. Provincia del hecho:</label>
-      <select name="provincia_hecho" class="states2 order-alpha form-control" id="stateId2">
+    <div class="form-group" {{ $errors->has('pais_hecho') ? 'has-error' : ''}}>
+    <label for="countryId2">D 3. País del hecho:</label>
+    <select name="pais_hecho" class="countries2 order-alpha form-control" id="countryId2">
       <option value="" selected=disabled>Seleccionar...</option>
-        <option value="0">Se desconoce</option>
-      @foreach ($provincias as $provincia)
-        @if ((old("provincia_hecho")==$provincia->id))
-        <option value="{{$provincia->id}}" selected>{{$provincia->nombre}}</option>
-        @else
-        <option value="{{$provincia->id}}">{{$provincia->nombre}}</option>
-        @endif
-      @endforeach
-      </select>
-      <label>Se desconoce</label>
-      <input type="checkbox" name="provincia_hecho" id="desconoceProvinciaExplotacion" value="Se desconoce" onchange="checkD4(this)"><br>
-      {!! $errors->first('provincia_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
+      @if((old("pais_hecho")==1))
+      <option value="1" selected>Argentina</option>
+      @else
+      <option value="1">Argentina</option>
+      @endif
+    </select>
+    <br>
+    {!! $errors->first('pais_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div>
 
-      <script>
-             function checkD4(checkbox)
-             {
-                 if (checkbox.checked)
-                     {
-                         $('#stateId2').val('0');
-                         document.getElementById('stateId2').setAttribute("readonly", "readonly");
+<!-D4 Provincia del hecho->
 
-                     }else
-                         {
-                             $('#stateId2').val('');
-                             document.getElementById('stateId2').removeAttribute("readonly");
-                         }
-             }
-          </script>
+    <div class="form-group" {{ $errors->has('provincia_hecho') ? 'has-error' : ''}}>
+    <label for="stateId2">D 4. Provincia del hecho:</label>
+    <select name="provincia_hecho" class="states2 order-alpha form-control" id="stateId2">
+    <option value="" selected=disabled>Seleccionar...</option>
+    @foreach ($provincias as $provincia)
+      @if ((old("provincia_hecho")==$provincia->id))
+      <option value="{{$provincia->id}}" selected>{{$provincia->nombre}}</option>
+      @else
+      <option value="{{$provincia->id}}">{{$provincia->nombre}}</option>
+      @endif
+    @endforeach
+    </select>
+    <label>Se desconoce</label>
+    <input type="checkbox" name="provincia_hecho" id="desconoceProvinciaExplotacion" value="Se desconoce"><br>
+    {!! $errors->first('provincia_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div>
 
-  <!-D5 Localidad del hecho->
+<!-D5 Localidad del hecho->
 
-      <div class="form-group" {{ $errors->has('localidad_hecho') ? 'has-error' : ''}}>
-      <label for="cityId2">A 15. Localidad del hecho:</label>
-      <select name="localidad_hecho" class="cities2 order-alpha form-control" id="cityId2">
-        <option value=" " selected=disabled>Seleccionar...</option>
-
-      @foreach ($ciudades as $ciudad)
-        @if ((old("localidad_hecho")==$ciudad->id))
-        <option class="opcionProvincia provincia{{$ciudad->idPcia}}" style="display:none" value="{{$ciudad->id}}" selected>{{$ciudad->localidad_nombre}}</option>
-        @else
-        <option class="opcionProvincia provincia{{$ciudad->idPcia}}" style="display:none" value="{{$ciudad->id}}">{{$ciudad->localidad_nombre}}</option>
-        @endif
-      @endforeach
-      </select>
-      <label>Se desconoce</label>
-  		<input type="checkbox" name="localidad_hecho" id="desconoceCiudadExplotacion" value="Se desconoce" onchange="checkD5(this)"><br>
-      {!! $errors->first('localidad_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
+    <div class="form-group" {{ $errors->has('localidad_hecho') ? 'has-error' : ''}}>
+    <label for="cityId2">D 5. Localidad del hecho:</label>
+    <select name="localidad_hecho" class="cities2 order-alpha form-control" id="cityId2">
+    <option value="" selected=disabled>Seleccionar...</option>
+    @foreach ($ciudades as $ciudad)
+      @if ((old("provincia_hecho")==$ciudad->idPcia))
+      <option class="opcionProvincia provincia{{$ciudad->idPcia}}" style="display:none" value="{{$ciudad->id}}" selected>{{$ciudad->nombre}}</option>
+      @else
+      <option class="opcionProvincia provincia{{$ciudad->idPcia}}" style="display:none" value="{{$ciudad->id}}">{{$ciudad->localidad_nombre}}</option>
+      @endif
+    @endforeach
+    </select>
+    <label>Se desconoce</label>
+    <input type="checkbox" name="localidad_hecho" id="desconoceCiudadExplotacion" value="Se desconoce"><br>
+    {!! $errors->first('localidad_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div>
       <script>
              function checkD5(checkbox)
              {
@@ -551,23 +532,23 @@ session_start();
              }
           </script>
 
-          <script type="text/javascript">
-            document.querySelector("#stateId2").onchange = function() {
-              var value = this.options[this.selectedIndex].value;
+           <script type="text/javascript">
+    document.querySelector("#stateId2").onchange = function() {
+      var value = this.options[this.selectedIndex].value;
 
-              var opciones = document.querySelectorAll(".opcionProvincia");
+      var opciones = document.querySelectorAll(".opcionProvincia");
 
-              for (var i = 0; i < opciones.length; i++) {
-                opciones[i].style.display = "none";
-              }
+      for (var i = 0; i < opciones.length; i++) {
+        opciones[i].style.display = "none";
+      }
 
-              var opciones = document.querySelectorAll(".provincia" + value);
+      var opciones = document.querySelectorAll(".provincia" + value);
 
-              for (var i = 0; i < opciones.length; i++) {
-                opciones[i].style.display = "block";
-              }
-            }
-          </script>
+      for (var i = 0; i < opciones.length; i++) {
+        opciones[i].style.display = "block";
+      }
+    }
+  </script>
 
 
   </section>

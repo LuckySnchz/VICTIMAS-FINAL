@@ -11,7 +11,7 @@ use App\Limitacion;
 use App\Discapacidad;
 use Validator;
 
-class VictimController extends Controller
+class VictimaPanelController extends Controller
 {
 
 
@@ -173,35 +173,179 @@ public function agregar(Request $form){
     foreach ($form["limitaciones"] as $limitacion) {
     $victim->limitaciones()->attach($limitacion);}}
 
-    if($form["otras_personas_asistidas"] == 1){
-      return redirect ("agregarPersona");}else{
-        return redirect ("agregarconviviente");
-      }
+return redirect("paneldecontrol/1");
+  
 
     }
 
-    public function detalle($id) {
+public function victima($id,$idCaso) {
+   
+   session(["idVictim" => $id]);
+   session(["idCaso" => $idCaso]);
+   
 
-        $victima = Victim::find($id);
+return redirect("paneldecontrol/{$victim->idCaso}");
 
+    }
 
-        $vac = compact("victima");
-
-        return view("detalleVictima", $vac);
-      }
-
-      public function eliminarvictima($id) {
-         $victimaelim=Victim::find($id)->getIdCaso();
+      public function eliminar($id) {
         $victima = Victim::find($id);
         $victima->delete();
-          return redirect("paneldecontrol/$victimaelim");
+          return redirect("agregarVictima");
 
       }
 
+
+   public function detalle($id) {
+   $victim = Victim::find($id);
+    $victimas = Victim::all();
+    session(["idVictima" => $id]);
+    $necesidades = Necesidad::all();
+    $programas = Programa::all();
+    $discapacidades = Discapacidad::all();
+    $limitaciones = Limitacion::all();
+
+        $victima_nombre_y_apellido=$victim->victima_nombre_y_apellido;
+        $genero=$victim->genero;
+        $victima_fecha_nacimiento=$victim->victima_fecha_nacimiento;
+        $victima_edad=$victim->victima_edad;
+        $franjaetaria=$victim->franjaetaria;
+        $tienedoc=$victim->tienedoc;
+        $victim->tipodocumento=$tipodocumento=$victim->tipodocumento;
+       $tipo_documento_otro= $victim->tipo_documento_otro;
+        $residenciaprecaria=$victim->residenciaprecaria;
+        $victima_numero_documento=$victim->victima_numero_documento;
+        $niveleducativo=$victim->niveleducativo;
+        $condiciones_de_trabajo=$victim->condiciones_de_trabajo;
+        $necesidades_socioeconomicas_insatisfechas=$victim->necesidades_socioeconomicas_insatisfechas;
+        $necesidades_socioeconomicas_insatisfechas_otro=$victim->necesidades_socioeconomicas_insatisfechas_otro;
+        $programa_subsidio=$victim->programa_subsidio;
+        $programa_subsidio_otro=$victim->programa_subsidio_otro;
+        $embarazorelevamiento=$victim->embarazorelevamiento;
+          $tiene_discapacidad=$victim->tiene_discapacidad;
+       $tienelesion= $victim->tienelesion;
+       $tipo_lesion= $victim->tipo_lesion;
+       $enfermedadcronica= $victim->enfermedadcronica;
+        $tiene_limitacion= $victim->tiene_limitacion;
+        $tipo_enfermedad_cronica=$victim->tipo_enfermedad_cronica;
+        $limitacion_otro=$victim->limitacion_otro;
+
+        $persona_asistida=$victim->persona_asistida;
+        $otras_personas_asistidas=$victim->otras_personas_asistidas;
+
+
+
+               return view("detalleVictima",compact("victimas","victim","victima_nombre_y_apellido","genero","victima_fecha_nacimiento","victima_edad","franjaetaria","tienedoc","tipodocumento","victim->tipodocumento","tipo_documento_otro","residenciaprecaria","victima_numero_documento","niveleducativo","condiciones_de_trabajo","necesidades_socioeconomicas_insatisfechas","necesidades_socioeconomicas_insatisfechas_otro","programa_subsidio","programa_subsidio_otro","tiene_discapacidad","embarazorelevamiento","tienelesion","tipo_lesion","enfermedadcronica","enfermedadcronica","tipo_enfermedad_cronica","limitacion_otro","necesidades","programas","tiene_limitacion","limitaciones","discapacidades","persona_asistida","otras_personas_asistidas"));
+
+    }
 
     public function editar(Request $form) {
 
-        $victim = Victim::find($form["idVictima"]);
+      $hoy = date("d/m/y");
+     $reglas = [
+      "victima_nombre_y_apellido"=>"required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
+      "genero"=>"required|integer",
+      "victima_fecha_nacimiento"=>"date_format:Y-m-d|before:$hoy|after:1899-12-31",
+      "victima_edad"=>"required|integer",
+      "franjaetaria"=>"required",
+      "tienedoc"=>"required|integer",
+      "niveleducativo"=>"required|integer",
+      "condiciones_de_trabajo"=>"required|integer",
+      "necesidades_socioeconomicas_insatisfechas"=>"required",
+      "programa_subsidio"=>"required|integer",
+      "tiene_discapacidad"=>"required",
+      "tienelesion"=>"required|integer",
+      "enfermedadcronica"=>"required|integer",
+      "persona_asistida"=>"required",
+      "otras_personas_asistidas"=>"required",
+      "tiene_limitacion"=>"required"
+    ];
+
+      $validator = Validator::make($form->all(), $reglas);
+
+      $validator->sometimes('embarazorelevamiento', 'required|integer', function ($input) {
+        return $input->genero == 1;
+       });
+
+      $validator->sometimes('embarazorelevamiento', 'required|integer', function ($input) {
+       return $input->genero == 4;
+        });
+
+      $validator->sometimes('embarazorelevamiento', 'required|integer', function ($input) {
+        return $input->genero == 5;
+       });
+
+
+      $validator->sometimes('tipodocumento', 'required', function ($input) {
+        return $input->tienedoc == 1;
+       });
+
+       $validator->sometimes('victima_numero_documento', "required|min:1|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+         return $input->tienedoc == 1;
+        });
+
+       $validator->sometimes('tipodocumento', 'required', function ($input) {
+         return $input->tienedoc == 5;
+        });
+
+        $validator->sometimes('victima_numero_documento', "required|min:1|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+          return $input->tienedoc == 1;
+         });
+
+         $validator->sometimes('victima_numero_documento', "required|min:1|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+           return $input->tienedoc == 5;
+          });
+
+         $validator->sometimes('tipo_documento_otro', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+           return $input->tipodocumento == 9;
+          });
+
+       $validator->sometimes('residenciaprecaria', 'required', function ($input) {
+         return $input->tipodocumento == 6;
+        });
+       $validator->sometimes('necesidades', 'required', function ($input) {
+         return $input->necesidades_socioeconomicas_insatisfechas == 1;
+       });
+      $validator->sometimes('programas', 'required', function ($input) {
+          return $input->programa_subsidio == 1;
+       });
+
+       $validator->sometimes('discapacidades', 'required', function ($input) {
+           return $input->tiene_discapacidad == 1;
+        });
+
+        $validator->sometimes('tipo_lesion', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+         return $input->tienelesion == 1;
+       });
+        $validator->sometimes('tipo_enfermedad_cronica', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+         return $input->enfermedadcronica == 1;
+        });
+
+        $validator->sometimes('limitaciones', 'required', function ($input) {
+         return $input->tiene_limitacion == 1;
+        });
+
+        $validator->sometimes('necesidades_socioeconomicas_insatisfechas_otro', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+        return is_array($input->necesidades) && in_array(8,$input->necesidades);
+        });
+
+        $validator->sometimes('programa_subsidio_otro', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+        return is_array($input->programas) && in_array(5,$input->programas);
+        });
+
+        $validator->sometimes('limitacion_otro', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+        return is_array($input->limitaciones) && in_array(4,$input->limitaciones);
+        });
+
+       if ($validator->fails()) {
+            return back()
+                        ->withErrors($validator)
+                       ->withInput();
+        }
+
+
+   $victim= Victim::find($form["idVictima"]);
+
 
         $victim->victima_nombre_y_apellido= $form ["victima_nombre_y_apellido"];
         $victim->genero= $form ["genero"];
@@ -220,44 +364,31 @@ public function agregar(Request $form){
         $victim->programa_subsidio= $form ["programa_subsidio"];
         $victim->programa_subsidio_otro= $form ["programa_subsidio_otro"];
         $victim->embarazorelevamiento= $form ["embarazorelevamiento"];
+        $victim->tiene_discapacidad= $form ["tiene_discapacidad"];
+
         $victim->tienelesion= $form ["tienelesion"];
         $victim->tipo_lesion= $form ["tipo_lesion"];
         $victim->enfermedadcronica= $form ["enfermedadcronica"];
         $victim->tipo_enfermedad_cronica= $form ["tipo_enfermedad_cronica"];
+        $victim->tiene_limitacion= $form ["tiene_limitacion"];
         $victim->limitacion_otro= $form ["limitacion_otro"];
+        $victim->persona_asistida= $form ["persona_asistida"];
+        $victim->otras_personas_asistidas= $form ["otras_personas_asistidas"];
 
-        $victim->idCaso= $form ["idCaso"];
+        $victim->idCaso= session("idCaso");
+         $victim->userID_modify= Auth::id();
 
              $victim->save();
-             foreach ($form["necesidades"] as $necesidad) {
-             $victim->necesidades()->attach($necesidad);}
 
-             foreach ($form["programas"] as $programa) {
-             $victim->programas()->attach($programa);}
+      $victim->necesidades()->sync($form["necesidades"]);
+      $victim->programas()->sync($form["programas"]);
+      $victim->discapacidades()->sync($form["discapacidades"]);
+      $victim->limitaciones()->sync($form["limitaciones"]);
 
-             foreach ($form["discapacidades"] as $discapacidad) {
-             $victim->discapacidades()->attach($discapacidad);}
-
-             foreach ($form["limitaciones"] as $limitacion) {
-             $victim->limitaciones()->attach($limitacion);}
+          return redirect("paneldecontrol/{$victim->idCaso}");
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-              return redirect("home");}
-
-
-
-
-
+}
     }

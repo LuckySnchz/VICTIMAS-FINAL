@@ -12,73 +12,12 @@ use Validator;
 
 class ProfesionalPanelController extends Controller
 {
-public function editar(Request $form){
+public function agregar(Request $form){
 
   $hoy = date("d/m/y");
   $reglas = [
     "nombre_profesional_interviniente"=>"required|string",
     "desde_profesional_interviniente"=>"date_format:Y-m-d|before:$hoy|after:1900-01-01",
-    "actual_profesional_interviniente"=>"required"
-  ];
-
-  $validator = Validator::make($form->all(), $reglas);
-
-  $validator->sometimes('hasta_profesional_interviniente', 'required|after:desde_profesional_interviniente', function ($input) {
-    return $input->actual_profesional_interviniente == 2;
-  });
-
-  if ($validator->fails()) {
-      return back()
-                  ->withErrors($validator)
-                  ->withInput();
-  }
-
-  $profesional = Profesional::find($form["idProfesional"]);
-
-  $profesional->nombre_profesional_interviniente= $form [ "nombre_profesional_interviniente"];
-  $profesional->desde_profesional_interviniente= $form [ "desde_profesional_interviniente"];
-  $profesional->actual_profesional_interviniente= $form [ "actual_profesional_interviniente"];
-  $profesional->hasta_profesional_interviniente= $form [ "hasta_profesional_interviniente"];
-  $profesional->idCaso= session("idCaso");
-  $profesional->userID_modify= Auth::id();
-
-
-
-           $profesional->save();
-           return redirect("paneldecontrol/{$profesional->idCaso}");
-          }
-
-
-public function detalle($id) {
-
-
-    $profesional = Profesional::find($id);
-    $profesionales = Profesional::All();
-    $usuarios = Usuario::All();
-    session(["idProfesional" => $id]);
-$nombre_profesional_interviniente=$profesional->nombre_profesional_interviniente;
-$desde_profesional_interviniente=$profesional->desde_profesional_interviniente;
-$hasta_profesional_interviniente=$profesional->hasta_profesional_interviniente;
-$actual_profesional_interviniente=$profesional->actual_profesional_interviniente;
-    $vac = compact("profesional","profesionales","usuarios","nombre_profesional_interviniente","desde_profesional_interviniente","hasta_profesional_interviniente","actual_profesional_interviniente");
-
-    return view("detalleProfesional", $vac);
-  }
-
-  public function eliminar($id) {
-    $profesional = Profesional::find($id);
-    $profesional->delete();
-
- return redirect("paneldecontrol/{$profesional->idCaso}");
-
-  }
-
-
-public function agregar(Request $form){
-
-  $reglas = [
-    "nombre_profesional_interviniente"=>"required|string",
-    "desde_profesional_interviniente"=>"required",
     "actual_profesional_interviniente"=>"required"
   ];
 
@@ -106,6 +45,54 @@ public function agregar(Request $form){
   $profesional->save( );
    return redirect("paneldecontrol/{$profesional->idCaso}");
 }
+
+ public function editar(Request $form) {
+      $profesional = Profesional::find($form["idProfesional"]);
+      $profesional->nombre_profesional_interviniente= $form ["nombre_profesional_interviniente"];
+      $profesional->desde_profesional_interviniente= $form ["desde_profesional_interviniente"];
+      $profesional->actual_profesional_interviniente= $form ["actual_profesional_interviniente"];
+      $profesional->hasta_profesional_interviniente= $form ["hasta_profesional_interviniente"];
+      $profesional->idCaso= $form ["idCaso"];
+
+           $profesional->save();
+            return redirect("paneldecontrol/$profesional->idCaso");}
+
+
+
+
+
+
+
+
+public function detalle($id) {
+
+
+    $profesional = Profesional::find($id);
+    $profesionales = Profesional::All();
+    $usuarios = Usuario::All();
+    session(["idProfesional" => $id]);
+$nombre_profesional_interviniente=$profesional->nombre_profesional_interviniente;
+$desde_profesional_interviniente=$profesional->desde_profesional_interviniente;
+$hasta_profesional_interviniente=$profesional->hasta_profesional_interviniente;
+$actual_profesional_interviniente=$profesional->actual_profesional_interviniente;
+    $vac = compact("profesional","profesionales","usuarios","nombre_profesional_interviniente","desde_profesional_interviniente","hasta_profesional_interviniente","actual_profesional_interviniente");
+
+    return view("detalleProfesional", $vac);
+  }
+
+
+
+public function eliminar($id) {
+ $profesionalelim=Profesional::find($id)->getIdCaso();
+   $profesional_delete=Profesional::where("id",$id)->delete();
+   
+   return redirect("paneldecontrol/$profesionalelim");
+
+
+  }
+
+
+
 
 
 }

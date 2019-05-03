@@ -27,17 +27,14 @@
 
 
    <body>
-
- 
-    <section class="container jumbotron shadow p-3 mb-5 bg-white rounded">
     <div class="divpersona" id="divpersona">  <h2 class="text-center" style="padding: -20px;">Personas Asistidas</h2><h5 class="text-center" style="padding: -20px;">
 
       <label class="font-weight-bold">Caso: </label>
-    {{$casoActual->nombre_referencia}}<br>
+    {{session("idCaso")}}<br>
 
 
     <label class="font-weight-bold">Victima: </label>
-  {{$victimActual->victima_nombre_y_apellido}}</h5>
+  {{session("idVictim")}}</h5>
 
 
   <div class="" style="margin-left: 43.5%">
@@ -52,8 +49,7 @@
                   {{$persona->nombre_persona_asistida}}
                   @endif
                   @endforeach
-                  <strong>  <a style="color:red"href="/eliminar/{{$persona->id}}">
-              ELIMINAR</a></strong>
+                  
 
           </li>
                 @endif
@@ -62,7 +58,7 @@
   </ul>
 
     </div>
-</section>
+
     <section class="container jumbotron shadow p-3 mb-5 bg-white rounded" >
 
       <!Listado Personas asistidas>
@@ -316,9 +312,8 @@
       </div>
       </form>
       </section>
-      
-    <a type="button" style="width:100%;color:white;background-color:rgb(137, 210, 14);color:white; text-decoration: none" class="btn col-xl" href="/agregarconviviente" target="_self">AGREGAR REFERENTES AFECTIVOS</button></a><br><br>
-<!--onclick="window.open('agregarconviviente', 'width=800,height=600')"-->
+      <button style="width:100%; color:white;background-color:rgb(137, 210, 14)" class="btn col-XL" name="button" onclick="window.open('agregarconviviente', 'width=800,height=600')"; >AGREGAR REFERENTES AFECTIVOS </button><br><br>
+
 
       <script>
 

@@ -62,6 +62,9 @@ public $table="victims";
     public function limitacionesIds() {
       return $this->limitaciones->pluck("id");
     }
-
+public function getIdCaso()
+  {
+    return $this->idCaso;
+  }
 }
 ?>

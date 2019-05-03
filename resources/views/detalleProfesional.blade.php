@@ -39,9 +39,9 @@
       @foreach($profesionales as $profesional)
         @if($profesional->idCaso==session("idCaso"))
         <li>
-          <a href="/detalleProfesional/{{$profesional->id}}">
+         
             {{$profesional->usuario->nombre_y_apellido}}
-          </a>
+       
         </li>
         @endif
       @endforeach

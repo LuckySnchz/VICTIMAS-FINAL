@@ -21,6 +21,12 @@ class Caso extends MiModelo
     return $this->id;
   }
 
+ public function getnombre_referencia()
+  {
+    return $this->nombre_referencia;
+  }
+
+
   public function getSede()
   {
     return $this->sede;

@@ -105,11 +105,12 @@ class ConvivienteController extends Controller
 
     }
 
-public function eliminar($id) {
+public function eliminarconviviente($id) {
+  $convivienteelim=Conviviente::find($id)->getIdCaso();
    $conviviente_nuevo= Conviviente_nuevo::where("idVictim",session("idVictim"))->where("idConviviente",$id);
    $conviviente_nuevo->delete();
 
-   return redirect("agregarconviviente");}
+   return redirect("/paneldecontrol/$convivienteelim");}
 
 
 

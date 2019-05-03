@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Persona;
+use App\Persona_nueva;
 use Validator;
 
 class PersonaPanelController extends Controller
@@ -101,8 +102,9 @@ $localidad_persona_asistida=$persona->localidad_persona_asistida;
   public function eliminar($id) {
    $persona_nueva= Persona_nueva::where("idVictim",session("idVictim"))->where("idPersona",$id);
    $persona_nueva->delete();
+   $persona_delete=Persona::where("id",$id)->delete();
 
-   return redirect("paneldecontrol/{$persona->idCaso}");}
+   return redirect("paneldecontrol/1");
 
 
-  }
+  }}

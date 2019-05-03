@@ -39,8 +39,7 @@ session_start();
 
      <h4 class="text-center" style="padding: 15px;">Selecciona una Víctima</h4>
 
-{{session("idCaso")}}<br>
-{{session("idVictim")}}
+
         <h5 class="text-center" style="padding: 15px;">
           <ul>
             @foreach($victimas as $victima)
@@ -49,9 +48,10 @@ session_start();
                    <li>
           
              
-     <div class="botones">
-            <input type="radio" onclick="window.open('/victima/{{$victima->id}}/{{$victima->idCaso}}', 'width=800,height=600');"/>{{$victima->victima_nombre_y_apellido}}</div>
-            
+     <!--<div class="botones">
+            <input type="radio" onclick="window.open('/victima/{{$victima->id}}/{{$victima->idCaso}}', 'width=800,height=600');"/>{{$victima->victima_nombre_y_apellido}}</div>-->
+
+       <a type="button" id="btn-victima"style="width:317px;background-color:grey;margin-left:5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"   class="btn col-xl" href="/victima/{{$victima->id}}/{{$victima->idCaso}}" target="_self">{{$victima->victima_nombre_y_apellido}}</button></a><br><br>     
                
        
                      </li>
@@ -64,6 +64,7 @@ session_start();
              </h6>
            </div>
 </h5></div>
+
 
   <div class="card">
 
@@ -79,41 +80,50 @@ session_start();
            @endif
            @endforeach
 
-         <h4 class="text-center" style="padding:5%;margin-bottom:-5%">Eje A: Datos institucionales</h4><p style="margin-left:28%">Caso:</spam>{{$caso->nombre_referencia}}<br>
+        <h4 class="text-center" style="padding:5%;margin-bottom:-5%">Eje A: Datos institucionales</h4><p style="margin-left:28%">Caso:</spam>{{$casoNombre}}<br>
         
 
            
          </p><br>
-           <input type ='button' style="width:317px;background-color:#ffffcc;margin-left:22%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'EDITAR' onclick="window.open('/detalleCaso/{{$caso->id}}')"/></button>
+
+ <a type="button" style="width:317px;background-color:#ffffcc;margin-left:5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="'/detalleCaso/{{session("idCaso")}}'" target="_self">Editar</button></a><br><br>
+
+
+
+
+        
 
         <h4 class="text-center" style="padding: 15px;">Personas Asistidas</h4>
 
+    <a type="button" style="width:317px;background-color:grey;margin-left:5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarPersona" target="_self">Agregar</button></a><br><br>
 
 
-    <a type="button" style="width:317px;background-color:grey;margin-left:22%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarPersona" target="_self">Agregar</button></a><br><br>
+       <ul style="list-style:none">
+  @foreach($personas_nuevas as $persona_nueva)
+@if($persona_nueva->idVictim==session("idVictim"))
+
+ <li>
+          @foreach($personas as $persona)
+          @if($persona->id==$persona_nueva->idPersona)
+                  {{$persona->nombre_persona_asistida}}
 
 
-      <ul>
-        @foreach($personas as $persona)
-
-      @if($persona->idCaso==session("idCaso")&&$persona->idVictim==session("idVictim"))
-               <li>
-
-              <strong style="margin-left:-15%">{{$persona->nombre_persona_asistida}}</strong>
-
-<div class="botones" style="overflow:hidden;margin-left:15%">
-        <div class="btn1" style="float:left">  <input type ='button' style="width:150px;background-color:#97c93f;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Editar' onclick="window.open('/detallePersona/{{$persona->id}}', 'width=800,height=600');"/></button></div>
-        
-        <div class="btn2" style="float:left">   <input type ='button' style="width:150px; margin-left:13%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Eliminar' onclick="window.open('/detallePersona/deletePersona/{{$persona->id}}', 'width=800,height=600');"/></button></div>
-        </div>
-            </li>
 
 
-      @endif
-        @endforeach
+ <a type="button" style="width:317px;background-color:#ffffcc;margin-left:-5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detallePersona/{{$persona->id}}" target="_self">Editar</button></a><br><br>
 
-      </ul>
-    </h5>
+
+              
+  <a type="button" style="width:317px;margin-left:-5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarpersona/{{$persona->id}}" target="_self">Eliminar</button></a><br><br>
+                 
+                  @endif
+                  @endforeach
+
+          </li>
+                @endif
+
+            @endforeach
+</ul>
   </div>
                     
 <div class="card">
@@ -122,8 +132,8 @@ session_start();
 
     <h3 class="text-center" style="padding: -30px;">Profesional interviniente</h3><br>
 
-    <input type ='button' style="width:317px;background-color:grey;margin-left:24%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/detalleagregarProfesional')"/></button>
-     <h6 class="text-center" style="padding: 15px;">
+  <a type="button" style="width:317px;background-color:grey;margin-left:15%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarProfesional" target="_self">Agregar</button></a><br><br>
+
        <ul>
          @foreach($profesionales as $profesional)
 
@@ -131,11 +141,12 @@ session_start();
                 <li>
 
                <strong style="margin-left:-15%">{{$profesional->usuario->nombre_y_apellido}}</strong><br>
+ <a type="button" style="width:317px;background-color:#ffffcc;margin-left:5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleProfesional/{{$profesional->id}}" target="_self">Editar</button></a><br><br>
 
-    <div class="botones" style="overflow:hidden;margin-left:15%">
-         <div class="btn1" style="float:left">  <input type ='button' style="width:150px;background-color:#97c93f;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Editar' onclick="window.open('/detalleProfesional/{{$profesional->id}}', 'width=800,height=600');"/></button></div>
-         <div class="btn2" style="float:left">   <input type ='button' style="width:150px; margin-left:13%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Eliminar' onclick="window.open('/detalleProfesional/deleteProfesional/{{$profesional->id}}', 'width=800,height=600');"/></button></div>
-         </div>
+
+  <a type="button" style="width:317px;margin-left:5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleProfesional/deleteProfesional/{{$profesional->id}}" target="_self">Eliminar</button></a><br><br>
+
+
              </li>
 
 
@@ -153,7 +164,14 @@ session_start();
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
 
      <h4 class="text-center" style="padding: 15px;">Eje B: La victima y su contexto</h4>
-     <input type ='button' style="width:317px;background-color:grey;margin-left:22%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/agregarVictima')"/></button>
+     
+
+
+
+
+
+
+       <a type="button" style="width:317px;background-color:grey;margin-left:17%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarVictima" target="_self">Agregar</button></a><br><br>
         <h5 class="text-center" style="padding: 15px;">
           <ul>
             @foreach($victimas as $victima)
@@ -163,10 +181,13 @@ session_start();
 
                   <strong style="margin-left:-15%">{{$victima->victima_nombre_y_apellido}}</strong>
 
-     <div class="botones" style="overflow:hidden;margin-left:15%">
-            <div class="btn1" style="float:left">  <input type ='button' style="width:150px;background-color:#97c93f;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Editar' onclick="window.open('/detalleVictima/{{$victima->id}}', 'width=800,height=600');"/></button></div>
-            <div class="btn2" style="float:left">   <input type ='button' style="width:150px; margin-left:13%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Eliminar' onclick="window.open('/detalleVictima/deleteVictima/{{$victima->id}}', 'width=800,height=600');"/></button></div>
-            </div>
+ <a type="button" style="width:317px;background-color:#ffffcc;margin-left:5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleVictima/{{$victima->id}}" target="_self">Editar</button></a><br><br>
+
+
+  <a type="button" style="width:317px;margin-left:5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarvictima/{{$victima->id}}" target="_self">Eliminar</button></a><br><br>
+
+
+   
                      </li>
 
 
@@ -183,12 +204,44 @@ session_start();
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
 
      <h4 class="text-center" style="padding: 15px;">Eje C: Referentes Afectivos</h4>
-
-
-
-  <input type ='button' style="width:317px;background-color:grey;margin-left:20%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/detalleagregarconviviente')"/></button>
+  <a type="button" style="width:317px;background-color:grey;margin-left:15%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarconviviente" target="_self">Agregar</button></a><br><br>
         <h5 class="text-center" style="padding: 15px;">
-          <ul>
+
+  <ul style="list-style:none">
+  @foreach($convivientes_nuevos as $conviviente_nuevo)
+@if($conviviente_nuevo->idVictim==session("idVictim"))
+
+ <li>
+          @foreach($convivientes as $conviviente)
+          @if($conviviente->id==$conviviente_nuevo->idConviviente)
+                  {{$conviviente->nombre_y_apellido}}
+
+
+     <h4 class="text-center" style="padding: 15px;">Eje C: Referentes Afectivos</h4>
+  <a type="button" style="width:317px;background-color:#ffffcc;margin-left:3%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleconviviente/{{$conviviente->id}}" target="_self">Editar</button></a><br><br>
+
+
+  <a type="button" style="width:317px;margin-left:3%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarconviviente/{{$conviviente->id}}" target="_self">Eliminar</button></a><br><br>
+                 
+
+                  
+                  @endif
+                  @endforeach
+
+          </li>
+                @endif
+
+            @endforeach
+</ul>
+
+
+
+
+
+
+
+ 
+         <!-- <ul>
             @foreach($convivientes as $conviviente)
 
           @if($conviviente->idCaso==session("idCaso")&&$conviviente->idVictim==session("idVictim"))
@@ -198,7 +251,10 @@ session_start();
 
                   <div class="botones" style="overflow:hidden;margin-left:12%">
                             <div class="btn1" style="float:left">  <input type ='button' style="width:150px;background-color:#97c93f;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Editar' onclick="window.open('/detalleconviviente/{{$conviviente->id}}', 'width=800,height=600');"/></button></div>
-                            <div class="btn2" style="float:left">   <input type ='button' style="width:150px; margin-left:13%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Eliminar' onclick="window.open('/detalleconviviente/deleteconviviente/{{$conviviente->id}}', 'width=800,height=600');"/></button></div>
+                            <div class="btn2" style="float:left"> 
+
+<a type="button" style="width:150px; margin-left:13%;color:black;border: solid black 1px" class="btn btn-danger col-xs" href="/detalleconviviente/deleteconviviente/{{$conviviente->id}}" target="_self">Eliminar</button></a><br><br>
+</div>
                             </div>
                                      </li>
 
@@ -206,7 +262,7 @@ session_start();
                                @endif
                                  @endforeach
 
-                               </ul>
+                               </ul>-->
                              </h6>
                            </div>
 </div>
@@ -217,9 +273,11 @@ session_start();
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
 
      <h4 class="text-center" style="padding: 15px;">Eje D: Datos del imputado</h4>
-<input type ='button' style="width:317px;background-color:grey;margin-left:22%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/detalleagregarimputado')"/></button>
-      <h5 class="text-center" style="padding: 15px;">
-        <ul >
+
+  <a type="button" style="width:317px;background-color:grey;margin-left:17%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarimputado" target="_self">Agregar</button></a><br><br>
+        <h5 class="text-center" style="padding: 15px;">
+
+   <!-- <ul >
           @foreach($imputados as $imputado)
 
         @if($imputado->idCaso==session("idCaso")&&$imputado->idVictim==session("idVictim"))
@@ -230,7 +288,9 @@ session_start();
 <div class="botones" style="overflow:hidden;margin-left:14%">
           <div class="btn1" style="float:left">  <input type ='button' style="width:150px;background-color:#97c93f;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Editar' onclick="window.open('/detalleimputado/{{$imputado->id}}', 'width=800,height=600');"/></button></div>
 <div class="btn2" style="float:left">
-  <input type ='button' style="width:150px; margin-left:8%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Eliminar' onclick="window.open('/detalleimputado/deleteimputado/{{$imputado->id}}', 'width=800,height=600');"/></button></div>
+
+<a type="button" style="width:150px; margin-left:13%;color:black;border: solid black 1px" class="btn btn-danger col-xs" href="/detalleimputado/deleteimputado/{{$imputado->id}}" target="_self">Eliminar</button></a><br><br>
+</div>
 </div>
               </li>
 
@@ -238,7 +298,39 @@ session_start();
         @endif
           @endforeach
 
-        </ul>
+        </ul>-->
+
+
+<ul style="list-style:none">
+  @foreach($imputados_nuevos as $imputado_nuevo)
+@if($imputado_nuevo->idVictim==session("idVictim"))
+
+ <li>
+          @foreach($imputados as $imputado)
+          @if($imputado->id==$imputado_nuevo->idImputado)
+                  {{$imputado->nombre_y_apellido}}
+
+
+<a type="button" style="width:317px;background-color:#ffffcc;margin-left:5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleimputado/{{$imputado->id}}" target="_self">Editar</button></a><br><br>
+
+
+  <a type="button" style="width:317px;margin-left:5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarimputado/{{$imputado->id}}" target="_self">Eliminar</button></a><br><br>
+
+
+
+                  @endif
+                  @endforeach
+                 
+
+          </li>
+                @endif
+
+            @endforeach
+</ul>
+
+
+
+
       </h5>
     </div>
     <div class="card">
@@ -249,14 +341,17 @@ session_start();
 
       
   @if($instituciocount==0)
-  <input type ='button' style="width:317px;background-color:grey;margin-left:21%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/agregarOrganismo', 'width=800,height=600');"/></button>@endif
+  <input type ='button' style="width:317px;background-color:grey;margin-left:5%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/agregarOrganismo', 'width=800,height=600');"/></button>@endif
   @if($instituciocount>0)
   @foreach($instituciones as $institucion)
     @if($institucion->idCaso==session("idCaso"))
  
    @endif          
 @endforeach
-   <input type ='button' style="width:317px;background-color:#ffffcc;margin-left:21%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'EDITAR' onclick="window.open('/detalleOrganismo/{{$institucion->id}}', 'width=800,height=600');"/></button> 
+
+ <a type="button" style="width:317px;background-color:#ffffcc;margin-left:5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href='/detalleOrganismo/{{$institucion->id}}' target="_self">Editar</button></a><br><br>
+
+  
  @endif 
 
       
@@ -275,7 +370,10 @@ session_start();
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
 
 <h4 class="text-center" style="padding: 15px;">Eje F: Documentación</h4>
-<input type ='button' style="width:317px;background-color:grey;margin-left:23%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/detalleagregarDocumento')"/></button>
+
+  <a type="button" style="width:317px;background-color:grey;margin-left:15%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/agregarDocumento" target="_self">Agregar</button></a><br><br>
+
+
 <h5 class="text-center" style="padding: 15px;">
   <ul >
 
@@ -284,11 +382,15 @@ session_start();
 
 <li>
   <strong style="margin-left:-5%">{{$documento->nombre_documento}}</strong>
-    <div class="botones" style="overflow:hidden;margin-left:15%">
+
             
-    <div class="btn2" style="float:left">
-      <input type ='button' style="width:315px; margin-left:1%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Eliminar' onclick="window.open('/deleteDocumento/{{$documento->id}}', 'width=800,height=600');"/></button></div>
-    </div>
+    
+       <a type="button" style="width:317px;margin-left:2%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href='/deleteDocumento/{{$documento->id}}' target="_self">Editar</button></a><br><br>
+
+
+
+     
+
 
               </li>
 

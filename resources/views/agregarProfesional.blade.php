@@ -111,10 +111,10 @@
   </form>
   </section>
 
-<a type="button" style="width:100%;color:white;background-color:rgb(137, 210, 14);color:white; text-decoration: none" class="btn col-xl" href="/agregarVictima" target="_self">SIGUIENTE</button></a><br><br>
+  <div class="btn-4" >   <button style="width:100%;color:white;background-color:rgb(137, 210, 14)" class="btn col-xl" name="button" onclick="window.open('agregarVictima', 'width=800,height=600')"; >SIGUIENTE </button><br><br></div>
 
 
-<!--name="button" onclick="window.open('agregarVictima', 'width=800,height=600')";-->
+
 
       <script>
 

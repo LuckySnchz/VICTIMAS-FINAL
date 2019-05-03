@@ -264,7 +264,7 @@
  @endforeach
 
 </div>
-
+<a href="javascript:if(window.print)window.print()">Print</a>
 
 </div>
 <div id="intervencion-form" style="display:none">
@@ -282,7 +282,7 @@
       {!! $errors->first('detalle_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
 
-      <div class="botones" style="overflow:hidden;width:100%;margin-left:45%">
+      <div class="botones" style="overflow:hidden;width:100%;margin-left:40%">
       <div class="btn-1" style="width:10%;float:left"> <button type="submit" class="btn btn-primary col-xs" name="button">Guardar</button><br><br></div>
       </div>
       </form>
@@ -297,7 +297,6 @@
     }
 
 </script>
-
 
 <!BOTONES>
 

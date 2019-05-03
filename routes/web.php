@@ -57,7 +57,7 @@ Route::get("/agregarPersona",function(){
   $personas = App\Persona::all();
   $personas_nuevas = App\Persona_nueva::all();
   $casoActual = App\Caso::find(session("idCaso"));
-  $victimActual = App\Victim::find(session("idVictim"));
+
   $casoActualenPersona = App\Persona::where("idCaso",session("idCaso"))->count();
   $cantdeVictimas = App\Victim::where("idCaso",session("idCaso"))->count();
   $cantdePersonas = App\Persona::where("idCaso",session("idCaso"))->count();
@@ -78,6 +78,7 @@ return view("duplicar");
 Route::get("/duplicar/{id}", "PersonaController@duplicar")->middleware('auth');
 
 Route::get("/eliminar/{id}", "PersonaController@eliminar")->middleware('auth');
+Route::get("/eliminarpersona/{id}", "PersonaController@eliminarpersona")->middleware('auth');
 
 
 
@@ -97,6 +98,8 @@ Route::get("/agregarVictima",function(){
 })->middleware('auth');
 Route::post("/agregarVictima","VictimController@agregar")->middleware('auth');
 
+Route::get("/eliminarvictima/{id}", "VictimController@eliminarvictima")->middleware('auth');
+
 //C-CONVIVIENTES//
 
 Route::get("/agregarconviviente",function(){
@@ -114,7 +117,7 @@ Route::post("/agregarconviviente","ConvivienteController@agregar")->middleware('
 
 Route::get("/duplicarreferente/{id}", "ConvivienteController@duplicar")->middleware('auth');
 
-Route::get("/eliminarreferente/{id}", "ConvivienteController@eliminar")->middleware('auth');
+Route::get("/eliminarconviviente/{id}", "ConvivienteController@eliminarconviviente")->middleware('auth');
 
 //D-HECHOS//
 
@@ -153,7 +156,7 @@ return view("duplicarimputado");
 
 Route::get("/duplicarimputado/{id}", "ImputadoController@duplicar")->middleware('auth');
 
-Route::get("/eliminarimputado/{id}", "ImputadoController@eliminar")->middleware('auth');
+Route::get("/eliminarimputado/{id}", "ImputadoController@eliminarimputado")->middleware('auth');
 
 //F-ORGANISMOS//
 
@@ -359,42 +362,65 @@ Route::get("/detalleagregarPersona",function(){
 return view("detalleagregarPersona",compact("casoActual","cantdeVictimas","casoActualenPersona","victimActual","personas","vistas","instituciones","institucionnav","cantdePersonas","personas_nuevas"));
 })->middleware('auth');
 Route::post("/detalleagregarPersona","PersonaPanelController@agregar")->middleware('auth');
-
+Route::get("/eliminar/{id}", "PersonaPanelController@eliminar")->middleware('auth');
 //AGREGA EJE A: PROFESIONAL//
 
 Route::get("/detalleagregarProfesional",function(){
     $profesionales = App\Profesional::all();
-      $usuarios = App\Usuario::all();
+    $vistas=App\Vista::all();
+    $instituciones = App\Institucion::all();
+    $institucionnav= App\Institucion::where("idCaso",session("idCaso"))->count();
+    $usuarios = DB::table("usuarios")
+    ->select(DB::raw("*"))
+    ->orderBy(DB::raw("nombre_y_apellido","ASC"))
+    ->get();
 
-  return view("detalleagregarProfesional",compact("profesionales","usuarios"));
+return view("detalleagregarProfesional",compact("profesionales","usuarios","vistas","instituciones","institucionnav"));
 })->middleware('auth');
 Route::post("/detalleagregarProfesional","ProfesionalPanelController@agregar")->middleware('auth');
+
 
 //AGREGA EJE B:VICTIMA//
 
 Route::get("/detalleagregarVictima",function(){
-    $victimas = App\Victim::all();
-    $victims = App\Victim::all();
-    $necesidades = App\Necesidad::all();
-    $programas = App\Programa::all();
-    $discapacidades = App\Discapacidad::all();
-    $limitaciones = App\Limitacion::all();
-
-  return view("detalleagregarVictima",compact("victimas","victims","necesidades", "programas","discapacidades","limitaciones"));
+  $necesidades = App\Necesidad::all();
+  $programas = App\Programa::all();
+  $discapacidades = App\Discapacidad::all();
+  $limitaciones = App\Limitacion::all();
+  $victims= App\Victim::all();
+  $vistas=App\Vista::all();
+  $instituciones = App\Institucion::all();
+  $institucionnav= App\Institucion::where("idCaso",session("idCaso"))->count();
+  return view("detalleagregarVictima", compact("necesidades","programas","discapacidades","limitaciones","victims","vistas","instituciones","institucionnav"));
 })->middleware('auth');
-Route::post("/detalleagregarVictima","VictimPanelController@agregar")->middleware('auth');
-
+Route::post("/detalleagregarVictima","VictimaPanelController@agregar")->middleware('auth');
 //AGREGA EJE C: CONVIVIENTES//
 
 Route::get("/detalleagregarconviviente",function(){
-$convivientes = App\Conviviente::all();
-return view("detalleagregarconviviente",compact("convivientes"));})->middleware('auth');
+    $convivientes = App\Conviviente::all();
+    $vistas=App\Vista::all();
+    $cantdeVictimas = App\Victim::where("idCaso",session("idCaso"))->count();
+    $instituciones = App\Institucion::all();
+    $victimActual = App\Victim::find(session("idVictim"));
+    $casoActual = App\Caso::find(session("idCaso"));
+     $institucionnav= App\Institucion::where("idCaso",session("idCaso"))->count();
+     $convivientes_nuevos = App\Conviviente_nuevo::all();
+  return view("detalleagregarconviviente",compact("convivientes_nuevos","cantdeVictimas","victimActual","convivientes","vistas","instituciones","institucionnav","casoActual"));
+})->middleware('auth');
 Route::post("/detalleagregarconviviente","ConvivientePanelController@agregar")->middleware('auth');
+
 
 //AGREGA EJE E:IMPUTADO//
 Route::get("/detalleagregarimputado",function(){
     $imputados = App\Imputado::all();
-  return view("detalleagregarimputado",compact("imputados"));
+    $imputados_nuevos = App\Imputado_nuevo::all();
+    $vistas=App\Vista::all();
+     $casoActual = App\Caso::find(session("idCaso"));
+    $cantdeVictimas = App\Victim::where("idCaso",session("idCaso"))->count();
+     $instituciones = App\Institucion::all();
+     $victimActual = App\Victim::find(session("idVictim"));
+    $institucionnav= App\Institucion::where("idCaso",session("idCaso"))->count();
+  return view("detalleagregarimputado",compact("cantdeVictimas","victimActual","imputados","vistas","instituciones","institucionnav","imputados_nuevos","casoActual"));
 })->middleware('auth');
 Route::post("/detalleagregarimputado","ImputadoPanelController@agregar")->middleware('auth');
 
@@ -426,7 +452,7 @@ if ($user->hasRole('admin')) {
  // checkPermisos($caso);
 
 session(["idCaso" => $id]);
-
+$casoNombre=App\Caso::find($id)->getnombre_referencia();
 $delitos = App\Delito::all();
 $cavajs = App\Cavaj::all();
 $usuarios = App\Usuario::all();
@@ -443,15 +469,18 @@ $instituciones = App\Institucion::all();
 $institucion = App\Institucion::find($id);
 $organismo = App\Institucion::where("idCaso",$id)->get();
 $intervenciones = App\Intervencion::all();
+$personas_nuevas = App\Persona_nueva::all();
+$convivientes_nuevos=App\Conviviente_nuevo::all();
+$imputados_nuevos=App\Imputado_nuevo::all();
 $instituciocount= App\Institucion::where("idCaso",session("idCaso"))->count();
-  return view("paneldecontrol",compact("imputados","convivientes","victimas","personas","profesionales", "caso","delitos","cavajs","usuarios","documentos","instituciones","hechos","intervenciones","organismo","idCaso","instituciocount"));
+  return view("paneldecontrol",compact("imputados","casoNombre","convivientes","victimas","personas","profesionales", "caso","delitos","cavajs","usuarios","documentos","instituciones","hechos","intervenciones","organismo","idCaso","instituciocount","personas_nuevas","convivientes_nuevos","imputados_nuevos"));
 }
 
 
 if($user->hasRole('profesional')&&$caso->userID_create==$user->getId()) {
 
 session(["idCaso" => $id]);
-
+$casoNombre=App\Caso::find($id)->getnombre_referencia();
 $delitos = App\Delito::all();
 $cavajs = App\Cavaj::all();
 $usuarios = App\Usuario::all();
@@ -465,8 +494,10 @@ $profesionales=App\Profesional::all();
 $documentos = App\Documento::all();
 $instituciones = App\Institucion::all();
 $intervenciones = App\Intervencion::all();
-
-  return view("paneldecontrol",compact("imputados","convivientes","victimas","personas","profesionales", "caso","delitos","cavajs","usuarios","documentos","instituciones","hechos","intervenciones"));
+$personas_nuevas = App\Persona_nueva::all();
+$convivientes_nuevos=App\Conviviente_nuevo::all();
+$imputados_nuevos=App\Imputado_nuevo::all();
+  return view("paneldecontrol",compact("imputados","casoNombre","convivientes","victimas","personas","profesionales", "caso","delitos","cavajs","usuarios","documentos","instituciones","hechos","intervenciones","personas_nuevas","convivientes_nuevos","imputados_nuevos"));
 }
 
 
@@ -474,7 +505,7 @@ $intervenciones = App\Intervencion::all();
 if($user->hasRole('user')&&$caso->sede==$user->getSede()) {
 
 session(["idCaso" => $id]);
-
+$casoNombre=App\Caso::find($id)->getnombre_referencia();
 $delitos = App\Delito::all();
 $cavajs = App\Cavaj::all();
 $usuarios = App\Usuario::all();
@@ -488,8 +519,10 @@ $profesionales=App\Profesional::all();
 $documentos = App\Documento::all();
 $instituciones = App\Institucion::all();
 $intervenciones = App\Intervencion::all();
-
-  return view("paneldecontrol",compact("imputados","convivientes","victimas","personas","profesionales", "caso","delitos","cavajs","usuarios","documentos","instituciones","hechos","intervenciones"));
+$personas_nuevas = App\Persona_nueva::all();
+$convivientes_nuevos=App\Conviviente_nuevo::all();
+$imputados_nuevos=App\Imputado_nuevo::all();
+  return view("paneldecontrol",compact("imputados","casoNombre","convivientes","victimas","personas","profesionales", "caso","delitos","cavajs","usuarios","documentos","instituciones","hechos","intervenciones","personas_nuevas","convivientes_nuevos","imputados_nuevos"));
 }
 else{abort(403, "No tienes autorización para ingresar.");}})->middleware('auth');
 

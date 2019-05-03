@@ -30,17 +30,7 @@ session_start();
     <h1 class="text-center" style="padding: 15px;">Eje C: Grupo Conviviente</h1>
     <section class="container jumbotron shadow p-3 mb-5 bg-white rounded">
     <div class="form-group">
-    <ul>
-      @foreach($convivientes as $conviviente)
-        @if($conviviente->idCaso==session("idCaso"))
-          <li>
-          <a href="/detalleconviviente/{{$conviviente->id}}">
-          {{$conviviente->nombre_y_apellido}}
-          </a>
-          </li>
-        @endif
-      @endforeach
-    </ul>
+   
     </div>
 
 

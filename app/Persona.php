@@ -18,5 +18,9 @@ class Persona extends MiModelo
   public function victims() {
     return $this->belongsToMany(Victim::class,"victim_pa","idPersona","idVictim");
   }
+  public function getIdCaso()
+  {
+    return $this->idCaso;
+  }
 }
 ?>

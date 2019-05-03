@@ -146,14 +146,16 @@ public function duplicar($id) {
 
     }
 
-public function eliminar($id) {
-   $imputado_nuevo= Imputado_nuevo::where("idVictim",session("idVictim"))->where("idImputado",$id);
+
+
+
+
+public function eliminarimputado($id) {
+   $imputadoelim=Imputado::find($id)->getIdCaso();
+    $imputado_nuevo= Imputado_nuevo::where("idVictim",session("idVictim"))->where("idImputado",$id);
    $imputado_nuevo->delete();
 
-   return redirect("agregarimputado");}
-
-
-
+   return redirect("/paneldecontrol/$imputadoelim");}
 
 
   public function editar(Request $form) {

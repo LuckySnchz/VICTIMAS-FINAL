@@ -11,39 +11,122 @@ session_start();
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
       <link rel="stylesheet" href="css/app.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <title>Eje C: Grupo Conviviente</title>
+      <title>Eje C: Referentes Afectivos</title>
       <style>
       </style>
    </head>
    <header>
+
      @include('navbar')
-     
+ <br>
+  
    </header>
 
    <body>
 
-    <h1 class="text-center" style="padding: 15px;">Eje C: Grupo Conviviente</h1>
-    <section class="container jumbotron shadow p-3 mb-5 bg-white rounded">
-    <div class="form-group">
-    <ul>
-      @foreach($convivientes as $conviviente)
-        @if($conviviente->idCaso==session("idCaso"))
-          <li>
-          <a href="detalleconviviente/{{$conviviente->id}}">
-          {{$conviviente->nombre_y_apellido}}
-          </a>
+  <div class="divpersona" id="divpersona">  <h2 class="text-center" style="padding: -20px;">Referentes Afectivos</h2><h5 class="text-center" style="padding: -20px;">
+
+      <label class="font-weight-bold">Caso: </label>
+    {{$casoActual->nombre_referencia}}<br>
+
+
+    <label class="font-weight-bold">Victima: </label>
+  {{$victimActual->victima_nombre_y_apellido}}</h5></div>
+<!--
+  <div class="" style="margin-left: 43.5%">
+  <label class="font-weight-bold">Referentes Afectivos para esta víctima: </label>
+  <ul style="list-style:none">
+  @foreach($convivientes_nuevos as $conviviente_nuevo)
+@if($conviviente_nuevo->idVictim==session("idVictim"))
+
+ <li>
+          @foreach($convivientes as $conviviente)
+          @if($conviviente->id==$conviviente_nuevo->idConviviente)
+                  {{$conviviente->nombre_y_apellido}}
+                  @endif
+                  @endforeach
+ <strong>  <a style="color:red"href="/eliminar/{{$conviviente->id}}">
+              ELIMINAR</a></strong>
           </li>
-        @endif
-      @endforeach
-    </ul>
+                @endif
+
+            @endforeach
+</ul>
+
     </div>
 
+    <section class="container jumbotron shadow p-3 mb-5 bg-white rounded" >
 
-    <form class="ejeC" action="/detalleagregarconviviente" method="post">
-    {{ csrf_field() }}
+      <!Listado Referentes afectivos>
+
+ @if($cantdeVictimas>1)
+ <div class="flex-container" style="display: flex;
+  flex-direction: column;
+ ">
+  <label style="margin-left: 43.5%" class="font-weight-bold">Referentes Afectivo en este Caso: </label>
+<ul style="list-style:none">
+      @foreach($convivientes as $conviviente)
+        @if ($conviviente->idCaso == session("idCaso"))
+        <div style="text-align: center">
+          <li>
+            {{$conviviente->nombre_y_apellido}}<br>
+           <div id="btn-1"><input type ='button' style="width:150px;background-color:#97c93f;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar relación' onclick="window.open('/duplicarreferente/{{$conviviente->id}}', 'width=800,height=600')"/></button></div><br>
+
+
+          </li>
+        </div>
+        @endif
+      @endforeach
+  </ul>
+
+@else
+<div id="listado" style="display: none">
+  @endif
+</div>
+</div>
+
+
+-->
+
+
+<section class="container jumbotron shadow p-3 mb-5 bg-white rounded" >
     <div class="form-group">
-    <input type="hidden" name="idCaso" value="{{session("idCaso")}}">
-    <h3>Datos del Conviviente:</h3>
+
+      <form class="ejeC" action="/detalleagregarconviviente" method="post">
+      {{ csrf_field() }}
+      <div class="form-group">
+      <input type="hidden" name="idCaso" value="{{session("idCaso")}}">
+      <input type="hidden" name="idVictim" value="{{session("idVictim")}}">
+      <input type="hidden" name="cantVictimas" value="{{$cantdeVictimas}}">
+
+
+</div>
+
+    @if($cantdeVictimas>1)
+ <div id="agregar"class="form-group"  {{ $errors->has('agregar_conviviente') ? 'has-error' : ''}}>
+      <label for="agregar_conviviente">Desea agregar un nuevo referente afectivo? </label>
+      <select class="form-control" name="agregar_conviviente" id="agregar_conviviente" onChange="selectOnChangeA14I(this)">
+            <option value="" selected=disabled>Seleccionar...</option>
+              @if(old("agregar_conviviente")==1)
+              <option value="1" selected >Sí</option>
+              @else <option value="1">Sí</option>@endif
+
+              @if(old("agregar_conviviente")==2)
+              <option value="2" selected >No</option>
+              @else  <option value="2" >No</option>@endif
+              </select>
+              {!! $errors->first('agregar_conviviente', '<p class="help-block" style="color:red";>:message</p>') !!}
+
+      @else
+ <div id="agregar"class="form-group" style="display: none">
+  @endif
+</div></div>
+
+      @if(old("agregar_conviviente") == 1||$cantdeVictimas==1)
+        <div id="agregar_conviviente_si" {{ $errors->has('agregar_conviviente_si') ? 'has-error' : ''}}>
+        @else
+          <div id="agregar_conviviente_si" style="display: none;">
+      @endif
 
 <!C1 Conviviente Nombre y Apellido>
 
@@ -54,6 +137,7 @@ session_start();
     <input type="checkbox" id="bloqueo1" name="nombre_y_apellido" value="Se desconoce" onchange="checkC1(this)">
     {!! $errors->first('nombre_y_apellido', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
+
 
     <script>
          function checkC1(checkbox)
@@ -72,28 +156,43 @@ session_start();
 
 <!C2 Edad>
 
-  <div class="form-group" {{ $errors->has('edad_conviviente') ? 'has-error' : ''}}>
-  <label for="victima_edad">C 2. Edad:</label>
-  <input name="edad_conviviente" value="{{old("edad_conviviente")}}" id="victima_edad" class="form-control" type="text" onchange="mostrarValor(this.value);">
-  <label class="form-check-label" for="victima_edad_desconoce">Se desconoce</label>
-  <input name="victima_edad_desconoce" value="Se desconoce" id="victima_edad" placeholder="" type="checkbox" onchange="checkC2(this)">
-  {!! $errors->first('edad_conviviente', '<p class="help-block" style="color:red";>:message</p>') !!}
-  </div>
+  <div class="form-group"{{ $errors->has('edad') ? 'has-error' : ''}}>
+      <label for="edad">C 2. Edad:</label>
+    <input name="edad" value="{{old('edad')}}"   id="edad_conviviente" class="form-control" type="text"><br>
 
-    <script type="text/javascript">
-         function checkC2(checkbox) {
-         	if (checkbox.checked)
-         			 {
-         					 $('#victima_edad').val('Se desconoce');
-         					 $('#franjaetaria_id').val('7');
-         					 document.getElementById('victima_edad').setAttribute("readonly", "readonly");
-         	 }
-         	 else{
-         					 $('#victima_edad').val('');
-         					 $('#franjaetaria_id').val('');
-         					 document.getElementById('victima_edad').removeAttribute("readonly");
-         	 }}
-           </script>
+    @if(old('edad')=="0")
+
+
+    <label class="form-check-label" for="edad">Se desconoce</label>
+    <input name="edad" value="0" id="edad_conviviente" type="checkbox" checked onchange="checkC2(this)">
+    @else
+    <label class="form-check-label" for="edad">Se desconoce</label>
+    <input name="edad" value="0" id="edad_conviviente" type="checkbox" onchange="checkC2(this)">
+  @endif
+
+    {!! $errors->first('edad', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div>
+
+
+</script>
+
+<script type="text/javascript">
+       function checkC2(checkbox) {
+          if (checkbox.checked)
+                {
+                    $('#edad_conviviente').val('Se Desconoce');
+                    document.getElementById('edad_conviviente').setAttribute("readonly","readonly");
+                    divAY= document.getElementById("edad_conviviente").disabled=true;
+
+           }
+           else{
+                    $('#edad_conviviente').val('');
+
+                    document.getElementById('edad_conviviente').removeAttribute("readonly");
+                  divA = document.getElementById("edad_conviviente").disabled=false;
+
+           }}
+    </script>
 
 <!C3 Vinculo>
 
@@ -138,6 +237,7 @@ session_start();
   <input type="text" class="form-control vinculo_otro" name="vinculo_otro" value="{{old("vinculo_otro")}}"id="vinculo_otro">
   {!! $errors->first('vinculo_otro', '<p class="help-block" style="color:red";>:message</p>') !!}
   </div>
+
   <br>
   <script>
           function selectOnChangeC5(sel) {
@@ -184,6 +284,7 @@ session_start();
   {!! $errors->first('niveleducativo_id', '<p class="help-block" style="color:red";>:message</p>') !!}
   </div>
 
+
 <!C5 Condiciones de trabajo>
 
   <div class="form-group" {{ $errors->has('condiciones_de_trabajo') ? 'has-error' : ''}}>
@@ -207,16 +308,37 @@ session_start();
   </select>
   {!! $errors->first('condiciones_de_trabajo', '<p class="help-block" style="color:red";>:message</p>') !!}
   </div>
+      </div>
+      </div>
 
 <!BOTONES>
 
-  <div class="btn-1"> <button class="btn btn-primary col-xl" type="submit" >Agregar</button><br><br></div>
+  <div class="btn-1"> <button class="btn btn-primary col-xl" type="submit" >Agregar/Enviar</button><br><br></div>
   </div>
   </form>
   </section>
+ 
 
 
 
 
+
+
+
+
+
+<script>
+         function selectOnChangeA14I(sel) {
+
+           if (sel.value=="1"){
+             divC = document.getElementById("agregar_conviviente_si");
+             divC.style.display = "";}
+             else{
+                divC = document.getElementById("agregar_conviviente_si");
+
+                divC.style.display = "none";}
+          }
+
+</script>
   </body>
 </html>

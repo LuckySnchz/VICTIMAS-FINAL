@@ -116,11 +116,13 @@ public function vincular(Request $f) {
 
 
 
-  public function eliminar($id) {
-   $persona_nueva= Persona_nueva::where("idVictim",session("idVictim"))->where("idPersona",$id);
+   public function eliminarpersona($id) {
+     $personaelim=Persona::find($id)->getIdCaso();
+ $persona_nueva= Persona_nueva::where("idVictim",session("idVictim"))->where("idPersona",$id);
    $persona_nueva->delete();
 
-   return redirect("agregarPersona");}
+
+   return redirect("/paneldecontrol/$personaelim");}
 
 
 public function detalle($id) {

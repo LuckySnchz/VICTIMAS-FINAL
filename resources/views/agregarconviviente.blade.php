@@ -26,12 +26,14 @@ session_start();
 
   <div class="divpersona" id="divpersona">  <h2 class="text-center" style="padding: -20px;">Referentes Afectivos</h2><h5 class="text-center" style="padding: -20px;">
 
+   
       <label class="font-weight-bold">Caso: </label>
-    {{$casoActual->nombre_referencia}}<br>
+    {{session("idCaso")}}<br>
 
 
     <label class="font-weight-bold">Victima: </label>
-  {{$victimActual->victima_nombre_y_apellido}}</h5></div>
+  {{session("idVictim")}}</h5>
+
 
   <div class="" style="margin-left: 43.5%">
   <label class="font-weight-bold">Referentes Afectivos para esta víctima: </label>
@@ -45,8 +47,7 @@ session_start();
                   {{$conviviente->nombre_y_apellido}}
                   @endif
                   @endforeach
- <strong>  <a style="color:red"href="/eliminar/{{$conviviente->id}}">
-              ELIMINAR</a></strong>
+
           </li>
                 @endif
 
@@ -317,14 +318,7 @@ session_start();
   </div>
   </form>
   </section>
- 
- <a type="button" style="width:100%;color:white;background-color:rgb(137, 210, 14);color:white; text-decoration: none" class="btn col-xl" href="/agregarimputado" target="_self">AGREGAR IMPUTADO</button></a><br><br>
-
-
-
-
-
-
+  <div class="btn-2"><button style="width:100%;color:white;background-color:rgb(137, 210, 14)" class="btn col-xl"  onclick="window.open('agregarimputado', 'width=800,height=600')"; >AGREGAR IMPUTADO</button><br><br></div>
 
 
 <script>

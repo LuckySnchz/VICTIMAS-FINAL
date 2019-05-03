@@ -23,17 +23,7 @@
 
   <h1 class="text-center" style="padding: 15px;">Eje E: Datos del imputado</h1>
   <section class="container jumbotron shadow p-3 mb-5 bg-white rounded">
-  <ul>
-      @foreach($imputados as $imputado)
-        @if ($imputado->idCaso == session("idCaso"))
-          <li>
-          <a href="/detalleimputado/{{$imputado->id}}">
-                  {{$imputado->nombre_y_apellido}}
-          </a>
-          </li>
-        @endif
-      @endforeach
-  </ul>
+
 
   <form class="ejeC" action="/detalleimputado" method="post">
   {{ csrf_field() }}
