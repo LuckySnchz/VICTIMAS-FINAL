@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Persona;
+use App\Persona_nueva;
 use Validator;
 
 class PersonaPanelController extends Controller
@@ -76,7 +77,7 @@ $persona->save();
 $persona->victims()->attach($form ["idVictim"], array("vinculo_persona_asistida"=> $form ["vinculo_persona_asistida"]));
 
 
-return redirect("paneldecontrol/{$persona->idCaso}");
+return redirect("paneldecontrol/{$persona->idCaso}#A");
 
 }}
 
@@ -97,13 +98,23 @@ $localidad_persona_asistida=$persona->localidad_persona_asistida;
     return view("detallePersona", compact("persona","personas","nombre_persona_asistida","vinculo_persona_asistida","otro_vinculo_persona_asistida_cual","telefono_persona_asistida","domicilio_persona_asistida","localidad_persona_asistida"));
   }
 
-  public function eliminar($id) {
-    $persona = Persona::find($id);
-    $persona->delete();
-
- return redirect("paneldecontrol/{$persona->idCaso}");
-
-  }
 
 
-  }
+public function editar(Request $form) {
+      $persona = Persona::find($form["idPersona"]);
+
+      $persona->nombre_persona_asistida= $form ["nombre_persona_asistida"];
+      $persona->vinculo_persona_asistida= $form ["vinculo_persona_asistida"];
+      $persona->otro_vinculo_persona_asistida_cual= $form ["otro_vinculo_persona_asistida_cual"];
+      $persona->telefono_persona_asistida= $form ["telefono_persona_asistida"];
+      $persona->domicilio_persona_asistida= $form ["domicilio_persona_asistida"];
+      $persona->localidad_persona_asistida= $form ["localidad_persona_asistida"];
+      $persona->idCaso= $form["idCaso"];
+      $persona->userID_create= $form["userID_create"];
+      $persona->userID_modify= Auth::id();
+
+
+     $persona->save();
+      return redirect("paneldecontrol/{$persona->idCaso}#A");}
+
+}

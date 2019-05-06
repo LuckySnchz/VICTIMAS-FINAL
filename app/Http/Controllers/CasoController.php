@@ -19,15 +19,16 @@ class CasoController extends Controller
 
 public function agregar(Request $form){
 
+    $hoy = date("d-m-Y");
 
-    $hoy = date("d/m/Y");
+    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
     $reglas = [
 
 "nombre_referencia" => "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
 "nro_carpeta" => "sometimes|nullable|max:40|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
 "delito" => "required",
 "descripcion_caso" => "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
-"fecha_ingreso" => "date_format:Y-m-d|before:$hoy|after:1900-01-01",
+"fecha_ingreso" => "required|date_format:Y-m-d|before:$hoy|after:1900-01-01",
 "modalidad_ingreso" => "required",
 "cavaj" => "required",
 "comisaria" => "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
@@ -64,7 +65,7 @@ $validator->sometimes('otro_delito', "required|min:3|max:255|regex:/^([0-9a-zA-Z
 return $input->delito == 73;
   });
 
-  $validator->sometimes('fecha_hecho', "date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
+  $validator->sometimes('fecha_hecho', "required|date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
     return $input->fecha_delito == 1;
   });
 

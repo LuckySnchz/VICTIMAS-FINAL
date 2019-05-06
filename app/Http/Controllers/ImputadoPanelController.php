@@ -12,7 +12,7 @@ class ImputadoPanelController extends Controller
 {
   public function agregar(request $form) {
 
-    $reglas = [
+    /*$reglas = [
 
 
     ];
@@ -89,12 +89,9 @@ $validator->sometimes('causa_id_judicial', 'required|numeric', function ($input)
         return back()
                     ->withErrors($validator)
                     ->withInput();
-    }
+    }*/
 
-    if ($form["agregar_imputado"] == 2) {
-      return redirect("agregarimputado");
-
-    } else {
+   
 
     $imputado = new Imputado();
     $imputado->nombre_y_apellido= $form["imputado_nombre_y_apellido"];
@@ -102,6 +99,7 @@ $validator->sometimes('causa_id_judicial', 'required|numeric', function ($input)
     $imputado->tipo_documento_id= $form["tipodocumento_id"];
     $imputado->tipo_documento_otro= $form["imputado_tipo_documento_otro"];
     $imputado->documento_nro= $form["imputado_documento"];
+    $imputado->vinculo_id= $form["vinculo_id"];
     $imputado->vinculo_otro= $form["vinculo_otro"];
     $imputado->caratulacion_judicial= $form["caratulacion_judicial"];
     $imputado->antecedentes_id= $form["antecedentes_id"];
@@ -119,16 +117,16 @@ $validator->sometimes('causa_id_judicial', 'required|numeric', function ($input)
     $imputado->save();
 
     $imputado->victims()->attach($form ["idVictim"], array("vinculo_id"=> $form ["vinculo_id"]));
-      return redirect("/paneldecontrol/$imputado->idCaso");
+      return redirect("/paneldecontrol/{$imputado->idCaso}#D");
 
 
-}}
+}
 public function detalle($id) {
     $imputados=Imputado::all();
     $imputado = Imputado::find($id);
     session(["idImputado" => $id]);
-
-    $nombre_y_apellido=$imputado->nombre_y_apellido;
+ $nombre_y_apellido=$imputado->nombre_y_apellido;
+  
     $apodo= $imputado->apodo;
        $tipo_documento_id= $imputado->tipo_documento_id;
 
@@ -151,17 +149,17 @@ public function detalle($id) {
 
    public function editar(Request $form) {
       $imputado = Imputado::find($form["idImputado"]);
-      $imputado->nombre_y_apellido= $form["nombre_y_apellido"];
+      $imputado->nombre_y_apellido= $form["imputado_nombre_y_apellido"];
       $imputado->tipo_documento_id= $form["tipodo_documento_id"];
       $imputado->tipo_documento_otro= $form["tipo_documento_otro"];
       $imputado->documento_nro= $form["documento_nro"];
       $imputado->vinculo_id= $form["vinculo_id"];
       $imputado->vinculo_otro= $form["vinculo_otro"];
       $imputado->antecedentes_id= $form["antecedentes_id"];
-      $imputado->defensoria_nro= $form["defensoria_nro"];
+      $imputado->defensoria_nro= $form["defensoria_numero"];
       $imputado->idCaso= $form ["idCaso"];
       $imputado->save();
-       return redirect("paneldecontrol/$imputado->idCaso");
+       return redirect("paneldecontrol/{$imputado->idCaso}#D");
 
 
 }

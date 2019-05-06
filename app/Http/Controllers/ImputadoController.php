@@ -151,11 +151,11 @@ public function duplicar($id) {
 
 
 public function eliminarimputado($id) {
-   $imputadoelim=Imputado::find($id)->getIdCaso();
+   $imputadoelim=session("idCaso");
     $imputado_nuevo= Imputado_nuevo::where("idVictim",session("idVictim"))->where("idImputado",$id);
    $imputado_nuevo->delete();
 
-   return redirect("/paneldecontrol/$imputadoelim");}
+   return redirect("/paneldecontrol/{$imputadoelim}#D");}
 
 
   public function editar(Request $form) {

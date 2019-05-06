@@ -12,10 +12,12 @@ class DerivacionController extends Controller
 
   public function agregar(Request $form){
 
-  $hoy = date("d/m/y");
+ $hoy = date("d-m-Y");
+
+    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
   $reglas = [
 
-  "fecha_ingreso" => "date_format:Y-m-d|before:$hoy|after:1900-01-01",
+  "fecha_ingreso" => "required|date_format:Y-m-d|before:$hoy|after:1900-01-01",
   "tipo_demanda" => "required",
   "modalidad_ingreso" => "required",
   "derivacion" => "required",

@@ -28,15 +28,16 @@ class CasoPanelController extends Controller
 
   public function editar(Request $form){
 
+$hoy = date("d-m-Y");
 
-    $hoy = date("d/m/Y");
+    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
     $reglas = [
 
  "nombre_referencia" => "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
  "nro_carpeta" => "sometimes|nullable|max:40|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
  "delito" => "required",
  "descripcion_caso" => "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
- "fecha_ingreso" => "before_or_equal:today",
+ "fecha_ingreso" => "required|date_format:Y-m-d|before:$hoy",
  "modalidad_ingreso" => "required",
  "cavaj" => "required",
  "comisaria" => "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
@@ -134,7 +135,7 @@ session(["idCaso" => $idCaso]);
           $caso->organismos()->sync($form["organismos"]);
 
           $idCaso= session("idCaso");*/
-          return redirect("/paneldecontrol/$idCaso");
+          return redirect("/paneldecontrol/$idCaso#A");
 
 
 

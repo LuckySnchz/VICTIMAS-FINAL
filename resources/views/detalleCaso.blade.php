@@ -25,7 +25,11 @@ session_start();
    <header>
 
     @include('navbar')
-
+ <div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%">
+                <a class="navbar-brand"  href="/paneldecontrol/{{session("idCaso")}}">
+                    <h3 style="color:white">Panel de Control</h3>
+                </a>
+                </div>
    </header>
    <body>
       <h1 class="text-center" style="padding: 15px;">Eje A: Datos institucionales</h1>

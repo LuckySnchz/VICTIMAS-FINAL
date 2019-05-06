@@ -122,7 +122,7 @@ public function vincular(Request $f) {
    $persona_nueva->delete();
 
 
-   return redirect("/paneldecontrol/$personaelim");}
+   return redirect("/paneldecontrol/{$personaelim}#A");}
 
 
 public function detalle($id) {

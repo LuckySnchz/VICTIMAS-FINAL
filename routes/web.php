@@ -56,7 +56,10 @@ Route::post("/agregarProfesional","ProfesionalController@agregar")->middleware('
 Route::get("/agregarPersona",function(){
   $personas = App\Persona::all();
   $personas_nuevas = App\Persona_nueva::all();
-  $casoActual = App\Caso::find(session("idCaso"));
+
+
+    $casoActual = App\Caso::find(session("idCaso"));
+    $victimActual = App\Victim::find(session("idVictim"));
 
   $casoActualenPersona = App\Persona::where("idCaso",session("idCaso"))->count();
   $cantdeVictimas = App\Victim::where("idCaso",session("idCaso"))->count();
@@ -77,7 +80,6 @@ return view("duplicar");
 
 Route::get("/duplicar/{id}", "PersonaController@duplicar")->middleware('auth');
 
-Route::get("/eliminar/{id}", "PersonaController@eliminar")->middleware('auth');
 Route::get("/eliminarpersona/{id}", "PersonaController@eliminarpersona")->middleware('auth');
 
 
@@ -107,8 +109,8 @@ Route::get("/agregarconviviente",function(){
     $vistas=App\Vista::all();
     $cantdeVictimas = App\Victim::where("idCaso",session("idCaso"))->count();
     $instituciones = App\Institucion::all();
+     $casoActual = App\Caso::find(session("idCaso"));
     $victimActual = App\Victim::find(session("idVictim"));
-    $casoActual = App\Caso::find(session("idCaso"));
      $institucionnav= App\Institucion::where("idCaso",session("idCaso"))->count();
      $convivientes_nuevos = App\Conviviente_nuevo::all();
   return view("agregarconviviente",compact("convivientes_nuevos","cantdeVictimas","victimActual","convivientes","vistas","instituciones","institucionnav","casoActual"));
@@ -139,9 +141,10 @@ Route::get("/agregarimputado",function(){
     $imputados_nuevos = App\Imputado_nuevo::all();
     $vistas=App\Vista::all();
      $casoActual = App\Caso::find(session("idCaso"));
+       $victimActual = App\Victim::find(session("idVictim"));
     $cantdeVictimas = App\Victim::where("idCaso",session("idCaso"))->count();
      $instituciones = App\Institucion::all();
-     $victimActual = App\Victim::find(session("idVictim"));
+   
     $institucionnav= App\Institucion::where("idCaso",session("idCaso"))->count();
   return view("agregarimputado",compact("cantdeVictimas","victimActual","imputados","vistas","instituciones","institucionnav","imputados_nuevos","casoActual"));
 })->middleware('auth');
@@ -335,7 +338,9 @@ Route::get("/detalleconviviente/deleteconviviente/{id}", "ConvivientePanelContro
 Route::get("/detalleDelito/{id}", "HechoPanelController@detalle")->middleware('auth');
 Route::post("/detalleDelito", "HechoPanelController@editar")->middleware('auth');
 //EJE E: IMPUTADO//
+
 Route::get("/detalleimputado/{id}", "ImputadoPanelController@detalle")->middleware('auth');
+
 Route::post("/detalleimputado", "ImputadoPanelController@editar")->middleware('auth');
 Route::get("/detalleimputado/deleteimputado/{id}", "ImputadoPanelController@eliminar")->middleware('auth');
 //EJE F: ORGANISMO//
@@ -362,7 +367,8 @@ Route::get("/detalleagregarPersona",function(){
 return view("detalleagregarPersona",compact("casoActual","cantdeVictimas","casoActualenPersona","victimActual","personas","vistas","instituciones","institucionnav","cantdePersonas","personas_nuevas"));
 })->middleware('auth');
 Route::post("/detalleagregarPersona","PersonaPanelController@agregar")->middleware('auth');
-Route::get("/eliminar/{id}", "PersonaPanelController@eliminar")->middleware('auth');
+Route::post("/detalleagregarPersona/{id}","PersonaPanelController@editar")->middleware('auth');
+
 //AGREGA EJE A: PROFESIONAL//
 
 Route::get("/detalleagregarProfesional",function(){
@@ -432,7 +438,7 @@ Route::get("/detalleagregarDocumento",function(){
   return view("detalleagregarDocumento",compact("documentos"));
 })->middleware('auth');
 Route::post("/detalleagregarDocumento","DocumentoPanelController@agregar")->middleware('auth');
-Route::get("/detalleDocumento/{id}", "DocumentoPanelController@eliminar")->middleware('auth');
+Route::get("/eliminardocumento/{id}", "DocumentoPanelController@eliminardocumento")->middleware('auth');
 //Route::post("/agregarDocumento","DocumentoPanelController@agregar");
 //AGREGA EJE G: INTERVENCION//
 

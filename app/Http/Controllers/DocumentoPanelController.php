@@ -37,7 +37,8 @@ $documento = Documento::find($form["idDocumento"]);
   $documento->tipo_documento= $form [ "tipo_documento"];
   $documento->nombre_documento= $form [ "nombre_documento"];
   $documento->archivo = $nombreDelArchivo;
-  $documento->idCaso= $form ["idCaso"];
+  $documento->idCaso= session("idCaso");
+
       $documento->userID_create= $form["userID_create"];
       $documento->userID_modify= Auth::id();
       $documento->save();
@@ -59,13 +60,26 @@ public function detalle($id) {
     return view("detalleDocumento", compact("documento","documentos","tipo_documento","nombre_documento"));
   }
 
-  public function eliminar($id) {
- $documento = Documento::find($id);
-   
-        $documento->delete();
- return redirect("home");
+ 
+
+
+public function eliminardocumento($id) {
+   $documentoelim=session("idCaso");
+    $documento = Documento::find($id);
+    $documento->delete();
+
+ return redirect("paneldecontrol/{$documentoelim}#FIN");
 
   }
+
+
+
+
+
+
+
+
+
   
 public function agregar(Request $form){
 
@@ -98,7 +112,7 @@ $documento= new Documento( );
   $documento->userID_create= Auth::id();
 
   $documento->save( );
- return redirect("/paneldecontrol/$documento->idCaso");
+ return redirect("/paneldecontrol/{$documento->idCaso}#FIN");
 }
 
 

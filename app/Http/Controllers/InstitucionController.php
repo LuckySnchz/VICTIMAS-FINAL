@@ -11,7 +11,9 @@ class InstitucionController extends Controller
 {
  public function agregar(Request $form){
 
-$hoy = date("d/m/y");
+$hoy = date("d-m-Y");
+
+    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
 
 $reglas = [
 "organismos_intervinieron"=>"required",
@@ -44,11 +46,11 @@ $validator->sometimes('cual_otro_organismo', "required|min:3|max:100|regex:/^([0
 return is_array($input->oprevios) && in_array(24,$input->oprevios);
 });
 
-$validator->sometimes('fecha_de_solicitud', "date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
+$validator->sometimes('fecha_de_solicitud', "required|date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
   return $input->pratocinio_gratuito == 1;
 });
 
-$validator->sometimes('fecha_de_solicitud', "date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
+$validator->sometimes('fecha_de_solicitud', "required|date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
   return $input->pratocinio_gratuito == 2;
 });
 
@@ -64,7 +66,7 @@ $validator->sometimes('colegio_departamental', 'required', function ($input) {
   return $input->pratocinio_gratuito == 3;
 });
 
-$validator->sometimes('fecha_designacion', "date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
+$validator->sometimes('fecha_designacion', "required|date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
   return $input->pratocinio_gratuito == 3;
 });
 

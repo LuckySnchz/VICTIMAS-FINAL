@@ -12,7 +12,10 @@ class InstitucionPanelController extends Controller
 {
  public function agregar(Request $form){
 
-   $hoy = date("d/m/y");
+ 
+$hoy = date("d-m-Y");
+
+    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
 
    $reglas = [
    "organismos_intervinieron"=>"required",
@@ -65,7 +68,7 @@ class InstitucionPanelController extends Controller
      return $input->pratocinio_gratuito == 3;
    });
 
-   $validator->sometimes('fecha_designacion', "date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
+   $validator->sometimes('fecha_designacion', "required|date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
      return $input->pratocinio_gratuito == 3;
    });
 
@@ -173,7 +176,9 @@ public function detalle($id) {
   }
 
   public function editar(Request $form) {
-    $hoy = date("d/m/y");
+$hoy = date("d-m-Y");
+
+    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
 
     $reglas = [
     "organismos_intervinieron"=>"required",
@@ -283,7 +288,7 @@ $institucion->userID_modify= Auth::id();
       $institucion->oprevios()->sync($form["oprevios"]);
       $institucion->socioeconomicos()->sync($form["socioeconomicos"]);
       $institucion->oarticulas()->sync($form["oarticulas"]);
-      return redirect("agregarDocumento");}
+      return redirect("paneldecontrol/{$institucion->idCaso}#E");}
 
 
 }

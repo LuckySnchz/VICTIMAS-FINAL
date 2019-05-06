@@ -47,7 +47,7 @@ class ConvivientePanelController extends Controller
     $conviviente->idCaso= $form ["idCaso"];
 
              $conviviente->save();
-             return redirect("paneldecontrol/{$conviviente->idCaso}");}
+             return redirect("paneldecontrol/{$conviviente->idCaso}#C");}
 
 
  public function detalle($id) {
@@ -132,7 +132,7 @@ class ConvivientePanelController extends Controller
     $conviviente->victims()->attach($form ["idVictim"], array("vinculo_victima"=> $form ["vinculo_victima"]));
 
 
- return redirect("paneldecontrol/{$conviviente->idCaso}");
+ return redirect("paneldecontrol/{$conviviente->idCaso}#C");
   }}
 
 
@@ -141,6 +141,14 @@ class ConvivientePanelController extends Controller
 
 
 
+
+   public function eliminarpersona($id) {
+     $convivienteelim=Conviviente::find($id)->getIdCaso();
+ $persona_nueva= Conviviente_nuevo::where("idVictim",session("idVictim"))->where("idConviviente",$id);
+   $Conviviente_nuevo->delete();
+
+
+   return redirect("/paneldecontrol/{$convivienteelim}#C");}
 
 
 

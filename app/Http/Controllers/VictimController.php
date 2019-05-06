@@ -17,11 +17,14 @@ class VictimController extends Controller
 
 public function agregar(Request $form){
 
-  $hoy = date("d/m/y");
+ $hoy = date("d-m-Y");
+
+    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
  $reglas = [
   "victima_nombre_y_apellido"=>"required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
   "genero"=>"required|integer",
-  "victima_fecha_nacimiento"=>"date_format:Y-m-d|before:$hoy|after:1899-12-31",
+  "victima_fecha_nacimiento"=> "required|date_format:Y-m-d|before:$hoy|after:1899-12-31",
+
   "victima_edad"=>"required|integer",
   "franjaetaria"=>"required",
   "tienedoc"=>"required|integer",

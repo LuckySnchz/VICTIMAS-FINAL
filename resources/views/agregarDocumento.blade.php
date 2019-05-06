@@ -40,8 +40,7 @@
                <li>
             <a href="/storage/{{$documento->archivo}}">
               {{$documento->nombre_documento}}</a>
-              <strong>  <a style="color:red"href="detalleDocumento/deleteDocumento/{{$documento->id}}">
-              ELIMINAR</a></strong>
+              
             </li>
           @endif
         @endforeach

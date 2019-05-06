@@ -17,14 +17,18 @@ class VictimaPanelController extends Controller
 
 public function agregar(Request $form){
 
-  $hoy = date("d/m/y");
+$hoy = date("d-m-Y");
+
+    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));;
  $reglas = [
   "victima_nombre_y_apellido"=>"required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
   "genero"=>"required|integer",
-  "victima_fecha_nacimiento"=>"date_format:Y-m-d|before:$hoy|after:1899-12-31",
+  "victima_fecha_nacimiento"=>"required|date_format:Y-m-d|before:$hoy",
+  //|before:$hoy
   "victima_edad"=>"required|integer",
   "franjaetaria"=>"required",
   "tienedoc"=>"required|integer",
+  "victima_numero_documento" =>"required|integer",
   "niveleducativo"=>"required|integer",
   "condiciones_de_trabajo"=>"required|integer",
   "necesidades_socioeconomicas_insatisfechas"=>"required",
@@ -32,8 +36,6 @@ public function agregar(Request $form){
   "tiene_discapacidad"=>"required",
   "tienelesion"=>"required|integer",
   "enfermedadcronica"=>"required|integer",
-  "persona_asistida"=>"required",
-  "otras_personas_asistidas"=>"required",
   "tiene_limitacion"=>"required"
 ];
 
@@ -56,21 +58,17 @@ public function agregar(Request $form){
     return $input->tienedoc == 1;
    });
 
-   $validator->sometimes('victima_numero_documento', "required|min:1|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+   $validator->sometimes('victima_numero_documento', "required|min:1|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
      return $input->tienedoc == 1;
     });
-
+//|max:20
    $validator->sometimes('tipodocumento', 'required', function ($input) {
      return $input->tienedoc == 5;
     });
 
-    $validator->sometimes('victima_numero_documento', "required|min:1|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-      return $input->tienedoc == 1;
+    $validator->sometimes('victima_numero_documento', "required|min:3|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+      return $input->tienedoc == 3;
      });
-
-     $validator->sometimes('victima_numero_documento', "required|min:1|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-       return $input->tienedoc == 5;
-      });
 
      $validator->sometimes('tipo_documento_otro', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
        return $input->tipodocumento == 9;
@@ -145,16 +143,16 @@ public function agregar(Request $form){
     $victim->tipo_enfermedad_cronica= $form ["tipo_enfermedad_cronica"];
     $victim->tiene_limitacion= $form ["tiene_limitacion"];
     $victim->limitacion_otro= $form ["limitacion_otro"];
-    $victim->persona_asistida= $form["persona_asistida"];
-    $victim->otras_personas_asistidas= $form["otras_personas_asistidas"];
     $victim->idCaso= session("idCaso");
     $victim->userID_create= Auth::id();
 
+
     $victim->save();
 
-    $idVictim= $victim->id;
+    $idVictim = $victim->id;
 
-    session(["idVictim" => $idVictim]);
+session(["idVictim" => $idVictim]);
+
 
 
     if (is_array($form["necesidades"])){
@@ -173,19 +171,11 @@ public function agregar(Request $form){
     foreach ($form["limitaciones"] as $limitacion) {
     $victim->limitaciones()->attach($limitacion);}}
 
-  return redirect("paneldecontrol/$victim->idCaso");
+  return redirect ("paneldecontrol/$victim->idCaso");
 
     }
 
-public function victima($id,$idCaso) {
-   
-   session(["idVictim" => $id]);
-   session(["idCaso" => $idCaso]);
-   
-
-return redirect("paneldecontrol/{$idCaso}");
-
-    }
+    
 
       public function eliminar($id) {
         $victima = Victim::find($id);
@@ -229,7 +219,7 @@ return redirect("paneldecontrol/{$idCaso}");
         $tipo_enfermedad_cronica=$victim->tipo_enfermedad_cronica;
         $limitacion_otro=$victim->limitacion_otro;
 
-        $persona_asistida=$victim->persona_asistida;
+        $persona_asistida=$victim->persona_asistida;       
         $otras_personas_asistidas=$victim->otras_personas_asistidas;
 
 
@@ -238,111 +228,19 @@ return redirect("paneldecontrol/{$idCaso}");
 
     }
 
+
+     public function victima($id,$idCaso) {
+   
+   session(["idVictim" => $id]);
+   session(["idCaso" => $idCaso]);
+   
+
+return redirect("paneldecontrol/{$idCaso}");
+
+    }
+
+
     public function editar(Request $form) {
-
-      $hoy = date("d/m/y");
-     $reglas = [
-      "victima_nombre_y_apellido"=>"required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
-      "genero"=>"required|integer",
-      "victima_fecha_nacimiento"=>"date_format:Y-m-d|before:$hoy|after:1899-12-31",
-      "victima_edad"=>"required|integer",
-      "franjaetaria"=>"required",
-      "tienedoc"=>"required|integer",
-      "niveleducativo"=>"required|integer",
-      "condiciones_de_trabajo"=>"required|integer",
-      "necesidades_socioeconomicas_insatisfechas"=>"required",
-      "programa_subsidio"=>"required|integer",
-      "tiene_discapacidad"=>"required",
-      "tienelesion"=>"required|integer",
-      "enfermedadcronica"=>"required|integer",
-      "persona_asistida"=>"required",
-      "otras_personas_asistidas"=>"required",
-      "tiene_limitacion"=>"required"
-    ];
-
-      $validator = Validator::make($form->all(), $reglas);
-
-      $validator->sometimes('embarazorelevamiento', 'required|integer', function ($input) {
-        return $input->genero == 1;
-       });
-
-      $validator->sometimes('embarazorelevamiento', 'required|integer', function ($input) {
-       return $input->genero == 4;
-        });
-
-      $validator->sometimes('embarazorelevamiento', 'required|integer', function ($input) {
-        return $input->genero == 5;
-       });
-
-
-      $validator->sometimes('tipodocumento', 'required', function ($input) {
-        return $input->tienedoc == 1;
-       });
-
-       $validator->sometimes('victima_numero_documento', "required|min:1|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-         return $input->tienedoc == 1;
-        });
-
-       $validator->sometimes('tipodocumento', 'required', function ($input) {
-         return $input->tienedoc == 5;
-        });
-
-        $validator->sometimes('victima_numero_documento', "required|min:1|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-          return $input->tienedoc == 1;
-         });
-
-         $validator->sometimes('victima_numero_documento', "required|min:1|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-           return $input->tienedoc == 5;
-          });
-
-         $validator->sometimes('tipo_documento_otro', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-           return $input->tipodocumento == 9;
-          });
-
-       $validator->sometimes('residenciaprecaria', 'required', function ($input) {
-         return $input->tipodocumento == 6;
-        });
-       $validator->sometimes('necesidades', 'required', function ($input) {
-         return $input->necesidades_socioeconomicas_insatisfechas == 1;
-       });
-      $validator->sometimes('programas', 'required', function ($input) {
-          return $input->programa_subsidio == 1;
-       });
-
-       $validator->sometimes('discapacidades', 'required', function ($input) {
-           return $input->tiene_discapacidad == 1;
-        });
-
-        $validator->sometimes('tipo_lesion', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-         return $input->tienelesion == 1;
-       });
-        $validator->sometimes('tipo_enfermedad_cronica', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-         return $input->enfermedadcronica == 1;
-        });
-
-        $validator->sometimes('limitaciones', 'required', function ($input) {
-         return $input->tiene_limitacion == 1;
-        });
-
-        $validator->sometimes('necesidades_socioeconomicas_insatisfechas_otro', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-        return is_array($input->necesidades) && in_array(8,$input->necesidades);
-        });
-
-        $validator->sometimes('programa_subsidio_otro', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-        return is_array($input->programas) && in_array(5,$input->programas);
-        });
-
-        $validator->sometimes('limitacion_otro', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-        return is_array($input->limitaciones) && in_array(4,$input->limitaciones);
-        });
-
-       if ($validator->fails()) {
-            return back()
-                        ->withErrors($validator)
-                       ->withInput();
-        }
-
-
    $victim= Victim::find($form["idVictima"]);
 
 
@@ -364,14 +262,14 @@ return redirect("paneldecontrol/{$idCaso}");
         $victim->programa_subsidio_otro= $form ["programa_subsidio_otro"];
         $victim->embarazorelevamiento= $form ["embarazorelevamiento"];
         $victim->tiene_discapacidad= $form ["tiene_discapacidad"];
-
+        
         $victim->tienelesion= $form ["tienelesion"];
         $victim->tipo_lesion= $form ["tipo_lesion"];
         $victim->enfermedadcronica= $form ["enfermedadcronica"];
         $victim->tipo_enfermedad_cronica= $form ["tipo_enfermedad_cronica"];
         $victim->tiene_limitacion= $form ["tiene_limitacion"];
         $victim->limitacion_otro= $form ["limitacion_otro"];
-        $victim->persona_asistida= $form ["persona_asistida"];
+        $victim->persona_asistida= $form ["persona_asistida"];       
         $victim->otras_personas_asistidas= $form ["otras_personas_asistidas"];
 
         $victim->idCaso= session("idCaso");
@@ -383,11 +281,12 @@ return redirect("paneldecontrol/{$idCaso}");
       $victim->programas()->sync($form["programas"]);
       $victim->discapacidades()->sync($form["discapacidades"]);
       $victim->limitaciones()->sync($form["limitaciones"]);
-
-          return redirect("paneldecontrol/{$victim->idCaso}");
+             
+          return redirect("paneldecontrol/{$victim->idCaso}#B");
 
 
 
 
 }
     }
+

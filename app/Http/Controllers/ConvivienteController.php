@@ -110,7 +110,7 @@ public function eliminarconviviente($id) {
    $conviviente_nuevo= Conviviente_nuevo::where("idVictim",session("idVictim"))->where("idConviviente",$id);
    $conviviente_nuevo->delete();
 
-   return redirect("/paneldecontrol/$convivienteelim");}
+   return redirect("/paneldecontrol/{$convivienteelim}#C");}
 
 
 

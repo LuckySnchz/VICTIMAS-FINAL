@@ -12,16 +12,22 @@ class ProfesionalController extends Controller
 {
 public function agregar(Request $form){
 
-  $hoy = date("d/m/y");
+  $hoy = date("d-m-Y");
+
+    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
   $reglas = [
     "nombre_profesional_interviniente"=>"required|string",
-    "desde_profesional_interviniente"=>"date_format:Y-m-d|before:$hoy|after:1900-01-01",
+    "desde_profesional_interviniente"=>"required|date_format:Y-m-d|before:$hoy|after:1899-12-31",
     "actual_profesional_interviniente"=>"required"
   ];
 
   $validator = Validator::make($form->all(), $reglas);
 
-  $validator->sometimes('hasta_profesional_interviniente', 'required|after:desde_profesional_interviniente', function ($input) {
+  $hoy = date("d-m-Y");
+
+    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
+
+  $validator->sometimes('hasta_profesional_interviniente', 'required|date_format:Y-m-d|before:de la fecha Actual|after:desde_profesional_interviniente', function ($input) {
     return $input->actual_profesional_interviniente == 2;
   });
 

@@ -13,18 +13,19 @@ use Validator;
 class ProfesionalPanelController extends Controller
 {
 public function editar(Request $form){
+
 $hoy = date("d-m-Y");
 
     $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
   $reglas = [
     "nombre_profesional_interviniente"=>"required|string",
-    "desde_profesional_interviniente"=>"date_format:Y-m-d|before:$hoy|after:1900-01-01",
+    "desde_profesional_interviniente"=>"required|date_format:Y-m-d|before:$hoy|after:1900-01-01",
     "actual_profesional_interviniente"=>"required"
   ];
 
   $validator = Validator::make($form->all(), $reglas);
 
-  $validator->sometimes('hasta_profesional_interviniente', 'required|date_format:Y-m-d|before:de la fecha actual|after:desde_profesional_interviniente', function ($input) {
+  $validator->sometimes('hasta_profesional_interviniente', 'required|after:desde_profesional_interviniente', function ($input) {
     return $input->actual_profesional_interviniente == 2;
   });
 
@@ -46,7 +47,7 @@ $hoy = date("d-m-Y");
 
 
            $profesional->save();
-           return redirect("paneldecontrol/{$profesional->idCaso}#AA");
+           return redirect("paneldecontrol/{$profesional->idCaso}");
           }
 
 
@@ -70,7 +71,7 @@ $actual_profesional_interviniente=$profesional->actual_profesional_interviniente
     $profesional = Profesional::find($id);
     $profesional->delete();
 
- return redirect("paneldecontrol/{$profesional->idCaso}#AA");
+ return redirect("paneldecontrol/{$profesional->idCaso}");
 
   }
 
@@ -105,7 +106,7 @@ public function agregar(Request $form){
   $profesional->userID_create= Auth::id();
 
   $profesional->save( );
-   return redirect("paneldecontrol/{$profesional->idCaso}#AA");
+   return redirect("paneldecontrol/{$profesional->idCaso}");
 }
 
 

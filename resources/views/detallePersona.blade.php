@@ -35,17 +35,7 @@
 
 <!Listado Personas asistidas>
 
-        <ul>
-        @foreach($personas as $persona)
-          @if($persona->idCaso==session("idCaso"))
-            <li>
-              <a href="/detallePersona/{{$persona->id}}">
-              {{$persona->nombre_persona_asistida}}</a>
-            </li>
-          @endif
-        @endforeach
-        </ul>
-        <br>
+   
 
 
     <form class="" action="/detallePersona" method="post">

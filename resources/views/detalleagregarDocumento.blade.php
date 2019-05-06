@@ -18,11 +18,13 @@
    </head>
    <header>
      @include('navbar')
-         <div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%">
+      <div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%">
                 <a class="navbar-brand"  href="/paneldecontrol/{{session("idCaso")}}">
                     <h3 style="color:white">Panel de Control</h3>
                 </a>
                 </div>
+     <br>
+      
    </header>
    <body>
 
@@ -43,8 +45,7 @@
                <li>
             <a href="/storage/{{$documento->archivo}}">
               {{$documento->nombre_documento}}</a>
-              <strong>  <a style="color:red"href="detalleDocumento/deleteDocumento/{{$documento->id}}">
-              ELIMINAR</a></strong>
+              
             </li>
           @endif
         @endforeach
@@ -80,22 +81,36 @@
               @if(old("tipo_documento")==4)
               <option value="4" selected >Plan de Intervención/Estrategias de abordaje </option>
               @else<option value="4" >Plan de Intervención/Estrategias de abordaje </option>@endif
+
+              @if(old("tipo_documento")==5)
+              <option value="5" selected >Informe socioambiental </option>
+            @else<option value="5" >Informe socioambiental </option>@endif
               </select>
       {!! $errors->first('tipo_documento', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
 
       <div class="form-group" {{ $errors->has('nombre_documento') ? 'has-error' : ''}}>
-      <label for="nombre_documento">G 1.-Nombre del Documento: </label>
+      <label for="nombre_documento">G 2.-Nombre del Documento: </label>
       <input type="text" class="form-control" name="nombre_documento"  value="{{old("nombre_documento")}}">
       {!! $errors->first('nombre_documento', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
 
 
       <div class="form-group" {{ $errors->has('archivo') ? 'has-error' : ''}}>
-        <label for="">Agregar Archivos:</label>
-        <input type="file" name="archivo" class="form-control">
+        <label for="">G 3. Agregar Archivos:</label>
+        <input onchange="ValidateSize(this)" type="file" name="archivo" class="form-control">
         {!! $errors->first('archivo', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
+
+      <script type="text/javascript">
+          function ValidateSize(file) {
+            var FileSize = file.files[0].size / 1024 / 1024; // in MB
+            if (FileSize > 5) {
+            alert('File size exceeds 5 MB');
+           $(file).val('');
+        } else {}
+        }
+        </script>
 
 
 <!BOTONES>
@@ -106,7 +121,7 @@
       </form>
       </section>
 
-      
+     
 
 
 
