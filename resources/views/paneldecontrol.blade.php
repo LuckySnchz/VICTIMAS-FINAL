@@ -58,7 +58,7 @@ session_start();
 
          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
 
-          <li class="nav-item"><strong> <a class="nav-link "style="color:red;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
+          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
       </ul>
 </div> <br>
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
@@ -127,7 +127,7 @@ session_start();
 
          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
 
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
+          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
       </ul>
 </div> <br>
 
@@ -225,7 +225,7 @@ session_start();
 
          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
 
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
+          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
       </ul>
 </div> <br>
 
@@ -298,7 +298,7 @@ session_start();
 
          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
 
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
+          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
       </ul>
 </div> <br>
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
@@ -368,7 +368,7 @@ session_start();
 
          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
 
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
+          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
       </ul>
 </div> <br>
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
@@ -471,7 +471,7 @@ session_start();
 
          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
 
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
+          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
       </ul>
 </div> <br>
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
@@ -571,7 +571,7 @@ session_start();
 
          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
 
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
+          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
       </ul>
 </div> <br>
 
@@ -641,7 +641,7 @@ session_start();
 
          <li class="nav-item"><strong> <a class="nav-link "style="color:black;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
 
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
+          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
       </ul>
 </div> <br>
  <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
@@ -712,7 +712,7 @@ session_start();
 
          <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
 
-          <li class="nav-item"><strong> <a class="nav-link "style="color:black;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
+          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
       </ul>
 </div>
 </div>
