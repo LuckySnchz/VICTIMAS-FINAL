@@ -177,7 +177,10 @@ public function agregar(Request $form){
     $victim->limitaciones()->attach($limitacion);}}
 
     if($form["otras_personas_asistidas"] == 1){
-      return redirect ("agregarPersona");}else{
+      return redirect ("agregarPersona");}
+
+
+      else{
         return redirect ("agregarconviviente");
       }
 
