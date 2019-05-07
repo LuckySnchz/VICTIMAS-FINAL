@@ -673,7 +673,8 @@ Route::get("/agregarderivacion",function(){
   $oderivados = App\Oderivados::all();
   $organismos = App\Organismo::all();
   $seguimientos = App\Seguimiento::all();
-  return view("agregarderivacion", compact("seguimientos","oderivados","ciudades","provincias","delitos", "tipo_demandas","organismos","departamentos"));
+
+  return view("agregarderivacion", compact("seguimientos","oderivados","ciudades","provincias","delitos", "tipo_demandas","organismos"));
 })->middleware('auth');
 Route::post("/agregarderivacion","DerivacionController@agregar")->middleware('auth');
 
