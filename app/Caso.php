@@ -83,5 +83,10 @@ class Caso extends MiModelo
   public function organismosIds() {
     return $this->organismos->pluck("id");
 }
+
+ public function getactivo()
+  {
+    return $this->activo;
+  }
 }
 ?>

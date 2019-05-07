@@ -12,60 +12,39 @@ class ImputadoPanelController extends Controller
 {
   public function agregar(request $form) {
 
-    /*$reglas = [
+   $reglas = [
+  'imputado_nombre_y_apellido'=>'required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', 
 
+'apodo'=>'required|min:3|max:50|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', 
+'tipodocumento_id'=>'required', 
+ 'imputado_documento'=> 'required|integer', 
+
+'vinculo_id'=> 'required', 
+
+'caratulacion_judicial'=> 'required|min:3|max:100|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+
+  'antecedentes_id'=>'required',
+
+'detenido'=> 'required|integer',
+'defensor_particular'=> 'required|integer', 
+'defensoria_numero'=> 'required|min:1|max:50|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', 
+
+'fiscalia_juzgado'=> 'required|min:3|max:50|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', 
+
+'causa_id_judicial'=>'required|numeric'
 
     ];
 
+
+
+
+
+
+
+
+
     $validator = Validator::make($form->all(), $reglas);
 
-    $validator->sometimes('agregar_imputado', 'required', function ($input) {
-      return $input->cantVictimas > "1";
-            });
-
-  $validator->sometimes('imputado_nombre_y_apellido', 'required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {
-  return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-          });
-
-$validator->sometimes('apodo', 'required|min:3|max:50|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {        return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-        });
-$validator->sometimes('tipodocumento_id', 'required', function ($input) {
-  return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-        });
-  $validator->sometimes('imputado_documento', 'required|integer', function ($input) {
-    return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-          });
-
-$validator->sometimes('vinculo_id', 'required', function ($input) {
-  return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-        });
-
-$validator->sometimes('caratulacion_judicial', 'required|min:3|max:100|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {        return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-        });
-
-  $validator->sometimes('antecedentes_id', 'required', function ($input) {
-    return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-          });
-
-$validator->sometimes('detenido', 'required|integer', function ($input) {
-  return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-        });
-
-$validator->sometimes('defensor_particular', 'required|integer', function ($input) {
-  return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-        });
-
-$validator->sometimes('defensoria_numero', 'required|min:1|max:50|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {
-  return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-        });
-
-$validator->sometimes('fiscalia_juzgado', 'required|min:3|max:50|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {
-  return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-        });
-
-$validator->sometimes('causa_id_judicial', 'required|numeric', function ($input) {
-  return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-        });
 
     $validator->sometimes('imputado_tipo_documento_otro', "required|min:3|max:50|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
       return $input->tipodocumento_id == 9;
@@ -89,7 +68,7 @@ $validator->sometimes('causa_id_judicial', 'required|numeric', function ($input)
         return back()
                     ->withErrors($validator)
                     ->withInput();
-    }*/
+    }
 
    
 

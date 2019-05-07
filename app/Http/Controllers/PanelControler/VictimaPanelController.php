@@ -17,18 +17,17 @@ class VictimaPanelController extends Controller
 
 public function agregar(Request $form){
 
-$hoy = date("d-m-Y");
+ $hoy = date("d-m-Y");
 
-    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));;
+    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
  $reglas = [
   "victima_nombre_y_apellido"=>"required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
   "genero"=>"required|integer",
-  "victima_fecha_nacimiento"=>"required|date_format:Y-m-d|before:$hoy",
-  //|before:$hoy
+  "victima_fecha_nacimiento"=> "required|date_format:Y-m-d|before:$hoy|after:1899-12-31",
+
   "victima_edad"=>"required|integer",
   "franjaetaria"=>"required",
   "tienedoc"=>"required|integer",
-  "victima_numero_documento" =>"required|integer",
   "niveleducativo"=>"required|integer",
   "condiciones_de_trabajo"=>"required|integer",
   "necesidades_socioeconomicas_insatisfechas"=>"required",
@@ -36,6 +35,8 @@ $hoy = date("d-m-Y");
   "tiene_discapacidad"=>"required",
   "tienelesion"=>"required|integer",
   "enfermedadcronica"=>"required|integer",
+  "persona_asistida"=>"required",
+  "otras_personas_asistidas"=>"required",
   "tiene_limitacion"=>"required"
 ];
 
@@ -58,17 +59,21 @@ $hoy = date("d-m-Y");
     return $input->tienedoc == 1;
    });
 
-   $validator->sometimes('victima_numero_documento', "required|min:1|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+   $validator->sometimes('victima_numero_documento', "required|min:1|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
      return $input->tienedoc == 1;
     });
-//|max:20
+
    $validator->sometimes('tipodocumento', 'required', function ($input) {
      return $input->tienedoc == 5;
     });
 
-    $validator->sometimes('victima_numero_documento', "required|min:3|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-      return $input->tienedoc == 3;
+    $validator->sometimes('victima_numero_documento', "required|min:1|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+      return $input->tienedoc == 1;
      });
+
+     $validator->sometimes('victima_numero_documento', "required|min:1|max:20|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
+       return $input->tienedoc == 5;
+      });
 
      $validator->sometimes('tipo_documento_otro', "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
        return $input->tipodocumento == 9;
@@ -143,16 +148,16 @@ $hoy = date("d-m-Y");
     $victim->tipo_enfermedad_cronica= $form ["tipo_enfermedad_cronica"];
     $victim->tiene_limitacion= $form ["tiene_limitacion"];
     $victim->limitacion_otro= $form ["limitacion_otro"];
+    $victim->persona_asistida= $form["persona_asistida"];
+    $victim->otras_personas_asistidas= $form["otras_personas_asistidas"];
     $victim->idCaso= session("idCaso");
     $victim->userID_create= Auth::id();
 
-
     $victim->save();
 
-    $idVictim = $victim->id;
+    $idVictim= $victim->id;
 
-session(["idVictim" => $idVictim]);
-
+    session(["idVictim" => $idVictim]);
 
 
     if (is_array($form["necesidades"])){
@@ -170,10 +175,31 @@ session(["idVictim" => $idVictim]);
     if (is_array($form["limitaciones"])){
     foreach ($form["limitaciones"] as $limitacion) {
     $victim->limitaciones()->attach($limitacion);}}
-
-  return redirect ("agregarPersona");
+  return redirect ("paneldecontrol/$victim->idCaso");
+   
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
 
@@ -282,7 +308,7 @@ return redirect("paneldecontrol/{$idCaso}");
       $victim->discapacidades()->sync($form["discapacidades"]);
       $victim->limitaciones()->sync($form["limitaciones"]);
              
-          return redirect("paneldecontrol/{$victim->idCaso}");
+          return redirect("paneldecontrol/{$victim->idCaso}#B");
 
 
 
