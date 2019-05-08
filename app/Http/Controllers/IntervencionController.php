@@ -25,7 +25,7 @@ class IntervencionController extends Controller
 
     $validator = Validator::make($form->all(), $reglas);
 
-$validator->sometimes('fecha_intervencion', 'required|date_format:Y-m-d|before:$hoy|after:1899-12-31', function ($input) {
+$validator->sometimes('fecha_intervencion', 'required|date_format:Y-m-d|before: o igual a la fecha actual|after:1899-12-31', function ($input) {
 return $input->intervencion == 1;
   });
 
