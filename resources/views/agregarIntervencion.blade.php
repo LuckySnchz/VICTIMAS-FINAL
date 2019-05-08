@@ -300,24 +300,12 @@
       <label>Fecha intervención: </label>
       <input type="date" name="fecha_intervencion" class="form-control" value="{{old("fecha_intervencion")}}">
       {!! $errors->first('fecha_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
-
-    
+      </div>    
 
       <div class="form-group" {{ $errors->has('detalle_intervencion') ? 'has-error' : ''}}">
         <label for="breve_descripcion_caso">Detalle intervención:</label>
-        <input type="text" class="form-control" name="detalle_intervencion" id="breve_detalle_intervencion" value="{{old('detalle_intervencion')}}" style="height:80px">
-        {!! $errors->first('detalle_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}
-        </div>
-
-
-
-
-
-
-
-
-
+        <input type="text" rows="15" cols="80" class="form-control" name="detalle_intervencion" id="breve_detalle_intervencion" value="{{old('detalle_intervencion')}}" style="height:80px">
+        {!! $errors->first('detalle_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}</div>
   
     {!! $errors->first('agregar_intervencion_si', '<p class="help-block" style="color:red";>:message</p>') !!}
       <div id="botones" >
