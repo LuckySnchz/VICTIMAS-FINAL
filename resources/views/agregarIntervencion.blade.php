@@ -304,7 +304,11 @@
 
       <div class="form-group" {{ $errors->has('detalle_intervencion') ? 'has-error' : ''}}>
       <label>Detalle intervención: </label>
-      <textarea class="form-control" name="detalle_intervencion"  rows="8" cols="80" value="{{old("detalle_intervencion")}}"></textarea>
+
+   
+
+
+      <input type="text"  class="form-control" name="detalle_intervencion"  style="height:300px" value="{{old("detalle_intervencion")}}">
       {!! $errors->first('detalle_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
 
