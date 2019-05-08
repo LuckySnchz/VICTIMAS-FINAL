@@ -302,15 +302,21 @@
       {!! $errors->first('fecha_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
 
-      <div class="form-group" {{ $errors->has('detalle_intervencion') ? 'has-error' : ''}}>
-      <label>Detalle intervención: </label>
+    
 
-   
+      <div class="form-group" {{ $errors->has('detalle_intervencion') ? 'has-error' : ''}}">
+        <label for="breve_descripcion_caso">Detalle intervención:</label>
+        <input type="text" class="form-control" name="detalle_intervencion" id="breve_detalle_intervencion" value="{{old('detalle_intervencion')}}" style="height:80px">
+        {!! $errors->first('detalle_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}
+        </div>
 
 
-      <input type="text"  class="form-control" name="detalle_intervencion" value="{{old("detalle_intervencion")}}">
-      {!! $errors->first('detalle_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
+
+
+
+
+
+
 
   
     {!! $errors->first('agregar_intervencion_si', '<p class="help-block" style="color:red";>:message</p>') !!}
