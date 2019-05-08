@@ -303,8 +303,8 @@
       </div>    
 
       <div class="form-group" {{ $errors->has('detalle_intervencion') ? 'has-error' : ''}}">
-        <label for="breve_descripcion_caso">Detalle intervención:</label>
-        <input type="text" rows="15" cols="80" class="form-control" name="detalle_intervencion" id="breve_detalle_intervencion" value="{{old('detalle_intervencion')}}" style="height:80px">
+        <label for="detalle_intervencion">Detalle intervención:</label>
+        <input type="text" rows="15" cols="80" class="form-control" name="detalle_intervencion" value="{{old('detalle_intervencion')}}" style="height:80px">
         {!! $errors->first('detalle_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}</div>
   
     {!! $errors->first('agregar_intervencion_si', '<p class="help-block" style="color:red";>:message</p>') !!}
