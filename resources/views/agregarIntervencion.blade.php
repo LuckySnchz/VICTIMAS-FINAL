@@ -308,7 +308,7 @@
    
 
 
-      <input type="text"  class="form-control" name="detalle_intervencion"  style="height:300px" value="{{old("detalle_intervencion")}}">
+      <input type="text"  class="form-control" name="detalle_intervencion" value="{{old("detalle_intervencion")}}">
       {!! $errors->first('detalle_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
 
