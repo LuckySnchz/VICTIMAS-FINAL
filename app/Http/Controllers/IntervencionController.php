@@ -14,13 +14,29 @@ use Validator;
 class IntervencionController extends Controller
 {
   public function agregar(Request $form){
-    $hoy = date("d/m/y");
+ 
+    $hoy = date("d-m-Y");
+
+    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
+
     $reglas = [
-    "fecha_intervencion"=>"date_format:Y-m-d|before:$hoy|after:1899-12-31",
-    "detalle_intervencion"=>"required|min:3|max:600|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/"
+   
     ];
 
     $validator = Validator::make($form->all(), $reglas);
+
+$validator->sometimes('fecha_intervencion', 'required|date_format:Y-m-d|before:$hoy|after:1899-12-31', function ($input) {
+return $input->intervencion == 1;
+  });
+
+$validator->sometimes('detalle_intervencion', 'required|min:3', function ($input) {
+return $input->intervencion == 1;
+  });
+
+
+
+
+
 
 
     if ($validator->fails()) {

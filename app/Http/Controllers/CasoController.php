@@ -28,7 +28,7 @@ public function agregar(Request $form){
 "nro_carpeta" => "sometimes|nullable|max:40|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
 "delito" => "required",
 "descripcion_caso" => "required|min:3|max:255",
-"fecha_ingreso" => "required|date_format:Y-m-d|before:$hoy|after:1900-01-01",
+"fecha_ingreso" => "required|date_format:Y-m-d|before:$hoy|after:1899-12-31",
 "modalidad_ingreso" => "required",
 "cavaj" => "required",
 "comisaria" => "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",

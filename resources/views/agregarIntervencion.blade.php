@@ -264,13 +264,39 @@
  @endforeach
 
 </div>
-<a href="javascript:if(window.print)window.print()">Print</a>
+<a href="javascript:if(window.print)window.print()">Imprimir</a>
 
 </div>
-<div id="intervencion-form" style="display:none">
+
+<div class="form-group"
+        {{ $errors->has('intervencion') ? 'has-error' : ''}}>
+        <label for="modalidad_ingreso">Desea Agregar Intervención:</label>
 
 
-      <div class="form-group" {{ $errors->has('fecha_intervencion') ? 'has-error' : ''}}>
+
+             <select class="form-control" name="intervencion" id="intervencion" onChange="selectOnChangeA5A(this)">
+                  <option value="" selected=disabled>Seleccionar...</option>
+                  @if (old("intervencion")==1)
+                    <option value="1" selected>Sí</option>
+                  @else <option value="1" >Sí</option>
+                  @endif
+
+                  @if (old("intervencion")==2)
+                    <option value="2" selected>No</option>
+                  @else <option value="2" >No</option>
+                  @endif
+
+        </select><br>
+         
+    {!! $errors->first('intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}
+
+
+    @if (old("intervencion") == 1) <div id="agregar_intervencion_si" {{ $errors->has('agregar_intervencion_si') ? 'has-error' : ''}}>
+    @else
+    <div id="agregar_intervencion_si" style="display: none">
+    @endif
+
+    <div class="form-group" {{ $errors->has('fecha_intervencion') ? 'has-error' : ''}}>
       <label>Fecha intervención: </label>
       <input type="date" name="fecha_intervencion" class="form-control" value="{{old("fecha_intervencion")}}">
       {!! $errors->first('fecha_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}
@@ -282,34 +308,45 @@
       {!! $errors->first('detalle_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
 
-      <div class="botones" style="overflow:hidden;width:100%;margin-left:40%">
-      <div class="btn-1" style="width:10%;float:left"> <button type="submit" class="btn btn-primary col-xs" name="button">Guardar</button><br><br></div>
-      </div>
-      </form>
+  
+    {!! $errors->first('agregar_intervencion_si', '<p class="help-block" style="color:red";>:message</p>') !!}
+      <div id="botones" >
+  <div class="btn-1" > <button class="btn btn-primary col-xl" name="button" style="width:108%" >Agregar</button><br><br></div>
+  </div>
+    </div>
+    </div>
+  </div>
 
-</div>
-<script>
-   function openInterv(sel) {
 
-        divC = document.getElementById("intervencion-form");
-        divC.style.display = ""
-
-    }
-
-</script>
 
 <!BOTONES>
 
-      <div class="botones" >
-      <div class="btn-1"> <button style="width:100%" onclick="openInterv(this)" class="btn btn-primary col-xl" name="button"  >Agregar Intervención</button><br><br></div>
-      </div>
+  
       </form>
 </section>
 
       <div class="btn-4">   <button style="width:100%" class="btn btn-danger col-xl" name="button" onclick="window.open('home', 'width=800,height=600')"; >FINALIZAR CARGA DE CASO - HOME</button><br><br></div>
+ <script>
+           function selectOnChangeA5A(sel) {
 
+
+            if (sel.value=="1"){
+              divC = document.getElementById("agregar_intervencion_si");
+              
+              divC.style.display = "";
+            }else{
+              divC = document.getElementById("agregar_intervencion_si");
+     
+              divC.style.display="none";
+            }
+           }
+
+        </script>
 
 
 
       </body>
 </html>
+
+
+
