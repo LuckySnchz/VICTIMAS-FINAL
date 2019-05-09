@@ -50,9 +50,16 @@ return $input->intervencion == 1;
 
   $intervencion->save();
 
-  return redirect ("agregarIntervencion");
+  return redirect ("agregarIntervencion/$intervencion->idCasos");
 }
 
+   public function eliminarintervencion($id) {
+     $intervencionelim=Intervencion::find($id)->getidCaso();
+ $intervencion= Intervencion::find($id);
+   $intervencion->delete();
+
+
+   return redirect("/agregarIntervencion/$intervencionelim");}
 
 
 public function search(Request $req) {

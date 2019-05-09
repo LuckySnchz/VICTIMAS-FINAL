@@ -232,9 +232,34 @@ session_start();
 
             <div class="form-group " for="comisaria"{{ $errors->has('comisaria') ? 'has-error' : ''}}>
                <label >A 7. Comisaría interviniente:</label>
-               <input type="text" class="form-control" name="comisaria" value="{{old('comisaria')}}">
+               <input type="text" class="form-control" name="comisaria" id="comisaria" value="{{old('comisaria')}}">
+                  
+    <label for="bloqueoA7" class="form-check-label">Se desconoce</label>
+    <input type="checkbox" id="bloqueo7" name="comisaria" value="Se desconoce" onchange="checkA7(this)">
+               
+
             {!! $errors->first('comisaria', '<p class="help-block" style="color:red";>:message</p>') !!}
             </div>
+
+
+
+              <script>
+         function checkA7(checkbox)
+         {
+             if (checkbox.checked)
+                 {
+                     $('#comisaria').val('Se desconoce');
+                     document.getElementById('comisaria').setAttribute("readonly", "readonly");
+                     document.getElementById('comisaria').style.background="#e9ecef";
+                 }else
+                     {
+                         $('#comisaria').val('');
+                         document.getElementById('comisaria').removeAttribute("readonly");
+                           document.getElementById('comisaria').style.background="white";
+                            document.getElementById('comisaria').removeAttribute("readonly");
+                     }
+         }
+      </script>
 
 <!-A8 Denuncias previas->
 

@@ -41,6 +41,7 @@
             <a href="/storage/{{$documento->archivo}}">
               {{$documento->nombre_documento}}</a>
               
+               <strong> <a  style="color:red" href="/eliminardoc/{{$documento->id}}" target="_self">Eliminar</a></strong>
             </li>
           @endif
         @endforeach

@@ -284,7 +284,7 @@ Route::get("/agregarIntervencion/{id}",function($id){
 })->middleware('auth');
 Route::post("/agregarIntervencion","IntervencionController@agregar")->middleware('auth');
 
-
+Route::get("/eliminarintervencion/{id}", "IntervencionController@eliminarintervencion")->middleware('auth');
 
 Route::get("/detalleagregarIntervencion/{id}",function($id){
   session(["idCaso" => $id]);
@@ -439,6 +439,7 @@ Route::get("/detalleagregarDocumento",function(){
 })->middleware('auth');
 Route::post("/detalleagregarDocumento","DocumentoPanelController@agregar")->middleware('auth');
 Route::get("/eliminardocumento/{id}", "DocumentoPanelController@eliminardocumento")->middleware('auth');
+Route::get("/eliminardoc/{id}", "DocumentoPanelController@eliminardoc")->middleware('auth');
 //Route::post("/agregarDocumento","DocumentoPanelController@agregar");
 //AGREGA EJE G: INTERVENCION//
 

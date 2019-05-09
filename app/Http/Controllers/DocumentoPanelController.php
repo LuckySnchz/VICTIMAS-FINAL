@@ -71,8 +71,14 @@ public function eliminardocumento($id) {
  return redirect("paneldecontrol/{$documentoelim}#FIN");
 
   }
+public function eliminardoc($id) {
+   $documentoelim=session("idCaso");
+    $documento = Documento::find($id);
+    $documento->delete();
 
+ return redirect("agregarDocumento");
 
+  }
 
 
 

@@ -259,6 +259,9 @@
      @if ($intervencion->idCaso == session("idCaso"))
        <li>
          {{$intervencion->fecha_intervencion . " - " . $intervencion->detalle_intervencion}}
+            
+ <strong> <a  style="color:red" href="/eliminarintervencion/{{$intervencion->id}}" target="_self">Eliminar</a></strong>
+
        </li>
      @endif
  @endforeach

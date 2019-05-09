@@ -13,4 +13,9 @@ class Intervencion extends MiModelo
   public function casos(){
     return $this->hasOne(Caso::class,"id");
   }
+
+    public function getidCaso()
+  {
+    return $this->idCaso;
+  }
 }

@@ -723,6 +723,10 @@ document.getElementById('victima_numero_documento').style.background="white";
           @else <option value="1" >Si</option> @endif
           @if (old("embarazorelevamiento") == 2) <option value="2" selected>No</option>
           @else <option value="2" >No</option> @endif
+
+          @if (old("embarazorelevamiento") == 3) <option value="2" selected>Se Desconoce</option>
+          @else <option value="2" >Se Desconoce</option> @endif
+
   </select>
   {!! $errors->first('embarazorelevamiento', '<p class="help-block" style="color:red";>:message</p>') !!}
   </div>
