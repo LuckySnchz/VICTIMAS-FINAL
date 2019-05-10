@@ -519,9 +519,29 @@ session_start();
     @endforeach
     </select>
     <label>Se desconoce</label>
-    <input type="checkbox" name="provincia_hecho" id="desconoceProvinciaExplotacion" value="Se desconoce"><br>
+    <input type="checkbox" value="25" onchange="checkD4(this)" name="provincia_hecho"><br>
     {!! $errors->first('provincia_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
+
+    <script type="text/javascript">
+       function checkD4(checkbox) {
+          if (checkbox.checked)
+                {
+                    $('#stateId2').val('25');
+                    document.getElementById('stateId2').setAttribute("readonly","readonly");
+                    document.getElementById('stateId2').style.background="#e9ecef";
+                    divAY= document.getElementById("stateId2").disabled=true;
+                  
+
+           }
+           else{
+                    $('#stateId2').val('');
+                    document.getElementById('stateId2').setAttribute("readonly","readonly");
+                    document.getElementById('stateId2').style.background="white";
+                    divAY= document.getElementById("stateId2").disabled=false;
+
+           }}
+    </script>
 
 <!-D5 Localidad del hecho->
 
@@ -538,22 +558,27 @@ session_start();
     @endforeach
     </select>
     <label>Se desconoce</label>
-    <input type="checkbox" name="localidad_hecho" id="desconoceCiudadExplotacion" value="Se desconoce"><br>
+    <input type="checkbox" value="4066" onchange="checkD5(this)" name="localidad_hecho"><br>
     {!! $errors->first('localidad_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
       <script>
              function checkD5(checkbox)
-             {
-                 if (checkbox.checked)
-                     {
-                         $('#cityId2').val('0');
-                         document.getElementById('cityId2').setAttribute("readonly", "readonly");
+             {if (checkbox.checked)
+                {
+                    $('#cityId2').val('4066');
+                    document.getElementById('cityId2').setAttribute("readonly","readonly");
+                    document.getElementById('cityId2').style.background="#e9ecef";
+                    divAY= document.getElementById("cityId2").disabled=true;
+                  
 
-                     }else
-                         {
-                             $('#cityId2').val('');
-                             document.getElementById('cityId2').removeAttribute("readonly");
-                         }
+           }
+           else{
+                    $('#cityId2').val('');
+                    document.getElementById('cityId2').setAttribute("readonly","readonly");
+                    document.getElementById('cityId2').style.background="white";
+                    divAY= document.getElementById("cityId2").disabled=false;
+
+           }
              }
           </script>
 

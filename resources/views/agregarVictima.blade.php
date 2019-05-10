@@ -57,8 +57,8 @@ session_start();
 
     <label for="">B 1. Nombre y apellido:</label>
     <input type="text" class="form-control" name="victima_nombre_y_apellido" id="victima_nombre_y_apellido" value="{{old('victima_nombre_y_apellido')}}">
+    
     <label for="bloqueo1" class="form-check-label">Se desconoce</label>
-
     <input type="checkbox" id="bloqueo1" name="victima_nombre_y_apellido" value="Se desconoce" onchange="checkC1(this)">
     {!! $errors->first('victima_nombre_y_apellido', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
