@@ -507,9 +507,10 @@ session_start();
 <!-D4 Provincia del hecho->
 
     <div class="form-group" {{ $errors->has('provincia_hecho') ? 'has-error' : ''}}>
-    <label for="stateId2">D 4. Provincia del hecho:</label>
-    <select name="provincia_hecho" class="states2 order-alpha form-control" id="stateId2">
+    <label for="stateId2">D 3. Provincia del hecho:</label>
+    <select name="provincia_hecho" class="states2 order-alpha form-control" id="stateId2" onChange="selectOnChangeD4(this)">
     <option value="" selected=disabled>Seleccionar...</option>
+   
     @foreach ($provincias as $provincia)
       @if ((old("provincia_hecho")==$provincia->id))
       <option value="{{$provincia->id}}" selected>{{$provincia->nombre}}</option>
@@ -518,39 +519,22 @@ session_start();
       @endif
     @endforeach
     </select>
-    <label>Se desconoce</label>
-    <input type="checkbox" value="25" onchange="checkD4(this)" name="provincia_hecho"><br>
+ 
     {!! $errors->first('provincia_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
 
-    <script type="text/javascript">
-       function checkD4(checkbox) {
-          if (checkbox.checked)
-                {
-                    $('#stateId2').val('25');
-                    document.getElementById('stateId2').setAttribute("readonly","readonly");
-                    document.getElementById('stateId2').style.background="#e9ecef";
-                    divAY= document.getElementById("stateId2").disabled=true;
-                  
+    
 
-           }
-           else{
-                    $('#stateId2').val('');
-                    document.getElementById('stateId2').setAttribute("readonly","readonly");
-                    document.getElementById('stateId2').style.background="white";
-                    divAY= document.getElementById("stateId2").disabled=false;
-
-           }}
-    </script>
 
 <!-D5 Localidad del hecho->
 
     <div class="form-group" {{ $errors->has('localidad_hecho') ? 'has-error' : ''}}>
-    <label for="cityId2">D 5. Localidad del hecho:</label>
+    <label for="cityId2">D 4. Localidad del hecho:</label>
     <select name="localidad_hecho" class="cities2 order-alpha form-control" id="cityId2">
-    <option value="" selected=disabled>Seleccionar...</option>
+    <option value=" " selected=disabled>Seleccionar...</option>
+      <option value="0">Se desconoce</option>
     @foreach ($ciudades as $ciudad)
-      @if ((old("provincia_hecho")==$ciudad->idPcia))
+      @if ((old("provincia_hecho")==$ciudad->id))
       <option class="opcionProvincia provincia{{$ciudad->idPcia}}" style="display:none" value="{{$ciudad->id}}" selected>{{$ciudad->nombre}}</option>
       @else
       <option class="opcionProvincia provincia{{$ciudad->idPcia}}" style="display:none" value="{{$ciudad->id}}">{{$ciudad->localidad_nombre}}</option>
@@ -558,33 +542,15 @@ session_start();
     @endforeach
     </select>
     <label>Se desconoce</label>
-    <input type="checkbox" value="4066" onchange="checkD5(this)" name="localidad_hecho"><br>
+    <input type="checkbox" name="localidad_hecho" id="desconoceCiudadExplotacion" value="Se desconoce" onchange="checkD5(this)"><br>
     {!! $errors->first('localidad_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
-      <script>
-             function checkD5(checkbox)
-             {if (checkbox.checked)
-                {
-                    $('#cityId2').val('4066');
-                    document.getElementById('cityId2').setAttribute("readonly","readonly");
-                    document.getElementById('cityId2').style.background="#e9ecef";
-                    divAY= document.getElementById("cityId2").disabled=true;
-                  
 
-           }
-           else{
-                    $('#cityId2').val('');
-                    document.getElementById('cityId2').setAttribute("readonly","readonly");
-                    document.getElementById('cityId2').style.background="white";
-                    divAY= document.getElementById("cityId2").disabled=false;
-
-           }
-             }
-          </script>
-
-           <script type="text/javascript">
+  <script type="text/javascript">
     document.querySelector("#stateId2").onchange = function() {
       var value = this.options[this.selectedIndex].value;
+  
+
 
       var opciones = document.querySelectorAll(".opcionProvincia");
 
@@ -597,6 +563,8 @@ session_start();
       for (var i = 0; i < opciones.length; i++) {
         opciones[i].style.display = "block";
       }
+       
+
     }
   </script>
 
