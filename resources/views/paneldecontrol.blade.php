@@ -121,12 +121,7 @@ session_start();
 
 <a name="Ancla" id="A"></a>
   <div class="card">
-<div class="container">                 
 
-
-
- 
-</div> <br>
 
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
@@ -146,17 +141,24 @@ session_start();
          
          </p><br>
 
- <a type="button" style="width:65%;margin-left: 5%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"   class="btn col-xl" href="/detalleCaso/{{session("idCaso")}}" target="_self">Editar</button></a><br><br>
 
+<ul style="list-style:none">
+  <li>
 
+  <a type="button"  href="/detalleCaso/{{session("idCaso")}}" target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:#ffffcc;" class="btn btn-danger">Editar</button> </a><br><br>  
 
 
         
 
         <h4 class="text-center" style="padding: 15px;">Personas Asistidas</h4>
 
-    <a type="button" type="button" style="width:66%;margin-left: 5%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"   class="btn col-xl" href="/detalleagregarPersona" target="_self">Agregar</button></a><br><br>
 
+  <a type="button"  href="/detalleagregarPersona"target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:grey;" class="btn btn-danger">Agregar</button> </a><br><br>    
+
+   
+</li></ul>
 
        <ul style="list-style:none">
   @foreach($personas_nuevas as $persona_nueva)
@@ -170,13 +172,14 @@ session_start();
 
 
 
- <a type="button" style="width:70%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detallePersona/{{$persona->id}}" target="_self">Editar</button></a><br><br>
 
 
-    
-  <a type="button" style="width:70%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarpersona/{{$persona->id}}" target="_self">Eliminar</button></a><br><br>          
 
-    
+  <a type="button" href="/detallePersona/{{$persona->id}}" target="_self" style="width:100%;color:black;border: solid black 1px;background-color:#ffffcc;" class="btn btn-danger">Editar</button> </a><br><br>
+
+
+  <a type="button" href="/eliminarpersona/{{$persona->id}}" target="_self" style="width:100%;color:black;border: solid black 1px" class="btn btn-danger">Eliminar</button> </a><br><br>
+  
 
    <!-- <li class="list-inline-item "><a href="javascript:AlertDemanda();"type="button" style="width:130%;margin-left:-14%;color:black;border: solid black 1px" class="btn btn-danger col-l"  class="btn col-xl">Eliminar</a></li>
        <script type="text/javascript">
@@ -200,14 +203,12 @@ session_start();
                 @endif
 
             @endforeach
-</ul></h6>
+</ul>
   </div></div>
 
   <a name="Ancla" id="AA"></a>                  
   <div class="card">
-<div class="container">                 
- 
-</div> <br>
+
 
 
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
@@ -315,9 +316,7 @@ session_start();
 
   <a name="Ancla" id="C"></a> 
 <div class="card">
-  <div class="container">                 
- 
-</div> <br>
+
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center">
   <br><br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
