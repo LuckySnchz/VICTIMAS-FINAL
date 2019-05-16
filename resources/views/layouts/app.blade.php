@@ -22,11 +22,11 @@
 <body>
     <div id="app">
         @if(Auth::user())    
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color:rgb(137, 210, 14)" >
-            <div class="container" >
-                <a class="navbar-brand"  href="{{ url('/') }}" style="color:white;margin-left: -10%">
-                    <h3 style="color:white;text-align: center">Dirección Provincial del Centro<br> de Protección de los Derechos de la Víctima</h3>
-                </a>
+        <nav class="navbar navbar-expand navbar-light navbar-laravel" style="background-color:rgb(137, 210, 14)" >
+            <div class="container" style="width: 40%">
+      
+                   <strong> <h5 style="color:white;text-align: center">Dirección Provincial del Centro<br> de Protección de los Derechos de la Víctima</h5></strong>
+         
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
