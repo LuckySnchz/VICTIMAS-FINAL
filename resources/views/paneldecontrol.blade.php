@@ -41,7 +41,7 @@ session_start();
     <button type="button"  style="background-color:white;margin-left: -1%;margin-top: 1%"data-toggle="dropdown">
      Menu
     </button>
-<strong><h4 class="text-center" style="color:white;background-color: rgb(137, 210, 14);max-width: 100%;display: inline-block;margin-left: 35%">Panel de Control</h4></strong>
+<strong><h4 class="text-center" style="color:white;background-color: rgb(137, 210, 14);max-width: 100%;display: inline-block;float: right;">Panel de Control</h4></strong>
     <div class="dropdown-menu">
     
      <ul>
