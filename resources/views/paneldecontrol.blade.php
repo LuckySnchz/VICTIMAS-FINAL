@@ -128,7 +128,7 @@ session_start();
  
 </div> <br>
 
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
 
           @if($victima->idCaso==session("idCaso")&&$victima->id==session("idVictim"))
@@ -210,7 +210,7 @@ session_start();
 </div> <br>
 
 
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
 
           @if($victima->idCaso==session("idCaso")&&$victima->id==session("idVictim"))
@@ -264,7 +264,7 @@ session_start();
 <div class="container">                 
 
 </div> <br>
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center">
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center">
   <br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
 
@@ -318,7 +318,7 @@ session_start();
   <div class="container">                 
  
 </div> <br>
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center">
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center">
   <br><br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
 
@@ -405,7 +405,7 @@ session_start();
   <div class="container">                 
 
 </div> <br>
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><br><br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><br><br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
 
           @if($victima->idCaso==session("idCaso")&&$victima->id==session("idVictim"))
@@ -489,7 +489,7 @@ session_start();
 
 </div> <br>
 
-    	<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
+    	<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
 
           @if($victima->idCaso==session("idCaso")&&$victima->id==session("idVictim"))
@@ -541,7 +541,7 @@ session_start();
 
 
 </div> <br>
- <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
+ <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
 
           @if($victima->idCaso==session("idCaso")&&$victima->id==session("idVictim"))
