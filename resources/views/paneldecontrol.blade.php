@@ -39,10 +39,10 @@ session_start();
 
 
  <div class="container">                 
-<div class="container" style="position: fixed;z-index: 100;background-color:rgb(137, 210, 14);width: 82.2%;height: 10%;margin-bottom: 10%">
+<div class="container" style="position: fixed;z-index: 100;background-color:rgb(137, 210, 14);max-width: 100%;height: 5%;margin-bottom: 10%">
  
   <div class="dropdown">
-    <button type="button"  style="background-color:rgb(137, 210, 14);margin-top: 1.5%"data-toggle="dropdown">
+    <button type="button"  style="background-color:rgb(137, 210, 14);margin-left: -1%"data-toggle="dropdown">
      Menu
     </button>
     <div class="dropdown-menu">
