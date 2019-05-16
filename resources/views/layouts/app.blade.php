@@ -23,7 +23,7 @@
     <div id="app">
         @if(Auth::user())    
         <nav class="navbar navbar-expand navbar-light navbar-laravel" style="background-color:rgb(137, 210, 14)" >
-            <div class="container" style="width: 40%">
+            <div class="container" style="margin-left: 30%">
       
                    <strong> <h4 style="color:white;text-align: center">Dirección Provincial del Centro<br> </h4><h4 style="color:white;text-align: center">de Protección de los Derechos de la Víctima</h4></strong>
          
@@ -50,7 +50,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" style="margin-left: -430%" >
                                 <a id="navbarDropdown" style="color:white" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>

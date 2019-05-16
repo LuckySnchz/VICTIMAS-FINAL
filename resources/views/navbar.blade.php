@@ -5,12 +5,11 @@
 
             <div class="container">
 
-                <div class="titulo">
-                <a class="navbar-brand" style="margin-bottom: 1%" href="{{ url('/home') }}">
-                    <h3 style="color:white">Dirección Provincial del Centro de Protección de los Derechos de la Víctima</h3>
-
+                <div class="titulo" style="margin-left: 30%">
+               
+      <strong> <h4 style="color:white;text-align: center" href="{{ url('/home') }}">Dirección Provincial del Centro<br> </h4><h4 style="color:white;text-align: center">de Protección de los Derechos de la Víctima</h4></strong>
                    
-                </a></div>
+            </div>
               
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
