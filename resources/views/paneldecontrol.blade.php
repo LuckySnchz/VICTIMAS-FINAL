@@ -68,7 +68,7 @@ session_start();
 </div>
    <br><br>
 <a name="Ancla" id="INICIO"></a>
-        <div class="card">
+     
 
 
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;">
@@ -113,11 +113,11 @@ session_start();
                </ul>
 
            </div>
-</h5></div>
+
 
 
 <a name="Ancla" id="A"></a>
-  <div class="card">
+
 
 
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
@@ -201,10 +201,10 @@ session_start();
 
             @endforeach
 </ul>
-  </div></div>
+  </div>
 
   <a name="Ancla" id="AA"></a>                  
-  <div class="card">
+
 
 
 
@@ -265,11 +265,11 @@ session_start();
        </ul>
 
    </div>
-</div>
+
 
 
   <a name="Ancla" id="B"></a> 
- <div class="card" >
+
 
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center">
   <br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
@@ -323,10 +323,10 @@ session_start();
                </ul>
           
            </div>
-</div>
+
 
   <a name="Ancla" id="C"></a> 
-<div class="card">
+
 
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center">
   <br><br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
@@ -414,11 +414,11 @@ session_start();
                                </ul>-->
                          
                            </div>
-</div>
+
 
   <a name="Ancla" id="D"></a> 
 
-<div class="card">
+
   
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><br><br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
@@ -503,10 +503,10 @@ session_start();
 
 
 
-    </div></div>
+    </div>
 
      <a name="Ancla" id="E"></a> 
-  <div class="card">
+
    
 
     	<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
@@ -553,7 +553,7 @@ session_start();
       
 </li></ul>
 
-</div></div>
+</div>
              
       
  
@@ -564,7 +564,7 @@ session_start();
  
   <a name="Ancla" id="FIN"></a>
 
-    <div class="card">
+
 
  <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
@@ -620,7 +620,7 @@ session_start();
 
 </div>
 
-</div>
+
 
 
 </div>
