@@ -79,12 +79,12 @@
 <form action="/search" method="GET">
  {{csrf_field()}}
  <h4 style="text-align: center"> Buscar</h4>
-<div class="buscar" style="margin-left: 30%">
+<div class="buscar" style="margin-left: 15%">
   <input type="radio" name="buscar" value="1"> Casos
   <input type="radio" name="buscar" value="2"> Incidencias
   <input type="radio" name="buscar" value="3"> Derivaciones
 </div>
- <input type="text" name="search" style="margin-left: 25%;width: 45%">
+ <input type="text" name="search" style="margin-left: 15%;width: 60%">
  <button type="submit" class="btn" style="color:white;background-color:rgb(137, 210, 14)">BUSCAR</button><br><br>
  <h5  style="text-align: center" >Buscar por Nombre de Referencia, por Nombre de la víctima o por modalidad de ingreso</h5>
 </form><br>
