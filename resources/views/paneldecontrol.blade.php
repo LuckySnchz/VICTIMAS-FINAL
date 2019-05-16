@@ -34,12 +34,14 @@ session_start();
 
 
  <div class="container">                 
-<div class="container" style="position: fixed;z-index: 100;background-color:rgb(137, 210, 14);max-width: 100%;height: 5%;margin-bottom: 10%">
- 
+
+ <div class="container jumbotron shadow p-3 mb-5 bg-green rounded" style="max-width: 100%;margin-top: 5%;background-color:rgb(137, 210, 14)">
+
   <div class="dropdown">
-    <button type="button"  style="background-color:rgb(137, 210, 14);margin-left: -1%"data-toggle="dropdown">
+    <button type="button"  style="background-color:white;margin-left: -1%"data-toggle="dropdown">
      Menu
     </button>
+
     <div class="dropdown-menu">
     
      <ul>
@@ -71,7 +73,7 @@ session_start();
      
 
 
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;">
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: -5%;">
 
 
      <h4 class="text-center" style="padding: 15px;">Selecciona una Víctima</h4>

@@ -22,11 +22,11 @@
 <body>
     <div id="app">
         @if(Auth::user())    
-        <nav class="navbar navbar-expand navbar-light navbar-laravel" style="background-color:rgb(137, 210, 14)" >
-            <div class="container" style="margin-left: 30%">
-      
-                   <strong> <h4 style="color:white;text-align: center">Dirección Provincial del Centro<br> </h4><h4 style="color:white;text-align: center">de Protección de los Derechos de la Víctima</h4></strong>
-         
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color:rgb(137, 210, 14)" >
+            <div class="container">
+                <a class="navbar-brand"  href="{{ url('/') }}">
+                    <h3 style="color:white">Dirección Provincial del Centro de Protección de los Derechos de la Víctima</h3>
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -50,7 +50,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown" style="margin-left: -600%;margin-top: 150%" >
+                            <li class="nav-item dropdown">
                                 <a id="navbarDropdown" style="color:white" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>

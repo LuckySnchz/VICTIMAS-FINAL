@@ -5,11 +5,12 @@
 
             <div class="container">
 
-                <div class="titulo" style="margin-left: 30%">
-               
-      <strong> <h4 style="color:white;text-align: center" href="{{ url('/home') }}">Dirección Provincial del Centro<br> </h4><h4 style="color:white;text-align: center">de Protección de los Derechos de la Víctima</h4></strong>
+                <div class="titulo">
+                <a class="navbar-brand" style="margin-bottom: 1%" href="{{ url('/home') }}">
+                    <h3 style="color:white">Dirección Provincial del Centro de Protección de los Derechos de la Víctima</h3>
+
                    
-            </div>
+                </a></div>
               
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -34,7 +35,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown" style="margin-left: -430%">
+                            <li class="nav-item dropdown">
                                 <a id="navbarDropdown" style="color:white" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
