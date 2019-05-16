@@ -34,12 +34,14 @@ session_start();
 
 
  <div class="container">   
- <strong><h4 class="text-center" style="color:white;background-color: rgb(137, 210, 14);max-width: 100%;display: inline-block;float: right;margin-right: 2%">Panel de Control</h4></strong>              
+          
 
  <div class="container jumbotron shadow p-3 mb-5 bg-green rounded" style="max-width: 100%;margin-top: 5%;background-color:rgb(137, 210, 14)">
+    <strong><h3 style="color: white;text-align: center">Panel de Control</h3></strong>
+ </div>
 
   <div class="dropdown">
-    <button type="button"  style="background-color:white;margin-top: 2%;position: fixed;"data-toggle="dropdown">
+    <button type="button"  style="background-color:white;position: fixed;display: inline-block;margin-top: -2.43%;margin-left: 0.1%;width: 23.5%"data-toggle="dropdown">
      Menu
     </button>
 
@@ -68,7 +70,7 @@ session_start();
     </div>
 
   </div>
-</div>
+
    <br><br>
 <a name="Ancla" id="INICIO"></a>
      
