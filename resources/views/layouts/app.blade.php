@@ -50,7 +50,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown" style="margin-left: -430%" >
+                            <li class="nav-item dropdown" style="margin-left: -600%;margin-top: 150%" >
                                 <a id="navbarDropdown" style="color:white" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
