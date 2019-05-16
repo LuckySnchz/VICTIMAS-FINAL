@@ -34,33 +34,33 @@ session_start();
 
    <body>
 
-<a name="Ancla" id="INICIO"></a>
-    
-       <div class="Auno">
 
-        <div class="card">
+<ul class="nav nav-tabs" style="position: fixed; z-index: 100;color:white;background-color:rgb(137, 210, 14);max-width: 100%;margin-top: 0.2%">
+         <li class="nav-item"> <strong><a class="nav-link " style="color:white;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
 
- <div class="container">                 
-  <ul class="nav nav-tabs">
-         <li class="nav-item"> <strong><a class="nav-link " style="color:black;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
+            <li class="nav-item"><strong> <a class="nav-link "  style="color:white;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
 
-            <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
+              <li class="nav-item"><strong> <a class="nav-link "  style="color:white;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
 
-              <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
-
-  <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
+  <li class="nav-item"><strong> <a class="nav-link " style="color:white;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
        
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
+         <li class="nav-item"><strong> <a class="nav-link " style="color:white;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
 
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#D">Imputado</a> </li></strong>
+         <li class="nav-item"><strong> <a class="nav-link " style="color:white;font-size:1.1em" href="#D">Imputado</a> </li></strong>
 
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#E">Atención del Caso</a> </li></strong>
+         <li class="nav-item"><strong> <a class="nav-link " style="color:white;font-size:1.1em" href="#E">Atención del Caso</a> </li></strong>
 
-         <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
+         <li class="nav-item"><strong> <a class="nav-link "style="color:white;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
 
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
+          <li class="nav-item"><strong> <a class="nav-link "style="color:white;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
       </ul>
 </div> <br>
+ <div class="container">                 
+  <br><br><br><br>
+<a name="Ancla" id="INICIO"></a>
+        <div class="card">
+
+
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
 
      <h4 class="text-center" style="padding: 15px;">Selecciona una Víctima</h4>
@@ -89,7 +89,7 @@ session_start();
           
 
 
-       <a type="button" style="width:128%;background-color:grey;margin-left:-20%;color:black;border: solid black 1px" class="btn btn-danger col-xs"   class="btn col-xl" href="/victima/{{$victima->id}}/{{$victima->idCaso}}" target="_self">{{$victima->victima_nombre_y_apellido}}</button></a><br><br>     
+       <a type="button" style="width:70%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"   class="btn col-xl" href="/victima/{{$victima->id}}/{{$victima->idCaso}}" target="_self">{{$victima->victima_nombre_y_apellido}}</button></a><br><br>     
                
        
                      </li>
@@ -105,30 +105,12 @@ session_start();
 
 
 <a name="Ancla" id="A"></a>
-  <div class="card" style="margin-top: 1000%">
+  <div class="card">
 <div class="container">                 
 
 
 
- <ul class="nav nav-tabs">
-         <li class="nav-item"> <strong><a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
-
-            <li class="nav-item"><strong> <a class="nav-link "  style="color:black;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
-
-              <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
-
-  <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
-       
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#D">Imputado</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#E">Atención del Caso</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
-
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
-      </ul>
+ 
 </div> <br>
 
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
@@ -142,13 +124,14 @@ session_start();
            @endif
            @endforeach
         
-        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);width: 106%;margin-left: -3%">Eje A: Datos institucionales</h4></strong><br>
+        <strong><h4 class="text-center" style="padding:1%;color:white;background-color: rgb(137, 210, 14);
+        max-width: 100%">Eje A: Datos institucionales</h4></strong><br>
         <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
          </p><br>
 
- <a type="button" style="width:104.5%;background-color:#ffffcc;margin-left:-2.5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleCaso/{{session("idCaso")}}" target="_self">Editar</button></a><br><br>
+ <a type="button" style="width:65%;margin-left: 5%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"   class="btn col-xl" href="/detalleCaso/{{session("idCaso")}}" target="_self">Editar</button></a><br><br>
 
 
 
@@ -157,7 +140,7 @@ session_start();
 
         <h4 class="text-center" style="padding: 15px;">Personas Asistidas</h4>
 
-    <a type="button" style="width:104.5%;background-color:grey;margin-left:-2.5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarPersona" target="_self">Agregar</button></a><br><br>
+    <a type="button" type="button" style="width:66%;margin-left: 5%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"   class="btn col-xl" href="/detalleagregarPersona" target="_self">Agregar</button></a><br><br>
 
 
        <ul style="list-style:none">
@@ -167,16 +150,16 @@ session_start();
  <li>
           @foreach($personas as $persona)
           @if($persona->id==$persona_nueva->idPersona)
-                 <strong style="margin-left: -15%"> {{$persona->nombre_persona_asistida}}</strong>
+                 <strong > {{$persona->nombre_persona_asistida}}</strong><br>
 
 
 
 
- <a type="button" style="width:116%;background-color:#ffffcc;margin-left:-14%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detallePersona/{{$persona->id}}" target="_self">Editar</button></a><br><br>
+ <a type="button" style="width:70%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detallePersona/{{$persona->id}}" target="_self">Editar</button></a><br><br>
 
 
     
-  <a type="button" style="width:117%;margin-left:-14%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarpersona/{{$persona->id}}" target="_self">Eliminar</button></a><br><br>          
+  <a type="button" style="width:70%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarpersona/{{$persona->id}}" target="_self">Eliminar</button></a><br><br>          
 
     
 
@@ -206,27 +189,9 @@ session_start();
   </div></div>
 
   <a name="Ancla" id="AA"></a>                  
-  <div class="card" style="margin-top: 1000%">
+  <div class="card">
 <div class="container">                 
- <ul class="nav nav-tabs">
-         <li class="nav-item"> <strong><a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
-
-            <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
-
-              <li class="nav-item"><strong> <a class="nav-link "  style="color:black;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
-
-  <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
-       
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#D">Imputado</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#E">Atención del Caso</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
-
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
-      </ul>
+ 
 </div> <br>
 
 
@@ -252,7 +217,7 @@ session_start();
 
 
 
-  <a type="button" style="width:105%;background-color:grey;margin-left:-2.5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarProfesional" target="_self">Agregar</button></a><br><br>
+  <a type="button" style="width:67%;margin-left:5%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarProfesional" target="_self">Agregar</button></a><br><br>
 
        <ul>
          @foreach($profesionales as $profesional)
@@ -261,10 +226,10 @@ session_start();
                 <li >
 
                <strong style="text-align: center">{{$profesional->usuario->nombre_y_apellido}}</strong><br>
- <a type="button" style="width:117%;background-color:#ffffcc;margin-left:-14%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleProfesional/{{$profesional->id}}" target="_self">Editar</button></a><br><br>
+ <a type="button" style="width:70%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleProfesional/{{$profesional->id}}" target="_self">Editar</button></a><br><br>
 
 
-  <a type="button" style="width:117%;margin-left:-14%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleProfesional/deleteProfesional/{{$profesional->id}}" target="_self">Eliminar</button></a><br><br>
+  <a type="button" style="width:70%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleProfesional/deleteProfesional/{{$profesional->id}}" target="_self">Eliminar</button></a><br><br>
 
 
              </li>
@@ -280,28 +245,12 @@ session_start();
 
 
   <a name="Ancla" id="B"></a> 
- <div class="card" style="margin-top: 1000%">
+ <div class="card" >
 <div class="container">                 
-<ul class="nav nav-tabs">
-         <li class="nav-item"> <strong><a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
-            <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
 
-              <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
-
-  <li class="nav-item"><strong> <a class="nav-link " style="color:black;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
-       
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#D">Imputado</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#E">Atención del Caso</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
-
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
-      </ul>
 </div> <br>
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center">
+  <br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
 
           @if($victima->idCaso==session("idCaso")&&$victima->id==session("idVictim"))
@@ -311,8 +260,8 @@ session_start();
 
            @endif
            @endforeach
-
-        <strong><h4 class="text-center" style="width: 105%;padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);width: 106%;margin-left: -3%">Eje B: La victima y su contexto</h4></strong><br>
+<br><br>
+        <strong><h4 class="text-center" style="padding:1%;color:white;background-color: rgb(137, 210, 14);max-width: 100%">Eje B: La victima y su contexto</h4></strong><br>
         <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
@@ -321,7 +270,7 @@ session_start();
 
 
    
-       <a type="button" style="width:105%;background-color:grey;margin-left:-3%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarVictima" target="_self">Agregar</button></a><br><br>
+       <a type="button" style="width:65%;margin-left: 5%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarVictima" target="_self">Agregar</button></a><br><br>
         <h5 class="text-center" style="padding: 15px;">
           <ul>
             @foreach($victimas as $victima)
@@ -329,12 +278,12 @@ session_start();
           @if($victima->idCaso==session("idCaso"))
                    <li>
 
-                  <strong style="margin-left:-15%">{{$victima->victima_nombre_y_apellido}}</strong>
+                  <strong style="margin-left:-15%">{{$victima->victima_nombre_y_apellido}}</strong><br>
 
- <a type="button" style="width:128%;background-color:#ffffcc;margin-left:-20%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleVictima/{{$victima->id}}" target="_self">Editar</button></a><br><br>
+ <a type="button" style="width:70%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleVictima/{{$victima->id}}" target="_self">Editar</button></a><br><br>
 
 
-  <a type="button" style="width:128%;margin-left:-20%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarvictima/{{$victima->id}}" target="_self">Eliminar</button></a><br><br>
+  <a type="button" style="width:70%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarvictima/{{$victima->id}}" target="_self">Eliminar</button></a><br><br>
 
 
    
@@ -350,28 +299,12 @@ session_start();
 </h5></div>
 
   <a name="Ancla" id="C"></a> 
-<div class="card" style="margin-top: 1000%">
+<div class="card">
   <div class="container">                 
- <ul class="nav nav-tabs">
-         <li class="nav-item"> <strong><a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
-            <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
-
-              <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
-
-  <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
-       
-         <li class="nav-item"><strong> <a class="nav-link " style="color:black;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#D">Imputado</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#E">Atención del Caso</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
-
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
-      </ul>
+ 
 </div> <br>
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center">
+  <br><br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
 
           @if($victima->idCaso==session("idCaso")&&$victima->id==session("idVictim"))
@@ -381,14 +314,14 @@ session_start();
 
            @endif
            @endforeach
-
-        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);width: 106%;margin-left: -3%">Eje C: Referentes Afectivos</h4></strong><br>
+<br><br>
+        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);max-width: 100%">Eje C: Referentes Afectivos</h4></strong><br><br><br>
         <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
          </p><br>
 
-  <a type="button" style="width:105%;background-color:grey;margin-left:-3%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarconviviente" target="_self">Agregar</button></a><br><br>
+  <a type="button" style="width:63.2%;margin-left: 5%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarconviviente" target="_self">Agregar</button></a><br><br>
         <h5 class="text-center" style="padding: 15px;">
 
   <ul style="list-style:none">
@@ -400,12 +333,12 @@ session_start();
           @if($conviviente->id==$conviviente_nuevo->idConviviente)
                   {{$conviviente->nombre_y_apellido}}
 
-
+<br>
      
-  <a type="button" style="width:128%;background-color:#ffffcc;margin-left:-20%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleconviviente/{{$conviviente->id}}" target="_self">Editar</button></a><br><br>
+  <a type="button" style="width:70%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleconviviente/{{$conviviente->id}}" target="_self">Editar</button></a><br><br>
 
 
-  <a type="button" style="width:128%;margin-left:-20%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarconviviente/{{$conviviente->id}}" target="_self">Eliminar</button></a><br><br>
+  <a type="button" style="width:70%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarconviviente/{{$conviviente->id}}" target="_self">Eliminar</button></a><br><br>
                  
 
                   
@@ -453,28 +386,11 @@ session_start();
 
   <a name="Ancla" id="D"></a> 
 
-<div class="card" style="margin-top: 1000%">
+<div class="card">
   <div class="container">                 
-<ul class="nav nav-tabs">
-         <li class="nav-item"> <strong><a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
-            <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
 
-              <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
-
-  <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
-       
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:black;font-size:1.1em" href="#D">Imputado</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#E">Atención del Caso</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
-
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
-      </ul>
 </div> <br>
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><br><br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
 
           @if($victima->idCaso==session("idCaso")&&$victima->id==session("idVictim"))
@@ -484,15 +400,15 @@ session_start();
 
            @endif
            @endforeach
-
-        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);width: 106%;margin-left: -3%">Eje D: Datos del imputado</h4></strong><br>
+<br><br>
+        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);max-width: 100%">Eje D: Datos del imputado</h4></strong><br><br><br>
         <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
          </p><br>
 
 
-  <a type="button" style="width:105%;background-color:grey;margin-left:-3%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarimputado" target="_self">Agregar</button></a><br><br>
+  <a type="button" style="width:63.2%;margin-left: 5%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarimputado" target="_self">Agregar</button></a><br><br>
         <h5 class="text-center" style="padding: 15px;">
 
    <!-- <ul >
@@ -528,11 +444,11 @@ session_start();
           @if($imputado->id==$imputado_nuevo->idImputado)
                   {{$imputado->nombre_y_apellido}}
 
+<br>
+<a type="button" style="width:70%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleimputado/{{$imputado->id}}" target="_self">Editar</button></a><br><br>
 
-<a type="button" style="width:128%;background-color:#ffffcc;margin-left:-20%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleimputado/{{$imputado->id}}" target="_self">Editar</button></a><br><br>
 
-
-  <a type="button" style="width:128%;margin-left:-20%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarimputado/{{$imputado->id}}" target="_self">Eliminar</button></a><br><br>
+  <a type="button" style="width:70%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarimputado/{{$imputado->id}}" target="_self">Eliminar</button></a><br><br>
 
 
 
@@ -553,26 +469,9 @@ session_start();
     </div>
 
   <a name="Ancla" id="E"></a> 
-  <div class="card" style="margin-top: 1000%">
+  <div class="card">
     <div class="container">                 
-<ul class="nav nav-tabs">
-         <li class="nav-item"> <strong><a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
-            <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
 
-              <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
-
-  <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
-       
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#D">Imputado</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:black;font-size:1.1em" href="#E">Atención del Caso</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
-
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
-      </ul>
 </div> <br>
 
     	<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
@@ -585,8 +484,8 @@ session_start();
 
            @endif
            @endforeach
-
-        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);width: 106%;margin-left: -3%">Eje E: Atención del caso</h4></strong><br>
+       <br><br>
+        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);max-width: 100%">Eje E: Atención del caso</h4></strong><br><br><br>
         <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
@@ -595,7 +494,7 @@ session_start();
 
       
   @if($instituciocount==0)
-  <input type ='button' style="width:105%;background-color:grey;margin-left:-3%;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/agregarOrganismo', 'width=800,height=600');"/></button>@endif
+  <input type ='button' style="width:70%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/agregarOrganismo', 'width=800,height=600');"/></button>@endif
   @if($instituciocount>0)
   @foreach($instituciones as $institucion)
     @if($institucion->idCaso==session("idCaso"))
@@ -603,7 +502,7 @@ session_start();
    @endif          
 @endforeach
 
- <a type="button" style="width:105%;background-color:#ffffcc;margin-left:-2.5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href='/detalleOrganismo/{{$institucion->id}}' target="_self">Editar</button></a><br><br>
+ <a type="button" style="width:70%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href='/detalleOrganismo/{{$institucion->id}}' target="_self">Editar</button></a><br><br>
 
   
  @endif 
@@ -622,27 +521,10 @@ session_start();
  
   <a name="Ancla" id="FIN"></a>
 
-    <div class="card" style="margin-top: 1000%" >
+    <div class="card">
   <div class="container" >    
 
-<ul class="nav nav-tabs">
-         <li class="nav-item"> <strong><a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
-            <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
 
-              <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
-
-  <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
-       
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#D">Imputado</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#E">Atención del Caso</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link "style="color:black;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
-
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
-      </ul>
 </div> <br>
  <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
@@ -654,8 +536,8 @@ session_start();
 
            @endif
            @endforeach
-
-        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14)">Eje F: Documentación</h4></strong><br>
+<br><br>
+        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14)">Eje F: Documentación</h4></strong><br><br><br>
         <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
@@ -664,7 +546,7 @@ session_start();
 
 
 
-  <a type="button" style="width:105%;background-color:grey;margin-left:-2.5%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarDocumento" target="_self">Agregar</button></a><br><br>
+  <a type="button" style="width:65%;margin-left: 5%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarDocumento" target="_self">Agregar</button></a><br><br>
 
 
 <h5 class="text-center" style="padding: 15px;">
@@ -674,11 +556,11 @@ session_start();
   @if($documento->IdCaso==session("idCaso"))
 
 <li>
-  <strong style="margin-left:-5%">{{$documento->nombre_documento}}</strong>
+  <strong >{{$documento->nombre_documento}}</strong><br><br>
 
             
     
-       <a type="button" style="width:128%;margin-left:-20%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href='/eliminardocumento/{{$documento->id}}' target="_self">Eliminar</button></a><br><br>
+       <a type="button" style="width:70%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href='/eliminardocumento/{{$documento->id}}' target="_self">Eliminar</button></a><br><br>
 
 
 
@@ -695,29 +577,10 @@ session_start();
 </h5>
 
 </div>
-<div class="container">                 
-<ul class="nav nav-tabs">
-         <li class="nav-item"> <strong><a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
-            <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
-
-              <li class="nav-item"><strong> <a class="nav-link "  style="color:#4CAF50;font-size:1.1em" href="#AA">Profesionales</a> </li></strong>
-
-  <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#B">Víctima</a> </li></strong>      
-       
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#D">Imputado</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:#4CAF50;font-size:1.1em" href="#E">Caso</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link "style="color:#4CAF50;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
-
-          <li class="nav-item"><strong> <a class="nav-link "style="color:#3490dc;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
-      </ul>
-</div>
-</div>
 
 </div>
+
+
 </div>
 
 
