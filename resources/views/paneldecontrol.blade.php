@@ -52,9 +52,9 @@ session_start();
 
             <li class="nav-item"><strong> <a class="nav-link "  style="color:black;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
 
-              <li class="nav-item"><strong> <a class="nav-link "  style="color:black;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
+         <li class="nav-item"><strong> <a class="nav-link "  style="color:black;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
 
-  <li class="nav-item"><strong> <a class="nav-link " style="color:black;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
+        <li class="nav-item"><strong> <a class="nav-link " style="color:black;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
        
          <li class="nav-item"><strong> <a class="nav-link " style="color:black;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
 
@@ -103,8 +103,9 @@ session_start();
                    <li>
           
 
-
-       <a type="button" style="width:70%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"   class="btn col-xl" href="/victima/{{$victima->id}}/{{$victima->idCaso}}" target="_self">{{$victima->victima_nombre_y_apellido}}</button></a><br><br>     
+  <a type="button"  href="/victima/{{$victima->id}}/{{$victima->idCaso}}" target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:grey;" class="btn btn-danger">{{$victima->victima_nombre_y_apellido}}</button> </a><br><br>  
+    
                
        
                      </li>
@@ -232,20 +233,31 @@ session_start();
          </p><br>
 
 
+<ul>
+  <a type="button" href="/detalleagregarProfesional"target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:grey;" class="btn btn-danger">Agregar</button> </a><br><br> 
 
-  <a type="button" style="width:67%;margin-left:5%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarProfesional" target="_self">Agregar</button></a><br><br>
 
-       <ul>
+
+       
          @foreach($profesionales as $profesional)
 
        @if($profesional->idCaso==session("idCaso"))
                 <li >
 
                <strong style="text-align: center">{{$profesional->usuario->nombre_y_apellido}}</strong><br>
- <a type="button" style="width:70%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleProfesional/{{$profesional->id}}" target="_self">Editar</button></a><br><br>
 
 
-  <a type="button" style="width:70%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleProfesional/deleteProfesional/{{$profesional->id}}" target="_self">Eliminar</button></a><br><br>
+
+   <a type="button"  href="/detalleProfesional/{{$profesional->id}} target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:#ffffcc;" class="btn btn-danger">Editar</button> </a><br><br> 
+
+
+ <a type="button"  href="/detalleProfesional/deleteProfesional/{{$profesional->id}}" target="_self" style="width:100%;
+  color:black;border: solid black 1px;" class="btn btn-danger">Eliminar</button> </a><br><br>
+
+
+
 
 
              </li>
@@ -262,9 +274,7 @@ session_start();
 
   <a name="Ancla" id="B"></a> 
  <div class="card" >
-<div class="container">                 
 
-</div> <br>
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center">
   <br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
@@ -282,13 +292,12 @@ session_start();
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
          </p><br>
+<ul>
+  <a type="button" href="/detalleagregarVictima" target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:grey;" class="btn btn-danger">Agregar</button> </a><br><br>
 
-
-
-   
-       <a type="button" style="width:65%;margin-left: 5%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarVictima" target="_self">Agregar</button></a><br><br>
-        <h5 class="text-center" style="padding: 15px;">
-          <ul>
+ 
+          
             @foreach($victimas as $victima)
 
           @if($victima->idCaso==session("idCaso"))
@@ -296,12 +305,18 @@ session_start();
 
                   <strong style="margin-left:-15%">{{$victima->victima_nombre_y_apellido}}</strong><br>
 
- <a type="button" style="width:70%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleVictima/{{$victima->id}}" target="_self">Editar</button></a><br><br>
 
 
-  <a type="button" style="width:70%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarvictima/{{$victima->id}}" target="_self">Eliminar</button></a><br><br>
+<a type="button" href="/detalleVictima/{{$victima->id}}" target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:#ffffcc;" class="btn btn-danger">Editar</button> </a><br><br>
 
 
+
+
+<a type="button" href="/eliminarvictima/{{$victima->id}}" target="_self" style="width:100%;
+  color:black;border: solid black 1px" class="btn btn-danger">Eliminar</button> </a><br><br>
+
+  
    
                      </li>
 
@@ -310,9 +325,9 @@ session_start();
                  @endforeach
 
                </ul>
-             </h6>
+          
            </div>
-</h5></div>
+</div>
 
   <a name="Ancla" id="C"></a> 
 <div class="card">
@@ -334,11 +349,14 @@ session_start();
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
          </p><br>
+<ul style="list-style:none">
+          <a type="button" href="/detalleagregarconviviente" target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:grey;" class="btn btn-danger">Agregar</button> </a><br><br>
 
-  <a type="button" style="width:63.2%;margin-left: 5%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarconviviente" target="_self">Agregar</button></a><br><br>
-        <h5 class="text-center" style="padding: 15px;">
 
-  <ul style="list-style:none">
+      
+
+  
   @foreach($convivientes_nuevos as $conviviente_nuevo)
 @if($conviviente_nuevo->idVictim==session("idVictim"))
 
@@ -348,11 +366,15 @@ session_start();
                   {{$conviviente->nombre_y_apellido}}
 
 <br>
+
+
+         <a type="button" href="/detalleconviviente/{{$conviviente->id}}" target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:#ffffcc;" class="btn btn-danger">Editar</button> </a><br><br>
      
-  <a type="button" style="width:70%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleconviviente/{{$conviviente->id}}" target="_self">Editar</button></a><br><br>
+
+         <a type="button" href="/eliminarconviviente/{{$conviviente->id}}" target="_self" style="width:100%;color:black;border: solid black 1px;" class="btn btn-danger">Eliminar</button> </a><br><br>
 
 
-  <a type="button" style="width:70%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarconviviente/{{$conviviente->id}}" target="_self">Eliminar</button></a><br><br>
                  
 
                   
@@ -394,16 +416,14 @@ session_start();
                                  @endforeach
 
                                </ul>-->
-                             </h6>
+                         
                            </div>
 </div>
 
   <a name="Ancla" id="D"></a> 
 
 <div class="card">
-  <div class="container">                 
-
-</div> <br>
+  
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><br><br><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
 
@@ -421,9 +441,11 @@ session_start();
          
          </p><br>
 
+<ul style="list-style:none">
+<a type="button" href="/detalleagregarimputado" target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:grey;" class="btn btn-danger">Agregar</button> </a><br><br>
 
-  <a type="button" style="width:63.2%;margin-left: 5%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarimputado" target="_self">Agregar</button></a><br><br>
-        <h5 class="text-center" style="padding: 15px;">
+
 
    <!-- <ul >
           @foreach($imputados as $imputado)
@@ -449,7 +471,7 @@ session_start();
         </ul>-->
 
 
-<ul style="list-style:none">
+
   @foreach($imputados_nuevos as $imputado_nuevo)
 @if($imputado_nuevo->idVictim==session("idVictim"))
 
@@ -459,10 +481,16 @@ session_start();
                   {{$imputado->nombre_y_apellido}}
 
 <br>
-<a type="button" style="width:70%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleimputado/{{$imputado->id}}" target="_self">Editar</button></a><br><br>
+
+<a type="button" href="/detalleimputado/{{$imputado->id}}" target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:#ffffcc;" class="btn btn-danger">Editar</button> </a><br><br>
 
 
-  <a type="button" style="width:70%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/eliminarimputado/{{$imputado->id}}" target="_self">Eliminar</button></a><br><br>
+<a type="button" href="/eliminarimputado/{{$imputado->id}}" target="_self" style="width:100%;
+  color:black;border: solid black 1px" class="btn btn-danger">Eliminar</button> </a><br><br>
+
+
+
 
 
 
@@ -480,13 +508,11 @@ session_start();
 
 
       </h5>
-    </div>
+    </div></div>
 
-  <a name="Ancla" id="E"></a> 
+     <a name="Ancla" id="E"></a> 
   <div class="card">
-    <div class="container">                 
-
-</div> <br>
+   
 
     	<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
@@ -508,7 +534,11 @@ session_start();
 
       
   @if($instituciocount==0)
-  <input type ='button' style="width:70%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar' onclick="window.open('/agregarOrganismo', 'width=800,height=600');"/></button>@endif
+
+  <a type="button" href="/agregarOrganismo" target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:grey;" class="btn btn-danger">Agregar</button> </a><br><br>
+
+@endif
   @if($instituciocount>0)
   @foreach($instituciones as $institucion)
     @if($institucion->idCaso==session("idCaso"))
@@ -516,7 +546,11 @@ session_start();
    @endif          
 @endforeach
 
- <a type="button" style="width:70%;background-color:#ffffcc;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href='/detalleOrganismo/{{$institucion->id}}' target="_self">Editar</button></a><br><br>
+
+ <a type="button" href="/detalleOrganismo/{{$institucion->id}}" target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:#ffffcc;" class="btn btn-danger">Editar</button> </a><br><br>
+
+
 
   
  @endif 
@@ -536,10 +570,7 @@ session_start();
   <a name="Ancla" id="FIN"></a>
 
     <div class="card">
-  <div class="container" >    
 
-
-</div> <br>
  <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;text-align: center"><strong><span style="text-decoration: underline"> Víctima: </span><strong>
  @foreach($victimas as $victima)
 
@@ -556,15 +587,16 @@ session_start();
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
          </p><br>
+         <ul >
+
+ <a type="button" href="/detalleagregarDocumento" target="_self" style="width:100%;
+  color:black;border: solid black 1px;background-color:grey;" class="btn btn-danger">Agregar</button> </a><br><br>
 
 
 
 
-  <a type="button" style="width:65%;margin-left: 5%;background-color:grey;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href="/detalleagregarDocumento" target="_self">Agregar</button></a><br><br>
 
-
-<h5 class="text-center" style="padding: 15px;">
-  <ul >
+  
 
   @foreach($documentos as $documento)
   @if($documento->IdCaso==session("idCaso"))
@@ -572,9 +604,10 @@ session_start();
 <li>
   <strong >{{$documento->nombre_documento}}</strong><br><br>
 
-            
+   <a type="button" href="/eliminardocumento/{{$documento->id}}" target="_self" style="width:100%;
+  color:black;border: solid black 1px;" class="btn btn-danger">Eliminar</button> </a><br><br>         
     
-       <a type="button" style="width:70%;color:black;border: solid black 1px" class="btn btn-danger col-xs"  class="btn col-xl" href='/eliminardocumento/{{$documento->id}}' target="_self">Eliminar</button></a><br><br>
+  
 
 
 
@@ -588,7 +621,7 @@ session_start();
         </ul>
 <br><br>
 
-</h5>
+
 
 </div>
 
