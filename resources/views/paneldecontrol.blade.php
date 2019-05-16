@@ -35,28 +35,43 @@ session_start();
    <body>
 
 
-<ul class="nav nav-tabs" style="position: fixed; z-index: 100;color:white;background-color:rgb(137, 210, 14);max-width: 100%;margin-top: 0.2%">
-         <li class="nav-item"> <strong><a class="nav-link " style="color:white;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
 
-            <li class="nav-item"><strong> <a class="nav-link "  style="color:white;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
 
-              <li class="nav-item"><strong> <a class="nav-link "  style="color:white;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
 
-  <li class="nav-item"><strong> <a class="nav-link " style="color:white;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
-       
-         <li class="nav-item"><strong> <a class="nav-link " style="color:white;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:white;font-size:1.1em" href="#D">Imputado</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link " style="color:white;font-size:1.1em" href="#E">Atención del Caso</a> </li></strong>
-
-         <li class="nav-item"><strong> <a class="nav-link "style="color:white;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
-
-          <li class="nav-item"><strong> <a class="nav-link "style="color:white;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
-      </ul>
-</div> <br>
  <div class="container">                 
-  <br><br><br><br>
+<div class="container" style="position: fixed;z-index: 100;background-color:rgb(137, 210, 14);width: 82.2%;height: 10%;margin-bottom: 10%">
+ 
+  <div class="dropdown">
+    <button type="button"  style="background-color:rgb(137, 210, 14);margin-top: 1.5%"data-toggle="dropdown">
+     Menu
+    </button>
+    <div class="dropdown-menu">
+    
+     <ul>
+         <li class="nav-item"> <strong><a class="nav-link " style="color:black;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
+
+            <li class="nav-item"><strong> <a class="nav-link "  style="color:black;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
+
+              <li class="nav-item"><strong> <a class="nav-link "  style="color:black;font-size:1.1em" href="#AA">Profesionales Intervinientes</a> </li></strong>
+
+  <li class="nav-item"><strong> <a class="nav-link " style="color:black;font-size:1.1em" href="#B">Víctima y su contexto</a> </li></strong>      
+       
+         <li class="nav-item"><strong> <a class="nav-link " style="color:black;font-size:1.1em"  href="#C">Referentes Afectivos</a> </li></strong>
+
+         <li class="nav-item"><strong> <a class="nav-link " style="color:black;font-size:1.1em" href="#D">Imputado</a> </li></strong>
+
+         <li class="nav-item"><strong> <a class="nav-link " style="color:black;font-size:1.1em" href="#E">Atención del Caso</a> </li></strong>
+
+         <li class="nav-item"><strong> <a class="nav-link "style="color:black;font-size:1.1em"  href="#FIN">Documentación</a> </li></strong>
+
+          <li class="nav-item"><strong> <a class="nav-link "style="color:black;font-size:1.1em"  href="/home">Ir a HOME</a> </li></strong>
+      </ul>
+    
+    </div>
+
+  </div>
+</div>
+   <br><br>
 <a name="Ancla" id="INICIO"></a>
         <div class="card">
 
