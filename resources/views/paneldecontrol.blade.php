@@ -76,7 +76,7 @@ session_start();
         <div class="card">
 
 
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="width: 70%;margin-top: 5%">
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%">
 
      <h4 class="text-center" style="padding: 15px;">Selecciona una Víctima</h4>
 <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
