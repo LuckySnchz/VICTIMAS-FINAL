@@ -23,9 +23,9 @@
     <div id="app">
         @if(Auth::user())    
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color:rgb(137, 210, 14)" >
-            <div class="container">
-                <a class="navbar-brand"  href="{{ url('/') }}">
-                    <h3 style="color:white">Dirección Provincial del Centro de Protección de los Derechos de la Víctima</h3>
+            <div class="container" >
+                <a class="navbar-brand"  href="{{ url('/') }}" style="color:white;margin-left: 20%">
+                    <h3 style="color:white;text-align: center">Dirección Provincial del Centro<br> de Protección de los Derechos de la Víctima</h3>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

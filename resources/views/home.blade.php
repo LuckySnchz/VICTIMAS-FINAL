@@ -79,7 +79,7 @@
 <form action="/search" method="GET">
  {{csrf_field()}}
  <h4 style="text-align: center"> Buscar</h4>
-<div class="buscar" style="margin-left: 38%">
+<div class="buscar" style="margin-left: 30%">
   <input type="radio" name="buscar" value="1"> Casos
   <input type="radio" name="buscar" value="2"> Incidencias
   <input type="radio" name="buscar" value="3"> Derivaciones
