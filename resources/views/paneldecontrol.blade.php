@@ -19,12 +19,7 @@ session_start();
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
       <title>App Víctimas</title>
       <style>
-      .Auno{margin: auto;
-    width: 50%;border-style: hidden;
-      }
-      .Ados{float: right;
-    width: 50%;border-style: hidden;
-      }
+   .btn{margin-left: -2.5%}
   
       </style>
    </head>
@@ -76,7 +71,8 @@ session_start();
         <div class="card">
 
 
-<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%">
+<div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: 5%;">
+
 
      <h4 class="text-center" style="padding: 15px;">Selecciona una Víctima</h4>
 <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
@@ -95,7 +91,7 @@ session_start();
            @endforeach</p>
 
 
-        <h5 class="text-center" style="padding: 15px;">
+      
           <ul>
             @foreach($victimas as $victima)
 
@@ -115,7 +111,7 @@ session_start();
                  @endforeach
 
                </ul>
-             </h6>
+
            </div>
 </h5></div>
 
@@ -135,7 +131,7 @@ session_start();
            @endif
            @endforeach
         
-        <strong><h4 class="text-center" style="padding:1%;color:white;background-color: rgb(137, 210, 14);
+        <strong><h4 class="text-center" style="height: 1%;color:white;background-color: rgb(137, 210, 14);
         max-width: 100%">Eje A: Datos institucionales</h4></strong><br>
         <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
@@ -267,7 +263,7 @@ session_start();
          @endforeach
 
        </ul>
-     </h6>
+
    </div>
 </div>
 
@@ -287,7 +283,7 @@ session_start();
            @endif
            @endforeach
 <br><br>
-        <strong><h4 class="text-center" style="padding:1%;color:white;background-color: rgb(137, 210, 14);max-width: 100%">Eje B: La victima y su contexto</h4></strong><br>
+        <strong><h4 class="text-center" style="height: 1%;color:white;background-color: rgb(137, 210, 14);max-width: 100%">Eje B: La victima y su contexto</h4></strong><br>
         <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
@@ -344,7 +340,7 @@ session_start();
            @endif
            @endforeach
 <br><br>
-        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);max-width: 100%">Eje C: Referentes Afectivos</h4></strong><br><br><br>
+        <strong><h4 class="text-center" style="height: 1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);max-width: 100%">Eje C: Referentes Afectivos</h4></strong><br><br><br>
         <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
@@ -435,7 +431,7 @@ session_start();
            @endif
            @endforeach
 <br><br>
-        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);max-width: 100%">Eje D: Datos del imputado</h4></strong><br><br><br>
+        <strong><h4 class="text-center" style="height: 1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);max-width: 100%">Eje D: Datos del imputado</h4></strong><br><br><br>
         <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
@@ -507,7 +503,6 @@ session_start();
 
 
 
-      </h5>
     </div></div>
 
      <a name="Ancla" id="E"></a> 
@@ -525,14 +520,14 @@ session_start();
            @endif
            @endforeach
        <br><br>
-        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);max-width: 100%">Eje E: Atención del caso</h4></strong><br><br><br>
+        <strong><h4 class="text-center" style="height: 1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14);max-width: 100%">Eje E: Atención del caso</h4></strong><br><br><br>
         <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
          </p><br>
       
 
-      
+    <ul><li>  
   @if($instituciocount==0)
 
   <a type="button" href="/agregarOrganismo" target="_self" style="width:100%;
@@ -556,7 +551,7 @@ session_start();
  @endif 
 
       
-
+</li></ul>
 
 </div></div>
              
@@ -582,7 +577,7 @@ session_start();
            @endif
            @endforeach
 <br><br>
-        <strong><h4 class="text-center" style="padding:1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14)">Eje F: Documentación</h4></strong><br><br><br>
+        <strong><h4 class="text-center" style="height: 1%;margin-bottom:-5%;color:white;background-color: rgb(137, 210, 14)">Eje F: Documentación</h4></strong><br><br><br>
         <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong><br>  
          
@@ -619,7 +614,7 @@ session_start();
     @endif
           @endforeach
         </ul>
-<br><br>
+
 
 
 
