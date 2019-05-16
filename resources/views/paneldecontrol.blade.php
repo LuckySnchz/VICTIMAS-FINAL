@@ -33,15 +33,16 @@ session_start();
 
 
 
- <div class="container">                 
+ <div class="container">   
+ <strong><h4 class="text-center" style="color:white;background-color: rgb(137, 210, 14);max-width: 100%;display: inline-block;float: right;margin-right: 2%">Panel de Control</h4></strong>              
 
  <div class="container jumbotron shadow p-3 mb-5 bg-green rounded" style="max-width: 100%;margin-top: 5%;background-color:rgb(137, 210, 14)">
 
   <div class="dropdown">
-    <button type="button"  style="background-color:white;margin-left: -1%;margin-top: 1%"data-toggle="dropdown">
+    <button type="button"  style="background-color:white;margin-top: 2%;position: fixed;"data-toggle="dropdown">
      Menu
     </button>
-<strong><h4 class="text-center" style="color:white;background-color: rgb(137, 210, 14);max-width: 100%;display: inline-block;float: right;">Panel de Control</h4></strong>
+
     <div class="dropdown-menu">
     
      <ul>
