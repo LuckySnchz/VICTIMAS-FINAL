@@ -504,7 +504,8 @@ $intervenciones = App\Intervencion::all();
 $personas_nuevas = App\Persona_nueva::all();
 $convivientes_nuevos=App\Conviviente_nuevo::all();
 $imputados_nuevos=App\Imputado_nuevo::all();
-  return view("paneldecontrol",compact("imputados","casoNombre","convivientes","victimas","personas","profesionales", "caso","delitos","cavajs","usuarios","documentos","instituciones","hechos","intervenciones","personas_nuevas","convivientes_nuevos","imputados_nuevos"));
+$instituciocount= App\Institucion::where("idCaso",session("idCaso"))->count();
+  return view("paneldecontrol",compact("imputados","casoNombre","convivientes","victimas","personas","profesionales", "caso","delitos","cavajs","usuarios","documentos","instituciones","hechos","intervenciones","personas_nuevas","convivientes_nuevos","imputados_nuevos","instituciocount"));
 }
 
 
@@ -529,7 +530,8 @@ $intervenciones = App\Intervencion::all();
 $personas_nuevas = App\Persona_nueva::all();
 $convivientes_nuevos=App\Conviviente_nuevo::all();
 $imputados_nuevos=App\Imputado_nuevo::all();
-  return view("paneldecontrol",compact("imputados","casoNombre","convivientes","victimas","personas","profesionales", "caso","delitos","cavajs","usuarios","documentos","instituciones","hechos","intervenciones","personas_nuevas","convivientes_nuevos","imputados_nuevos"));
+$instituciocount= App\Institucion::where("idCaso",session("idCaso"))->count();
+  return view("paneldecontrol",compact("imputados","casoNombre","convivientes","victimas","personas","profesionales", "caso","delitos","cavajs","usuarios","documentos","instituciones","hechos","intervenciones","personas_nuevas","convivientes_nuevos","imputados_nuevos","instituciocount"));
 }
 else{abort(403, "No tienes autorización para ingresar.");}})->middleware('auth');
 
@@ -631,6 +633,9 @@ Route::get("/informederivacion/deletederivacion/{id}", "DerivacionController@eli
 //------------------------------FIN RUTA INFORME FINAL------------------------------------------//
 
 Auth::routes();
+
+
+
 Route::get('/homePanel', 'HomePanelController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/register', function () {

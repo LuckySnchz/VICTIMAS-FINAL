@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Caso;
 use App\Profesional;
 use Illuminate\Support\Facades\Auth;
-class HomeController extends Controller
+class PruebaController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,35 +24,39 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(Request $request){
-    $casos = [];
+    $casos = Caso::all();
     $demandas = [];
     $derivaciones = [];
-    $buscar=0;
-    $profesionales=Profesional::all();
+$profesionales=Profesional::all();
 
-if(Auth::user()->hasRole('profesional')){
+
+
+
+
             $array = array();            
-            foreach($profesionales as $profesional){
+    foreach($profesionales as $profesional){
 
 if($profesional->nombre_profesional_interviniente==Auth::user()->getId()){
+  $array[]=$profesional->idCaso;
   
-  $array[]=$profesional->idCaso; 
 
 }}
 $longitud = count($array);
-for($i=0; $i<$longitud; $i++){
+/*for($i=0; $i<$longitud; $i++){
 
- $casosprof[$i]=Caso::find($array[$i]);
+ $caso=Caso::find($array[$i]);
 }
- return view('home',compact("casos","demandas","derivaciones","profesional","profesionales","array","longitud","casosprof","buscar"));}
- else{
-    return view('home',compact("casos","demandas","derivaciones","profesional","profesionales","buscar"));
- }
+*/
  
+for($i=0; $i<$longitud; $i++){
+$array[$i];
+}
+  
 
 
 
-   
+
+    return view('prueba',compact("casos","demandas","derivaciones","profesionales","profesionales","array","longitud","caso"));
 
 
         //$request->user()->authorizeRoles(['user', 'admin', 'profesional']);

@@ -88,5 +88,10 @@ class Caso extends MiModelo
   {
     return $this->activo;
   }
+
+
+
+
+  
 }
 ?>

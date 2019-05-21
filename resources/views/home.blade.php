@@ -1,4 +1,5 @@
 
+
 @extends('layouts.app')
 
 @section('content')
@@ -77,34 +78,45 @@
 
 
 
+
+
+<br><br>
+
 <form action="/search" method="GET">
  {{csrf_field()}}
 
 <div class="buscar" style="margin-left: 5%;margin-top: 5%">
-  <input type="radio" name="buscar" value="1"> Casos
+  <input type="radio" name="buscar" checked value="1"> Casos
   <input type="radio" name="buscar" value="2"> Incidencias
   <input type="radio" name="buscar" value="3"> Derivaciones
+    <input type="radio" name="buscar"  value="4"> BUSQUEDA GENERAL
 
 </div>
 <br>
  <input type="text" name="search" style="margin-left: 5%;width: 60%">
  <button type="submit" class="btn" style="color:white;background-color:rgb(137, 210, 14)">BUSCAR</button><br><br>
  <h5 style="margin-left: 5%" >Buscar por Nombre de Referencia, por Nombre de la víctima o por modalidad de ingreso</h5>
-</form><br>
+
 </div>
 
 
 <div class="form-group" id="buscador">
 <section class="my-5">
+
+
+
+
 <ul style="list-style: none">
+
+
+
  @foreach ($casos as $caso)
-   <li>
-    @if($user->hasRole('user'))
+
+<li>
+    @if($buscar==4)
      <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Caso: </span><strong>{{$caso->nombre_referencia}}</strong></p>
-    <ul class="list-unstyled list-inline mb-0">
-      <li class="list-inline-item"><a href='/informe/{{$caso->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
-    </ul>
-    </div>
+    
+   
     <div class="row media mt-2 px-1">
       <div class="col-6">
           <p>Victima: {{$caso->nombre_y_apellido_de_la_victima}}</p>
@@ -118,11 +130,42 @@
           <p>Estado: @if($caso->estado == 1) Activo @else Pasivo @endif</p>
       </div>
   </li>
-  @else
+
+@endif
+
+@endforeach
+
+@if($buscar==1||$buscar==2||$buscar==3)
+ @foreach ($casos as $caso)
+
+ <li>
+    @if((Auth::user()->hasRole('user'))&&(Auth::user()->id==$caso->userID_create))
+     <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Caso: </span><strong>{{$caso->nombre_referencia}}</strong></p>
+     <ul class="list-unstyled list-inline mb-0">
+      <li class="list-inline-item"><a href='/paneldecontrol/{{$caso->id}}' class="mr-3"><i class="fas fa-envelope mr-1"></i>Editar</a></li>
+      <li class="list-inline-item"><a href='/informe/{{$caso->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
+      <li class="list-inline-item"><a href='/agregarIntervencion/{{$caso->id}}' class="mr-3"><i class="fas fa-rss mr-1"></i>Agregar intervención</a></li>
+    </ul>
+   
+    <div class="row media mt-2 px-1">
+      <div class="col-6">
+          <p>Victima: {{$caso->nombre_y_apellido_de_la_victima}}</p>
+          <p>Cavaj: @foreach ($cavajs as $cavaj)
+          @if ($cavaj->id == $caso->cavaj){{$cavaj->nombre}}
+          @endif
+                    @endforeach</p>
+      </div>
+      <div class="col-6">
+          <p>Fecha de ingreso: {{date("d/m/y",strtotime($caso->fecha_ingreso))}}</p>
+          <p>Estado: @if($caso->estado == 1) Activo @else Pasivo @endif</p>
+      </div>
+  </li>
+@endif
+ @if(Auth::user()->hasRole('user'))
       <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
       <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Caso: </span><strong>{{$caso->nombre_referencia}}</strong></p>
     <ul class="list-unstyled list-inline mb-0">
-      <li class="list-inline-item"><a href='/paneldecontrol/{{$caso->id}}' class="mr-3"><i class="fas fa-envelope mr-1"></i>Editar</a></li>
+     <!-- <li class="list-inline-item"><a href='/paneldecontrol/{{$caso->id}}' class="mr-3"><i class="fas fa-envelope mr-1"></i>Editar</a></li>-->
       <li class="list-inline-item"><a href='/informe/{{$caso->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
       <li class="list-inline-item"><a href='/agregarIntervencion/{{$caso->id}}' class="mr-3"><i class="fas fa-rss mr-1"></i>Agregar intervención</a></li>
     </ul>
@@ -145,12 +188,104 @@
   @endforeach
 
 
+ @foreach ($casos as $caso)
+
+<li>
+    @if((Auth::user()->hasRole('profesional'))&&(Auth::user()->id==$caso->userID_create))
+     <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Caso: </span><strong>{{$caso->nombre_referencia}}</strong></p>
+     <ul class="list-unstyled list-inline mb-0">
+      <li class="list-inline-item"><a href='/paneldecontrol/{{$caso->id}}' class="mr-3"><i class="fas fa-envelope mr-1"></i>Editar</a></li>
+      <li class="list-inline-item"><a href='/informe/{{$caso->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
+      <li class="list-inline-item"><a href='/agregarIntervencion/{{$caso->id}}' class="mr-3"><i class="fas fa-rss mr-1"></i>Agregar intervención</a></li>
+    </ul>
+   
+    <div class="row media mt-2 px-1">
+      <div class="col-6">
+          <p>Victima: {{$caso->nombre_y_apellido_de_la_victima}}</p>
+          <p>Cavaj: @foreach ($cavajs as $cavaj)
+          @if ($cavaj->id == $caso->cavaj){{$cavaj->nombre}}
+          @endif
+                    @endforeach</p>
+      </div>
+      <div class="col-6">
+          <p>Fecha de ingreso: {{date("d/m/y",strtotime($caso->fecha_ingreso))}}</p>
+          <p>Estado: @if($caso->estado == 1) Activo @else Pasivo @endif</p>
+      </div>
+  </li>
+@endif
+@if(Auth::user()->hasRole('profesional'))
+      <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
+      <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Caso: </span><strong>{{$caso->nombre_referencia}}</strong></p>
+    <ul class="list-unstyled list-inline mb-0">
+     <!-- <li class="list-inline-item"><a href='/paneldecontrol/{{$caso->id}}' class="mr-3"><i class="fas fa-envelope mr-1"></i>Editar</a></li>-->
+      <li class="list-inline-item"><a href='/informe/{{$caso->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
+      <li class="list-inline-item"><a href='/agregarIntervencion/{{$caso->id}}' class="mr-3"><i class="fas fa-rss mr-1"></i>Agregar intervención</a></li>
+    </ul>
+    </div>
+    <div class="row media mt-2 px-1">
+      <div class="col-6">
+          <p>Victima: {{$caso->nombre_y_apellido_de_la_victima}}</p>
+          <p>Cavaj: @foreach ($cavajs as $cavaj)
+          @if ($cavaj->id == $caso->cavaj){{$cavaj->nombre}} @endif
+                    @endforeach</p>
+        </div>
+        <div class="col-6">
+        <p>Fecha de ingreso: {{date("d/m/y",strtotime($caso->fecha_ingreso))}}</p>
+        <p>Estado: @if($caso->estado == 1) Activo
+        @else Pasivo
+        @endif</p>
+      </div>
+    </div>
+  @endif
+
+@endforeach
+
+<!--BUSQUEDA GENERAL-->
+
+
+
+
+
+
+ @foreach ($casos as $caso)
+
+<li>
+    @if(Auth::user()->hasRole('admin'))
+     <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Caso: </span><strong>{{$caso->nombre_referencia}}</strong></p>
+     <ul class="list-unstyled list-inline mb-0">
+      <li class="list-inline-item"><a href='/paneldecontrol/{{$caso->id}}' class="mr-3"><i class="fas fa-envelope mr-1"></i>Editar</a></li>
+      <li class="list-inline-item"><a href='/informe/{{$caso->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
+      <li class="list-inline-item"><a href='/agregarIntervencion/{{$caso->id}}' class="mr-3"><i class="fas fa-rss mr-1"></i>Agregar intervención</a></li>
+    </ul>
+   
+    <div class="row media mt-2 px-1">
+      <div class="col-6">
+          <p>Victima: {{$caso->nombre_y_apellido_de_la_victima}}</p>
+          <p>Cavaj: @foreach ($cavajs as $cavaj)
+          @if ($cavaj->id == $caso->cavaj){{$cavaj->nombre}}
+          @endif
+                    @endforeach</p>
+      </div>
+      <div class="col-6">
+          <p>Fecha de ingreso: {{date("d/m/y",strtotime($caso->fecha_ingreso))}}</p>
+          <p>Estado: @if($caso->estado == 1) Activo @else Pasivo @endif</p>
+      </div>
+  </li>
+
+@endif
+
+@endforeach
+
+
+
+
 
   @foreach ($demandas as $demanda)
     <li>
-     @if($user->hasRole('user'))
+     @if(Auth::user()->hasRole('user'))
        <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
     <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Incidencia: </span><strong>{{$demanda->nombre_y_apellido_de_la_victima}}</strong></p>
+     <li class="list-inline-item"><a href='/informedemanda/{{$demanda->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
      </li>
    @else
        <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
@@ -195,7 +330,7 @@
 
    @foreach ($derivaciones as $derivacion)
      <li>
-      @if($user->hasRole('user'))
+      @if(Auth::user()->hasRole('user'))
         <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
       <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Derivación: </span>{{$derivacion->nombre_y_apellido}}</strong></p>
       <li class="list-inline-item"><a href='/informederivacion/{{$derivacion->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
@@ -240,8 +375,8 @@
     @endif
     @endforeach
 
-
-
+@endif
+<br>
 
 </section>
 
@@ -251,3 +386,4 @@
 
 @endsection
 </div>
+

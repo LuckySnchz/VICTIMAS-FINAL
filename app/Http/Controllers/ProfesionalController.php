@@ -47,6 +47,10 @@ public function agregar(Request $form){
   $profesional->userID_create= Auth::id();
 
   $profesional->save( );
+
+$profesional->casos()->attach($form ["idCaso"], array("nombre_profesional_interviniente"=> $form ["nombre_profesional_interviniente"]));
+
+
   return redirect ("agregarProfesional");
 }
 

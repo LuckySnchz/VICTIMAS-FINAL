@@ -14,17 +14,19 @@ class Profesional extends MiModelo
     return $this->belongsTo(Usuario::class, "nombre_profesional_interviniente");
   }
 
-  public function casos(){
-    return $this->hasOne(Caso::class,"id");
-  }
+ 
 
 
-public function getIdCaso()
-  {
-    return $this->idCaso;
-  }
+    public function getIdCaso()
+    {
+        return $this->idCaso;
+    }
 
 
+
+/*public function casos() {
+    return $this->belongsToMany(Caso::class,"Profesionales","nombre_profesional_interviniente","idCaso");
+  }*/
 
 
 }

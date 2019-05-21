@@ -41,7 +41,7 @@ session_start();
  </div>
 
   <div class="dropdown">
-    <button type="button"  style="background-color:white;position: fixed;display: inline-block;margin-top: -2.43%;margin-left: 0.1%;width: 23.5%"data-toggle="dropdown">
+    <button type="button"  style="background-color:white;position: fixed;display: inline-block;margin-top: -3.43%;margin-left: 0.1%;width: 23%"data-toggle="dropdown">
      Menu
     </button>
 

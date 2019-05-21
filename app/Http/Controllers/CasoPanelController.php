@@ -20,7 +20,7 @@ use App\Derivacion;
 use App\Oderivados;
 use App\Tipo_demandas;
 use App\MiModelo;
-
+use App\Profesional;
 
 
 class CasoPanelController extends Controller
@@ -190,6 +190,9 @@ return view("detalleCaso", compact("delitos", "cavajs","usuarios","organismos","
             $usuarios =Usuario::all();
             $oderivados = Oderivados::all();
             $tipo_demandas = Tipo_demandas::all();
+             $profesionales = Profesional::all();
+
+             $profesionales=[];
              $casos=[];
              $demandas=[];
              $derivaciones=[];
@@ -199,162 +202,202 @@ return view("detalleCaso", compact("delitos", "cavajs","usuarios","organismos","
 
               switch ($req["search"]) {
 
-                case "presentacion":
+                case "PRESENTACION":
                   $search =1;
                   break;
-                case "intervencion":
+                case "INTERVENCION":
                   $search =2 ;
                 break;
 
-                case "derivacion":
+                case "DERIVACION":
                   $search =3 ;
 
                   
                 break;}
+
+switch ($req["buscar"]) {
+                case "4":
+$buscar=4;
+$casos = Caso::where('activo' ,'=',1)
+
+    ->where(function($query) use ($search){
+        $query->where('nombre_referencia', 'LIKE', '%'.$search.'%');
+        $query->orWhere('nombre_y_apellido_de_la_victima', 'LIKE', '%'.$search.'%');
+        $query->orWhere('modalidad_ingreso', 'LIKE', '%'.$search.'%');
+     
+
+    })->get(); 
+
+    
+
+        break;
+        }
 
 
             if($user->hasRole('admin')){
 
         switch ($req["buscar"]) {
                 case "1":
-                
-               $casos = Caso::where("activo", 1)
-              ->where("nombre_referencia", "like", "%$search%")
-            ->orWhere("nombre_y_apellido_de_la_victima", "like", "%$search%")
-            ->orWhere("modalidad_ingreso", "like", "%$search%")
-            ->get();
+
+$casos = Caso::where('activo' ,'=',1)
+
+    ->where(function($query) use ($search){
+        $query->where('nombre_referencia', 'LIKE', '%'.$search.'%');
+        $query->orWhere('nombre_y_apellido_de_la_victima', 'LIKE', '%'.$search.'%');
+        $query->orWhere('modalidad_ingreso', 'LIKE', '%'.$search.'%');
+     
+
+    })
+   
+    ->get();
+
+         
+
          break;
             case "2":
                  
-              $demandas = Demanda::where("activo", 1)
-            ->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
-            ->orWhere("modalidad_ingreso", "like", "%$search%")
-            ->get();
+
+$demandas = Demanda::where('activo' ,'=',1)
+
+    ->where(function($query) use ($search){
+        $query->where('nombre_y_apellido_de_la_victima', 'LIKE', '%'.$search.'%');
+      
+        $query->orWhere('modalidad_ingreso', 'LIKE', '%'.$search.'%');
+     
+
+    })
+   
+    ->get();
+
              break;
             case "3":
                 
-              $derivaciones = Derivacion::where("activo", 1)
-              ->where("nombre_y_apellido", "like", "%$search%")
-              ->orWhere("modalidad_ingreso", "like", "%$search%")
-              ->get();
-              break;
-              default:
+            $derivaciones = Derivacion::where('activo' ,'=',1)
 
-
-        $casos = Caso::where("activo", 1)
-              ->where("nombre_referencia", "like", "%$search%")
-            ->orWhere("nombre_y_apellido_de_la_victima", "like", "%$search%")
-            ->orWhere("modalidad_ingreso", "like", "%$search%")
-            ->get();
+    ->where(function($query) use ($search){
+        $query->where('nombre_y_apellido', 'LIKE', '%'.$search.'%');
       
-                 
-              $demandas = Demanda::where("activo", 1)
-            ->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
-            ->orWhere("modalidad_ingreso", "like", "%$search%")
-            ->get();  
-           
-                
-              $derivaciones = Derivacion::where("activo", 1)
-              ->where("nombre_y_apellido", "like", "%$search%")
-              ->orWhere("modalidad_ingreso", "like", "%$search%")
-              ->get();
+        $query->orWhere('modalidad_ingreso', 'LIKE', '%'.$search.'%');
+     
+
+    })
+   
+    ->get();
+              break;
+      
  
 
         }
             }
+
+
+
+
          if($user->hasRole('profesional')){
           switch ($req["buscar"]) {
                 case "1":
 
-             $casos = Caso::where("activo", 1)
-             ->where("userID_create",$user->getId())->where("nombre_referencia", "like", "%$search%")
-             ->orwhere("userID_create",$user->getId())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
+  
 
-             ->orwhere("userID_create",$user->getId())->where("modalidad_ingreso", "like", "%$search%")
-                      ->get();
-                      break;
-               case "2":       
-            $demandas = Demanda::where("activo", 1)
-            ->where("userID_create",$user->getId())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
-            ->orwhere("userID_create",$user->getId())->where("modalidad_ingreso", "like", "%$search%")
-                     ->get();
+
+
+
+//Acá iria los casos en los que int
+
+/*
+->where(function($query) use ($search){
+
+            $query->where("nombre_referencia", "like", '%'.$search.'%');
+      $query->orwhere("nombre_y_apellido_de_la_victima", "like", '%'.$search.'%');
+
+           $query->orwhere("modalidad_ingreso", "like", '%'.$search.'%');
+                       })
+   
+    ->get();
+
+*/
+         $casos = Caso::where('activo' ,'=',1)
+
+             ->where(function($query) use ($search){
+
+            $query->where("userID_create",Auth::user()->getId())->where("nombre_referencia", "like", '%'.$search.'%');
+      $query->orwhere("userID_create",Auth::user()->getId())->where("nombre_y_apellido_de_la_victima", "like", '%'.$search.'%');
+
+           $query->orwhere("userID_create",Auth::user()->getId())->where("modalidad_ingreso", "like", '%'.$search.'%');
+                       })
+   
+    ->get();
+
+             break;
+            case "2":
+            $demandas = Demanda::where('activo' ,'=',1)
+
+->where(function($query) use ($search){
+
+           $query->where("userID_create",Auth::user()->getId())->where("nombre_y_apellido_de_la_victima", "like", '%'.$search.'%');
+        $query->orwhere("userID_create",Auth::user()->getId())->where("modalidad_ingreso", "like", '%'.$search.'%');
+                    })
+   
+    ->get();
                      break;
                      case "3":
-           $derivaciones = Derivacion::where("activo", 1)
-           ->where("userID_create",$user->getId())->where("nombre_y_apellido", "like", "%$search%")
-           ->orwhere("userID_create",$user->getId())->where("modalidad_ingreso", "like", "%$search%")
-                    ->get();
+           $derivaciones = Derivacion::where('activo' ,'=',1)
+           ->where(function($query) use ($search){
+
+    $query->where("userID_create",Auth::user()->getId())->where("nombre_y_apellido", "like", '%'.$search.'%');
+$query->orwhere("userID_create",Auth::user()->getId())->where("modalidad_ingreso", "like", '%'.$search.'%');
+                    })
+   
+    ->get();
+
 
 
             break;
-            default:
-            $casos = Caso::where("activo", 1)
-             ->where("userID_create",$user->getId())->where("nombre_referencia", "like", "%$search%")
-             ->orwhere("userID_create",$user->getId())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
-
-             ->orwhere("userID_create",$user->getId())->where("modalidad_ingreso", "like", "%$search%")
-                      ->get();
-            $demandas = Demanda::where("activo", 1)
-            ->where("userID_create",$user->getId())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
-            ->orwhere("userID_create",$user->getId())->where("modalidad_ingreso", "like", "%$search%")
-                     ->get();
-           $derivaciones = Derivacion::where("activo", 1)
-           ->where("userID_create",$user->getId())->where("nombre_y_apellido", "like", "%$search%")
-           ->orwhere("userID_create",$user->getId())->where("modalidad_ingreso", "like", "%$search%")
-                    ->get();
-
-
+           
               }}
 
               if($user->hasRole('user')){
+
               switch ($req["buscar"]) {
                 case "1":
-                $casos=Caso::where("activo", 1)
-                ->where("sede",$user->getSede())->where("nombre_referencia", "like", "%$search%")
-                ->orwhere("sede",$user->getSede())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
-                ->orwhere("sede",$user->getSede())->where("modalidad_ingreso", "like", "%$search%")
-                ->get();
+                $casos=Caso::where('activo' ,'=',1)
+                 ->where(function($query) use ($search){
+
+          $query->where("sede",Auth::user()->getSede())->where("nombre_referencia", "like", '%'.$search.'%');
+              $query->orwhere("sede",Auth::user()->getSede())->where("nombre_y_apellido_de_la_victima", "like", '%'.$search.'%');
+            $query->orwhere("sede",Auth::user()->getSede())->where("modalidad_ingreso", "like", '%'.$search.'%');
+               })
+   
+    ->get();
+
                 break;
                  case "2":
-                $demandas=Demanda::where("activo", 1)
-                ->where("sede",$user->getSede())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
-                ->orwhere("sede",$user->getSede())->where("modalidad_ingreso", "like", "%$search%")
-                ->get();
+                $demandas=Demanda::where('activo' ,'=',1)
+
+                 ->where(function($query) use ($search){
+
+      $query->where("sede",Auth::user()->getSede())->where("nombre_y_apellido_de_la_victima", "like", '%'.$search.'%');
+$query->orwhere("sede",Auth::user()->getSede())->where("modalidad_ingreso", "like", '%'.$search.'%');
+         })
+   
+    ->get();
                 break;
                  case "3":
-                $derivaciones=Derivacion::where("activo", 1)
-                ->where("sede",$user->getSede())->where("nombre_y_apellido", "like", "%$search%")
-                ->orwhere("sede",$user->getSede())->where("modalidad_ingreso", "like", "%$search%")
-                ->get();
-                default:
-                $casos=Caso::where("activo", 1)
-                ->where("sede",$user->getSede())->where("nombre_referencia", "like", "%$search%")
-                ->orwhere("sede",$user->getSede())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
-                ->orwhere("sede",$user->getSede())->where("modalidad_ingreso", "like", "%$search%")
-                ->get();
-                $demandas=Demanda::where("activo", 1)
-                ->where("sede",$user->getSede())->where("nombre_y_apellido_de_la_victima", "like", "%$search%")
-                ->orwhere("sede",$user->getSede())->where("modalidad_ingreso", "like", "%$search%")
-                ->get();
-                $derivaciones=Derivacion::where("activo", 1)
-                ->where("sede",$user->getSede())->where("nombre_y_apellido", "like", "%$search%")
-                ->orwhere("sede",$user->getSede())->where("modalidad_ingreso", "like", "%$search%")
-                ->get();
+                $derivaciones=Derivacion::where('activo' ,'=',1)
+                ->where(function($query) use ($search){
+
+         $query->where("sede",Auth::user()->getSede())->where("nombre_y_apellido", "like", '%'.$search.'%');
+            $query->orwhere("sede",Auth::user()->getSede())->where("modalidad_ingreso", "like", '%'.$search.'%');
+        })
+   
+    ->get();
+           break;    
               }}
 
 
 
         return view("home", compact("casos","demandas","derivaciones","tipo_demandas","oderivados","delitos","cavajs","user","buscar"));
       }
-
-
-
-
-
-
-
-
-
 
      public function eliminar($id) {
         $caso = Caso::find($id);
