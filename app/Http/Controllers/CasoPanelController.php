@@ -228,7 +228,30 @@ $casos = Caso::where('activo' ,'=',1)
 
     })->get(); 
 
-    
+    $demandas = Demanda::where('activo' ,'=',1)
+
+    ->where(function($query) use ($search){
+        $query->where('nombre_y_apellido_de_la_victima', 'LIKE', '%'.$search.'%');
+      
+        $query->orWhere('modalidad_ingreso', 'LIKE', '%'.$search.'%');
+     
+
+    })->get(); 
+   
+
+
+$derivaciones = Derivacion::where('activo' ,'=',1)
+
+    ->where(function($query) use ($search){
+        $query->where('nombre_y_apellido', 'LIKE', '%'.$search.'%');
+      
+        $query->orWhere('modalidad_ingreso', 'LIKE', '%'.$search.'%');
+     
+
+    })
+
+   
+    ->get();        
 
         break;
         }

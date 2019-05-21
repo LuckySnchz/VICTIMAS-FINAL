@@ -135,6 +135,83 @@
 
 @endforeach
 
+ @foreach ($demandas as $demanda)
+    <li>
+ 
+       
+    <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Incidencia: </span><strong>{{$demanda->nombre_y_apellido_de_la_victima}}</strong></p>
+     
+     </li> 
+
+   
+
+       <div class="row media mt-2 px-1">
+         <div class="col-6">
+           <p>Delito: @foreach ($delitos as $delito)
+             @if ($delito->id == $demanda->delito)
+               {{$delito->nombre}}
+             @endif
+           @endforeach</p>
+           </div>
+           <div class="col-6">
+           <p>Fecha de ingreso: {{date("d/m/y",strtotime($demanda->fecha_ingreso))}}</p>
+           </div>
+
+     </div>
+ 
+   @endforeach
+
+@foreach ($derivaciones as $derivacion)
+     <li>     
+       
+      <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Derivación: </span>{{$derivacion->nombre_y_apellido}}</strong></p>
+     
+      </li>
+   
+
+      <div class="row media mt-2 px-1">
+          <div class="col-6">
+          <p>Tipo de demanda: @foreach ($tipo_demandas as $demanda)
+            @if ($demanda->id == $derivacion->tipo_demanda)
+              {{$demanda->nombre}}
+            @endif
+          @endforeach</p>
+          <p>Organismo al que se deriva: @foreach ($oderivados as $derivado)
+            @if ($derivado->id == $derivacion->derivacion)
+              {{$derivado->nombre}}
+            @endif
+          @endforeach</p>
+          </div>
+          <div class="col-6">
+          <p>Fecha de ingreso: {{date("d/m/y",strtotime($derivacion->fecha_ingreso))}}</p>
+          <p>Estado: @if ($derivacion->estado_derivacion==1) Resuelta
+          @elseif ($derivacion->estado_derivacion==2) En proceso
+          @else Imposibilidad de contacto</p>
+            @endif
+          </div>
+      </div>
+
+
+    @endforeach
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @if($buscar==1||$buscar==2||$buscar==3)
  @foreach ($casos as $caso)
 
