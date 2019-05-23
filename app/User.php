@@ -81,6 +81,8 @@ class User extends Authenticatable
         return false;
     }
 
-
+public function casos() {
+    return $this->belongsToMany("App\Caso","Profesionales","nombre_profesional_interviniente","idCaso");
     
+}
 }

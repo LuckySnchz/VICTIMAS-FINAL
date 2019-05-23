@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Caso;
 use App\Profesional;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -29,24 +30,10 @@ class HomeController extends Controller
     $derivaciones = [];
     $buscar=0;
     $profesionales=Profesional::all();
+    $users=User::all();
 
-if(Auth::user()->hasRole('profesional')){
-            $array = array();            
-            foreach($profesionales as $profesional){
 
-if($profesional->nombre_profesional_interviniente==Auth::user()->getId()){
-  
-  $array[]=$profesional->idCaso; 
-
-}}
-$longitud = count($array);
-for($i=0; $i<$longitud; $i++){
-
- $casosprof[$i]=Caso::find($array[$i]);
-}
- return view('home',compact("casos","demandas","derivaciones","profesional","profesionales","array","longitud","casosprof","buscar"));}
- else{
-    return view('home',compact("casos","demandas","derivaciones","profesional","profesionales","buscar"));
+    return view('home',compact("casos","demandas","derivaciones","profesional","profesionales","buscar","users"));
  }
  
 
@@ -58,8 +45,8 @@ for($i=0; $i<$longitud; $i++){
         //$request->user()->authorizeRoles(['user', 'admin', 'profesional']);
         //Lo hago por routes
 
-
-    }
+}
+    
 
 
  // public function detalle() {
@@ -69,4 +56,4 @@ for($i=0; $i<$longitud; $i++){
 
 
 
-}
+

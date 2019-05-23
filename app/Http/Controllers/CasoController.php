@@ -118,7 +118,7 @@ $idCaso = $caso->id;
 
 session(["idCaso" => $idCaso]);
 
-
+$caso->usuarios()->attach(Auth::user());
 
     return redirect("agregarProfesional");
 

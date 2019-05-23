@@ -61,7 +61,7 @@
         @if ($usuario->id == old('nombre_profesional_interviniente'))
             <option selected value="{{ $usuario->id }}">{{ $usuario->nombre_y_apellido}}</option>
         @else
-          <option value="{{ $usuario->id }}">{{ $usuario->nombre_y_apellido}}</option>
+          <option value="{{ $usuario->id }}">{{ $usuario->id}}</option>
         @endif
       @endforeach
     </select>

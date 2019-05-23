@@ -327,7 +327,9 @@ $demandas = Demanda::where('activo' ,'=',1)
 
 //Acá iria los casos en los que int
 
-/*
+
+    $casos=Auth::user()->casos()
+
 ->where(function($query) use ($search){
 
             $query->where("nombre_referencia", "like", '%'.$search.'%');
@@ -337,9 +339,10 @@ $demandas = Demanda::where('activo' ,'=',1)
                        })
    
     ->get();
+    break;}}
 
-*/
-         $casos = Caso::where('activo' ,'=',1)
+/*
+         $casos2 = Caso::where('activo' ,'=',1)
 
              ->where(function($query) use ($search){
 
@@ -418,7 +421,7 @@ $query->orwhere("sede",Auth::user()->getSede())->where("modalidad_ingreso", "lik
               }}
 
 
-
+*/
         return view("home", compact("casos","demandas","derivaciones","tipo_demandas","oderivados","delitos","cavajs","user","buscar"));
       }
 

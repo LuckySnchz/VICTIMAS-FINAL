@@ -76,9 +76,13 @@
 <section class="container jumbotron shadow p-3 mb-5 bg-white rounded">
 <div class="form-group" >
 
-
-
-
+<!--<ul>
+@foreach(Auth::user()->casos as $caso)
+<li>
+  {{$caso->nombre_referencia}}
+</li>
+@endforeach
+</ul>-->
 
 <br><br>
 
@@ -268,7 +272,7 @@
  @foreach ($casos as $caso)
 
 <li>
-    @if((Auth::user()->hasRole('profesional'))&&(Auth::user()->id==$caso->userID_create))
+    @if(Auth::user()->hasRole('profesional'))
      <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Caso: </span><strong>{{$caso->nombre_referencia}}</strong></p>
      <ul class="list-unstyled list-inline mb-0">
       <li class="list-inline-item"><a href='/paneldecontrol/{{$caso->id}}' class="mr-3"><i class="fas fa-envelope mr-1"></i>Editar</a></li>
@@ -290,30 +294,7 @@
       </div>
   </li>
 @endif
-@if(Auth::user()->hasRole('profesional'))
-      <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
-      <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Caso: </span><strong>{{$caso->nombre_referencia}}</strong></p>
-    <ul class="list-unstyled list-inline mb-0">
-     <!-- <li class="list-inline-item"><a href='/paneldecontrol/{{$caso->id}}' class="mr-3"><i class="fas fa-envelope mr-1"></i>Editar</a></li>-->
-      <li class="list-inline-item"><a href='/informe/{{$caso->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
-      <li class="list-inline-item"><a href='/agregarIntervencion/{{$caso->id}}' class="mr-3"><i class="fas fa-rss mr-1"></i>Agregar intervención</a></li>
-    </ul>
-    </div>
-    <div class="row media mt-2 px-1">
-      <div class="col-6">
-          <p>Victima: {{$caso->nombre_y_apellido_de_la_victima}}</p>
-          <p>Cavaj: @foreach ($cavajs as $cavaj)
-          @if ($cavaj->id == $caso->cavaj){{$cavaj->nombre}} @endif
-                    @endforeach</p>
-        </div>
-        <div class="col-6">
-        <p>Fecha de ingreso: {{date("d/m/y",strtotime($caso->fecha_ingreso))}}</p>
-        <p>Estado: @if($caso->estado == 1) Activo
-        @else Pasivo
-        @endif</p>
-      </div>
-    </div>
-  @endif
+
 
 @endforeach
 

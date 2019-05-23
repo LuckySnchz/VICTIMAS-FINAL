@@ -89,7 +89,10 @@ class Caso extends MiModelo
     return $this->activo;
   }
 
-
+public function usuarios() {
+    return $this->belongsToMany(Caso::class,"Profesionales","idCaso","nombre_profesional_interviniente");
+    
+}
 
 
   

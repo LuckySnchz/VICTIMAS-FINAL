@@ -24,9 +24,5 @@ class Profesional extends MiModelo
 
 
 
-/*public function casos() {
-    return $this->belongsToMany(Caso::class,"Profesionales","nombre_profesional_interviniente","idCaso");
-  }*/
-
 
 }
