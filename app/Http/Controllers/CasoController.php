@@ -117,8 +117,8 @@ $caso->save();
 $idCaso = $caso->id;
 
 session(["idCaso" => $idCaso]);
-
-$caso->usuarios()->attach(Auth::user());
+if(Auth::user()->hasRole('profesional')){
+$caso->usuarios()->attach(Auth::user());}
 
     return redirect("agregarProfesional");
 
