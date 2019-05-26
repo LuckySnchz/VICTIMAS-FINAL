@@ -39,7 +39,7 @@ public function agregar(Request $form){
 "fecha_delito"=>"required",
 "pais_hecho"=>"required",
 "provincia_hecho"=>"required",
-"localidad_hecho"=>"required"
+
 
     ];
 
@@ -72,7 +72,13 @@ return $input->delito == 73;
   $validator->sometimes('fecha_hecho_otro', "required|min:3|max:100|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
     return $input->fecha_delito == 2;
   });
+  $validator->sometimes('localidad_otra', 'required', function ($input) {
+return $input->provincia_hecho == 25;
+  });
 
+ $validator->sometimes('localidad_hecho', 'required', function ($input) {
+return $input->provincia_hecho < 25;
+  });
 
 if ($validator->fails()) {
     return back()
@@ -107,6 +113,7 @@ $caso->fecha_hecho_otro  = $form ["fecha_hecho_otro"];
 $caso->pais_hecho= $form ["pais_hecho"];
 $caso->provincia_hecho= $form ["provincia_hecho"];
 $caso->localidad_hecho= $form ["localidad_hecho"];
+$caso->localidad_otra= $form ["localidad_otra"];
 $caso->activo=1;
 
 $caso->userID_create= Auth::id();
