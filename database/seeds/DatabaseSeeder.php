@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         'nombre'=>"Lucky",
         'apellido'=>"sanchez", 
          'email_verified_at'=>"xul27@hotmail.com",            
-        'password'=>"123456"]
+        'password'=>"123456",]
 
        
     );
