@@ -637,11 +637,11 @@ Auth::routes();
 
 
 Route::get('/homePanel', 'HomePanelController@index')->name('home');
-/*Route::get('/register', function () {
+Route::get('/register', function () {
    return Redirect::to("/")
        ->with('message', array('type' => 'success', 'text' => 'No es posible registrar usuarios '));
 return ("register");
-});*/
+});
 
 Route::get('/logout', function(){
     Session::flush();
