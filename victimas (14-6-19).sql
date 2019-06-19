@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2019 a las 18:55:14
+-- Tiempo de generación: 14-06-2019 a las 15:53:12
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -21,6 +21,26 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `victimas`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asistencias`
+--
+
+CREATE TABLE `asistencias` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `nombre` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `asistencias`
+--
+
+INSERT INTO `asistencias` (`id`, `nombre`) VALUES
+(1, 'Jurídica'),
+(2, 'Psicológica '),
+(3, 'Socioeconómica');
 
 -- --------------------------------------------------------
 
@@ -68,7 +88,6 @@ CREATE TABLE `casos` (
   `pais_hecho` varchar(20) DEFAULT NULL,
   `provincia_hecho` int(11) DEFAULT NULL,
   `localidad_hecho` int(11) DEFAULT NULL,
-  `localidad_otra` varchar(250) DEFAULT NULL,
   `usuarios` int(11) DEFAULT NULL,
   `userID_create` int(11) DEFAULT NULL,
   `userID_modify` int(11) DEFAULT NULL,
@@ -80,18 +99,47 @@ CREATE TABLE `casos` (
 -- Volcado de datos para la tabla `casos`
 --
 
-INSERT INTO `casos` (`id`, `created_at`, `updated_at`, `nombre_referencia`, `nro_carpeta`, `delito`, `otro_delito`, `descripcion_caso`, `fecha_ingreso`, `modalidad_ingreso`, `organismo`, `cual_otro_organismo`, `cavaj`, `comisaria`, `denuncias_previas`, `departamento_judicial`, `estado`, `motivospasivos`, `cual_otro_motivospasivo`, `nombre_y_apellido_de_la_victima`, `persona_asistida`, `fecha_delito`, `fecha_hecho`, `fecha_hecho_otro`, `pais_hecho`, `provincia_hecho`, `localidad_hecho`, `localidad_otra`, `usuarios`, `userID_create`, `userID_modify`, `sede`, `activo`) VALUES
-(1, '2019-05-23 18:00:08', '2019-05-23 18:00:08', 'CASO PRUEBA PROFESIONALES', NULL, 48, NULL, 'BREVE', '2019-05-15', 2, 0, NULL, 12, 'COMISARIA', 1, 11, 1, NULL, NULL, 'LUIS MASA', NULL, 3, NULL, NULL, '1', 1, 2, '', NULL, 3, NULL, 'LA PLATA', 1),
-(2, '2019-05-23 19:05:33', '2019-05-23 19:05:33', 'PRUEBA', NULL, 42, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 10, 'COMISARIA', 1, 3, 1, NULL, NULL, 'JOSE LEON SUAREZ', NULL, 3, NULL, NULL, '1', 2, 880, '', NULL, 2, NULL, 'LA PLATA', 1),
-(3, '2019-05-23 19:55:34', '2019-05-23 19:55:34', 'CASO INTERVINO ADMIN', NULL, 47, NULL, 'BREVE', '2019-05-15', 1, 0, NULL, 10, 'COMI', 1, 15, 1, NULL, NULL, 'SAMUEL ISMAEL', NULL, 3, NULL, NULL, '1', 1, 7, '', NULL, 1, NULL, 'LINCOLN', 1),
-(4, '2019-05-23 21:02:44', '2019-05-23 21:02:44', 'CASO YO', NULL, 52, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 3, 'Se desconoce', 1, 7, 1, NULL, NULL, 'SAN LORENZO', NULL, 3, NULL, NULL, '1', 2, 878, '', NULL, 3, NULL, 'LA PLATA', 1),
-(5, '2019-05-23 21:06:46', '2019-05-23 21:06:46', 'CASO INTERVINO YO', NULL, 42, NULL, 'BREVE', '2019-05-16', 1, 0, NULL, 7, 'COMI', 1, 1, 1, NULL, NULL, 'ESTABAN QUITO', NULL, 3, NULL, NULL, '1', 2, 885, '', NULL, 3, NULL, 'LA PLATA', 1),
-(6, '2019-05-23 21:12:05', '2019-05-23 21:12:05', 'OTRO YO', NULL, 49, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 9, 'COMI', 1, 5, 1, NULL, NULL, 'MARIA DEL MAR', NULL, 3, NULL, NULL, '1', 2, 881, '', NULL, 3, NULL, 'LA PLATA', 1),
-(7, '2019-05-24 00:04:54', '2019-05-24 00:04:54', 'CASO PRUEBA PROFESIONAL', NULL, 49, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 2, 'COM', 1, 6, 1, NULL, NULL, 'CARLOS CALVO', NULL, 3, NULL, NULL, '1', 1, 1, '', NULL, 3, NULL, 'LA PLATA', 1),
-(8, '2019-05-24 00:37:01', '2019-05-24 00:37:01', 'PRUEBA INTERVINIENTE', NULL, 52, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 8, 'COMI', 1, 18, 1, NULL, NULL, 'JUAN RAMON', NULL, 3, NULL, NULL, '1', 1, 2, '', NULL, 2, NULL, 'LA PLATA', 1),
-(9, '2019-05-27 02:44:37', '2019-05-27 02:44:37', 'CASO PRUEBA CIUDAD SE DESCONOCE', NULL, 52, NULL, 'BREVE', '2019-05-01', 1, 0, NULL, 2, 'COMI', 1, 5, 1, NULL, NULL, 'JORGE RAMOS', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, NULL, 12, NULL, NULL, 1),
-(10, '2019-05-27 02:47:22', '2019-05-27 02:47:22', 'CASO PRUEBA CIUDAD SE DESCONOCE', NULL, 52, NULL, 'BREVE', '2019-05-03', 1, 0, NULL, 15, 'COMI', 1, 2, 1, NULL, NULL, 'JOSE SAN MARTIN', NULL, 3, NULL, NULL, '1', 25, NULL, 'OTRA CIUDAD', NULL, 12, NULL, NULL, 1),
-(11, '2019-05-27 02:48:52', '2019-05-27 02:48:52', 'CASO PRUEBA CIUDAD SE CONOCE', NULL, 42, NULL, 'BREVE', '2019-05-26', 1, 0, NULL, 5, 'COMI', 1, 18, 1, NULL, NULL, 'JUANA MOLINA', NULL, 3, NULL, NULL, '1', 1, 3, NULL, NULL, 12, NULL, NULL, 1);
+INSERT INTO `casos` (`id`, `created_at`, `updated_at`, `nombre_referencia`, `nro_carpeta`, `delito`, `otro_delito`, `descripcion_caso`, `fecha_ingreso`, `modalidad_ingreso`, `organismo`, `cual_otro_organismo`, `cavaj`, `comisaria`, `denuncias_previas`, `departamento_judicial`, `estado`, `motivospasivos`, `cual_otro_motivospasivo`, `nombre_y_apellido_de_la_victima`, `persona_asistida`, `fecha_delito`, `fecha_hecho`, `fecha_hecho_otro`, `pais_hecho`, `provincia_hecho`, `localidad_hecho`, `usuarios`, `userID_create`, `userID_modify`, `sede`, `activo`) VALUES
+(1, '2019-05-23 18:00:08', '2019-05-23 18:00:08', 'CASO PRUEBA PROFESIONALES', NULL, 48, NULL, 'BREVE', '2019-05-15', 2, 0, NULL, 12, 'COMISARIA', 1, 11, 1, NULL, NULL, 'LUIS MASA', NULL, 3, NULL, NULL, '1', 1, 2, NULL, 3, NULL, 'LA PLATA', 1),
+(2, '2019-05-23 19:05:33', '2019-05-23 19:05:33', 'PRUEBA', NULL, 42, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 10, 'COMISARIA', 1, 3, 1, NULL, NULL, 'JOSE LEON SUAREZ', NULL, 3, NULL, NULL, '1', 2, 880, NULL, 2, NULL, 'LA PLATA', 1),
+(3, '2019-05-23 19:55:34', '2019-05-23 19:55:34', 'CASO INTERVINO ADMIN', NULL, 47, NULL, 'BREVE', '2019-05-15', 1, 0, NULL, 10, 'COMI', 1, 15, 1, NULL, NULL, 'SAMUEL ISMAEL', NULL, 3, NULL, NULL, '1', 1, 7, NULL, 1, NULL, 'LINCOLN', 1),
+(4, '2019-05-23 21:02:44', '2019-05-23 21:02:44', 'CASO YO', NULL, 52, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 3, 'Se desconoce', 1, 7, 1, NULL, NULL, 'SAN LORENZO', NULL, 3, NULL, NULL, '1', 2, 878, NULL, 3, NULL, 'LA PLATA', 1),
+(5, '2019-05-23 21:06:46', '2019-05-23 21:06:46', 'CASO INTERVINO YO', NULL, 42, NULL, 'BREVE', '2019-05-16', 1, 0, NULL, 7, 'COMI', 1, 1, 1, NULL, NULL, 'ESTABAN QUITO', NULL, 3, NULL, NULL, '1', 2, 885, NULL, 3, NULL, 'LA PLATA', 1),
+(6, '2019-05-23 21:12:05', '2019-05-23 21:12:05', 'OTRO YO', NULL, 49, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 9, 'COMI', 1, 5, 1, NULL, NULL, 'MARIA DEL MAR', NULL, 3, NULL, NULL, '1', 2, 881, NULL, 3, NULL, 'LA PLATA', 1),
+(7, '2019-05-24 00:04:54', '2019-05-24 00:04:54', 'CASO PRUEBA PROFESIONAL', NULL, 49, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 2, 'COM', 1, 6, 1, NULL, NULL, 'CARLOS CALVO', NULL, 3, NULL, NULL, '1', 1, 1, NULL, 3, NULL, 'LA PLATA', 1),
+(8, '2019-05-24 00:37:01', '2019-05-24 00:37:01', 'PRUEBA INTERVINIENTE', NULL, 52, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 8, 'COMI', 1, 18, 1, NULL, NULL, 'JUAN RAMON', NULL, 3, NULL, NULL, '1', 1, 2, NULL, 2, NULL, 'LA PLATA', 1),
+(9, '2019-05-27 02:44:37', '2019-05-27 02:44:37', 'CASO PRUEBA CIUDAD SE DESCONOCE', NULL, 52, NULL, 'BREVE', '2019-05-01', 1, 0, NULL, 2, 'COMI', 1, 5, 1, NULL, NULL, 'JORGE RAMOS', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 12, NULL, NULL, 1),
+(10, '2019-05-27 02:47:22', '2019-05-27 02:47:22', 'CASO PRUEBA CIUDAD SE DESCONOCE', NULL, 52, NULL, 'BREVE', '2019-05-03', 1, 0, NULL, 15, 'COMI', 1, 2, 1, NULL, NULL, 'JOSE SAN MARTIN', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 12, NULL, NULL, 1),
+(11, '2019-05-27 02:48:52', '2019-05-27 02:48:52', 'CASO PRUEBA CIUDAD SE CONOCE', NULL, 42, NULL, 'BREVE', '2019-05-26', 1, 0, NULL, 5, 'COMI', 1, 18, 1, NULL, NULL, 'JUANA MOLINA', NULL, 3, NULL, NULL, '1', 1, 3, NULL, 12, NULL, NULL, 1),
+(12, '2019-05-28 20:33:56', '2019-05-28 20:33:56', 'CASO PROVINCIAS CIUDADES', '20', 52, NULL, 'BREVE LESIONES', '2019-05-22', 3, 15, NULL, 9, 'COMISARIA', 1, 12, 1, NULL, NULL, 'JOSEFA MORALES', NULL, 3, NULL, NULL, '1', 25, 943, NULL, 116, NULL, 'LA PLATA', 1),
+(13, '2019-05-28 23:03:16', '2019-05-28 23:03:16', 'PRUEBA PROFESIONALES', NULL, 52, NULL, 'BREVE DESCRIP', '2019-05-28', 1, 0, NULL, 15, 'COMI', 1, 10, 1, NULL, NULL, 'JUAN', NULL, 3, NULL, NULL, '1', 1, 2, NULL, 116, NULL, 'LA PLATA', 1),
+(14, '2019-05-28 23:50:13', '2019-05-28 23:50:13', 'NUEVO CASO', NULL, 52, NULL, 'BREVE', '2019-05-21', 1, 0, NULL, 6, 'COMISARIA', 1, 15, 1, NULL, NULL, 'JOSE MARTIN', NULL, 3, NULL, NULL, '1', 3, 942, NULL, 116, NULL, 'LA PLATA', 1),
+(15, '2019-05-29 02:40:28', '2019-05-29 02:40:28', 'CASO PROF', NULL, 42, NULL, 'BREVE DESCRIP', '2019-05-28', 1, 0, NULL, 11, 'COMISARIA', 1, 2, 1, NULL, NULL, 'PEDRO ALMODOVAR', NULL, 3, NULL, NULL, '1', 1, 3, NULL, 116, NULL, 'LA PLATA', 1),
+(16, '2019-05-29 15:41:50', '2019-05-29 15:41:50', 'PRUEBA', NULL, 51, NULL, 'BREVE', '2019-05-29', 1, 0, NULL, 10, 'COMI', 1, 8, 1, NULL, NULL, 'JUAN JOSE', NULL, 3, NULL, NULL, '1', 1, 2, NULL, 1, NULL, 'LA PLATA', 1),
+(17, '2019-05-29 15:49:52', '2019-05-29 15:49:52', 'CASO RACK', NULL, 52, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 3, 'COMISARIA', 1, 15, 1, NULL, NULL, 'RACK', NULL, 3, NULL, NULL, '1', 1, 15, NULL, 50, NULL, 'LA PLATA', 1),
+(18, '2019-05-29 16:56:29', '2019-05-29 16:56:29', 'CASO SIN ATACH', NULL, 52, NULL, 'BREVE', '2019-05-22', 1, 0, NULL, 9, 'COMI', 1, 15, 1, NULL, NULL, 'NORMA SERRANO', NULL, 3, NULL, NULL, '1', 3, 944, NULL, 50, NULL, 'LA PLATA', 1),
+(19, '2019-05-29 19:57:19', '2019-05-29 19:57:19', 'CASO 115', NULL, 38, NULL, 'BREVE', '2019-05-29', 1, 0, NULL, 5, 'COMISARIA', 1, 14, 1, NULL, NULL, 'SAMUEL', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 115, NULL, 'SAN ISIDRO', 1),
+(20, '2019-05-29 20:08:47', '2019-05-29 20:08:47', 'CASO INTERVIENE', '22', 44, NULL, 'BREVE', '2019-05-29', 1, 0, NULL, 2, 'COMISARIA', 1, 11, 1, NULL, NULL, 'LUJAN', NULL, 3, NULL, NULL, '1', 3, 934, NULL, 115, NULL, 'SAN ISIDRO', 1),
+(21, '2019-05-30 02:52:20', '2019-05-30 02:52:20', 'CASO IGNACIO', NULL, 52, NULL, 'BREVE', '2019-05-29', 1, 0, NULL, 4, 'COMISARIA', 1, 11, 1, NULL, NULL, 'JUAN SEBASTIAN', NULL, 3, NULL, NULL, '1', 1, 7, NULL, 114, NULL, 'LA PLATA', 1),
+(22, '2019-05-30 14:03:18', '2019-05-30 14:03:18', 'CASO COUNT', NULL, 49, NULL, 'BREVE', '2019-05-30', 1, 0, NULL, 17, 'COMI', 2, 9, 1, NULL, NULL, 'MARCOS PAL', NULL, 3, NULL, NULL, '1', 1, 6, NULL, 114, NULL, 'LA PLATA', 1),
+(23, '2019-05-30 18:33:17', '2019-05-30 18:33:17', 'CASO COUNT CERO', NULL, 44, NULL, 'BREVE', '2019-05-30', 1, 0, NULL, 13, 'COMISARIA', 1, 11, 1, NULL, NULL, 'MARIO MOLINA', NULL, 3, NULL, NULL, '1', 1, 16, NULL, 114, NULL, 'LA PLATA', 1),
+(24, '2019-05-31 02:51:32', '2019-05-31 02:51:32', 'CASO PROFESIONALES', NULL, 52, NULL, 'BREVE', '2019-05-30', 1, 0, NULL, 10, 'COMISARIA', 1, 13, 1, NULL, NULL, 'LOLA MORA', NULL, 3, NULL, NULL, '1', 1, 13, NULL, 114, NULL, 'LA PLATA', 1),
+(25, '2019-05-31 13:54:23', '2019-05-31 13:54:23', 'CASO PROF INTERV', NULL, 52, NULL, 'BREVE', '2019-05-31', 1, 0, NULL, 15, 'COMI', 1, 12, 1, NULL, NULL, 'OSCAR ROJAS', NULL, 3, NULL, NULL, '1', 1, 15, NULL, 114, NULL, 'LA PLATA', 1),
+(26, '2019-06-02 16:32:07', '2019-06-02 16:32:07', 'CASO SELECT PROFESIONALES', NULL, 42, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 9, 'COMISARIA', 1, 14, 1, NULL, NULL, 'MARTA SIMON', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(27, '2019-06-02 16:33:25', '2019-06-02 16:33:25', 'CASO SELECT PROFESIONALES', NULL, 42, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 9, 'COMISARIA', 1, 14, 1, NULL, NULL, 'MARTA SIMON', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(28, '2019-06-02 16:35:18', '2019-06-02 16:35:18', 'CASO SELECT PROFESIONALES', NULL, 42, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 9, 'COMISARIA', 1, 14, 1, NULL, NULL, 'MARTA SIMON', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(29, '2019-06-03 18:34:24', '2019-06-14 03:49:54', 'CASO PRUEBA LUCIA', '22', 12, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 3, 'COMI', 1, 7, 1, NULL, NULL, 'JOSE PER', NULL, 3, NULL, NULL, '1', 1, 1, NULL, 114, 114, 'LA PLATA', 1),
+(30, '2019-06-03 21:12:39', '2019-06-03 21:12:39', 'CASO INTERVENGO A KLENA', '22', 11, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 14, 'COMI', 2, 13, 1, NULL, NULL, 'MARCOS LUJAN', NULL, 3, NULL, NULL, '1', 2, 885, NULL, 70, NULL, 'MAR DEL PLATA', 1),
+(31, '2019-06-10 02:45:44', '2019-06-10 02:45:44', 'mlllmlmlm', NULL, 42, NULL, 'brevevvevev', '2019-06-09', 1, 0, NULL, 12, 'comi', 1, 2, 1, NULL, NULL, 'monokom', NULL, 1, '1900-01-01', NULL, '2', 12, 2, NULL, 114, NULL, 'LA PLATA', 1),
+(32, '2019-06-11 19:55:59', '2019-06-11 19:55:59', 'CASO VINCULOS', NULL, 5, NULL, 'BREVE', '2019-06-11', 1, 0, NULL, 9, 'COMISARIA', 1, 10, 1, NULL, NULL, 'PRUEBA VINCULO', NULL, 3, NULL, NULL, '1', 1, 4, NULL, 114, NULL, 'LA PLATA', 1),
+(33, '2019-06-12 13:53:37', '2019-06-12 13:53:37', 'CASO CONVIVIENTES', '22', 9, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 17, 'Se desconoce', 1, 1, 1, NULL, NULL, 'JUAN PADILLA', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(34, '2019-06-12 14:25:59', '2019-06-12 14:25:59', 'JUAN RAMON', '22', 11, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 12, 'Se desconoce', 2, 3, 1, NULL, NULL, 'JUAN RAMON', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(35, '2019-06-12 16:20:51', '2019-06-12 16:20:51', 'PRUEBA LOCALIDAD', NULL, 9, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 8, 'COMI', 1, 11, 1, NULL, NULL, 'JUAN JUAN', NULL, 3, NULL, NULL, '2', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(36, '2019-06-12 19:14:12', '2019-06-12 19:14:12', 'CASO PRUEBA', NULL, 13, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 9, 'Se desconoce', 2, 15, 1, NULL, NULL, 'PEDRO', NULL, 3, NULL, NULL, '2', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(37, '2019-06-12 23:19:50', '2019-06-12 23:19:50', 'CASO PERSONAS ASISTIDAS', NULL, 7, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 11, 'COMI', 2, 18, 1, NULL, NULL, 'JOSE PEDRASA', NULL, 3, NULL, NULL, '2', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(38, '2019-06-13 04:38:05', '2019-06-13 04:38:05', 'CASO PERSONAS', NULL, 12, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 14, 'Se desconoce', 2, 18, 1, NULL, NULL, 'JUAN MOREIRA', NULL, 3, NULL, NULL, '2', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(39, '2019-06-13 13:46:28', '2019-06-13 13:46:28', 'PRUEBA VINCULOS', NULL, 11, NULL, 'BREVE', '2019-06-13', 1, 0, NULL, 12, 'Se desconoce', 2, 14, 1, NULL, NULL, 'JORGE MARIO', NULL, 3, NULL, NULL, '2', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(40, '2019-06-14 14:09:54', '2019-06-14 14:09:54', 'PRUEBA IMPUTADO', NULL, 8, NULL, 'BREVE', '2019-06-14', 2, 0, NULL, 4, 'Se desconoce', 1, 6, 1, NULL, NULL, 'JOSE JUAN', NULL, 3, NULL, NULL, '2', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1);
 
 -- --------------------------------------------------------
 
@@ -4281,7 +4329,7 @@ CREATE TABLE `convivientes` (
   `nombre_y_apellido` varchar(100) DEFAULT NULL,
   `edad` int(22) DEFAULT NULL,
   `vinculo_victima` int(11) DEFAULT NULL,
-  `vinculo_otro` varchar(60) DEFAULT NULL,
+  `vinculo_otro` varchar(60) DEFAULT '0',
   `niveleducativo_id` int(11) DEFAULT NULL,
   `condiciones_de_trabajo` int(11) DEFAULT NULL,
   `idCaso` int(11) DEFAULT NULL,
@@ -4320,7 +4368,29 @@ INSERT INTO `convivientes` (`id`, `nombre_y_apellido`, `edad`, `vinculo_victima`
 (20, 'ANALIA PAZ', 0, 2, NULL, 1, 2, 14, 34, '2019-05-07 03:00:07', 1, '2019-05-07 03:00:07', NULL, NULL),
 (21, 'MARIO LUIS', 33, 1, NULL, 5, 2, 14, 35, '2019-05-07 03:08:53', 1, '2019-05-07 03:08:53', NULL, NULL),
 (22, 'SERGIO RAMOS PEREZ', 20, 2, NULL, 6, 3, 14, 34, '2019-05-07 03:57:54', 1, '2019-05-07 03:59:27', 1, NULL),
-(23, 'EMILIO JUAREZ', 28, 4, NULL, 3, 2, 15, 37, '2019-05-16 19:25:34', 1, '2019-05-16 19:25:34', NULL, NULL);
+(23, 'EMILIO JUAREZ', 28, 4, NULL, 3, 2, 15, 37, '2019-05-16 19:25:34', 1, '2019-05-16 19:25:34', NULL, NULL),
+(24, 'ARMANDO', 33, 2, NULL, 2, 2, 24, 39, '2019-05-31 04:38:54', 114, '2019-05-31 04:38:54', NULL, NULL),
+(25, 'PABLO LUIS', 30, 2, NULL, 2, 3, 28, 41, '2019-06-02 16:42:39', 114, '2019-06-02 16:42:39', NULL, NULL),
+(26, 'LORENA TAURO', 20, 1, NULL, 1, 1, 28, 41, '2019-06-02 16:43:04', 114, '2019-06-02 16:43:04', NULL, NULL),
+(27, 'LORENA SIMON', 18, 1, NULL, 2, 2, 28, 42, '2019-06-02 16:49:30', 114, '2019-06-02 16:49:30', NULL, NULL),
+(28, 'REFERENTE AGREGADO', 45, 2, NULL, 3, 1, 28, 43, '2019-06-02 16:54:00', 114, '2019-06-02 16:54:00', NULL, NULL),
+(29, 'RAUL LOPEZ', 33, 2, NULL, 1, 1, 29, 45, '2019-06-03 18:43:35', 114, '2019-06-14 04:28:23', 114, NULL),
+(30, 'MARTA SANCHEZ', 45, 6, 'OTRO VINCULO', 5, 2, 29, 45, '2019-06-03 18:44:04', 114, '2019-06-14 04:28:49', 114, NULL),
+(31, 'JORGE ROJAS', 33, 3, NULL, 3, 1, 32, 47, '2019-06-11 19:59:09', 114, '2019-06-12 05:17:39', 114, NULL),
+(32, 'MARIELA RAMOS', 20, 5, NULL, 2, 2, 32, 47, '2019-06-11 19:59:31', 114, '2019-06-12 03:28:04', 114, NULL),
+(33, 'MATIAS SOLER', 33, 6, 'ex pareja', 5, 1, 32, 48, '2019-06-11 23:32:11', 114, '2019-06-12 03:29:46', 114, NULL),
+(34, 'ESTEBAN LOPEZ', 30, 5, NULL, 2, 2, 32, 48, '2019-06-11 23:33:03', 114, '2019-06-12 03:01:21', 114, NULL),
+(35, 'JOSE LEON SUAREZ', 33, 2, NULL, 2, 2, 32, 48, '2019-06-12 00:59:44', 114, '2019-06-12 03:26:21', 114, NULL),
+(36, 'JOSE PEREZ', 20, 6, 'CONOCIDO OCACIONAL', 4, 2, 33, 50, '2019-06-12 14:01:10', 114, '2019-06-12 14:09:32', 114, NULL),
+(37, 'PEDRO LLANOS', 20, 5, NULL, 1, 1, 33, 52, '2019-06-12 14:06:33', 114, '2019-06-12 14:06:59', 114, NULL),
+(45, 'LUIS AVELLANEDA', 30, 4, NULL, 4, 2, 36, 57, '2019-06-12 19:36:12', 114, '2019-06-12 19:36:21', 114, NULL),
+(46, 'LUIS PEREZ', 23, 6, 'OTRO', 4, 3, 37, 58, '2019-06-13 00:11:56', 114, '2019-06-13 03:58:52', 114, NULL),
+(47, 'JOSE LUIS', 30, 6, 'OTRO JOSE LUIS', 2, 2, 38, 62, '2019-06-13 05:20:23', 114, '2019-06-13 05:26:10', 114, NULL),
+(48, 'PABLO LUIS', 20, 5, NULL, 2, 2, 39, 64, '2019-06-13 13:50:02', 114, '2019-06-13 19:17:46', 114, NULL),
+(49, 'CARLOS SALAS', 20, 6, 'CARLOS SALAS', 2, 2, 39, 64, '2019-06-13 13:50:48', 114, '2019-06-13 19:12:32', 114, NULL),
+(50, 'JUAN SOLAS', 33, 2, NULL, 2, 1, 29, 45, '2019-06-14 04:04:15', 114, '2019-06-14 04:04:15', NULL, NULL),
+(51, 'NUEVO REFERENTE', 40, 2, NULL, 6, 3, 29, 45, '2019-06-14 04:09:44', 114, '2019-06-14 04:09:44', NULL, NULL),
+(52, 'NORMA SERRANO', 33, 4, NULL, 3, 2, 40, 66, '2019-06-14 14:11:57', 114, '2019-06-14 14:15:16', 114, NULL);
 
 -- --------------------------------------------------------
 
@@ -4338,43 +4408,43 @@ CREATE TABLE `delitos` (
 --
 
 INSERT INTO `delitos` (`id`, `nombre`) VALUES
-(38, ' Abandono de persona'),
-(39, ' Abuso sexual'),
-(40, ' Abuso sexual seguido de muerte'),
-(41, ' Acoso sexual'),
-(42, ' Amenazas'),
-(43, ' Averiguación de causales de muerte'),
-(44, ' Bullying'),
-(45, ' Catástrofes naturales'),
-(46, ' Desaparición de personas'),
-(47, ' Femicidio'),
-(48, ' Femicidio indirecto'),
-(49, ' Grooming'),
-(50, ' Homicidio '),
-(51, ' Instigación o ayuda al suicidio'),
-(52, ' Lesiones '),
-(53, ' Pornografía de menores'),
-(54, ' Privación ilegal de la libertad '),
-(55, ' Promoción y facilitación de corrupción de menores'),
-(56, ' Promoción y facilitación de prostitución de mayores'),
-(57, ' Promoción y facilitación de prostitución de menores'),
-(58, ' Reducción a la servidumbre'),
-(59, ' Robo agravado'),
-(60, ' Robo seguido de muerte (criminis causa, art. 80 inc. 7)'),
-(61, ' Secuestro'),
-(62, ' Secuestro seguido de muerte'),
-(63, ' Siniestro vial'),
-(64, ' Suicidio '),
-(65, ' Tentativa de homicidio'),
-(66, ' Tentativa de suicidio'),
-(67, ' Tortura'),
-(68, ' Usurpación'),
-(69, ' Violencia de género'),
-(70, ' Violencia en espectáculos deportivos '),
-(71, ' Violencia institucional'),
-(72, ' Violencia familiar'),
-(73, ' Otro'),
-(74, ' Abuso sexual infantil');
+(1, ' Abandono de persona'),
+(2, ' Abuso sexual'),
+(3, ' Abuso sexual seguido de muerte'),
+(4, ' Acoso sexual'),
+(5, ' Amenazas'),
+(6, ' Averiguación de causales de muerte'),
+(7, ' Bullying'),
+(8, ' Catástrofes naturales'),
+(9, ' Desaparición de personas'),
+(10, ' Femicidio'),
+(11, ' Femicidio indirecto'),
+(12, ' Grooming'),
+(13, ' Homicidio '),
+(14, ' Instigación o ayuda al suicidio'),
+(15, ' Lesiones '),
+(16, ' Pornografía de menores'),
+(17, ' Privación ilegal de la libertad '),
+(18, ' Promoción y facilitación de corrupción de menores'),
+(19, ' Promoción y facilitación de prostitución de mayores'),
+(20, ' Promoción y facilitación de prostitución de menores'),
+(21, ' Reducción a la servidumbre'),
+(22, ' Robo agravado'),
+(23, ' Robo seguido de muerte (criminis causa, art. 80 inc. 7)'),
+(24, ' Secuestro'),
+(25, ' Secuestro seguido de muerte'),
+(26, ' Siniestro vial'),
+(27, ' Suicidio '),
+(28, ' Tentativa de homicidio'),
+(29, ' Tentativa de suicidio'),
+(30, ' Tortura'),
+(31, ' Usurpación'),
+(32, ' Violencia de género'),
+(33, ' Violencia en espectáculos deportivos '),
+(34, ' Violencia institucional'),
+(35, ' Violencia familiar'),
+(36, ' Otro'),
+(37, ' Abuso sexual infantil');
 
 -- --------------------------------------------------------
 
@@ -4533,7 +4603,9 @@ INSERT INTO `documentos` (`id`, `tipo_documento`, `nombre_documento`, `archivo`,
 (50, '2', 'NOTAS', 'V7updOYrQtRNN1ISa6g5lQkHdp0NXNav3cRY1tDw.png', 11, 1, '2019-05-06 01:51:49', NULL, '2019-05-06 01:51:49', NULL),
 (51, '3', 'DOC', 'L0nUJwgIg9zJTKKpdLwXeRFeC2LnxU8IcRBQvz2q.png', 13, 1, '2019-05-06 05:20:50', NULL, '2019-05-06 05:20:50', NULL),
 (52, '3', 'NOTAS', 'Nt9GB6QEO23RUxHswKHCUbULKSj2h0cLzRHHDEpM.docx', 14, 1, '2019-05-07 03:15:45', NULL, '2019-05-07 03:15:45', NULL),
-(53, '3', 'DOCUMENTO', 'xkeh1JvX8vbiKYVE2TA3a3QEeSWyMkjWSKY63AZd.png', 15, 1, '2019-05-16 19:37:15', NULL, '2019-05-16 19:37:15', NULL);
+(53, '3', 'DOCUMENTO', 'xkeh1JvX8vbiKYVE2TA3a3QEeSWyMkjWSKY63AZd.png', 15, 1, '2019-05-16 19:37:15', NULL, '2019-05-16 19:37:15', NULL),
+(56, '3', 'NOTAS DOC', 'paucVao1siwxu1RQVFCJTp2tQiX5SyPKJFzRImEo.docx', 28, 114, '2019-06-02 17:26:56', NULL, '2019-06-02 17:26:56', NULL),
+(57, '1', 'NOTAS DOC', 'KoJK8ehSM6CL2jhFNfBZkhx1HQ1ApHKaiJCdxgcl.docx', 29, 114, '2019-06-03 19:02:22', NULL, '2019-06-03 19:02:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -4569,7 +4641,7 @@ CREATE TABLE `imputados` (
   `tipo_documento_id` varchar(11) DEFAULT NULL,
   `tipo_documento_otro` varchar(50) DEFAULT NULL,
   `documento_nro` int(11) DEFAULT NULL,
-  `vinculo_id` int(11) DEFAULT NULL,
+  `vinculo_victima` int(11) DEFAULT NULL,
   `vinculo_otro` varchar(100) DEFAULT NULL,
   `caratulacion_judicial` varchar(100) DEFAULT NULL,
   `antecedentes_id` int(11) DEFAULT NULL,
@@ -4593,7 +4665,7 @@ CREATE TABLE `imputados` (
 -- Volcado de datos para la tabla `imputados`
 --
 
-INSERT INTO `imputados` (`id`, `nombre_y_apellido`, `apodo`, `tipo_documento_id`, `tipo_documento_otro`, `documento_nro`, `vinculo_id`, `vinculo_otro`, `caratulacion_judicial`, `antecedentes_id`, `antecedentes`, `detenido`, `lugar_de_alojamiento`, `defensor_particular`, `defensoria_nro`, `fiscalia_juzgado`, `causa_id_judicial`, `idCaso`, `idVictim`, `userID_create`, `created_at`, `userID_modify`, `updated_at`, `activo`) VALUES
+INSERT INTO `imputados` (`id`, `nombre_y_apellido`, `apodo`, `tipo_documento_id`, `tipo_documento_otro`, `documento_nro`, `vinculo_victima`, `vinculo_otro`, `caratulacion_judicial`, `antecedentes_id`, `antecedentes`, `detenido`, `lugar_de_alojamiento`, `defensor_particular`, `defensoria_nro`, `fiscalia_juzgado`, `causa_id_judicial`, `idCaso`, `idVictim`, `userID_create`, `created_at`, `userID_modify`, `updated_at`, `activo`) VALUES
 (1, 'JOSE SANTOS', 'Se desconoce', '3', NULL, 0, NULL, NULL, 'CARAT', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCALIA', 123456, 5, 12, 1, '2019-05-03 04:25:23', NULL, '2019-05-03 04:25:23', NULL),
 (2, 'SILVIO RODRIGUEZ', 'Se desconoce', '2', NULL, 0, NULL, NULL, 'CARAT', 2, NULL, 3, NULL, 2, '123456', 'FISCAL', 456789, 5, 17, 1, '2019-05-03 04:44:06', NULL, '2019-05-03 04:44:06', NULL),
 (5, 'SANTIAGO GARCIA LORENZO', 'Se desconoce', NULL, NULL, 0, NULL, NULL, 'CARAT', 3, NULL, 2, NULL, 2, '123456', 'FISCALIA', 456789, 5, 14, 1, '2019-05-03 05:23:22', NULL, '2019-05-03 05:36:36', NULL),
@@ -4613,7 +4685,20 @@ INSERT INTO `imputados` (`id`, `nombre_y_apellido`, `apodo`, `tipo_documento_id`
 (19, 'JUAN RAMOS', 'Se desconoce', '8', NULL, 0, NULL, NULL, 'CARAT', 3, NULL, 3, NULL, 3, 'Se desconoce', 'FISCALIA', 123456, 14, 34, 1, '2019-05-07 03:03:53', NULL, '2019-05-07 03:03:53', NULL),
 (20, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 14, 34, 1, '2019-05-07 04:12:40', NULL, '2019-05-07 04:12:40', NULL),
 (21, 'JORGE LUIS', 'Se desconoce', NULL, NULL, NULL, 2, NULL, 'CARATA', 2, NULL, 2, NULL, 1, NULL, 'FISCALIA', 4564565, 14, 34, 1, '2019-05-07 05:35:59', NULL, '2019-05-07 05:43:39', NULL),
-(22, 'DIEGO TORRES', 'Se desconoce', '1', NULL, 0, 2, NULL, 'CARAT', 2, NULL, 2, NULL, 1, 'Se desconoce', 'FISCALIA', 123456, 15, 37, 1, '2019-05-16 19:29:51', NULL, '2019-05-16 19:29:51', NULL);
+(22, 'DIEGO TORRES', 'Se desconoce', '1', NULL, 0, 2, NULL, 'CARAT', 2, NULL, 2, NULL, 1, 'Se desconoce', 'FISCALIA', 123456, 15, 37, 1, '2019-05-16 19:29:51', NULL, '2019-05-16 19:29:51', NULL),
+(23, 'ROBERTO PEREZ', 'PEPE', '1', NULL, 0, NULL, NULL, 'CARAT', 2, NULL, 2, NULL, 2, '125632', 'FISCALIA', 123456, 24, 39, 114, '2019-05-31 04:40:01', NULL, '2019-05-31 04:40:01', NULL),
+(24, 'RAMON JUAREZ', 'Se desconoce', '5', NULL, 253125563, NULL, NULL, 'CARATULACION', 2, NULL, 2, NULL, 2, '1231231', 'FISCALIA', 45642313, 28, 41, 114, '2019-06-02 16:44:19', NULL, '2019-06-02 16:44:19', NULL),
+(25, 'JUAN LUIS', 'Se desconoce', NULL, NULL, NULL, 2, NULL, 'CARAT/CAR', 2, NULL, 2, NULL, 1, 'N°233 LA PLATA', 'LA#PLATA', 1231323, 29, 45, 114, '2019-06-03 18:50:35', NULL, '2019-06-14 04:15:52', NULL),
+(26, 'RAUL ROSALES', 'Se desconoce', '2', NULL, 0, NULL, NULL, 'CARATULACION', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCALIA', 1235, 32, 47, 114, '2019-06-11 20:00:48', NULL, '2019-06-11 20:00:48', NULL),
+(27, 'JUAN MOLINA', 'PEPE', '4', NULL, 0, NULL, NULL, 'CARAT', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCALIA', 123456, 33, 49, 114, '2019-06-12 13:58:01', NULL, '2019-06-12 13:58:01', NULL),
+(28, 'LUIS RAMOS', 'Se desconoce', '2', NULL, 0, NULL, NULL, 'CARAT', 2, NULL, 2, NULL, 2, '123221231', 'FISCALIA', 45654546, 35, 54, 114, '2019-06-12 16:48:53', NULL, '2019-06-12 16:48:53', NULL),
+(29, 'JORGE PEDRO', 'Se desconoce', '2', NULL, 0, NULL, NULL, 'CARART', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCALIA', 123213, 35, 54, 114, '2019-06-12 16:50:35', NULL, '2019-06-12 16:50:35', NULL),
+(30, 'ESTEBAN LUIS', 'Se desconoce', '2', NULL, 0, NULL, NULL, 'CARAT', 2, NULL, 2, NULL, 3, 'Se desconoce', 'FISCAL', 123456, 36, 56, 114, '2019-06-12 19:17:31', NULL, '2019-06-12 19:17:31', NULL),
+(31, 'JORGE RAUL', 'Se desconoce', '3', NULL, 0, NULL, NULL, 'CARAT', 3, NULL, 3, NULL, 1, '213123213', '2131123123', 123212332, 37, 58, 114, '2019-06-13 00:12:52', NULL, '2019-06-13 00:12:52', NULL),
+(32, 'JOSE FLORES', 'Se desconoce', NULL, NULL, NULL, 1, NULL, 'CARAT', 2, NULL, 2, NULL, 3, 'Se desconoce', '12131321312321', 123131, 38, 60, 114, '2019-06-13 04:41:45', NULL, '2019-06-13 05:22:21', NULL),
+(33, 'MARITO', 'Se desconoce', NULL, NULL, NULL, NULL, NULL, 'CARAT', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCALIA', 123456545, 38, 63, 114, '2019-06-13 05:27:43', NULL, '2019-06-13 05:53:49', NULL),
+(34, 'PEDRO WALTER', 'Se desconoce', NULL, NULL, NULL, 3, NULL, 'CARAT', 2, NULL, 2, NULL, 2, 'Se desconoce', '1231313', 2131213, NULL, 64, 114, '2019-06-13 13:52:06', NULL, '2019-06-14 03:36:57', NULL),
+(35, 'RAMON JUAREZ', 'Se desconoce', NULL, NULL, NULL, 4, NULL, 'CARAT', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCAL', 123123, 40, 66, 114, '2019-06-14 14:13:48', NULL, '2019-06-14 16:29:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -4626,18 +4711,15 @@ CREATE TABLE `instituciones` (
   `organismos_intervinieron` int(11) DEFAULT NULL,
   `cual_otro_organismo` varchar(100) DEFAULT NULL,
   `requiere_asistencia` int(11) DEFAULT NULL,
-  `asistencia_juridica` int(11) DEFAULT NULL,
-  `asistencia_psicologica` int(11) DEFAULT NULL,
-  `asistencia_socioeconomica` int(11) DEFAULT NULL,
   `socioeconomica_otro` varchar(255) DEFAULT NULL,
   `organismo_articula_si_no` int(11) DEFAULT NULL,
   `organismos_actual_otro` varchar(100) DEFAULT NULL,
   `pratocinio_gratuito` int(11) DEFAULT NULL,
-  `fecha_de_solicitud` varchar(30) DEFAULT NULL,
+  `fecha_de_solicitud` datetime DEFAULT NULL,
   `letrado_designado` varchar(100) DEFAULT NULL,
   `pratocinio_conformidad` int(11) DEFAULT NULL,
   `colegio_departamental` int(11) DEFAULT NULL,
-  `fecha_designacion` varchar(20) DEFAULT NULL,
+  `fecha_designacion` datetime DEFAULT NULL,
   `abogado_particular` varchar(255) DEFAULT NULL,
   `idCaso` int(11) DEFAULT NULL,
   `userID_create` int(11) DEFAULT NULL,
@@ -4650,17 +4732,33 @@ CREATE TABLE `instituciones` (
 -- Volcado de datos para la tabla `instituciones`
 --
 
-INSERT INTO `instituciones` (`id`, `organismos_intervinieron`, `cual_otro_organismo`, `requiere_asistencia`, `asistencia_juridica`, `asistencia_psicologica`, `asistencia_socioeconomica`, `socioeconomica_otro`, `organismo_articula_si_no`, `organismos_actual_otro`, `pratocinio_gratuito`, `fecha_de_solicitud`, `letrado_designado`, `pratocinio_conformidad`, `colegio_departamental`, `fecha_designacion`, `abogado_particular`, `idCaso`, `userID_create`, `created_at`, `userID_modify`, `updated_at`) VALUES
-(1, 1, NULL, 2, 0, 0, 0, NULL, 2, NULL, 4, NULL, NULL, NULL, NULL, NULL, '2', 3, 1, '2019-05-02 19:49:11', NULL, '2019-05-02 19:49:11'),
-(2, 1, NULL, 1, 1, 0, 1, NULL, 1, NULL, 1, '1999-05-02', NULL, NULL, NULL, NULL, '2', 4, 1, '2019-05-02 22:55:38', NULL, '2019-05-02 22:55:38'),
-(3, 1, NULL, 2, NULL, NULL, NULL, NULL, 1, NULL, 4, NULL, NULL, NULL, NULL, NULL, '2', 5, 1, '2019-05-03 04:54:20', 1, '2019-05-03 05:00:10'),
-(4, 1, NULL, 2, 0, 0, 0, NULL, 2, NULL, 4, NULL, NULL, NULL, NULL, NULL, '2', 6, 1, '2019-05-03 06:43:14', NULL, '2019-05-03 06:43:14'),
-(5, 1, NULL, 2, 0, 0, 0, NULL, 2, NULL, 4, NULL, NULL, NULL, NULL, NULL, '2', 8, 1, '2019-05-03 22:23:03', NULL, '2019-05-03 22:23:03'),
-(6, 1, NULL, 1, 1, 0, 1, 'OTRA SOCIOECONOMICA', 1, 'OTRO ORGANISMO', 1, '2018-03-02', NULL, NULL, NULL, NULL, '2', 9, 1, '2019-05-04 02:37:16', NULL, '2019-05-04 02:37:16'),
-(7, 1, NULL, 1, 1, 0, 0, NULL, 2, NULL, 4, NULL, NULL, NULL, NULL, NULL, '2', 11, 1, '2019-05-05 17:44:39', NULL, '2019-05-05 17:44:39'),
-(8, 1, NULL, 2, NULL, NULL, NULL, NULL, 1, NULL, 1, '2019-05-01', NULL, NULL, NULL, NULL, '2', 13, 1, '2019-05-06 05:20:34', 1, '2019-05-06 05:31:03'),
-(9, 1, 'OTRO ORGANISMO', 1, 1, 0, 1, 'OTRA SOCIO', 1, 'OTRO ORG', 1, '2019-05-01', NULL, NULL, NULL, NULL, '2', 14, 1, '2019-05-07 03:15:28', NULL, '2019-05-07 03:15:28'),
-(10, 2, NULL, 2, 0, 0, 0, NULL, 2, NULL, 4, NULL, NULL, NULL, NULL, NULL, '2', 16, 1, '2019-05-09 21:23:16', NULL, '2019-05-09 21:23:16');
+INSERT INTO `instituciones` (`id`, `organismos_intervinieron`, `cual_otro_organismo`, `requiere_asistencia`, `socioeconomica_otro`, `organismo_articula_si_no`, `organismos_actual_otro`, `pratocinio_gratuito`, `fecha_de_solicitud`, `letrado_designado`, `pratocinio_conformidad`, `colegio_departamental`, `fecha_designacion`, `abogado_particular`, `idCaso`, `userID_create`, `created_at`, `userID_modify`, `updated_at`) VALUES
+(1, 1, 'OPREVIOS', 1, 'SOCIO', 1, 'OARTICULA', 0, NULL, NULL, NULL, NULL, NULL, '1', 29, 114, '2019-06-07 04:55:14', NULL, '2019-06-07 04:55:14'),
+(2, 1, 'OTRO ORG', 1, 'OTRA', 1, 'OTRO', 0, NULL, NULL, NULL, NULL, NULL, '1', NULL, 114, '2019-06-08 04:08:52', NULL, '2019-06-08 04:08:52'),
+(3, 2, NULL, 2, NULL, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL, '1', NULL, 114, '2019-06-09 00:45:07', NULL, '2019-06-09 00:45:07'),
+(4, 2, NULL, 2, NULL, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL, '0', NULL, 114, '2019-06-09 16:05:29', NULL, '2019-06-09 16:05:29');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `institucion_asistencia`
+--
+
+CREATE TABLE `institucion_asistencia` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `institucion_id` int(11) DEFAULT NULL,
+  `asistencia_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `institucion_asistencia`
+--
+
+INSERT INTO `institucion_asistencia` (`id`, `institucion_id`, `asistencia_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -4679,17 +4777,14 @@ CREATE TABLE `institucion_oarticula` (
 --
 
 INSERT INTO `institucion_oarticula` (`id`, `institucion_id`, `oarticula_id`) VALUES
-(1, 2, 1),
-(2, 2, 2),
-(3, 2, 18),
-(4, 2, 19),
-(5, 3, 1),
-(6, 3, 2),
-(7, 6, 1),
-(8, 6, 2),
-(9, 6, 24),
-(16, 8, 3),
-(17, 9, 24);
+(1, 1, 5),
+(2, 1, 6),
+(3, 1, 7),
+(4, 1, 24),
+(5, 2, 1),
+(6, 2, 2),
+(7, 2, 24),
+(8, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -4708,22 +4803,14 @@ CREATE TABLE `institucion_oprevio` (
 --
 
 INSERT INTO `institucion_oprevio` (`id`, `institucion_id`, `oprevio_id`) VALUES
-(1, 1, 3),
-(2, 1, 4),
-(3, 2, 1),
-(4, 2, 2),
-(7, 3, 3),
-(8, 4, 4),
-(9, 4, 5),
-(10, 5, 2),
-(11, 5, 3),
-(12, 6, 1),
-(13, 6, 2),
-(14, 7, 1),
-(15, 7, 2),
-(20, 8, 3),
-(21, 9, 23),
-(22, 9, 24);
+(1, 1, 5),
+(2, 1, 6),
+(3, 1, 7),
+(4, 1, 24),
+(5, 2, 2),
+(6, 2, 3),
+(7, 2, 4),
+(8, 2, 24);
 
 -- --------------------------------------------------------
 
@@ -4742,12 +4829,12 @@ CREATE TABLE `institucion_socioeconomico` (
 --
 
 INSERT INTO `institucion_socioeconomico` (`id`, `institucion_id`, `socioeconomico_id`) VALUES
-(1, 2, 1),
-(2, 2, 2),
-(5, 6, 1),
-(6, 6, 6),
-(7, 9, 1),
-(8, 9, 6);
+(1, 1, 3),
+(2, 1, 4),
+(3, 1, 6),
+(4, 2, 1),
+(5, 2, 2),
+(6, 2, 6);
 
 -- --------------------------------------------------------
 
@@ -4782,7 +4869,25 @@ INSERT INTO `intervenciones` (`id`, `fecha_intervencion`, `campo_reservado`, `de
 (13, '2019-05-01', NULL, 'SEGUNDA INTERVECNION', 6, 1, '2019-05-08 17:36:53', NULL, '2019-05-08 17:36:53', NULL),
 (14, '2019-05-08', NULL, 'TERCERA INTERVENCION@', 6, 1, '2019-05-08 17:50:21', NULL, '2019-05-08 17:50:21', NULL),
 (18, '2019-05-01', NULL, 'NUEVA INTERVENCION AGREGADA', 5, 1, '2019-05-09 21:01:33', NULL, '2019-05-09 21:01:33', NULL),
-(20, '2019-05-23', NULL, 'NUEVA INTERVENCION', 8, 2, '2019-05-24 03:36:39', NULL, '2019-05-24 03:36:39', NULL);
+(20, '2019-05-23', NULL, 'NUEVA INTERVENCION', 8, 2, '2019-05-24 03:36:39', NULL, '2019-05-24 03:36:39', NULL),
+(22, '2019-06-01', NULL, 'INTERVINO EL PSICOLOGO', 28, 114, '2019-06-02 17:01:43', NULL, '2019-06-02 17:01:43', NULL),
+(24, '2019-06-01', NULL, 'hoy', 28, 114, '2019-06-03 13:56:23', NULL, '2019-06-03 13:56:23', NULL),
+(36, '2019-06-11', NULL, 'nueva', 29, 114, '2019-06-11 17:47:22', NULL, '2019-06-11 17:47:22', NULL),
+(40, '2019-06-11', NULL, 'prueba 2', 29, 114, '2019-06-11 17:53:23', NULL, '2019-06-11 17:53:23', NULL),
+(41, '2019-06-11', NULL, 'nueva prueba', 29, 114, '2019-06-11 17:54:23', NULL, '2019-06-11 17:54:23', NULL),
+(42, '2019-06-11', NULL, 'PRUEBA', 29, 114, '2019-06-11 17:58:31', NULL, '2019-06-11 17:58:31', NULL),
+(43, '2019-06-11', NULL, 'PRUEBA PRUEBA', 29, 114, '2019-06-11 18:09:44', NULL, '2019-06-11 18:09:44', NULL),
+(44, '2019-06-11', NULL, 'PPPPP', 29, 114, '2019-06-11 18:10:27', NULL, '2019-06-11 18:10:27', NULL),
+(45, '2019-06-11', NULL, 'MMMMMMMMM', 29, 114, '2019-06-11 18:11:27', NULL, '2019-06-11 18:11:27', NULL),
+(46, '2019-06-11', NULL, 'QQQQQQQQQQQQ', 30, 114, '2019-06-11 18:12:37', NULL, '2019-06-11 18:12:37', NULL),
+(47, '2019-06-11', NULL, 'QQQQQQQQQQ', 29, 114, '2019-06-11 18:13:29', NULL, '2019-06-11 18:13:29', NULL),
+(48, '2019-06-11', NULL, 'RRRRRRR', 29, 114, '2019-06-11 18:41:06', NULL, '2019-06-11 18:41:06', NULL),
+(49, '2019-06-06', NULL, 'SSSSSSSSSSSSSSSSSS', 29, 114, '2019-06-11 18:42:25', NULL, '2019-06-11 18:42:25', NULL),
+(50, '2019-06-11', NULL, 'TTTTTTTTTTTT', 29, 114, '2019-06-11 18:43:21', NULL, '2019-06-11 18:43:21', NULL),
+(51, '2019-06-11', NULL, 'caso', 29, 114, '2019-06-11 18:51:29', NULL, '2019-06-11 18:51:29', NULL),
+(52, '2019-06-11', NULL, 'caso2', 29, 114, '2019-06-11 18:52:11', NULL, '2019-06-11 18:52:11', NULL),
+(53, '2019-06-11', NULL, 'pruebaaaaaaaaaaaaaaaa', 29, 114, '2019-06-11 18:58:56', NULL, '2019-06-11 18:58:56', NULL),
+(54, '2019-06-11', NULL, 'SIIIIIIIIII', 29, 114, '2019-06-11 19:25:24', NULL, '2019-06-11 19:25:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -5066,7 +5171,7 @@ CREATE TABLE `password_resets` (
 --
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
-('xul27@hotmail.com', '$2y$10$PxhuZa8S/.VNPnyQ13IRmuhdvKKXmVhZCD9eswqiSO812QE7jr5ba', '2019-05-26 21:09:57');
+('xul27@hotmail.com', '$2y$10$64BJSLT4Yla5Lh9r83Yj/.DXU5wAVMElwup5UyNEM2/xkQZtG2ZCi', '2019-06-03 19:20:58');
 
 -- --------------------------------------------------------
 
@@ -5077,8 +5182,8 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 CREATE TABLE `personas` (
   `id` int(10) UNSIGNED NOT NULL,
   `nombre_persona_asistida` varchar(255) DEFAULT NULL,
-  `vinculo_persona_asistida` int(11) DEFAULT NULL,
-  `otro_vinculo_persona_asistida_cual` varchar(255) DEFAULT NULL,
+  `vinculo_victima` int(11) DEFAULT NULL,
+  `vinculo_otro` varchar(255) DEFAULT NULL,
   `telefono_persona_asistida` varchar(30) DEFAULT NULL,
   `domicilio_persona_asistida` varchar(255) DEFAULT NULL,
   `localidad_persona_asistida` varchar(255) DEFAULT NULL,
@@ -5095,7 +5200,7 @@ CREATE TABLE `personas` (
 -- Volcado de datos para la tabla `personas`
 --
 
-INSERT INTO `personas` (`id`, `nombre_persona_asistida`, `vinculo_persona_asistida`, `otro_vinculo_persona_asistida_cual`, `telefono_persona_asistida`, `domicilio_persona_asistida`, `localidad_persona_asistida`, `idCaso`, `idVictim`, `userID_create`, `created_at`, `userID_modify`, `updated_at`, `activo`) VALUES
+INSERT INTO `personas` (`id`, `nombre_persona_asistida`, `vinculo_victima`, `vinculo_otro`, `telefono_persona_asistida`, `domicilio_persona_asistida`, `localidad_persona_asistida`, `idCaso`, `idVictim`, `userID_create`, `created_at`, `userID_modify`, `updated_at`, `activo`) VALUES
 (5, 'SONIA LOPEZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 4, 4, 1, '2019-05-02 23:18:25', NULL, '2019-05-02 23:18:25', NULL),
 (6, 'ESTEBAN LLANOS', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 4, 4, 1, '2019-05-02 23:18:52', NULL, '2019-05-02 23:18:52', NULL),
 (7, 'PERSONA ASISTIDA1', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 4, 9, 1, '2019-05-03 01:05:51', NULL, '2019-05-03 01:05:51', NULL),
@@ -5107,7 +5212,7 @@ INSERT INTO `personas` (`id`, `nombre_persona_asistida`, `vinculo_persona_asisti
 (15, 'RAUL MORAN', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 6, 19, 1, '2019-05-03 06:42:32', NULL, '2019-05-03 06:42:32', NULL),
 (16, 'RAQUEL', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 6, 19, 1, '2019-05-03 06:46:11', NULL, '2019-05-03 06:46:11', NULL),
 (17, 'NUEVA PERSONA', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:13:50', NULL, '2019-05-03 16:13:50', NULL),
-(18, 'NORMA SERRANO', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:28:33', NULL, '2019-05-03 16:28:33', NULL),
+(18, 'NORMA SERRANO', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 29, NULL, NULL, '2019-05-03 16:28:33', 114, '2019-06-14 03:58:48', NULL),
 (19, 'LIDIA SERRANO', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:31:10', NULL, '2019-05-03 16:31:10', NULL),
 (20, 'JOAQUIN SERRANO', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:32:27', NULL, '2019-05-03 16:32:27', NULL),
 (21, 'NUEVA PERSONA', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:40:51', NULL, '2019-05-03 16:40:51', NULL),
@@ -5152,7 +5257,30 @@ INSERT INTO `personas` (`id`, `nombre_persona_asistida`, `vinculo_persona_asisti
 (60, 'JEREMIAS ROJO', 4, 'OTRO VINCULO', '0', 'Se desconoce', 'Se desconoce', 14, 35, 1, '2019-05-07 03:07:52', NULL, '2019-05-07 03:07:52', NULL),
 (61, 'MARIO LOPEZ', 4, 'OTRO VINCULO', '45698789', 'MITRE Y DRAGO', 'TRES LOMAS', 14, 34, 1, '2019-05-07 03:37:24', NULL, '2019-05-07 03:37:24', NULL),
 (62, 'JORGE PEREZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 16, 38, 1, '2019-05-09 21:22:05', NULL, '2019-05-09 21:22:05', NULL),
-(63, 'NATALIA BUENO', 1, NULL, '451231223', 'Se desconoce', 'Se desconoce', 15, 37, NULL, '2019-05-16 19:02:21', 1, '2019-05-16 19:02:44', NULL);
+(63, 'NATALIA BUENO', 1, NULL, '451231223', 'Se desconoce', 'Se desconoce', 15, 37, NULL, '2019-05-16 19:02:21', 1, '2019-05-16 19:02:44', NULL),
+(64, 'JOSE FLORES', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 24, 39, 114, '2019-05-31 04:38:19', NULL, '2019-05-31 04:38:19', NULL),
+(65, 'JOSE PEREZ', 1, NULL, '21455266', 'DRAGO Y NUEVE DE JULIO', 'LANUS', 28, 41, NULL, '2019-06-02 16:40:37', 114, '2019-06-02 17:14:48', NULL),
+(66, 'JOSEFINA PEREZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 28, 41, NULL, '2019-06-02 16:40:57', 114, '2019-06-02 17:15:02', NULL),
+(67, 'ISMAEL ISAC', 4, 'OTRO VINCULO', '0', 'Se desconoce', 'Se desconoce', 28, 41, 114, '2019-06-02 16:41:34', NULL, '2019-06-02 16:41:34', NULL),
+(68, 'MARCOS SIMON', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 28, 42, 114, '2019-06-02 16:48:35', NULL, '2019-06-02 16:48:35', NULL),
+(69, 'PERSONA ASISTIDA AGREGADA', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 28, 43, 114, '2019-06-02 16:55:05', NULL, '2019-06-02 16:55:05', NULL),
+(70, 'CARLOS PEREZ', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 29, 45, 114, '2019-06-03 18:42:39', NULL, '2019-06-03 18:42:39', NULL),
+(71, 'SOFIA LOPEZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 29, 45, 114, '2019-06-03 18:43:04', NULL, '2019-06-03 18:43:04', NULL),
+(72, 'LAURA OLIVA', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 29, 46, 114, '2019-06-03 18:54:16', NULL, '2019-06-03 18:54:16', NULL),
+(73, 'JOSE RAMOS', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 32, 47, 114, '2019-06-11 19:58:42', NULL, '2019-06-11 19:58:42', NULL),
+(74, 'JUAN CASTRO', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 33, 49, 114, '2019-06-12 13:55:44', NULL, '2019-06-12 13:55:44', NULL),
+(75, 'ROMINA CASTRO', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 33, 49, 114, '2019-06-12 13:56:02', NULL, '2019-06-12 13:56:02', NULL),
+(76, 'JOSE SARAMAGO', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 35, 54, 114, '2019-06-12 16:22:35', NULL, '2019-06-12 16:22:35', NULL),
+(77, 'LAURA RAMOS', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 35, 54, 114, '2019-06-12 16:22:54', NULL, '2019-06-12 16:22:54', NULL),
+(78, 'JOSE PEREZ', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 36, 56, 114, '2019-06-12 19:15:50', NULL, '2019-06-12 19:15:50', NULL),
+(79, 'MARISOL PEREZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 37, 58, NULL, '2019-06-12 23:35:44', 114, '2019-06-13 03:01:58', NULL),
+(80, 'JULIAN GOMEZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 37, 58, NULL, '2019-06-12 23:41:24', 114, '2019-06-13 04:00:20', NULL),
+(81, 'MARIA GOMEZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 37, 58, NULL, '2019-06-13 00:11:32', 114, '2019-06-13 03:04:43', NULL),
+(82, 'NUEVA PERSONA', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 37, 59, NULL, '2019-06-13 03:11:18', 114, '2019-06-13 03:11:29', NULL),
+(83, 'JOSEFINA MORALES', 4, 'OTRO JOSEFINA', '0', 'Se desconoce', 'Se desconoce', NULL, 60, NULL, '2019-06-13 04:39:45', 114, '2019-06-13 13:42:59', NULL),
+(84, 'PABLO MORALES', 4, 'OTRO VINC', '0', 'Se desconoce', 'Se desconoce', 38, 60, NULL, '2019-06-13 04:40:05', 114, '2019-06-13 04:54:43', NULL),
+(85, 'ROMINA MAS', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 39, 64, NULL, '2019-06-13 13:48:48', 114, '2019-06-13 22:30:16', NULL),
+(86, 'JOSE MAS', 4, 'OTRO JOSE JOSE', '12346465412', 'DRAGO 1035', 'LINCOLN', 39, 64, NULL, '2019-06-13 13:49:20', 114, '2019-06-13 22:42:38', NULL);
 
 -- --------------------------------------------------------
 
@@ -5163,6 +5291,7 @@ INSERT INTO `personas` (`id`, `nombre_persona_asistida`, `vinculo_persona_asisti
 CREATE TABLE `profesionales` (
   `id` int(10) UNSIGNED NOT NULL,
   `nombre_profesional_interviniente` varchar(255) DEFAULT NULL,
+  `nombre_profesional_interviniente_otro` varchar(100) DEFAULT NULL,
   `desde_profesional_interviniente` varchar(20) DEFAULT NULL,
   `actual_profesional_interviniente` int(11) DEFAULT NULL,
   `hasta_profesional_interviniente` varchar(20) DEFAULT NULL,
@@ -5178,28 +5307,173 @@ CREATE TABLE `profesionales` (
 -- Volcado de datos para la tabla `profesionales`
 --
 
-INSERT INTO `profesionales` (`id`, `nombre_profesional_interviniente`, `desde_profesional_interviniente`, `actual_profesional_interviniente`, `hasta_profesional_interviniente`, `idCaso`, `userID_create`, `created_at`, `userID_modify`, `updated_at`, `activo`) VALUES
-(1, '31', '2019-05-23', 1, NULL, 1, 3, '2019-05-23 18:01:03', NULL, '2019-05-23 18:01:03', NULL),
-(2, '44', '2019-05-23', 1, NULL, 1, 3, '2019-05-23 18:09:10', NULL, '2019-05-23 18:09:10', NULL),
-(3, '3', '2019-05-23', 1, NULL, 2, 2, '2019-05-23 19:08:33', NULL, '2019-05-23 19:08:33', NULL),
-(4, '35', '2019-05-22', 1, NULL, 2, 2, '2019-05-23 19:09:33', NULL, '2019-05-23 19:09:33', NULL),
-(5, '3', '2019-05-16', 1, NULL, 3, 1, '2019-05-23 19:55:58', NULL, '2019-05-23 19:55:58', NULL),
-(6, '4', NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, NULL),
-(7, '56', '2019-05-23', 1, NULL, 4, 3, '2019-05-23 21:03:37', NULL, '2019-05-23 21:03:37', NULL),
-(8, '3', NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL),
-(9, '88', '2019-05-23', 1, NULL, 5, 3, '2019-05-23 21:08:03', NULL, '2019-05-23 21:08:03', NULL),
-(10, '70', '2019-05-23', 1, NULL, 5, 3, '2019-05-23 21:08:56', NULL, '2019-05-23 21:08:56', NULL),
-(11, '3', NULL, NULL, NULL, 6, NULL, NULL, NULL, NULL, NULL),
-(12, '70', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:12:53', NULL, '2019-05-23 21:12:53', NULL),
-(13, '70', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:12:54', NULL, '2019-05-23 21:12:54', NULL),
-(14, '37', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:13:16', NULL, '2019-05-23 21:13:16', NULL),
-(15, '101', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:13:41', NULL, '2019-05-23 21:13:41', NULL),
-(16, '3', NULL, NULL, NULL, 7, NULL, NULL, NULL, NULL, NULL),
-(17, '93', '2019-05-23', 1, NULL, 7, 3, '2019-05-24 00:05:18', NULL, '2019-05-24 00:05:18', NULL),
-(19, '3', '2019-05-23', 1, NULL, 8, 2, '2019-05-24 00:37:28', NULL, '2019-05-24 00:37:28', NULL),
-(20, '12', NULL, NULL, NULL, 9, NULL, NULL, NULL, NULL, NULL),
-(21, '12', NULL, NULL, NULL, 10, NULL, NULL, NULL, NULL, NULL),
-(22, '12', NULL, NULL, NULL, 11, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `profesionales` (`id`, `nombre_profesional_interviniente`, `nombre_profesional_interviniente_otro`, `desde_profesional_interviniente`, `actual_profesional_interviniente`, `hasta_profesional_interviniente`, `idCaso`, `userID_create`, `created_at`, `userID_modify`, `updated_at`, `activo`) VALUES
+(1, '31', '', '2019-05-23', 1, NULL, 1, 3, '2019-05-23 18:01:03', NULL, '2019-05-23 18:01:03', NULL),
+(2, '44', '', '2019-05-23', 1, NULL, 1, 3, '2019-05-23 18:09:10', NULL, '2019-05-23 18:09:10', NULL),
+(3, '3', '', '2019-05-23', 1, NULL, 2, 2, '2019-05-23 19:08:33', NULL, '2019-05-23 19:08:33', NULL),
+(4, '35', '', '2019-05-22', 1, NULL, 2, 2, '2019-05-23 19:09:33', NULL, '2019-05-23 19:09:33', NULL),
+(5, '3', '', '2019-05-16', 1, NULL, 3, 1, '2019-05-23 19:55:58', NULL, '2019-05-23 19:55:58', NULL),
+(6, '4', '', NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, NULL),
+(7, '56', '', '2019-05-23', 1, NULL, 4, 3, '2019-05-23 21:03:37', NULL, '2019-05-23 21:03:37', NULL),
+(8, '3', '', NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL),
+(9, '88', '', '2019-05-23', 1, NULL, 5, 3, '2019-05-23 21:08:03', NULL, '2019-05-23 21:08:03', NULL),
+(10, '70', '', '2019-05-23', 1, NULL, 5, 3, '2019-05-23 21:08:56', NULL, '2019-05-23 21:08:56', NULL),
+(11, '3', '', NULL, NULL, NULL, 6, NULL, NULL, NULL, NULL, NULL),
+(12, '70', '', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:12:53', NULL, '2019-05-23 21:12:53', NULL),
+(13, '70', '', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:12:54', NULL, '2019-05-23 21:12:54', NULL),
+(14, '37', '', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:13:16', NULL, '2019-05-23 21:13:16', NULL),
+(15, '101', '', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:13:41', NULL, '2019-05-23 21:13:41', NULL),
+(16, '3', '', NULL, NULL, NULL, 7, NULL, NULL, NULL, NULL, NULL),
+(17, '93', '', '2019-05-23', 1, NULL, 7, 3, '2019-05-24 00:05:18', NULL, '2019-05-24 00:05:18', NULL),
+(19, '3', '', '2019-05-23', 1, NULL, 8, 2, '2019-05-24 00:37:28', NULL, '2019-05-24 00:37:28', NULL),
+(20, '12', '', NULL, NULL, NULL, 9, NULL, NULL, NULL, NULL, NULL),
+(21, '12', '', NULL, NULL, NULL, 10, NULL, NULL, NULL, NULL, NULL),
+(22, '12', '', NULL, NULL, NULL, 11, NULL, NULL, NULL, NULL, NULL),
+(23, '3', '', '2019-05-28', 1, NULL, 12, 116, '2019-05-28 20:36:39', NULL, '2019-05-28 20:36:39', NULL),
+(24, '107', '', '2019-05-02', 1, NULL, 12, 116, '2019-05-28 20:38:49', NULL, '2019-05-28 20:38:49', NULL),
+(25, '87', '', '2019-05-21', 1, NULL, 12, 116, '2019-05-28 20:42:50', NULL, '2019-05-28 20:42:50', NULL),
+(26, '87', '', '2019-05-21', 1, NULL, 12, 116, '2019-05-28 20:44:56', NULL, '2019-05-28 20:44:56', NULL),
+(27, '12', '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:03:35', NULL, '2019-05-28 23:03:35', NULL),
+(28, '12', '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:14:27', NULL, '2019-05-28 23:14:27', NULL),
+(29, '12', '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:20:30', NULL, '2019-05-28 23:20:30', NULL),
+(30, '12', '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:24:17', NULL, '2019-05-28 23:24:17', NULL),
+(31, '12', '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:24:54', NULL, '2019-05-28 23:24:54', NULL),
+(32, '12', '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:25:14', NULL, '2019-05-28 23:25:14', NULL),
+(33, '12', '', '2019-05-16', 1, NULL, 14, 116, '2019-05-28 23:52:22', NULL, '2019-05-28 23:52:22', NULL),
+(34, '35', '', '2019-05-28', 1, NULL, 15, 116, '2019-05-29 02:40:44', NULL, '2019-05-29 02:40:44', NULL),
+(35, '35', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(36, '70', '', '2019-05-09', 1, NULL, 15, 116, '2019-05-29 02:41:01', NULL, '2019-05-29 02:41:01', NULL),
+(37, '70', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(38, '3', '', '2019-05-28', 1, NULL, 15, 116, '2019-05-29 02:41:58', NULL, '2019-05-29 02:41:58', NULL),
+(39, '3', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(40, '73', '', '2019-05-28', 1, NULL, 15, 116, '2019-05-29 02:42:54', NULL, '2019-05-29 02:42:54', NULL),
+(41, '73', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(42, '70', '', '2019-05-28', 1, NULL, 15, 116, '2019-05-29 03:31:23', NULL, '2019-05-29 03:31:23', NULL),
+(43, '70', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(44, '93', '', '2019-05-16', 1, NULL, 15, 116, '2019-05-29 03:31:38', NULL, '2019-05-29 03:31:38', NULL),
+(45, '93', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(46, '34', '', '2019-05-22', 1, NULL, 15, 116, '2019-05-29 03:33:19', NULL, '2019-05-29 03:33:19', NULL),
+(47, '34', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(48, '35', '', '2019-05-15', 1, NULL, 16, 1, '2019-05-29 15:42:48', NULL, '2019-05-29 15:42:48', NULL),
+(49, '50', '', '2019-05-29', 1, NULL, 16, 1, '2019-05-29 15:47:45', NULL, '2019-05-29 15:47:45', NULL),
+(50, '35', '', '2019-05-29', 1, NULL, 17, 50, '2019-05-29 16:00:37', NULL, '2019-05-29 16:00:37', NULL),
+(51, '35', '', '2019-05-29', 1, NULL, 17, 50, '2019-05-29 16:02:23', NULL, '2019-05-29 16:02:23', NULL),
+(52, '35', '', NULL, NULL, NULL, 17, NULL, NULL, NULL, NULL, NULL),
+(53, '44', '', '2019-05-09', 1, NULL, 17, 50, '2019-05-29 16:02:41', NULL, '2019-05-29 16:02:41', NULL),
+(54, '44', '', NULL, NULL, NULL, 17, NULL, NULL, NULL, NULL, NULL),
+(55, '70', '', '2019-05-29', 1, NULL, 18, 50, '2019-05-29 16:57:23', NULL, '2019-05-29 16:57:23', NULL),
+(56, '70', '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(57, '35', '', '2019-05-17', 1, NULL, 18, 50, '2019-05-29 16:58:29', NULL, '2019-05-29 16:58:29', NULL),
+(58, '107', '', '2019-05-15', 1, NULL, 18, 50, '2019-05-29 17:00:24', NULL, '2019-05-29 17:00:24', NULL),
+(59, '{\"id\":50,\"email\":\"patriciarack@gmail.com\",\"sede\":\"LA PLATA\",\"area\":\"TRABAJADORA SOCIAL\",\"nombre\":\"M. PATRICIA\",\"apellido\":\"RACK\",\"email_verified_at\":null,\"created_at\":null,\"updated_at\":null}', '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(60, '88', '', '2019-05-09', 1, NULL, 18, 50, '2019-05-29 17:04:53', NULL, '2019-05-29 17:04:53', NULL),
+(61, '{\"id\":50,\"email\":\"patriciarack@gmail.com\",\"sede\":\"LA PLATA\",\"area\":\"TRABAJADORA SOCIAL\",\"nombre\":\"M. PATRICIA\",\"apellido\":\"RACK\",\"email_verified_at\":null,\"created_at\":null,\"updated_at\":null}', '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(62, '44', '', '2019-05-15', 1, NULL, 18, 50, '2019-05-29 17:06:30', NULL, '2019-05-29 17:06:30', NULL),
+(63, '50', '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(64, '70', '', '2019-05-29', 1, NULL, 18, 50, '2019-05-29 17:14:57', NULL, '2019-05-29 17:14:57', NULL),
+(65, '50', '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(66, '44', '', '2019-05-29', 1, NULL, 18, 50, '2019-05-29 17:15:18', NULL, '2019-05-29 17:15:18', NULL),
+(67, '50', '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(68, '70', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 19:58:17', NULL, '2019-05-29 19:58:17', NULL),
+(69, '70', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 19:59:37', NULL, '2019-05-29 19:59:37', NULL),
+(70, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(71, '107', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 19:59:54', NULL, '2019-05-29 19:59:54', NULL),
+(72, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(73, '12', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:00:18', NULL, '2019-05-29 20:00:18', NULL),
+(74, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(75, '34', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:00:45', NULL, '2019-05-29 20:00:45', NULL),
+(76, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(77, '34', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:00:46', NULL, '2019-05-29 20:00:46', NULL),
+(78, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(79, '21', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:02:35', NULL, '2019-05-29 20:02:35', NULL),
+(80, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(81, '21', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:02:35', NULL, '2019-05-29 20:02:35', NULL),
+(82, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(83, '44', '', '2019-05-29', 1, NULL, 20, 115, '2019-05-29 20:09:17', NULL, '2019-05-29 20:09:17', NULL),
+(84, '115', '', NULL, NULL, NULL, 20, NULL, NULL, NULL, NULL, NULL),
+(85, '61', '', '2019-05-29', 1, NULL, 20, 115, '2019-05-29 20:10:29', NULL, '2019-05-29 20:10:29', NULL),
+(86, '115', '', NULL, NULL, NULL, 20, NULL, NULL, NULL, NULL, NULL),
+(87, '70', '', '2019-05-29', 1, NULL, 21, 114, '2019-05-30 02:52:34', NULL, '2019-05-30 02:52:34', NULL),
+(88, '114', '', NULL, NULL, NULL, 21, NULL, NULL, NULL, NULL, NULL),
+(89, '21', '', '2019-05-29', 1, NULL, 21, 114, '2019-05-30 02:53:50', NULL, '2019-05-30 02:53:50', NULL),
+(90, '114', '', NULL, NULL, NULL, 21, NULL, NULL, NULL, NULL, NULL),
+(91, '87', '', '2019-05-29', 1, NULL, 21, 114, '2019-05-30 04:39:24', NULL, '2019-05-30 04:39:24', NULL),
+(92, '114', '', NULL, NULL, NULL, 21, NULL, NULL, NULL, NULL, NULL),
+(93, '35', '', '2019-05-30', 1, NULL, 22, 114, '2019-05-30 14:03:40', NULL, '2019-05-30 14:03:40', NULL),
+(94, '35', '', '2019-05-30', 1, NULL, 22, 114, '2019-05-30 14:10:31', NULL, '2019-05-30 14:10:31', NULL),
+(95, '37', '', '2019-05-30', 1, NULL, 22, 114, '2019-05-30 14:10:58', NULL, '2019-05-30 14:10:58', NULL),
+(96, '21', '', '2019-05-30', 1, NULL, 22, 114, '2019-05-30 14:14:51', NULL, '2019-05-30 14:14:51', NULL),
+(97, '88', '', '2019-05-16', 1, NULL, 22, 114, '2019-05-30 14:15:29', NULL, '2019-05-30 14:15:29', NULL),
+(98, '114', '', NULL, NULL, NULL, 22, NULL, NULL, NULL, NULL, NULL),
+(99, '101', '', '2019-05-30', 1, NULL, 23, 114, '2019-05-30 18:35:28', NULL, '2019-05-30 18:35:28', NULL),
+(100, '114', '', NULL, NULL, NULL, 23, NULL, NULL, NULL, NULL, NULL),
+(101, '94', '', '2019-05-30', 1, NULL, 23, 114, '2019-05-30 18:36:02', NULL, '2019-05-30 18:36:02', NULL),
+(102, '61', '', '2019-05-30', 1, NULL, 23, 114, '2019-05-30 18:38:27', NULL, '2019-05-30 18:38:27', NULL),
+(103, '94', '', '2019-05-16', 1, NULL, 23, 114, '2019-05-30 20:16:25', NULL, '2019-05-30 20:16:25', NULL),
+(104, '21', '', '2019-05-30', 1, NULL, 24, 114, '2019-05-31 03:05:26', NULL, '2019-05-31 03:05:26', NULL),
+(105, '114', '', NULL, NULL, NULL, 24, NULL, NULL, NULL, NULL, NULL),
+(106, '85', '', '2019-05-30', 1, NULL, 24, 114, '2019-05-31 03:05:46', NULL, '2019-05-31 03:05:46', NULL),
+(107, '70', '', '2019-05-16', 1, NULL, 24, 114, '2019-05-31 04:04:53', NULL, '2019-05-31 04:04:53', NULL),
+(108, '70', '', '2019-05-31', 1, NULL, 25, 114, '2019-05-31 13:54:46', NULL, '2019-05-31 13:54:46', NULL),
+(109, '114', '', NULL, NULL, NULL, 25, NULL, NULL, NULL, NULL, NULL),
+(110, '56', '', '2019-05-31', 1, NULL, 25, 114, '2019-05-31 14:11:12', NULL, '2019-05-31 14:11:12', NULL),
+(111, '93', '', '2019-05-24', 1, NULL, 25, 114, '2019-05-31 14:12:01', NULL, '2019-05-31 14:12:01', NULL),
+(112, '85', '', '2019-05-31', 1, NULL, 25, 114, '2019-05-31 14:12:52', NULL, '2019-05-31 14:12:52', NULL),
+(113, '87', '', '2019-05-31', 1, NULL, 25, 114, '2019-05-31 14:14:20', NULL, '2019-05-31 14:14:20', NULL),
+(114, '85', '', '2019-05-24', 1, NULL, NULL, 114, '2019-06-01 03:06:53', NULL, '2019-06-01 03:06:53', NULL),
+(115, '103', '', '2019-05-31', 1, NULL, NULL, 114, '2019-06-01 03:17:04', NULL, '2019-06-01 03:17:04', NULL),
+(116, '70', '', '2019-05-02', 1, NULL, NULL, 114, '2019-06-01 03:28:42', NULL, '2019-06-01 03:28:42', NULL),
+(117, '21', '', '2019-05-31', 1, NULL, NULL, 114, '2019-06-01 04:16:25', NULL, '2019-06-01 04:16:25', NULL),
+(118, '56', '', '2019-05-23', 1, NULL, NULL, 114, '2019-06-01 04:20:04', NULL, '2019-06-01 04:20:04', NULL),
+(119, '21', '', '2019-05-31', 1, NULL, NULL, 114, '2019-06-01 04:24:24', NULL, '2019-06-01 04:24:24', NULL),
+(120, '93', '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-01 20:49:06', NULL, '2019-06-01 20:49:06', NULL),
+(121, '17', '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:48:27', NULL, '2019-06-02 04:48:27', NULL),
+(122, '17', '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:48:30', NULL, '2019-06-02 04:48:30', NULL),
+(123, '107', '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:48:52', NULL, '2019-06-02 04:48:52', NULL),
+(124, '12', '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:49:17', NULL, '2019-06-02 04:49:17', NULL),
+(125, '61', '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:50:53', NULL, '2019-06-02 04:50:53', NULL),
+(126, '1', '', '2019-06-02', 1, NULL, 28, 114, '2019-06-02 16:35:39', 114, '2019-06-03 01:26:29', NULL),
+(127, '114', '', NULL, NULL, NULL, 28, NULL, NULL, NULL, NULL, NULL),
+(128, '18', '', '2019-06-01', 1, NULL, 28, 114, '2019-06-02 16:36:03', 114, '2019-06-02 17:15:48', NULL),
+(129, '107', '', '2019-06-01', 1, NULL, 28, 114, '2019-06-02 16:36:22', NULL, '2019-06-02 16:36:22', NULL),
+(130, '80', '', '2019-06-01', 1, NULL, 28, 114, '2019-06-02 16:36:59', NULL, '2019-06-02 16:36:59', NULL),
+(131, '95', '', '2019-06-01', 1, NULL, 28, 114, '2019-06-03 01:24:43', NULL, '2019-06-03 01:24:43', NULL),
+(132, '70', '', '2019-06-01', 1, NULL, 28, 114, '2019-06-03 01:26:03', NULL, '2019-06-03 01:26:03', NULL),
+(133, '70', '', '2019-06-01', 1, NULL, 29, 114, '2019-06-03 18:34:53', 114, '2019-06-14 04:02:05', NULL),
+(134, '114', '', NULL, NULL, NULL, 29, NULL, NULL, NULL, NULL, NULL),
+(135, '21', '', '2019-06-01', 1, NULL, 29, 114, '2019-06-03 18:36:57', NULL, '2019-06-03 18:36:57', NULL),
+(136, '21', '', '2019-06-01', 1, NULL, 30, 70, '2019-06-03 21:13:13', NULL, '2019-06-03 21:13:13', NULL),
+(137, '70', '', NULL, NULL, NULL, 30, NULL, NULL, NULL, NULL, NULL),
+(138, '114', '', '2019-06-01', 1, NULL, 30, 70, '2019-06-03 21:13:57', NULL, '2019-06-03 21:13:57', NULL),
+(139, '0', 'OTRO PROFESIONAL', '2019-06-01', 1, NULL, 31, 114, '2019-06-10 04:12:40', NULL, '2019-06-10 04:12:40', NULL),
+(140, '0', 'OTRO PROFESIONAL', '2019-06-01', 1, NULL, 31, 114, '2019-06-10 04:14:35', NULL, '2019-06-10 04:14:35', NULL),
+(141, '114', NULL, NULL, NULL, NULL, 31, NULL, NULL, NULL, NULL, NULL),
+(142, '0', 'OTRO PROFESIONAL', '2019-06-09', 1, NULL, 31, 114, '2019-06-10 04:18:31', NULL, '2019-06-10 04:18:31', NULL),
+(143, '101', NULL, '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 15:45:50', NULL, '2019-06-10 15:45:50', NULL),
+(144, '35', NULL, '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 15:46:33', NULL, '2019-06-10 15:46:33', NULL),
+(145, '37', NULL, '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 15:47:24', NULL, '2019-06-10 15:47:24', NULL),
+(146, '0', 'NUEVO PROFESIONAL', '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 16:03:01', NULL, '2019-06-10 16:03:01', NULL),
+(147, '0', 'JUAN ROJAS', '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 16:07:17', NULL, '2019-06-10 16:07:17', NULL),
+(148, '0', 'JUAN JOSE-ABOGADO', '2019-06-11', 1, NULL, 32, 114, '2019-06-11 19:56:21', NULL, '2019-06-11 19:56:21', NULL),
+(149, '114', NULL, NULL, NULL, NULL, 32, NULL, NULL, NULL, NULL, NULL),
+(150, '85', NULL, '2019-06-11', 1, NULL, 32, 114, '2019-06-11 19:56:37', NULL, '2019-06-11 19:56:37', NULL),
+(151, '61', NULL, '2019-06-12', 1, NULL, 33, 114, '2019-06-12 13:53:51', NULL, '2019-06-12 13:53:51', NULL),
+(152, '114', NULL, NULL, NULL, NULL, 33, NULL, NULL, NULL, NULL, NULL),
+(153, '21', NULL, '2019-06-12', 1, NULL, 35, 114, '2019-06-12 16:21:05', NULL, '2019-06-12 16:21:05', NULL),
+(154, '114', NULL, NULL, NULL, NULL, 35, NULL, NULL, NULL, NULL, NULL),
+(155, '96', NULL, '2019-06-12', 1, NULL, 36, 114, '2019-06-12 19:14:27', NULL, '2019-06-12 19:14:27', NULL),
+(156, '114', NULL, NULL, NULL, NULL, 36, NULL, NULL, NULL, NULL, NULL),
+(157, '88', NULL, '2019-06-12', 1, NULL, 37, 114, '2019-06-12 23:20:05', NULL, '2019-06-12 23:20:05', NULL),
+(158, '114', NULL, NULL, NULL, NULL, 37, NULL, NULL, NULL, NULL, NULL),
+(159, '70', NULL, '2019-06-12', 1, NULL, 37, 114, '2019-06-12 23:20:23', NULL, '2019-06-12 23:20:23', NULL),
+(160, '0', 'OTRO PROFESIONAL-ABOGADO', '2019-06-12', 1, NULL, 37, 114, '2019-06-12 23:20:49', NULL, '2019-06-12 23:20:49', NULL),
+(161, '87', NULL, '2019-06-12', 1, NULL, 38, 114, '2019-06-13 04:38:18', NULL, '2019-06-13 04:38:18', NULL),
+(162, '114', NULL, NULL, NULL, NULL, 38, NULL, NULL, NULL, NULL, NULL),
+(163, '37', NULL, '2019-06-13', 1, NULL, 39, 114, '2019-06-13 13:46:43', NULL, '2019-06-13 13:46:43', NULL),
+(164, '114', NULL, NULL, NULL, NULL, 39, NULL, NULL, NULL, NULL, NULL),
+(165, '56', NULL, '2019-06-13', 1, NULL, 29, 114, '2019-06-14 04:25:21', NULL, '2019-06-14 04:25:21', NULL),
+(167, '61', NULL, '2019-06-14', 1, NULL, 40, 114, '2019-06-14 14:10:08', NULL, '2019-06-14 14:10:08', NULL),
+(168, '114', NULL, NULL, NULL, NULL, 40, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -5608,7 +5882,7 @@ INSERT INTO `users` (`id`, `email`, `sede`, `area`, `nombre`, `apellido`, `email
 (67, 'natalia_cascardo@hotmail.com', 'MAR DEL PLATA', 'PSICÓLOGA', 'Natalia', 'CASCARDO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (68, 'monidimauro@hotmail.com', 'MAR DEL PLATA', 'ADMINISTRATIVA', 'Mónica', 'DI MAURO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (69, 'patriciohorn@hotmail.com', 'MAR DEL PLATA', 'ABOGADO', 'Patricio', 'HORN', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(70, 'joseluismartins@hotmail.com', 'MAR DEL PLATA', 'ABOGADO', ' José Luis', 'MARTINS', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
+(70, 'joseluismartins@hotmail.com', 'MAR DEL PLATA', 'ABOGADO', ' José Luis', 'MARTINS', '2019-06-03 18:14:40', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', 'xnQL6pCoXlXAYgdqRI6I76OnFU0tp0pkntlLDHtAaQlAkaHM4Qk1ChGHkr2c', NULL, NULL),
 (71, 'luz_22_mm@hotmail.com', 'MAR DEL PLATA', 'TRABAJADORA SOCIAL', 'Luz', 'MUÑIZ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (72, 'florencianovello@yahoo.com.ar', 'MAR DEL PLATA', 'PSICÓLOGA', 'Florencia', 'NOVELLO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (73, 'catalinaespil@hotmail.com', 'MERCEDES', 'PSICÓLOGA', 'Catalina', 'ESPIL', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
@@ -5636,7 +5910,7 @@ INSERT INTO `users` (`id`, `email`, `sede`, `area`, `nombre`, `apellido`, `email
 (95, 'rivarolamarinag@gmail.com', 'QUILMES', 'ABOGADA', 'Marina', 'RIVAROLA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (96, 'carolinavenosa@gmail.com', 'QUILMES', 'PSICÓLOGA', 'Carolina', 'VENOSA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (97, 'campiflorencia@hotmail.com', 'SAN FERNANDO', 'ABOGADA', 'Florencia', 'CAMPI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(98, 'midaverio@hotmail.com', 'SAN FERNANDO', 'ADMINISTRATIVA', 'María Inés', 'DAVERIO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
+(98, 'midaverio@hotmail.com', 'SAN FERNANDO', 'ADMINISTRATIVA', 'María Inés', 'DAVERIO', '2019-06-03 16:28:01', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', 'xNJZWmmvzj3Bm23wHNLgUMCfLdOxTNHPJXClMBOpqmlugR5du5jzmAGKLvWG', NULL, NULL),
 (99, 'jupa_8@hotmail.com', 'SAN FERNANDO', 'PSICÓLOGA', 'María Julia', 'PALAVICINI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (100, 'veronicasoriano@yahoo.com', 'SAN FERNANDO', 'ADMINISTRATIVA', 'Verónica', 'SORIANO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (101, 'carobusquier@yahoo.com.ar', 'SAN MARTIN', 'PSICÓLOGA', 'Carolina', 'BUSQUIER', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
@@ -5652,9 +5926,9 @@ INSERT INTO `users` (`id`, `email`, `sede`, `area`, `nombre`, `apellido`, `email
 (111, 'nataliacribelli@hotmail.com.a', 'ZARATE', 'PSICÓLOGA', 'Natalia', 'CRIBELLI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (112, 'l.fraccarolli@live.com', 'ZARATE', 'ABOGADA', 'Lucía', 'FRACCAROLLI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (113, 'minuccisol@gmail.com', 'BAHIA BLANCA', 'TRABAJADORA SOCIAL', 'Solange', 'MINUCCI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(114, 'ignacioklena@hotmail.com', 'LA PLATA', 'ABOGADO', 'Ignacio ', 'KLENA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
+(114, 'ignacioklena@hotmail.com', 'LA PLATA', 'ABOGADO', 'Ignacio ', 'KLENA', '2019-06-13 01:34:15', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', 'zO1dtJdI1ycNZ74WVgzT74gvXpVMSgApdBu8frZDRBWYKgCE6g9njV6nzNrX', NULL, NULL),
 (115, 'mariaemiliamathe@gmail.com', 'SAN ISIDRO', 'ABOGADA', 'Maria Emilia', 'MATHE', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(116, 'xul27@hotmail.com', 'LA PLATA', 'DIRECTORA', 'LUCKY', 'SANCHEZ', '2019-05-28 16:53:13', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', 'C8hJcizLHtMlAh3mOVZUCI7bTsaNNqFkwjCAZvN0n4ycsbqPVWqnJkednhxf', NULL, NULL);
+(116, 'xul27@hotmail.com', 'LA PLATA', 'DIRECTORA', 'LUCKY', 'SANCHEZ', '2019-05-28 20:48:40', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', 'rz9MPuUEVY1eYfMF04v0y0LJqTRJ5kisFvRyRAlSbCgRsTXaaAlYA8FviM2t', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -5815,7 +6089,13 @@ INSERT INTO `victima_discapacidad` (`id`, `victima_id`, `discapacidad_id`) VALUE
 (4, 31, 3),
 (6, 32, 4),
 (7, 34, 1),
-(8, 34, 4);
+(8, 34, 4),
+(10, 41, 5),
+(11, 45, 5),
+(12, 45, 1),
+(13, 45, 2),
+(14, 45, 3),
+(15, 45, 4);
 
 -- --------------------------------------------------------
 
@@ -5835,7 +6115,12 @@ CREATE TABLE `victima_limitacion` (
 
 INSERT INTO `victima_limitacion` (`id`, `victima_id`, `limitacion_id`) VALUES
 (1, 34, 1),
-(2, 34, 4);
+(2, 34, 4),
+(5, 41, 4),
+(6, 45, 1),
+(7, 45, 4),
+(8, 45, 2),
+(9, 45, 3);
 
 -- --------------------------------------------------------
 
@@ -5866,7 +6151,18 @@ INSERT INTO `victima_necesidad` (`id`, `victima_id`, `necesidad_id`) VALUES
 (11, 34, 2),
 (12, 34, 8),
 (13, 36, 1),
-(14, 36, 2);
+(14, 36, 2),
+(15, 39, 1),
+(16, 39, 2),
+(20, 41, 8),
+(21, 45, 1),
+(22, 45, 2),
+(24, 45, 5),
+(25, 45, 3),
+(26, 45, 4),
+(27, 45, 6),
+(28, 45, 7),
+(29, 45, 8);
 
 -- --------------------------------------------------------
 
@@ -5895,7 +6191,13 @@ INSERT INTO `victima_programa` (`id`, `victima_id`, `programa_id`) VALUES
 (9, 34, 1),
 (10, 34, 5),
 (11, 36, 1),
-(12, 36, 2);
+(12, 36, 2),
+(15, 41, 5),
+(16, 45, 1),
+(18, 45, 2),
+(19, 45, 3),
+(20, 45, 4),
+(21, 45, 5);
 
 -- --------------------------------------------------------
 
@@ -5963,7 +6265,36 @@ INSERT INTO `victims` (`id`, `victima_nombre_y_apellido`, `genero`, `victima_fec
 (35, 'CATALINA RODRIGUEZ', 5, '1900-01-01', 0, 7, '3', '0', NULL, NULL, NULL, 3, 2, 2, NULL, 2, NULL, 2, 2, 2, NULL, 2, NULL, 2, NULL, 1, 1, 14, 1, '2019-05-07 03:07:02', NULL, '2019-05-07 03:07:02', NULL),
 (36, 'CARLOS RODRIGUEZ', 5, '2019-05-01', 20, 3, '3', '0', NULL, NULL, NULL, 2, 3, 1, NULL, 1, NULL, 2, 2, 2, NULL, 2, NULL, 2, NULL, 1, 1, 14, 1, '2019-05-07 03:56:08', NULL, '2019-05-07 03:56:08', NULL),
 (37, 'NOMBRE APELLIDO', 3, '1900-01-01', 44, 4, '1', '3', NULL, NULL, '12312131321', 4, 2, 2, NULL, 2, NULL, NULL, 2, 2, NULL, 2, NULL, 2, NULL, 2, 1, 15, 1, '2019-05-07 14:16:34', NULL, '2019-05-07 14:16:34', NULL),
-(38, 'JULIO SOSA', 3, '1900-01-01', 33, 4, '3', '0', NULL, NULL, NULL, 6, 2, 3, NULL, 3, NULL, NULL, 3, 2, NULL, 2, NULL, 2, NULL, 2, 1, 16, 1, '2019-05-09 21:21:41', NULL, '2019-05-09 21:21:41', NULL);
+(38, 'JULIO SOSA', 3, '1900-01-01', 33, 4, '3', '0', NULL, NULL, NULL, 6, 2, 3, NULL, 3, NULL, NULL, 3, 2, NULL, 2, NULL, 2, NULL, 2, 1, 16, 1, '2019-05-09 21:21:41', NULL, '2019-05-09 21:21:41', NULL),
+(39, 'JORGE LUIS', 3, '1900-01-01', 33, 4, '1', '1', NULL, NULL, '25636874', 1, 2, 1, NULL, 2, NULL, NULL, 2, 2, NULL, 2, NULL, 2, NULL, 2, 1, 24, 114, '2019-05-31 04:37:49', NULL, '2019-05-31 04:37:49', NULL),
+(40, 'PABLO LUIS', 3, '1900-01-01', 40, 4, '1', '2', NULL, NULL, '0', 4, 1, 2, NULL, 2, NULL, NULL, 2, 2, NULL, 2, NULL, 2, NULL, 2, 1, 24, 114, '2019-05-31 04:41:34', NULL, '2019-05-31 04:41:34', NULL),
+(41, 'MARTA SIMON', 1, '1900-01-01', 44, 4, '1', '2', NULL, NULL, '25632569', 1, 4, 1, 'XXXXXXXXXXXX', 1, 'YYYYYYYYYYYYYYY', 1, 1, 1, 'LESIONES', 1, 'CRONICA', 1, 'ZZZZZZZZZZZZ', 2, 1, 28, 114, '2019-06-02 16:40:08', 114, '2019-06-02 17:29:26', NULL),
+(42, 'MARIELA SIMON', 1, '1900-01-01', 20, 3, '1', '6', NULL, 1, '1231245612', 3, 3, 2, NULL, 2, NULL, 2, 2, 2, NULL, 2, NULL, 2, NULL, 2, 1, 28, 114, '2019-06-02 16:45:57', NULL, '2019-06-02 16:45:57', NULL),
+(43, 'ESTEBAN SIMON', 3, '1900-01-01', 27, 3, '6', '0', NULL, NULL, NULL, 4, 3, 3, NULL, 3, NULL, NULL, 3, 3, NULL, 2, NULL, 2, NULL, 2, 2, 28, 114, '2019-06-02 16:53:15', NULL, '2019-06-02 16:53:15', NULL),
+(44, 'ROSA SALAS', 1, '1900-01-01', 52, 5, '1', '7', NULL, NULL, '25631678', 2, 2, 3, NULL, 3, NULL, 2, 3, 2, NULL, 3, NULL, 2, NULL, 2, 1, 28, 114, '2019-06-02 16:57:51', NULL, '2019-06-02 16:57:51', NULL),
+(45, 'JOSE PEREZ', 3, '1900-01-01', 33, 4, '1', '3', NULL, NULL, '213123131', 4, 1, 1, NULL, 1, 'lllll', NULL, 1, 2, NULL, 2, NULL, 1, 'OTRA LIMITACION', 2, 1, 29, 114, '2019-06-03 18:42:14', 114, '2019-06-14 04:27:27', NULL),
+(46, 'JOSEFINA OLIVA', 1, '1900-01-01', 28, 3, '3', '0', NULL, NULL, NULL, 2, 2, 2, NULL, 2, NULL, 2, 2, 3, NULL, 2, NULL, 3, NULL, 2, 1, 29, 114, '2019-06-03 18:51:49', NULL, '2019-06-03 18:51:49', NULL),
+(47, 'PRUEBA VINCULO', 1, '1900-01-01', 44, 4, '1', '1', NULL, NULL, '256315136', 1, 1, 2, NULL, 2, NULL, 2, 2, 3, NULL, 3, NULL, 3, NULL, 1, 1, 32, 114, '2019-06-11 19:58:13', NULL, '2019-06-11 19:58:13', NULL),
+(48, 'OTRO VINCULO', 3, '1900-01-01', 28, 3, '1', '2', NULL, NULL, '0', 3, 3, 3, NULL, 2, NULL, NULL, 3, 2, NULL, 2, NULL, 2, NULL, 2, 2, 32, 114, '2019-06-11 20:02:11', NULL, '2019-06-11 20:02:11', NULL),
+(49, 'JUAN PADILLA', 3, '1900-01-01', 27, 3, '1', '3', NULL, NULL, '25631123', 1, 2, 2, NULL, 2, NULL, NULL, 3, 2, NULL, 2, NULL, 2, NULL, 1, 1, 33, 114, '2019-06-12 13:55:22', NULL, '2019-06-12 13:55:22', NULL),
+(50, 'JORGE PADILLA', 3, '1900-01-01', 39, 4, '3', '0', NULL, NULL, NULL, 1, 1, 2, NULL, 2, NULL, NULL, 2, 2, NULL, 2, NULL, 2, NULL, 2, 2, 33, 114, '2019-06-12 13:59:46', NULL, '2019-06-12 13:59:46', NULL),
+(51, 'MARIA ESTHER', 1, '1900-01-01', 20, 3, '1', '2', NULL, NULL, '25361123', 2, 1, 3, NULL, 3, NULL, 2, 3, 3, NULL, 2, NULL, 3, NULL, 1, 1, 33, 114, '2019-06-12 14:02:45', NULL, '2019-06-12 14:02:45', NULL),
+(52, 'JULIA PADILLA', 1, '1900-01-01', 44, 4, '3', '0', NULL, NULL, NULL, 4, 1, 2, NULL, 2, NULL, 2, 3, 2, NULL, 3, NULL, 3, NULL, 2, 1, 33, 114, '2019-06-12 14:05:19', NULL, '2019-06-12 14:05:19', NULL),
+(53, 'LORENA PEREZ', 3, '1900-01-01', 20, 3, '1', '5', NULL, NULL, '0', 3, 1, 2, NULL, 2, NULL, NULL, 2, 2, NULL, 2, NULL, 2, NULL, 1, 1, 33, 114, '2019-06-12 14:08:46', NULL, '2019-06-12 14:08:46', NULL),
+(54, 'JUAN JUAN', 3, '1900-01-01', 23, 3, '1', '4', NULL, NULL, '0', 4, 1, 2, NULL, 2, NULL, NULL, 2, 2, NULL, 2, NULL, 2, NULL, 1, 1, 35, 114, '2019-06-12 16:22:16', NULL, '2019-06-12 16:22:16', NULL),
+(55, 'WALTER ROJO', 3, '1900-01-01', 20, 3, '3', '0', NULL, NULL, NULL, 2, 2, 3, NULL, 3, NULL, NULL, 3, 2, NULL, 2, NULL, 3, NULL, 1, 1, 35, 114, '2019-06-12 16:51:33', NULL, '2019-06-12 16:51:33', NULL),
+(56, 'PEDRO', 3, '1900-01-01', 45, 4, '1', '3', NULL, NULL, '0', 5, 1, 2, NULL, 2, NULL, NULL, 2, 2, NULL, 2, NULL, 2, NULL, 2, 1, 36, 114, '2019-06-12 19:15:33', NULL, '2019-06-12 19:15:33', NULL),
+(57, 'MIGUEL MATHEO', 3, '1900-01-01', 40, 4, '3', '0', NULL, NULL, NULL, 3, 2, 2, NULL, 3, NULL, NULL, 3, 2, NULL, 2, NULL, 3, NULL, 1, 1, 36, 114, '2019-06-12 19:18:34', NULL, '2019-06-12 19:18:34', NULL),
+(58, 'JOSE PEDRASA', 1, '1900-01-01', 40, 4, '1', '3', NULL, NULL, '0', 1, 1, 3, NULL, 3, NULL, 2, 2, 2, NULL, 3, NULL, 2, NULL, 1, 1, 37, 114, '2019-06-12 23:23:39', NULL, '2019-06-12 23:23:39', NULL),
+(59, 'MARIA PEDRASA', 1, '1900-01-01', 40, 4, '3', '0', NULL, NULL, NULL, 6, 2, 2, NULL, 2, NULL, 2, 2, 3, NULL, 2, NULL, 2, NULL, 1, 1, 37, 114, '2019-06-13 00:13:58', NULL, '2019-06-13 00:13:58', NULL),
+(60, 'JUAN MOREIRA', 3, '1900-01-01', 22, 3, '1', '5', NULL, NULL, '0', 7, 3, 3, NULL, 3, NULL, NULL, 3, 3, NULL, 3, NULL, 2, NULL, 1, 1, 38, 114, '2019-06-13 04:39:24', NULL, '2019-06-13 04:39:24', NULL),
+(61, 'MIRTA MORALES', 3, '1900-01-01', 25, 3, '1', '1', NULL, NULL, '0', 3, 1, 2, NULL, 2, NULL, NULL, 3, 2, NULL, 2, NULL, 2, NULL, 2, 1, 38, 114, '2019-06-13 04:42:51', NULL, '2019-06-13 04:42:51', NULL),
+(62, 'MIRTA MORALES', 3, '1900-01-01', 25, 3, '1', '1', NULL, NULL, '0', 3, 1, 2, NULL, 2, NULL, NULL, 3, 2, NULL, 2, NULL, 2, NULL, 2, 1, 38, 114, '2019-06-13 04:51:45', NULL, '2019-06-13 04:51:45', NULL),
+(63, 'MARIA LUZ', 1, '1900-01-01', 44, 4, '3', '0', NULL, NULL, NULL, 1, 4, 2, NULL, 2, NULL, 2, 3, 2, NULL, 2, NULL, 2, NULL, 2, 1, 38, 114, '2019-06-13 05:25:22', NULL, '2019-06-13 05:25:22', NULL),
+(64, 'SUSANA ESTHER', 1, '1900-01-01', 0, 7, '1', '1', NULL, NULL, '0', 6, 2, 2, NULL, 2, NULL, 2, 3, 2, NULL, 2, NULL, 2, NULL, 1, 1, 39, 114, '2019-06-13 13:48:08', NULL, '2019-06-13 13:48:08', NULL),
+(65, 'RAUL QUIROGAS', 3, '1900-01-01', 40, 4, '1', '6', NULL, 1, '0', 2, 5, 2, NULL, 2, NULL, NULL, 3, 3, NULL, 2, NULL, 2, NULL, 2, 1, 39, 114, '2019-06-13 13:53:47', NULL, '2019-06-13 13:53:47', NULL),
+(66, 'JOSE JUAN', 3, '1900-01-01', 20, 3, '3', '0', NULL, NULL, NULL, 4, 5, 3, NULL, 2, NULL, NULL, 2, 3, NULL, 3, NULL, 2, NULL, 1, 2, 40, 114, '2019-06-14 14:11:23', NULL, '2019-06-14 14:11:23', NULL),
+(67, 'JUANA MOLINA', 1, '1900-01-01', 40, 4, '1', '1', NULL, NULL, '0', 5, 1, 2, NULL, 2, NULL, 2, 3, 2, NULL, 2, NULL, 3, NULL, 2, 2, 40, 114, '2019-06-14 14:15:03', NULL, '2019-06-14 14:15:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -5975,36 +6306,16 @@ CREATE TABLE `victim_im` (
   `id` int(11) UNSIGNED NOT NULL,
   `idVictim` int(11) DEFAULT NULL,
   `idImputado` int(11) DEFAULT NULL,
-  `vinculo_id` int(11) DEFAULT NULL
+  `vinculo_victima` int(11) DEFAULT NULL,
+  `vinculo_otro` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `victim_im`
 --
 
-INSERT INTO `victim_im` (`id`, `idVictim`, `idImputado`, `vinculo_id`) VALUES
-(1, 12, 1, 3),
-(8, 13, 1, 3),
-(9, 17, 2, 4),
-(12, 14, 5, 4),
-(13, 18, 6, 3),
-(14, 19, 6, 3),
-(15, 23, 7, 4),
-(16, 24, 7, 3),
-(17, 25, 8, 3),
-(18, 26, 8, 3),
-(19, 26, 9, 4),
-(20, 27, 10, 4),
-(21, 28, 10, 3),
-(22, 27, 11, NULL),
-(26, 31, 15, 4),
-(28, 32, 17, 3),
-(29, 33, 17, 3),
-(30, 34, 18, 4),
-(31, 34, 19, 7),
-(32, 35, 19, 3),
-(34, 34, 21, 2),
-(35, 37, 22, 2);
+INSERT INTO `victim_im` (`id`, `idVictim`, `idImputado`, `vinculo_victima`, `vinculo_otro`) VALUES
+(3, 67, 35, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -6016,42 +6327,59 @@ CREATE TABLE `victim_pa` (
   `id` int(11) UNSIGNED NOT NULL,
   `idVictim` int(11) DEFAULT NULL,
   `idPersona` int(11) DEFAULT NULL,
-  `vinculo_persona_asistida` int(11) DEFAULT NULL
+  `vinculo_victima` int(11) DEFAULT NULL,
+  `vinculo_otro` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `victim_pa`
 --
 
-INSERT INTO `victim_pa` (`id`, `idVictim`, `idPersona`, `vinculo_persona_asistida`) VALUES
-(1, 12, 11, 2),
-(8, 12, 12, 1),
-(9, 13, 13, 1),
-(10, 13, 12, 2),
-(11, 18, 14, 3),
-(13, 19, 15, 1),
-(14, 19, 16, 1),
-(18, NULL, 18, 2),
-(21, 21, 24, 4),
-(22, 20, 25, 2),
-(23, 23, 26, 1),
-(25, 24, 27, 1),
-(29, 26, 31, 3),
-(30, 26, 32, 2),
-(32, 26, 34, 3),
-(36, 28, 36, 2),
-(37, 28, 37, 2),
-(38, 28, 38, 2),
-(53, 27, 53, 2),
-(56, 32, 56, 1),
-(57, 33, 56, 2),
-(58, 33, 57, 2),
-(59, 34, 58, 4),
-(60, 34, 59, 1),
-(61, 35, 58, 2),
-(62, 35, 60, 4),
-(64, 38, 62, 2),
-(65, 37, 63, 2);
+INSERT INTO `victim_pa` (`id`, `idVictim`, `idPersona`, `vinculo_victima`, `vinculo_otro`) VALUES
+(1, 12, 11, 2, NULL),
+(8, 12, 12, 1, NULL),
+(9, 13, 13, 1, NULL),
+(10, 13, 12, 2, NULL),
+(11, 18, 14, 3, NULL),
+(13, 19, 15, 1, NULL),
+(14, 19, 16, 1, NULL),
+(18, NULL, 18, 2, NULL),
+(21, 21, 24, 4, NULL),
+(22, 20, 25, 2, NULL),
+(23, 23, 26, 1, NULL),
+(25, 24, 27, 1, NULL),
+(29, 26, 31, 3, NULL),
+(30, 26, 32, 2, NULL),
+(32, 26, 34, 3, NULL),
+(36, 28, 36, 2, NULL),
+(37, 28, 37, 2, NULL),
+(38, 28, 38, 2, NULL),
+(53, 27, 53, 2, NULL),
+(56, 32, 56, 1, NULL),
+(57, 33, 56, 2, NULL),
+(58, 33, 57, 2, NULL),
+(59, 34, 58, 4, NULL),
+(60, 34, 59, 1, NULL),
+(66, 39, 64, 1, NULL),
+(67, 40, 64, 2, NULL),
+(68, 41, 65, 1, NULL),
+(69, 41, 66, 2, NULL),
+(70, 41, 67, 4, NULL),
+(71, 42, 65, 2, NULL),
+(72, 42, 67, 2, NULL),
+(73, 42, 68, 2, NULL),
+(74, 43, 69, 2, NULL),
+(75, 43, 65, 2, NULL),
+(76, 44, 69, 2, NULL),
+(77, 44, 65, 2, NULL),
+(78, 45, 70, 1, NULL),
+(79, 45, 71, 2, NULL),
+(80, 46, 70, 2, NULL),
+(81, 46, 72, 1, NULL),
+(82, 47, 73, 1, NULL),
+(83, 49, 74, 1, NULL),
+(84, 49, 75, 2, NULL),
+(85, 51, 74, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -6063,37 +6391,77 @@ CREATE TABLE `victim_ra` (
   `id` int(11) UNSIGNED NOT NULL,
   `idVictim` int(11) DEFAULT NULL,
   `idConviviente` int(11) DEFAULT NULL,
-  `vinculo_victima` int(11) DEFAULT NULL
+  `vinculo_victima` int(11) DEFAULT NULL,
+  `vinculo_otro` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `victim_ra`
 --
 
-INSERT INTO `victim_ra` (`id`, `idVictim`, `idConviviente`, `vinculo_victima`) VALUES
-(1, 12, 1, 2),
-(7, 12, 2, 4),
-(8, 13, 1, 2),
-(9, 13, 2, 2),
-(11, 17, 4, 3),
-(12, 14, 5, 3),
-(13, 18, 6, 3),
-(14, 19, 6, 2),
-(16, 23, 8, 1),
-(17, 24, 8, 2),
-(18, 24, 9, 3),
-(19, 25, 10, 4),
-(20, 25, 11, 1),
-(21, 26, 10, 2),
-(22, 26, 12, 4),
-(23, 27, 13, 1),
-(27, 31, 16, 3),
-(29, 32, 18, 3),
-(30, 33, 18, 2),
-(31, 34, 19, 6),
-(32, 34, 20, 2),
-(33, 35, 21, 1),
-(34, 37, 23, 4);
+INSERT INTO `victim_ra` (`id`, `idVictim`, `idConviviente`, `vinculo_victima`, `vinculo_otro`) VALUES
+(1, 12, 1, 2, ''),
+(7, 12, 2, 4, ''),
+(8, 13, 1, 2, ''),
+(9, 13, 2, 2, ''),
+(11, 17, 4, 3, ''),
+(12, 14, 5, 3, ''),
+(13, 18, 6, 3, ''),
+(14, 19, 6, 2, ''),
+(16, 23, 8, 1, ''),
+(17, 24, 8, 2, ''),
+(18, 24, 9, 3, ''),
+(19, 25, 10, 4, ''),
+(20, 25, 11, 1, ''),
+(21, 26, 10, 2, ''),
+(22, 26, 12, 4, ''),
+(23, 27, 13, 1, ''),
+(27, 31, 16, 3, ''),
+(29, 32, 18, 3, ''),
+(30, 33, 18, 2, ''),
+(31, 34, 19, 6, ''),
+(32, 34, 20, 2, ''),
+(33, 35, 21, 1, ''),
+(34, 37, 23, 4, ''),
+(35, 39, 24, 2, ''),
+(36, 40, 24, 2, ''),
+(37, 41, 25, 2, ''),
+(38, 41, 26, 1, ''),
+(39, 42, 25, 2, ''),
+(40, 42, 27, 1, ''),
+(41, 43, 26, 2, ''),
+(42, 43, 28, 2, ''),
+(43, 44, 25, 2, ''),
+(44, 44, 28, 2, ''),
+(47, 46, 29, 2, ''),
+(48, 46, 30, 2, ''),
+(49, 47, 31, 3, ''),
+(50, 47, 32, 4, ''),
+(74, 50, 36, 3, NULL),
+(75, 51, 36, 1, NULL),
+(76, 52, 36, 2, NULL),
+(77, 52, 37, 4, NULL),
+(78, 53, 36, 6, 'CONOCIDO OCACIONAL'),
+(79, 54, 38, 1, NULL),
+(80, 54, 39, 3, NULL),
+(81, 54, 40, 6, NULL),
+(85, 55, 38, 3, NULL),
+(86, 55, 39, 3, NULL),
+(87, 55, 40, 1, NULL),
+(88, 56, 41, 4, NULL),
+(89, 56, 42, 3, NULL),
+(90, 57, 41, 4, NULL),
+(91, 57, 42, 1, NULL),
+(92, 57, 43, 1, NULL),
+(93, 57, 44, 1, NULL),
+(94, 57, 45, 2, NULL),
+(100, 59, 46, 6, 'OTRO'),
+(114, 65, 48, 5, NULL),
+(115, 65, 49, 6, 'CARLOS SALAS'),
+(116, 45, 50, 2, NULL),
+(121, 45, 51, 2, NULL),
+(122, 66, 52, 2, NULL),
+(123, 67, 52, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -6207,6 +6575,12 @@ ALTER TABLE `imputados`
 -- Indices de la tabla `instituciones`
 --
 ALTER TABLE `instituciones`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `institucion_asistencia`
+--
+ALTER TABLE `institucion_asistencia`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -6385,7 +6759,7 @@ ALTER TABLE `vistas`
 -- AUTO_INCREMENT de la tabla `casos`
 --
 ALTER TABLE `casos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `caso_cavaj`
@@ -6409,13 +6783,13 @@ ALTER TABLE `cavajs`
 -- AUTO_INCREMENT de la tabla `convivientes`
 --
 ALTER TABLE `convivientes`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `delitos`
 --
 ALTER TABLE `delitos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `demandas`
@@ -6445,7 +6819,7 @@ ALTER TABLE `discapacidades`
 -- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de la tabla `hechos`
@@ -6457,37 +6831,43 @@ ALTER TABLE `hechos`
 -- AUTO_INCREMENT de la tabla `imputados`
 --
 ALTER TABLE `imputados`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `instituciones`
 --
 ALTER TABLE `instituciones`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `institucion_asistencia`
+--
+ALTER TABLE `institucion_asistencia`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `institucion_oarticula`
 --
 ALTER TABLE `institucion_oarticula`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `institucion_oprevio`
 --
 ALTER TABLE `institucion_oprevio`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `institucion_socioeconomico`
 --
 ALTER TABLE `institucion_socioeconomico`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `intervenciones`
 --
 ALTER TABLE `intervenciones`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de la tabla `limitaciones`
@@ -6535,13 +6915,13 @@ ALTER TABLE `organismos`
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de la tabla `profesionales`
 --
 ALTER TABLE `profesionales`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT de la tabla `programas`
@@ -6571,7 +6951,7 @@ ALTER TABLE `tipo_demandas`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -6583,49 +6963,49 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `victima_discapacidad`
 --
 ALTER TABLE `victima_discapacidad`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `victima_limitacion`
 --
 ALTER TABLE `victima_limitacion`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `victima_necesidad`
 --
 ALTER TABLE `victima_necesidad`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `victima_programa`
 --
 ALTER TABLE `victima_programa`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `victims`
 --
 ALTER TABLE `victims`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `victim_im`
 --
 ALTER TABLE `victim_im`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `victim_pa`
 --
 ALTER TABLE `victim_pa`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- AUTO_INCREMENT de la tabla `victim_ra`
 --
 ALTER TABLE `victim_ra`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

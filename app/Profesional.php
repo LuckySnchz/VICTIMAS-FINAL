@@ -23,6 +23,10 @@ class Profesional extends MiModelo
     }
 
 
+public function casos() {
+    return $this->belongsToMany("App\Caso","Profesionales","nombre_profesional_interviniente","idCaso");
+    
+}
 
 
 }

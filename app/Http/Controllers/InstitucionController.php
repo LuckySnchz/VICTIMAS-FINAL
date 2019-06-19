@@ -11,9 +11,9 @@ class InstitucionController extends Controller
 {
  public function agregar(Request $form){
 
-$hoy = date("d-m-Y");
+$hoy = date("Y-m-d");
 
-    $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
+    $hoy = date("Y-m-d",strtotime($hoy."+ 1 days"));
 
 $reglas = [
 "organismos_intervinieron"=>"required",
@@ -27,12 +27,10 @@ $reglas = [
 $validator = Validator::make($form->all(), $reglas);
 
 $validator->sometimes('pratocinio_gratuito', 'required', function ($input) {
-  return $input->abogado_particular == 2;
+  return $input->abogado_particular == 2||$input->abogado_particular == 3;
 });
 
-$validator->sometimes('pratocinio_gratuito', 'required', function ($input) {
-  return $input->abogado_particular == 3;
-});
+
 
 $validator->sometimes('oarticulas', 'required', function ($input) {
   return $input->organismo_articula_si_no == 1;
@@ -46,11 +44,11 @@ $validator->sometimes('cual_otro_organismo', "required|min:3|max:100|regex:/^([0
 return is_array($input->oprevios) && in_array(24,$input->oprevios);
 });
 
-$validator->sometimes('fecha_de_solicitud', "required|date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
+$validator->sometimes('fecha_de_solicitud',"required|date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
   return $input->pratocinio_gratuito == 1;
 });
 
-$validator->sometimes('fecha_de_solicitud', "required|date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
+$validator->sometimes('fecha_de_solicitud',"required|date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
   return $input->pratocinio_gratuito == 2;
 });
 
@@ -66,7 +64,7 @@ $validator->sometimes('colegio_departamental', 'required', function ($input) {
   return $input->pratocinio_gratuito == 3;
 });
 
-$validator->sometimes('fecha_designacion', "required|date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
+$validator->sometimes('fecha_designacion',"required|date_format:Y-m-d|before:$hoy|after:1899-12-31", function ($input) {
   return $input->pratocinio_gratuito == 3;
 });
 
@@ -78,12 +76,12 @@ $validator->sometimes('socioeconomica_otro', "required|min:3|max:100|regex:/^([0
   return is_array($input->socioeconomicos) && in_array(6,$input->socioeconomicos);
 });
 
-$validator->sometimes('tipo_asistencia', 'required', function ($input) {
+$validator->sometimes('asistencias', 'required', function ($input) {
   return $input->requiere_asistencia == 1;
 });
 
 $validator->sometimes('socioeconomicos', 'required', function ($input) {
-  return is_array($input->tipo_asistencia) && in_array(3,$input->tipo_asistencia);
+  return is_array($input->asistencias) && in_array(3,$input->asistencias);
 });
 
 
@@ -99,17 +97,6 @@ $institucion= new Institucion();
 $institucion->organismos_intervinieron= $form ["organismos_intervinieron"];
 $institucion->cual_otro_organismo= $form ["cual_otro_organismo"];
 $institucion->requiere_asistencia= $form ["requiere_asistencia"];
-
-if (is_array($form["tipo_asistencia"]) && in_array(1 ,$form["tipo_asistencia"])){
-$institucion->asistencia_juridica = 1;} else { $institucion->asistencia_juridica= 0;};
-
-if (is_array($form["tipo_asistencia"]) && in_array(2 ,$form["tipo_asistencia"])){
-$institucion->asistencia_psicologica= 1;} else {
-$institucion->asistencia_psicologica= 0;};
-
-if (is_array($form["tipo_asistencia"]) && in_array(3 ,$form["tipo_asistencia"])){
-$institucion->asistencia_socioeconomica= 1;} else {
-$institucion->asistencia_socioeconomica= 0;};
 $institucion->socioeconomica_otro= $form["socioeconomica_otro"];
 $institucion->organismo_articula_si_no= $form["organismo_articula_si_no"];
 $institucion->organismos_actual_otro= $form["organismos_actual_otro"];
@@ -134,6 +121,10 @@ if (is_array($form["oarticulas"])){
 foreach ($form["oarticulas"] as $oarticula) {
   $institucion->oarticulas()->attach($oarticula);}}
 
+if (is_array($form["asistencias"])){
+foreach ($form["asistencias"] as $asistencia) {
+  $institucion->asistencias()->attach($asistencia);}
+}
 if (is_array($form["socioeconomicos"])){
 foreach ($form["socioeconomicos"] as $socioeconomico) {
   $institucion->socioeconomicos()->attach($socioeconomico);}

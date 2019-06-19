@@ -19,7 +19,11 @@ session_start();
    </head>
    <header>
      @include('navbar')
-     <br>
+   <div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%">
+                <a class="navbar-brand"  href="/home">
+                    <h3 style="color:white">INICIO</h3>
+                </a>
+                </div>
    </header>
 
    <body>
@@ -85,7 +89,7 @@ session_start();
   {!! $errors->first('cual_otro_organismo', '<p class="help-block" style="color:red";>:message</p>') !!}
   </div>
   <br>
-  </div>
+  
 
 
   <script>
@@ -137,54 +141,44 @@ session_start();
     </select>
     {!! $errors->first('requiere_asistencia', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
-    <br>
-
-    @if(old("requiere_asistencia") == 1)
-      <div class="AunoDosF2" id="tipo_asistencia_si" {{ $errors->has('tipo_asistencia') ? 'has-error' : ''}}>
-    @else
-      <div class="AunoDosF2" id="tipo_asistencia_si"style="display:none">
-    @endif
+   
 
 
-      <label>F 2 I. Tipo de asistencia requerida:</label>
-      <label for="">En caso de requerir, tildar todas las opciones que considere correspondientes.</label><br>
-      <div class="Auno" id="tipoAsis">
-      @if(is_array(old("tipo_asistencia")) && in_array("1", old("tipo_asistencia")))
-        <input type="checkbox" value="1" class="form-check-inline" name="tipo_asistencia[]" id="Jurídica" checked>
-        <label for="Jurídica" class="form-check-inline form-check-label">Jurídica</label><br>
-      @else
-        <input type="checkbox" value="1" class="form-check-inline" name="tipo_asistencia[]" id="Jurídica">
-        <label for="Jurídica" class="form-check-inline form-check-label">Jurídica</label><br>
-      @endif
+  @if(old("requiere_asistencia") == 1)
 
+ <div class="tipo_asistencia" id="tipo_asistencia" {{ $errors->has('asitencias') ? 'has-error' : ''}}>
+  @foreach ($asistencias as $asistencia)
+      <label class="form-check-inline form-check-label">
+        @if(is_array(old("asistencias")) && in_array($asistencia->id, old("asistencias")))
+        <input type="checkbox" value="{{$asistencia->id }}"  class="form-check-inline tipoSocio" name="asistencias[]" checked>
+        @else
+        <input type="checkbox" value="{{ $asistencia->id }}"  class="form-check-inline tipoSocio " name="asistencias[]">
+        @endif
+      {{ $asistencia->nombre }}
+      </label><br>
+  @endforeach
+  {!! $errors->first('asistencias', '<p class="help-block" style="color:red";>:message</p>') !!}
+  </div>
 
-      @if(is_array(old("tipo_asistencia")) && in_array("2", old("tipo_asistencia")))
-        <input type="checkbox" value="2" class="form-check-inline" name="tipo_asistencia[]" id="Psicológica" checked>
-        <label for="Psicológica" class="form-check-inline form-check-label">Psicológica</label> <br>
-      @else
-        <input type="checkbox" value="2" class="form-check-inline" name="tipo_asistencia[]" id="Psicológica">
-        <label for="Psicológica" class="form-check-inline form-check-label">Psicológica</label> <br>
-      @endif
+  @else
+    <div class="tipo_asistencia" style="display:none" id="tipo_asistencia">
+    @foreach ($asistencias as $asistencia)
+        <label class="form-check-inline form-check-label">
+        <input type="checkbox" value="{{ $asistencia->id }}"   class="form-check-inline tipoSocio" name="asistencias[]">
+        {{ $asistencia->nombre }}
+        </label><br>
+    @endforeach
 
-      @if(is_array(old("tipo_asistencia")) && in_array("3", old("tipo_asistencia")))
-        <input type="checkbox" value="3" class="form-check-inline" name="tipo_asistencia[]"  id="checkeadosocioeco"  onclick="muestrosocioeco()" checked>
-        <label for="Socioeconomica" class="form-check-inline form-check-label" >Socioeconomica</label>
-      @else
-        <input type="checkbox" value="3" class="form-check-inline" name="tipo_asistencia[]"  id="checkeadosocioeco"  onclick="muestrosocioeco()">
-        <label for="Socioeconomica" class="form-check-inline form-check-label" >Socioeconomica</label>
-      @endif
-        <br><br>
+    </div>
+  @endif
 
-      </div>
-      {!! $errors->first('tipo_asistencia', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
-
-
-  @if (is_array(old("tipo_asistencia")) && in_array("3", old("tipo_asistencia")))
+    @if(is_array(old("asistencias")) && in_array(3, old("asistencias")))
 
     <div id="socioeco" {{ $errors->has('socioeconomicos') ? 'has-error' : ''}}>
+
     <label>F 2 II. Tipo de asistencia socioeconómica:</label>
     <label for="">En caso de requerir, tildar todas las opciones que considere correspondientes.</label><br>
+
       @foreach ($socioeconomicos as $socioeconomico)
         <label class="form-check-inline form-check-label">
           @if(is_array(old("socioeconomicos")) && in_array($socioeconomico->id,old("socioeconomicos")))
@@ -195,7 +189,7 @@ session_start();
         {{ $socioeconomico->nombre }}
       </label><br>
       @endforeach
-      {!! $errors->first('socioeconomicos', '<p class="help-block" style="color:red";>:message</p>') !!}
+   {!! $errors->first('socioeconomicos', '<p class="help-block" style="color:red";>:message</p>') !!}   
     <br>
   </div>
 
@@ -228,22 +222,26 @@ session_start();
     <input class="form-control" name="socioeconomica_otro" value="{{old("socioeconomica_otro")}}" type="text" id="socioeconomica_otro_cualF2I">
     </div>
   @endif
-
+</div>
 
   <script>
            function selectOnChangeF2(sel) {
                           if (sel.value=="1"){
-                              divC = document.getElementById("tipo_asistencia_si");
+                              divC = document.getElementById("tipo_asistencia");
                               divC.style.display = "";
 
                             }
 
-                              else{
-                                divC = document.getElementById("tipo_asistencia_si");
+                            if (sel.value=="2"){
+                                divC = document.getElementById("tipo_asistencia");
                                 divC.style.display = "none";
-                              document.getElementById("Jurídica").checked= false;
-                              document.getElementById("Psicológica").checked= false;
-                              document.getElementById("checkeadosocioeco").checked= false;
+                              var checkboxes = divC.querySelectorAll('input');
+
+
+            checkboxes.forEach(function (oneCheckbox) {
+              oneCheckbox.checked = false;
+            })
+
 
                               divf2 = document.getElementById("socioeco");
                               divf2.style.display = "none";
@@ -268,17 +266,56 @@ session_start();
 
 
   <script type="text/javascript">
+
     var socio = document.querySelectorAll(".socioOtro")
     var otro2 = socio[socio.length-1]
 
     otro2.onclick = function(){
+       document.querySelector('#socioeconomica_otro_cualF2I').value = '';
         $("#cualF2I").toggle()
-
-
 
      }
   </script>
 
+
+
+  <script type="text/javascript">
+    var tipo = document.querySelectorAll(".tipoSocio")
+    var tipo2 = tipo[tipo.length-1]
+
+
+    tipo2.onclick = function(){
+    
+        $("#socioeco").toggle();
+         
+              divf2 = document.getElementById("socioeco");
+                          
+                              var checkboxes = divf2.querySelectorAll('input');
+
+
+                              checkboxes.forEach(function (oneCheckbox) {
+                                oneCheckbox.checked = false;
+                              })
+
+                              document.querySelector('#cualF2I').style.display = 'none';
+
+                              document.querySelector('#socioeconomica_otro_cualF2I').value = '';
+                              }
+
+
+            
+  
+     
+  </script>
+
+                  
+
+
+
+
+
+
+                
 
 
   <!-F3 Organismo que articula->
@@ -385,7 +422,7 @@ session_start();
     <label for="abogado_particular">F 4.¿Cuenta con abogado particular?:</label>
     <select class="form-control" onChange="selectOnChangeF4(this)" name="abogado_particular" id="abogado_particular">
 
-      <option value="0" selected=disabled>Seleccionar...</option>
+      <option value="" selected=disabled>Seleccionar...</option>
 
       @if(old("abogado_particular") == 1) <option value="1" selected>Sí</option> @else<option value="1" >Sí</option>@endif
       @if(old("abogado_particular") == 2) <option value="2" selected>No</option>
@@ -396,38 +433,24 @@ session_start();
     {!! $errors->first('abogado_particular', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
 
-@if(old("abogado_particular") == 1)
-  <div class="form-group" id="Patro" style="display:none">
-  @else
-    <div class="form-group" id="Patro" style="display:block">
-  @endif
-
-<script type="text/javascript">
-function selectOnChangeF4(sel) {
- if (sel.value=="2" || sel.value=="3"){
-     divf4 = document.getElementById("Patro");
-     divf4.style.display = "";}
-
-     else {
-       divf4 = document.getElementById("Patro");
-       divf4.style.display = "none";
-       $('#pratocinio_gratuito').val('0');
-       $('#fecha_de_solicitud').val('');
-       document.getElementById("bloqueof5").checked=false;
-
-
-     }
-     }
-</script>
 
 
 
 <!-F5 Patrocinio jurídico->
 
-  <div class="form-group"  {{ $errors->has('pratocinio_gratuito') ? 'has-error' : ''}}>
+
+@if(old("abogado_particular") == 2||old("abogado_particular")==3)
+  <div class="form-group" id="Patro"  {{ $errors->has('pratocinio_gratuito') ? 'has-error' : ''}}>
+  @else
+    <div class="form-group" id="Patro" style="display:none">
+  @endif
+
+
+
   <label for="patrocinio">F 5.Patrocinio jurídico gratuito:</label>
   <select class="form-control" name="pratocinio_gratuito" id="pratocinio_gratuito" onChange="selectOnChangeF6(this)">
-      <option value="0" selected=disabled>Seleccionar...</option>
+
+<option value="" selected=disabled>Seleccionar...</option>
       @if(old("pratocinio_gratuito") == 1) <option value="1" selected>Requiere</option>
       @else<option value="1">Requiere</option>@endif
 
@@ -450,10 +473,78 @@ function selectOnChangeF4(sel) {
   @endif
   <label>F 5 I. Fecha de solicitud:</label>
   <input type="date" class="form-control" name="fecha_de_solicitud" id="fecha_de_solicitud" value="{{old("fecha_de_solicitud")}}">
-  <label for="bloqueo1" class="form-check-label">Se desconoce</label>
-  <input type="checkbox" onchange="checkf51(this)" id="bloqueof5" name="fecha_de_solicitud" value="Se desconoce">
+  <label id="bloqueo1" class="form-check-label">Se desconoce</label>
+  <input type="checkbox" onchange="checkf51(this)" id="bloqueof5" name="fecha_de_solicitud_se_desconoce" value="Se desconoce">
   {!! $errors->first('fecha_de_solicitud', '<p class="help-block" style="color:red";>:message</p>') !!}
   </div>
+
+
+<script type="text/javascript">
+function selectOnChangeF4(sel) {
+ if (sel.value=="2" || sel.value=="3"){
+     divf4 = document.getElementById("Patro");
+     divf4.style.display = "";
+   divf42 = document.getElementById("fecha_de_solicitud");
+       divf42.style.display = "";
+        divf44 = document.getElementById("bloqueof5");
+       divf44.style.display = "";
+
+
+
+
+   }
+
+ if (sel.value=="1") {
+       divf4 = document.getElementById("Patro");
+       divf4.style.display = "none";
+       $('#pratocinio_gratuito').val('0');
+          
+
+
+         divf46 = document.getElementById("solicitud");
+       divf46.style.display = "none";     
+       $('#fecha_de_solicitud').val('');
+       divf43 = document.getElementById("fecha_de_solicitud");
+       divf43.style.display = "none";
+       document.getElementById("bloqueof5").checked=false;
+       divf44 = document.getElementById("bloqueof5");
+       divf44.style.display = "none";
+       
+ document.getElementById("designado").removeAttribute("readonly");
+          document.getElementById("bloqueo5").checked=false;
+          $("#designado").val("");
+          divfd = document.getElementById("cualF6");
+          divfd.style.display = "none";
+
+
+        $("#pratocinio_gratuito-designado").val("");
+        divfc= document.getElementById("conformidad");
+        divfc.style.display = "none";
+
+
+     $('#colegio_departamental').val('');
+
+        divf55= document.getElementById("colegio");
+       divf55.style.display = "none";
+
+
+
+
+        $("#fecha_designacion_del_letrado").val("");
+
+    divf555= document.getElementById("fecha_designacion");
+
+    divf555.style.display = "none";
+
+
+
+
+     }
+     }
+</script>
+
+
+
 
   <script type="text/javascript">
   function selectOnChangeF6(sel) {
@@ -523,6 +614,7 @@ if (sel.value=="3"){
        {
            $('#fecha_de_solicitud').val('1900-01-01');
            document.getElementById('fecha_de_solicitud').setAttribute("readonly", "readonly");
+
        }else
            {
                $('#fecha_de_solicitud').val('');
@@ -540,9 +632,8 @@ if (sel.value=="3"){
   <label for="letrado_designado">F 5 I. Nombre y Apellido del letrado designado:</label>
   <input type="text" class="form-control" name="letrado_designado" id="designado" value="{{old("letrado_designado")}}">
   <label  class="form-check-label">Se desconoce</label>
-  <input type="checkbox" id="bloqueo5" name="letrado_designado" value="Se desconoce" onchange="checkC111(this)">
-  {!! $errors->first('letrado_designado', '<p class="help-block" style="color:red";>:message</p>') !!}
-  </div>
+  <input type="checkbox" id="bloqueof7" name="letrado_designado" value="Se desconoce" onchange="checkC111(this)">
+  
 
    <script>
                      function checkC111(checkbox)
@@ -562,7 +653,7 @@ if (sel.value=="3"){
   <br><br>
     <!-F5 2>
   <div class="form-group " id="conformidad" {{ $errors->has('pratocinio_conformidad') ? 'has-error' : ''}}>
-  <label for="pratocinio_conformidad">F 4 II.¿La víctima está conforme con la asistencia recibida por parte del letrado designado?:</label>
+  <label for="pratocinio_conformidad">F 5 II.¿La víctima está conforme con la asistencia recibida por parte del letrado designado?:</label>
   <select class="form-control" name="pratocinio_conformidad" id="pratocinio_gratuito-designado" >
   <option value="" selected=disabled>Seleccionar...</option>
           @if(old("pratocinio_conformidad") == 1) <option value="1" selected>Sí</option>
@@ -577,7 +668,7 @@ if (sel.value=="3"){
   <br>
     <!-F5 3>
   <div class="form-group" id="colegio" {{ $errors->has('colegio_departamental') ? 'has-error' : ''}}>
-  <label for="colegio_departamental">F 4 III.Colegio Departamental:</label>
+  <label for="colegio_departamental">F 5 III.Colegio Departamental:</label>
   <select class="form-control" name="colegio_departamental" id="colegio_departamental">
 
    <option value="" selected=disabled>Seleccionar...</option>
@@ -593,7 +684,7 @@ if (sel.value=="3"){
   <br>
     <!-F5 4>
   <div class="form-group" id="fecha_designacion" {{ $errors->has('fecha_designacion') ? 'has-error' : ''}}>
-  <label for="">F 4 IV. Fecha de designación: </label>
+  <label for="">F 5 IV. Fecha de designación: </label>
   <input type="date" class="form-control" id="fecha_designacion_del_letrado" name="fecha_designacion" value="{{old("fecha_designacion")}}" ><br>
   {!! $errors->first('fecha_designacion', '<p class="help-block" style="color:red";>:message</p>') !!}
   </div>
@@ -601,7 +692,7 @@ if (sel.value=="3"){
   @else
 
   <div id="cualF6" style="display:none">
-  <label for="letrado_designado">F 4 I. Nombre y Apellido del letrado designado:</label>
+  <label for="letrado_designado">F 5 I. Nombre y Apellido del letrado designado:</label>
   <input type="text" class="form-control" name="letrado_designado" id="designado" value="{{old("letrado_designado")}}">
   <label  class="form-check-label">Se desconoce</label>
   <input type="checkbox" id="bloqueo5" name="letrado_designado" value="Se desconoce" onchange="checkC111(this)">
@@ -623,7 +714,7 @@ if (sel.value=="3"){
   </div>
 
   <div class="form-group " id="conformidad" style="display:none">
-  <label for="pratocinio_conformidad">F 4 II.¿La víctima está conforme con la asistencia recibida por parte del letrado designado?:</label>
+  <label for="pratocinio_conformidad">F 5 II.¿La víctima está conforme con la asistencia recibida por parte del letrado designado?:</label>
   <select class="form-control" name="pratocinio_conformidad" id="pratocinio_gratuito-designado" >
   <option value="" selected=disabled>Seleccionar...</option>
           <option value="1" >Sí</option>
@@ -633,7 +724,7 @@ if (sel.value=="3"){
   </div>
 
   <div class="form-group" id="colegio" style="display:none">
-  <label for="colegio_departamental">F 4 III.Colegio Departamental:</label>
+  <label for="colegio_departamental">F 5 III.Colegio Departamental:</label>
   <select class="form-control" name="colegio_departamental" id="colegio_departamental">
     <option value=""selected=disabled>Seleccionar...</option>
     @foreach ($departamentos as $departamento)
@@ -657,14 +748,15 @@ if (sel.value=="3"){
   </select>
   </div>
   <div class="form-group" id="fecha_designacion" style="display:none">
-  <label for="">F 4 IV. Fecha de designación: </label>
+  <label for="">F 5 IV. Fecha de designación: </label>
   <input type="date" class="form-control" id="fecha_designacion_del_letrado" name="fecha_designacion" value="{{old("fecha_designacion")}}" ><br>
 </div>
 
   @endif
 
   </div>
-
+{!! $errors->first('letrado_designado', '<p class="help-block" style="color:red";>:message</p>') !!}
+  </div>
 
             <script>
                function muestroCualF2I() {
@@ -727,6 +819,7 @@ if (sel.value=="3"){
                        }
                }
             </script>
+            
       </section>
       <div class="botones">
       <div class="btn-1"> <button type="submit" style="color:white; background-color:rgb(137, 210, 14)" class="btn col-xl" name="button">SIGUIENTE</button><br><br></div>

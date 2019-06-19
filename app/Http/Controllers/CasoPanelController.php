@@ -47,8 +47,8 @@ $hoy = date("d-m-Y");
  "nombre_y_apellido_de_la_victima" => "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
  "fecha_delito"=>"required",
  "pais_hecho"=>"required",
- "provincia_hecho"=>"required",
- "localidad_hecho"=>"required"
+
+
 
     ];
 
@@ -80,6 +80,14 @@ $hoy = date("d-m-Y");
 
   $validator->sometimes('fecha_hecho_otro', "required|min:3|max:100|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
     return $input->fecha_delito == 2;
+  });
+ $validator->sometimes('provincia_hecho', 'required', function ($input) {
+return $input->pais_hecho == 1;
+  });
+ 
+
+ $validator->sometimes('localidad_hecho', 'required', function ($input) {
+return $input-> provincia_hecho > 0 && $input-> provincia_hecho < 25;
   });
 
 

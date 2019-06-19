@@ -76,13 +76,7 @@
 <section class="container jumbotron shadow p-3 mb-5 bg-white rounded">
 <div class="form-group" >
 
-<!--<ul>
-@foreach(Auth::user()->casos as $caso)
-<li>
-  {{$caso->nombre_referencia}}
-</li>
-@endforeach
-</ul>-->
+
 
 <br><br>
 
@@ -90,7 +84,7 @@
  {{csrf_field()}}
 
 <div class="buscar" style="margin-left: 5%;margin-top: 5%">
-  <input type="radio" name="buscar" checked value="1"> Casos
+  <input type="radio" name="buscar"  value="1"> Casos
   <input type="radio" name="buscar" value="2"> Incidencias
   <input type="radio" name="buscar" value="3"> Derivaciones
     <input type="radio" name="buscar"  value="4"> BUSQUEDA GENERAL
@@ -127,7 +121,12 @@
           <p>Cavaj: @foreach ($cavajs as $cavaj)
           @if ($cavaj->id == $caso->cavaj){{$cavaj->nombre}}
           @endif
-                    @endforeach</p>
+         @endforeach</p>
+
+           <p>Delito: @foreach ($delitos as $delito)
+          @if ($delito->id == $caso->delito){{$delito->nombre}}
+          @endif                    
+        @endforeach</p>
       </div>
       <div class="col-6">
           <p>Fecha de ingreso: {{date("d/m/y",strtotime($caso->fecha_ingreso))}}</p>
@@ -214,8 +213,12 @@
           <p>Victima: {{$caso->nombre_y_apellido_de_la_victima}}</p>
           <p>Cavaj: @foreach ($cavajs as $cavaj)
           @if ($cavaj->id == $caso->cavaj){{$cavaj->nombre}}
-          @endif
-                    @endforeach</p>
+          @endif                   
+           @endforeach</p>
+             <p>Delito: @foreach ($delitos as $delito)
+          @if ($delito->id == $caso->delito){{$delito->nombre}}
+          @endif                    
+        @endforeach</p>
       </div>
       <div class="col-6">
           <p>Fecha de ingreso: {{date("d/m/y",strtotime($caso->fecha_ingreso))}}</p>
@@ -238,6 +241,10 @@
           <p>Cavaj: @foreach ($cavajs as $cavaj)
           @if ($cavaj->id == $caso->cavaj){{$cavaj->nombre}} @endif
                     @endforeach</p>
+                      <p>Delito: @foreach ($delitos as $delito)
+          @if ($delito->id == $caso->delito){{$delito->nombre}}
+          @endif                    
+        @endforeach</p>
         </div>
         <div class="col-6">
         <p>Fecha de ingreso: {{date("d/m/y",strtotime($caso->fecha_ingreso))}}</p>
@@ -268,6 +275,10 @@
           @if ($cavaj->id == $caso->cavaj){{$cavaj->nombre}}
           @endif
                     @endforeach</p>
+                      <p>Delito: @foreach ($delitos as $delito)
+          @if ($delito->id == $caso->delito){{$delito->nombre}}
+          @endif                    
+        @endforeach</p>
       </div>
       <div class="col-6">
           <p>Fecha de ingreso: {{date("d/m/y",strtotime($caso->fecha_ingreso))}}</p>
@@ -304,6 +315,10 @@
           @if ($cavaj->id == $caso->cavaj){{$cavaj->nombre}}
           @endif
                     @endforeach</p>
+                      <p>Delito: @foreach ($delitos as $delito)
+          @if ($delito->id == $caso->delito){{$delito->nombre}}
+          @endif                    
+        @endforeach</p>
       </div>
       <div class="col-6">
           <p>Fecha de ingreso: {{date("d/m/y",strtotime($caso->fecha_ingreso))}}</p>
@@ -331,13 +346,7 @@
           <p class="mr-4 mb-0"> <strong><span style="text-decoration: underline"> Incidencia: </span><strong>{{$demanda->nombre_y_apellido_de_la_victima}}</strong></p>
      <ul class="list-unstyled list-inline mb-0">
        <li class="list-inline-item"><a href='/informedemanda/{{$demanda->id}}' class="mr-3"><i class="fas fa-user mr-1"></i>Informe</a></li>
-       <li class="list-inline-item"><a href="javascript:AlertDemandaaCaso();" class="mr-3"><i class="fas fa-user mr-1"></i>Pasar a Caso</a></li>
-       <script type="text/javascript">
-       function AlertDemandaaCaso() {
-       var answer = confirm ("¿Esta seguro que desea eliminar la incidencia y crear el caso?")
-       if (answer)
-       window.location="/demandaCaso/{{$demanda->id}}";
-       }
+      78
        </script>
        <li class="list-inline-item"><a href="javascript:AlertDemanda();" class="mr-3"><i class="fas fa-rss mr-1"></i>Eliminar</a></li>
        <script type="text/javascript">

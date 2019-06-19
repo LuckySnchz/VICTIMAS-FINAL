@@ -7,6 +7,7 @@ use App\Oarticula;
 use App\Oprevio;
 use App\Socioeconomico;
 use App\Caso;
+use App\Asistencia;
 class Institucion extends MiModelo
 {
   public $table="instituciones";
@@ -24,6 +25,10 @@ public function socioeconomicos() {
 return $this->belongsToMany(Socioeconomico::class,"institucion_socioeconomico","institucion_id","socioeconomico_id");
 }
 
+public function asistencias() {
+return $this->belongsToMany(Asistencia::class,"institucion_asistencia","institucion_id","asistencia_id");
+}
+
 public function casos() {
   return $this->hasOne(Caso::class,"idCaso");
 }
@@ -35,6 +40,13 @@ public function departamentos() {
 public function socioeconomicosIds() {
   return $this->socioeconomicos->pluck("id");
 }
+
+public function asistenciasIds() {
+  return $this->asistencias->pluck("id");
+}
+
+
+
 public function oarticulasIds() {
   return $this->oarticulas->pluck("id");
 }

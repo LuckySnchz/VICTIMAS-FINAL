@@ -9,6 +9,8 @@ use App\Necesidad;
 use App\Programa;
 use App\Limitacion;
 use App\Discapacidad;
+use App\Caso;
+use App\Delito;
 use Validator;
 
 class VictimaPanelController extends Controller
@@ -179,28 +181,6 @@ public function agregar(Request $form){
    
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
 
       public function eliminar($id) {
@@ -259,7 +239,11 @@ public function agregar(Request $form){
    
    session(["idVictim" => $id]);
    session(["idCaso" => $idCaso]);
+
+
    
+  
+    
 
 return redirect("paneldecontrol/{$idCaso}");
 

@@ -472,110 +472,152 @@ session_start();
 
 
 
-  <!-D3 País del hecho->
+ <!<A 13 País del hecho->
 
-      <div class="form-group" {{ $errors->has('pais_hecho') ? 'has-error' : ''}}>
-      <label for="countryId2">A 13. País del hecho:</label>
-      <select name="pais_hecho" class="countries2 order-alpha form-control" id="countryId2">
-        <option value="" selected=disabled>Seleccionar...</option>
-        @if($caso->pais_hecho==1))
-        <option value="1" selected>Argentina</option>
-        @else
-        <option value="1">Argentina</option>
-        @endif
-      </select>
-      <br>
-      {!! $errors->first('pais_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
 
-  <!-D4 Provincia del hecho->
-
-      <div class="form-group" {{ $errors->has('provincia_hecho') ? 'has-error' : ''}}>
-      <label for="stateId2">A 14. Provincia del hecho:</label>
-      <select name="provincia_hecho" class="states2 order-alpha form-control" id="stateId2">
+    <div class="form-group" {{ $errors->has('pais_hecho') ? 'has-error' : ''}}>
+    <label for="countryId2">A 13. País del hecho:</label>
+    <select name="pais_hecho" class="countries2 order-alpha form-control" id="countryId2">
       <option value="" selected=disabled>Seleccionar...</option>
-        <option value="0">Se desconoce</option>
-      @foreach ($provincias as $provincia)
-        @if ($caso->provincia_hecho==$provincia->id))
-        <option value="{{$provincia->id}}" selected>{{$provincia->nombre}}</option>
-        @else
-        <option value="{{$provincia->id}}">{{$provincia->nombre}}</option>
-        @endif
-      @endforeach
-      </select>
-      <label>Se desconoce</label>
-      <input type="checkbox" name="provincia_hecho" id="desconoceProvinciaExplotacion" value="Se desconoce" onchange="checkD4(this)"><br>
+      @if($caso->pais_hecho ==1)
+      <option value="1" selected>Argentina</option>
+      @else
+      <option value="1" >Argentina</option>
+      @endif
+      @if($caso->pais_hecho==2)
+      <option value="2" selected>Se Desconoce</option>
+      @else
+      <option value="2" >Se Desconoce</option>
+      @endif
+     
+    </select>
+    <br>
+    {!! $errors->first('pais_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div>
+
+
+
+<!-A14 Provincia del hecho->
+
+   @if($caso->pais_hecho == 1)
+    <div class="form-group" id="provincia_hecho" {{ $errors->has('provincia_hecho') ? 'has-error' : ''}}>
+  @else
+  <div class="form-group" id="provincia_hecho" style="display: none">
+    @endif
+    <label for="stateId2">A 14. Provincia del hecho:</label>
+    <select name="provincia_hecho" class="states2 order-alpha form-control" id="stateId2" onChange="selectOnChangePcia(this)">
+    <option value="" selected=disabled>Seleccionar...</option>
+
+   
+    @foreach ($provincias as $provincia)
+      @if ($caso->provincia_hecho ==$provincia->id)
+      <option  selected value="{{$provincia->id}}">{{$provincia->nombre}}</option>
+      @else
+      <option value="{{$provincia->id}}">{{$provincia->nombre}}</option>
+      @endif
+    @endforeach
+    </select>
+ 
       {!! $errors->first('provincia_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
+    </div>
 
-      <script>
-             function checkD4(checkbox)
-             {
-                 if (checkbox.checked)
-                     {
-                         $('#stateId2').val('0');
-                         document.getElementById('stateId2').setAttribute("readonly", "readonly");
 
-                     }else
-                         {
-                             $('#stateId2').val('');
-                             document.getElementById('stateId2').removeAttribute("readonly");
-                         }
-             }
-          </script>
 
-  <!-D5 Localidad del hecho->
 
-      <div class="form-group" {{ $errors->has('localidad_hecho') ? 'has-error' : ''}}>
-      <label for="cityId2">A 15. Localidad del hecho:</label>
-      <select name="localidad_hecho" class="cities2 order-alpha form-control" id="cityId2">
-      <option value=" " selected=disabled>Seleccionar...</option>
-        <option value="0">Se desconoce</option>
-      @foreach ($ciudades as $ciudad)
-        @if ($caso->provincia_hecho==$ciudad->id))
-        <option class="opcionProvincia provincia{{$ciudad->idPcia}}" style="display:none" value="{{$ciudad->id}}" selected>{{$ciudad->nombre}}</option>
-        @else
-        <option class="opcionProvincia provincia{{$ciudad->idPcia}}" style="display:none" value="{{$ciudad->id}}">{{$ciudad->localidad_nombre}}</option>
-        @endif
-      @endforeach
-      </select>
-      <label>Se desconoce</label>
-      <input type="checkbox" name="localidad_hecho" id="desconoceCiudadExplotacion" value="Se desconoce" onchange="checkD5(this)"><br>
-      {!! $errors->first('localidad_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
-      <script>
-             function checkD5(checkbox)
-             {
-                 if (checkbox.checked)
-                     {
-                         $('#cityId2').val('0');
-                         document.getElementById('cityId2').setAttribute("readonly", "readonly");
+<!-A15 Localidad del hecho->
 
-                     }else
-                         {
-                             $('#cityId2').val('');
-                             document.getElementById('cityId2').removeAttribute("readonly");
-                         }
-             }
-          </script>
 
-          <script type="text/javascript">
-            document.querySelector("#stateId2").onchange = function() {
-              var value = this.options[this.selectedIndex].value;
 
-              var opciones = document.querySelectorAll(".opcionProvincia");
+ @if(($caso->provincia_hecho) < 25 && ($caso->pais_hecho)==1)
 
-              for (var i = 0; i < opciones.length; i++) {
-                opciones[i].style.display = "none";
+ <div class="form-group" id="localidad_hecho" {{ $errors->has('localidad_hecho') ? 'has-error' : ''}}>
+  @else
+
+<div class="form-group" id="localidad_hecho" style="display: none" >
+@endif
+    <label for="cityId2">D 15. Localidad del hecho:</label>
+    <select name="localidad_hecho" class="cities2 order-alpha form-control" id="cityId2">
+    <option value="" selected=disabled>Seleccionar...</option>
+   
+    @foreach ($ciudades as $ciudad)
+      @if ($caso->localidad_hecho ==$ciudad->id)
+      <option class="opcionProvincia provincia{{$ciudad->idPcia}}" style="display:none" value="{{$ciudad->id}}" selected>{{$ciudad->localidad_nombre}}</option>
+      @else
+      <option class="opcionProvincia provincia{{$ciudad->idPcia}}" style="display:none" value="{{$ciudad->id}}">{{$ciudad->localidad_nombre}}</option>
+      @endif
+    @endforeach
+    </select>
+  
+    {!! $errors->first('localidad_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
+   </div>
+
+
+
+ <script type="text/javascript">
+    document.querySelector("#countryId2").onchange = function() {
+      var value = this.options[this.selectedIndex].value;
+      if (value=="1"){
+        
+           divC = document.getElementById("provincia_hecho");
+                divC.style.display = "";
+
               }
 
-              var opciones = document.querySelectorAll(".provincia" + value);
+ if (value=="2"){divCp = document.getElementById("provincia_hecho");
+               $('#stateId2').val('');
+                divCp.style.display = "none"; 
+               
 
-              for (var i = 0; i < opciones.length; i++) {
-                opciones[i].style.display = "block";
-              }
+               divCl = document.getElementById("localidad_hecho");
+               $('#cityId2').val('');
+                divCl.style.display = "none"; 
+               }
             }
-          </script>
+    </script>
+
+
+
+
+
+<script type="text/javascript">
+    document.querySelector("#stateId2").onchange = function() {
+      var value = this.options[this.selectedIndex].value;
+
+                  if ((value=="1")||(value=="2")||(value=="3")||(value=="4")||
+                                  (value=="5")||(value=="6")||(value=="7")||(value=="8")||
+                                  (value=="9")||(value=="10")||(value=="11")||(value=="12")||
+                                  (value=="13")||(value=="14")||(value=="15")||(value=="16")||
+                                  (value=="17")||(value=="18")||(value=="19")||(value=="20")||
+                                  (value=="21")||(value=="22")||(value=="23")||(value=="24")){
+                divC = document.getElementById("localidad_hecho");
+              $('#localidad_hecho').val(' ');
+                divC.style.display = "";
+
+              
+
+              }
+if (value=="25"){
+
+                divC = document.getElementById("localidad_hecho");
+                divC.style.display = "none";
+            
+
+              }
+      var opciones = document.querySelectorAll(".opcionProvincia");
+
+      for (var i = 0; i < opciones.length; i++) {
+        opciones[i].style.display = "none";
+      }
+
+      var opciones = document.querySelectorAll(".provincia" + value);
+
+      for (var i = 0; i < opciones.length; i++) {
+        opciones[i].style.display = "block";
+      }
+ 
+
+    }
+  </script>
 
 
   </section>

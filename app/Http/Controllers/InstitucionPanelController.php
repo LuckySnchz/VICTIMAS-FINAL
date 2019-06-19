@@ -80,12 +80,13 @@ $hoy = date("d-m-Y");
      return is_array($input->socioeconomicos) && in_array(6,$input->socioeconomicos);
    });
 
-   $validator->sometimes('tipo_asistencia', 'required', function ($input) {
+
+    $validator->sometimes('asistencia','required',function ($input) {
      return $input->requiere_asistencia == 1;
    });
 
-   $validator->sometimes('socioeconomicos', 'required', function ($input) {
-     return is_array($input->tipo_asistencia) && in_array(3,$input->tipo_asistencia);
+ $validator->sometimes('socioeconomicos', 'required', function ($input) {
+    return is_array($input->tipo_asistencia) && in_array(3,$input->tipo_asistencia);
    });
 
 
@@ -102,11 +103,11 @@ $institucion= new Institucion();
 $institucion->organismos_intervinieron= $form ["organismos_intervinieron"];
 $institucion->cual_otro_organismo= $form ["cual_otro_organismo"];
 $institucion->requiere_asistencia= $form ["requiere_asistencia"];
- $institucion->asistencia_psicologica=$form["asistencia_psicologica"];
-$institucion->socioeconomica_otro= $form ["socioeconomica_otro"];
-$institucion->organismo_articula_si_no= $form ["organismo_articula_si_no"];
-$institucion->organismos_actual_otro= $form ["organismos_actual_otro"];
-$institucion->pratocinio_gratuito= $form ["pratocinio_gratuito"];
+$institucion->socioeconomica_otro= $form["socioeconomica_otro"];
+$institucion->organismo_articula_si_no= $form["organismo_articula_si_no"];
+$institucion->organismos_actual_otro= $form["organismos_actual_otro"];
+$institucion->pratocinio_gratuito= $form["pratocinio_gratuito"];
+$institucion->fecha_de_solicitud= $form["fecha_de_solicitud"];
 $institucion->letrado_designado= $form ["letrado_designado"];
 $institucion->pratocinio_conformidad= $form ["pratocinio_conformidad"];
 $institucion->colegio_departamental= $form ["colegio_departamental"];
@@ -243,12 +244,9 @@ $hoy = date("d-m-Y");
       return is_array($input->socioeconomicos) && in_array(6,$input->socioeconomicos);
     });
 
-    $validator->sometimes('tipo_asistencia', 'required', function ($input) {
-      return $input->requiere_asistencia == 1;
-    });
 
     $validator->sometimes('socioeconomicos', 'required', function ($input) {
-      return is_array($input->tipo_asistencia) && in_array(3,$input->tipo_asistencia);
+      return is_array($input->asistencia) && in_array(3,$input->asistencia);
     });
 
 
@@ -264,8 +262,7 @@ $institucion = Institucion::find($form["idOrganismo"]);
 $institucion->organismos_intervinieron= $form ["organismos_intervinieron"];
 $institucion->cual_otro_organismo= $form ["cual_otro_organismo"];
 $institucion->requiere_asistencia= $form ["requiere_asistencia"];
-$institucion->asistencia_juridica=$form["asistencia_juridica"];
-$institucion->asistencia_psicologica=$form["asistencia_psicologica"];
+$institucion->asistencia=$form["asistencia"];
 $institucion->asistencia_socioeconomica=$form["asistencia_socioeconomica"];
 $institucion->socioeconomica_otro= $form["socioeconomica_otro"];
 $institucion->organismo_articula_si_no= $form["organismo_articula_si_no"];

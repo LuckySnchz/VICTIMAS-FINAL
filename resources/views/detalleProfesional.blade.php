@@ -36,15 +36,27 @@
 
     <div class="form-group">
     <ul>
-      @foreach($profesionales as $profesional)
-        @if($profesional->idCaso==session("idCaso"))
+         @foreach($profesionales as $profesional)
+        @if($profesional->idCaso==session("idCaso") && ($profesional->nombre_profesional_interviniente > 0))
+        
         <li>
-         
-            {{$profesional->usuario->nombre_y_apellido}}
-       
+
+            {{$profesional->usuario->nombre_y_apellido }}
+     
+        </li>
+        @endif
+
+         @if($profesional->idCaso==session("idCaso") && ($profesional->nombre_profesional_interviniente == 0))
+        
+        <li>
+
+            {{$profesional->nombre_profesional_interviniente_otro }}
+     
         </li>
         @endif
       @endforeach
+
+    </ul>
     </ul>
     </div>
 
@@ -58,22 +70,40 @@
 
 <!A15 Profesional interviniente>
 
-    <div class="form-group"{{ $errors->has('nombre_profesional_interviniente') ? 'has-error' : ''}}>
-    <label>A 15. 1 Profesional Interviniente:</label>
-    <select class="form-control" name="nombre_profesional_interviniente">
-      <option value="" selected=disabled>Seleccionar...</option>
-        @foreach ($usuarios as $usuario)
-          @if ($usuario->id == $nombre_profesional_interviniente)
-            <option selected value="{{ $usuario->id }}">
-              {{$usuario->nombre_y_apellido}}</option>
-          @else
-            <option value="{{ $usuario->id }}">
-              {{$usuario->nombre_y_apellido}}</option>
-          @endif
-        @endforeach
-    </select>
-    {!! $errors->first('nombre_profesional_interviniente', '<p class="help-block" style="color:red";>:message</p>') !!}
+
+ 
+ @if (($nombre_profesional_interviniente) == 0)
+ <div class="form-group" style="display: none"{{ $errors->has('nombre_profesional_interviniente') ? 'has-error' : ''}}>
+   <label>A 15. Profesional Interviniente:</label>
+<br>
+@else
+<div class="form-group" >
+
+@endif
+<input type="text" disabled style="background-color: grey;color:white"class="form-control" name="nombre_profesional_interviniente" id="nombre_profesional_interviniente"  
+  
+
+              @foreach ($usuarios as $usuario)
+               @if($usuario->id==$nombre_profesional_interviniente)
+            
+              value="{{ $usuario->nombre_y_apellido}}"
+             @endif
+            @endforeach>
+            
+
+ {!! $errors->first('nombre_profesional_interviniente', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
+
+  @if (($nombre_profesional_interviniente) == 0)
+  <div id="cualprof" {{ $errors->has('nombre_profesional_interviniente_otro') ? 'has-error' : ''}}>
+@else
+<div id="cualprof"  style="display:none"  >
+@endif
+  <label > Profesional Interviniente- Profesión:</label>
+  <input  disabled style="background-color: grey;color:white" disabled  class="form-control" name="nombre_profesional_interviniente_otro" type="text" id="nombre_profesional_interviniente_otro" value="{{$nombre_profesional_interviniente_otro}}">
+  {!! $errors->first('nombre_profesional_interviniente_otro', '<p class="help-block" style="color:red";>:message</p>') !!}
+  </div>
+    
 
 <!A15.2 Interviene desde>
 

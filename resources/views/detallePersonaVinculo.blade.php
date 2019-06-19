@@ -38,7 +38,7 @@
    
 
 
-    <form class="" action="/detallePersona" method="post">
+    <form class="" action="/detallePersonaVinculo" method="post">
       {{csrf_field()}}
   <input type="hidden" name="idCaso" value="{{session("idCaso")}}">
     <input type="hidden" name="idPersona" value="{{session("idPersona")}}">
@@ -49,16 +49,16 @@
 
       <div class="form-group" {{ $errors->has('nombre_persona_asistida') ? 'has-error' : ''}}>
       <label for="nombre_persona_asistida">A 14I. Nombre y apellido de la persona asistida: </label>
-      <input type="text" class="form-control" name="nombre_persona_asistida" id="nombre_persona_asistida" value="{{$nombre_persona_asistida}}">
+      <input disabled type="text" class="form-control" name="nombre_persona_asistida" id="nombre_persona_asistida" value="{{$nombre_persona_asistida}}">
 
        @if($nombre_persona_asistida=="Se desconoce") 
 
       <label for="bloqueo1" class="form-check-label">Se desconoce</label>
-      <input type="checkbox" id="bloqueo1" name="nombre_persona_asistida" value="Se desconoce"checked onchange="checkA14a(this)">
+      <input disabled type="checkbox" id="bloqueo1" name="nombre_persona_asistida" value="Se desconoce"checked onchange="checkA14a(this)">
 
       @else
       <label for="bloqueo1" class="form-check-label">Se desconoce</label>
-      <input type="checkbox" id="bloqueo1" name="nombre_persona_asistida" value="Se desconoce" onchange="checkA14a(this)">
+      <input disabled  type="checkbox" id="bloqueo1" name="nombre_persona_asistida" value="Se desconoce" onchange="checkA14a(this)">
       @endif
       {!! $errors->first('nombre_persona_asistida', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
@@ -83,7 +83,7 @@
 
       <div class="form-group" {{ $errors->has('vinculo_persona_asistida') ? 'has-error' : ''}}>
       <label for="vinculo_persona_asistida">A 14II. Tipo de vínculo con la víctima: </label>
-      <select class="form-control" name="vinculo_victima" id="vinculo_victima" onChange="selectOnChangeA14II(this)">
+      <select class="form-control"  style="background-color: red; color:black" name="vinculo_victima" id="vinculo_victima" onChange="selectOnChangeA14II(this)">
             <option value="" selected=disabled>Seleccionar...</option>
               @if($vinculo_victima==1)
               <option value="1" selected >Familiar</option>
@@ -120,19 +120,17 @@
 <!-A14III telefono>
 
       <div class="form-group"{{ $errors->has('telefono_persona_asistida') ? 'has-error' : ''}}>
-      
+      <label for="telefono_persona_asistida">A 14III. Teléfono de contacto: </label>
+      <input disabled type="text" class="form-control" name="telefono_persona_asistida" id="telefono_persona_asistida" value="{{$telefono_persona_asistida}}">
+
  @if($telefono_persona_asistida==0) 
-<label for="telefono_persona_asistida">A 14III. Teléfono de contacto: </label>
-      <input type="text" class="form-control" name="telefono_persona_asistida" id="telefono_persona_asistida" value="Se Desconoce">
 
       <label for="bloqueo1" class="form-check-label">Se desconoce</label>
-      <input type="checkbox" id="bloqueo1" name="telefono_persona_asistida" value="0" checked onchange="checkA14(this)">
+      <input disabled type="checkbox" id="bloqueo1" name="telefono_persona_asistida" value="0" checked onchange="checkA14(this)">
       @else
-<label for="telefono_persona_asistida">A 14III. Teléfono de contacto: </label>
-      <input type="text" class="form-control" name="telefono_persona_asistida" id="telefono_persona_asistida" value="{{$telefono_persona_asistida}}">
 
         <label for="bloqueo1" class="form-check-label">Se desconoce</label>
-      <input type="checkbox" id="bloqueo1" name="telefono_persona_asistida" value="0"  onchange="checkA14(this)">
+      <input disabled type="checkbox" id="bloqueo1" name="telefono_persona_asistida" value="0"  onchange="checkA14(this)">
       @endif
 
       {!! $errors->first('telefono_persona_asistida', '<p class="help-block" style="color:red";>:message</p>') !!}
@@ -156,15 +154,15 @@
 
       <div class="form-group"{{ $errors->has('domicilio_persona_asistida') ? 'has-error' : ''}}>
       <label for="domicilio_persona_asistida">A 14 IV. Domicilio del contacto: </label>
-      <input type="text" class="form-control" name="domicilio_persona_asistida" id="domicilio_persona_asistida"value="{{$domicilio_persona_asistida}}">
+      <input disabled type="text" class="form-control" name="domicilio_persona_asistida" id="domicilio_persona_asistida"value="{{$domicilio_persona_asistida}}">
  @if($domicilio_persona_asistida=="Se desconoce") 
 
       <label for="bloqueo1" class="form-check-label">Se desconoce</label>
-      <input type="checkbox" id="bloqueo1" name="domicilio_persona_asistida" checked value="Se desconoce" onchange="checkA14d(this)">
+      <input disabled type="checkbox" id="bloqueo1" name="domicilio_persona_asistida" checked value="Se desconoce" onchange="checkA14d(this)">
 
       @else
       <label for="bloqueo1" class="form-check-label">Se desconoce</label>
-      <input type="checkbox" id="bloqueo1" name="domicilio_persona_asistida" value="Se desconoce" onchange="checkA14d(this)">
+      <input disabled type="checkbox" id="bloqueo1" name="domicilio_persona_asistida" value="Se desconoce" onchange="checkA14d(this)">
       @endif
 
 
@@ -189,16 +187,16 @@
 
       <div class="form-group"{{ $errors->has('localidad_persona_asistida') ? 'has-error' : ''}}>
       <label for="localidad_persona_asistida">A 14 V. Localidad de residencia: </label>
-      <input type="text" class="form-control" name="localidad_persona_asistida" id="localidad_persona_asistida" value="{{$localidad_persona_asistida}}">
+      <input  disabled type="text" class="form-control" name="localidad_persona_asistida" id="localidad_persona_asistida" value="{{$localidad_persona_asistida}}">
 
        @if($localidad_persona_asistida=="Se desconoce") 
 
       <label for="bloqueo1" class="form-check-label">Se desconoce</label>
-      <input type="checkbox" id="bloqueo1" name="localidad_persona_asistida" checked value="Se desconoce" onchange="checkA14r(this)">
+      <input disabled type="checkbox" id="bloqueo1" name="localidad_persona_asistida" checked value="Se desconoce" onchange="checkA14r(this)">
 @else
 
  <label for="bloqueo1" class="form-check-label">Se desconoce</label>
-      <input type="checkbox" id="bloqueo1" name="localidad_persona_asistida" value="Se desconoce" onchange="checkA14r(this)">
+      <input disabled type="checkbox" id="bloqueo1" name="localidad_persona_asistida" value="Se desconoce" onchange="checkA14r(this)">
       @endif
 
 
@@ -327,6 +325,15 @@
       </script>
       <script>
          function selectOnChangeA14II(sel) {
+
+           if (sel.value=="1"||sel.value=="2"||sel.value=="3"||sel.value=="4"){
+              divCcc = document.getElementById("vinculo_victima");
+       divCcc.style.backgroundColor = 'white';
+           }
+        
+
+
+
            if (sel.value=="4"){
              divC = document.getElementById("vinculo_victima_cual");
              divC.style.display = "";}

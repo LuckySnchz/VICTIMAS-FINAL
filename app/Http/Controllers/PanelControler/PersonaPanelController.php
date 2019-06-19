@@ -7,14 +7,41 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Persona;
 use App\Persona_nueva;
+use App\Victim;
 use Validator;
 
 class PersonaPanelController extends Controller
 {
+  public function detallepersona($id) {
+
+$persona = Persona::find($id);
+$personas = Persona::all();
+session(["idPersona" => $id]);
+$nombre_persona_asistida=$persona->nombre_persona_asistida;
+$vinculo_victima=$persona->vinculo_victima;
+$vinculo_otro=$persona->vinculo_otro;
+$telefono_persona_asistida=$persona->telefono_persona_asistida;
+$domicilio_persona_asistida=$persona->domicilio_persona_asistida;
+$localidad_persona_asistida=$persona->localidad_persona_asistida;
+
+if(Persona_nueva::where("idVictim",session("idVictim"))->where("idPersona",$id)->count()==0){
+   
+   return view("detallePersonavinculo", compact("persona","personas","nombre_persona_asistida","vinculo_victima","vinculo_otro","telefono_persona_asistida","domicilio_persona_asistida","localidad_persona_asistida"));
+    }
+else{
+          $duplicado=Persona::find($id)->nombre_persona_asistida;
+         return view("duplicarreferente",compact("duplicado"));
+         return redirect("agregarpersona");
+
+
+
+        }
+}
 public function agregar(Request $form){
 
-
+ $cantVictimas = App\Victim::where("idCaso",session("idCaso"))->count();
   $reglas = [
+  
 
     ];
 
@@ -27,13 +54,13 @@ public function agregar(Request $form){
   $validator->sometimes('nombre_persona_asistida', 'required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {        return $input->agregar_persona == 1 || $input->cantVictimas ==1;
           });
 
-  $validator->sometimes('vinculo_persona_asistida', 'required', function ($input)
+  $validator->sometimes('vinculo_victima', 'required', function ($input)
   {        return $input->agregar_persona == 1 || $input->cantVictimas ==1;
           });
 
-  $validator->sometimes('telefono_persona_asistida', 'required|integer|digits_between:1,30', function ($input)
-  {        return $input->agregar_persona == 1 || $input->cantVictimas ==1;
-          });
+ $validator->sometimes('telefono_persona_asistida', 'required|integer|digits_between:1,30', function ($input)
+ {        return $input->agregar_persona == 1 || $input->cantVictimas ==1;
+         });
 
   $validator->sometimes('domicilio_persona_asistida', 'required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input)
   {        return $input->agregar_persona == 1 || $input->cantVictimas ==1;
@@ -44,7 +71,7 @@ public function agregar(Request $form){
           });
 
 
-  $validator->sometimes('otro_vinculo_persona_asistida_cual', 'required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {        return $input->vinculo_persona_asistida == 4;
+  $validator->sometimes('vinculo_otro', 'required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {        return $input->vinculo_victima == 4;
           });
 
   if ($validator->fails()) {
@@ -61,8 +88,8 @@ public function agregar(Request $form){
 $persona= new Persona();
 
 $persona->nombre_persona_asistida= $form ["nombre_persona_asistida"];
-$persona->vinculo_persona_asistida= $form ["vinculo_persona_asistida"];
-$persona->otro_vinculo_persona_asistida_cual= $form ["otro_vinculo_persona_asistida_cual"];
+$persona->vinculo_victima= $form ["vinculo_victima"];
+$persona->vinculo_otro= $form ["vinculo_otro"];
 $persona->telefono_persona_asistida= $form ["telefono_persona_asistida"];
 $persona->domicilio_persona_asistida= $form ["domicilio_persona_asistida"];
 $persona->localidad_persona_asistida= $form ["localidad_persona_asistida"];
@@ -74,7 +101,7 @@ $persona->idVictim= session("idVictim");
 $persona->save();
 
 
-$persona->victims()->attach($form ["idVictim"], array("vinculo_persona_asistida"=> $form ["vinculo_persona_asistida"]));
+$persona->victims()->attach($form ["idVictim"], array("vinculo_victima"=> $form ["vinculo_victima"],"vinculo_otro"=> $form ["vinculo_otro"]));
 
 
 return redirect("paneldecontrol/{$persona->idCaso}#A");
@@ -82,30 +109,108 @@ return redirect("paneldecontrol/{$persona->idCaso}#A");
 }}
 
 
+public function vinculopersona(Request $form) {
+
+      $persona = Persona::find(session("idPersona"));
+
+    
+      $persona->vinculo_victima= $form["vinculo_victima"];
+      $persona->vinculo_otro= $form["vinculo_otro"];
+
+      $persona->idCaso= $form["idCaso"];
+
+      $persona->userID_create= $form["userID_create"];
+
+      $persona->userID_modify= Auth::id();
+
+
+     $persona->save();
+     
+
+
+  
+  
+      $persona_nueva = new Persona_nueva();
+
+      $persona_nueva->idVictim= session("idVictim");
+      $persona_nueva->idPersona= $form["idPersona"];
+      $persona_nueva->vinculo_victima=$form["vinculo_victima"];
+      $persona_nueva->vinculo_otro= $form["vinculo_otro"];
+
+      $persona_nueva->save();
+
+
+        return redirect("agregarPersona");
+       
+}
+
+
+
+
+
 public function detalle($id) {
 
     $persona = Persona::find($id);
     $personas = Persona::all();
   session(["idPersona" => $id]);
+   $cantVictimas =Victim::where("idCaso",session("idCaso"))->count();
 $nombre_persona_asistida=$persona->nombre_persona_asistida;
-$vinculo_persona_asistida=$persona->vinculo_persona_asistida;
-$otro_vinculo_persona_asistida_cual=$persona->otro_vinculo_persona_asistida_cual;
+$vinculo_victima=$persona->vinculo_victima;
+$vinculo_otro=$persona->vinculo_otro;
 $telefono_persona_asistida=$persona->telefono_persona_asistida;
 $domicilio_persona_asistida=$persona->domicilio_persona_asistida;
 $localidad_persona_asistida=$persona->localidad_persona_asistida;
 
 
-    return view("detallePersona", compact("persona","personas","nombre_persona_asistida","vinculo_persona_asistida","otro_vinculo_persona_asistida_cual","telefono_persona_asistida","domicilio_persona_asistida","localidad_persona_asistida"));
-  }
+   
+   return view("detallePersona", compact("persona","personas","nombre_persona_asistida",
+    "vinculo_victima","vinculo_otro","telefono_persona_asistida","domicilio_persona_asistida","localidad_persona_asistida","cantVictimas"));
+  
+}
+
+  
 
 
 
 public function editar(Request $form) {
+
+
+  $reglas = [
+
+ 
+
+'nombre_persona_asistida'=>'required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+
+'vinculo_victima'=>'required',
+
+'telefono_persona_asistida'=> 'required|integer|digits_between:1,30', 
+
+'domicilio_persona_asistida'=>'required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', 
+
+'localidad_persona_asistida'=> 'required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', 
+
+       
+
+];
+
+$validator = Validator::make($form->all(), $reglas);
+
+ $validator->sometimes('vinculo_otro', 'required', function ($input) {
+ return $input->vinculo_victima == 4;
+  });
+
+
+  if ($validator->fails()) {
+      return back()
+                  ->withErrors($validator)
+                  ->withInput();
+  }
+
       $persona = Persona::find($form["idPersona"]);
 
       $persona->nombre_persona_asistida= $form ["nombre_persona_asistida"];
-      $persona->vinculo_persona_asistida= $form ["vinculo_persona_asistida"];
-      $persona->otro_vinculo_persona_asistida_cual= $form ["otro_vinculo_persona_asistida_cual"];
+      $persona->vinculo_victima= $form ["vinculo_victima"];
+      $persona->vinculo_otro= $form ["vinculo_otro"];
       $persona->telefono_persona_asistida= $form ["telefono_persona_asistida"];
       $persona->domicilio_persona_asistida= $form ["domicilio_persona_asistida"];
       $persona->localidad_persona_asistida= $form ["localidad_persona_asistida"];
@@ -116,5 +221,10 @@ public function editar(Request $form) {
 
      $persona->save();
       return redirect("paneldecontrol/{$persona->idCaso}#A");}
+
+
+
+
+
 
 }

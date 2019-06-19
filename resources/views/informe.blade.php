@@ -14,6 +14,11 @@
 
    <body>
      @include('navbar')
+     <div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%">
+                <a class="navbar-brand"  href="/home">
+                    <h3 style="color:white">INICIO</h3>
+                </a>
+                </div>
     <h1 class="text-center" style="padding: 15px;">Informe</h1>
 
     <section class="container jumbotron shadow p-3 mb-5 rounded">
@@ -213,7 +218,16 @@
 
 <div>
 <label class="font-weight-bold">Profesional intervinivente: </label>
+
+@if($profesional->nombre_profesional_interviniente==0)
+
+{{$profesional->nombre_profesional_interviniente_otro}}
+@endif
+
+@if($profesional->nombre_profesional_interviniente!==0)
+
 {{$profesional->usuario->nombre_y_apellido}}
+@endif
 </div>
 
 <div>

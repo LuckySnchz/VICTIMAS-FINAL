@@ -38,17 +38,39 @@
 <!Listado profesionales>
 
     <div class="form-group">
-    <ul>
-      @foreach($profesionales as $profesional)
-        @if($profesional->idCaso==session("idCaso"))
-        <li>
-          
-            {{$profesional->usuario->nombre_y_apellido}}
-     
-        </li>
-        @endif
-      @endforeach
-    </ul>
+   <ul>
+ 
+
+
+
+       
+         @foreach($profesionales as $profesional)  
+
+
+ @if($profesional->idCaso==session("idCaso"))
+                <li >
+
+@if($profesional->nombre_profesional_interviniente==0)
+
+<strong style="text-align: center">{{$profesional->nombre_profesional_interviniente_otro}}</strong><br>
+@endif
+               @foreach ($usuarios as $usuario)
+            
+              @if($usuario->id==$profesional->nombre_profesional_interviniente)
+                            <strong style="text-align: center">{{$usuario->nombre_y_apellido}}</strong><br>
+              
+             
+       
+             @endif
+            @endforeach
+            
+
+             </li>
+
+
+       @endif
+
+         @endforeach
     </div>
 
 
@@ -62,13 +84,31 @@
     <label>A 15. Profesional Interviniente:</label>
     <select class="form-control" name="nombre_profesional_interviniente">
       <option value="" selected=disabled>Seleccionar...</option>
-      @foreach ($usuarios as $usuario)
-        @if ($usuario->id == old('nombre_profesional_interviniente'))
-            <option selected value="{{ $usuario->id }}">{{ $usuario->nombre_y_apellido}}</option>
-        @else
-          <option value="{{ $usuario->id }}">{{ $usuario->nombre_y_apellido}}</option>
-        @endif
-      @endforeach
+      @if( $countprofsinter>0)
+
+    @foreach($usuarios as $usuario)  
+  @foreach($array2 as $ar2)
+  @if($usuario->id==$ar2)
+    
+        @if($ar2== old('nombre_profesional_interviniente'))
+                 <option disabled value="{{$ar2}}">{{ $usuario->nombre_y_apellido}}</option>
+         @else
+                 <option value="{{$ar2}}">{{ $usuario->nombre_y_apellido}}</option>
+                 @endif
+   @endif
+   @endforeach
+ @endforeach
+
+ @else
+
+ @foreach($usuarios as $usuario)
+@if($usuario== old('nombre_profesional_interviniente'))
+                 <option disabled value="{{$usuario->id}}">{{ $usuario->nombre_y_apellido}}</option>
+         @else
+                 <option value="{{$usuario->id}}">{{ $usuario->nombre_y_apellido}}</option>
+                 @endif
+@endforeach
+@endif
     </select>
     {!! $errors->first('nombre_profesional_interviniente', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>

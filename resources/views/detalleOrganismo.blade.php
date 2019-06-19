@@ -152,44 +152,41 @@ session_start();
 
     
     @if($requiere_asistencia == 1)
-      <div class="AunoDosF2" id="tipo_asistencia_si" {{ $errors->has('tipo_asistencia') ? 'has-error' : ''}}>
+      <div class="AunoDosF2" id="asistencia" {{ $errors->has('asistencia') ? 'has-error' : ''}}>
     @else
-      <div class="AunoDosF2" id="tipo_asistencia_si"style="display:none">
+      <div class="AunoDosF2" id="asistencia"style="display:none">
     @endif
 
 
-      <label>F 2 I. Tipo de asistencia requerida:</label>
+      <!--<label>F 2 I. Tipo de asistencia requerida:</label>
       <label for="">En caso de requerir, tildar todas las opciones que considere correspondientes.</label><br>
-      <div class="Auno" id="tipoAsis">
+ 
       @if($asistencia_juridica == 1)
-        <input type="checkbox" value="1" class="form-check-inline" name="asistencia_juridica" id="Jurídica" checked>
+        <input type="checkbox" value="1" class="form-check-inline" name="asistencia[]" id="Jurídica" checked>
         <label for="Jurídica" class="form-check-inline form-check-label">Jurídica</label><br>
       @else
-        <input type="checkbox" value="1" class="form-check-inline" name="asistencia_juridica" id="Jurídica">
+        <input type="checkbox" value="1" class="form-check-inline" name="asistencia[]" id="Jurídica">
         <label for="Jurídica" class="form-check-inline form-check-label">Jurídica</label><br>
       @endif
-
 
        @if($asistencia_psicologica == 2)
-        <input type="checkbox" value="2" class="form-check-inline" name="asistencia_psicologica" id="Psicológica" checked>
+        <input type="checkbox" value="2" class="form-check-inline" name="asistencia[]" id="Psicológica" checked>
         <label for="Psicológica" class="form-check-inline form-check-label">Psicológica</label> <br>
       @else
-        <input type="checkbox" value="2" class="form-check-inline" name="asistencia_psicologica" id="Psicológica">
+        <input type="checkbox" value="2" class="form-check-inline" name="asistencia[]" id="Psicológica">
         <label for="Psicológica" class="form-check-inline form-check-label">Psicológica</label> <br>
       @endif
+    
        @if($asistencia_socioeconomica == 3)
-        <input type="checkbox" value="3" class="form-check-inline" name="asistencia_socioeconomica"  id="checkeadosocioeco"  onchange="socioecono(this)" checked>
+        <input type="checkbox" value="3" class="form-check-inline" name="asistencia[]"  id="checkeadosocioeco"  onchange="socioecono(this)" checked>
         <label for="Socioeconomica" class="form-check-inline form-check-label" >Socioeconomica</label>
       @else
-        <input type="checkbox" value="3" class="form-check-inline" name="asistencia_socioeconomica"  id="checkeadosocioeco"  onchange="socioecono(this)" >
+        <input type="checkbox" value="3" class="form-check-inline" name="asistencia[]"  id="checkeadosocioeco"  onchange="socioecono(this)" >
         <label for="Socioeconomica" class="form-check-inline form-check-label" >Socioeconomica</label>
       @endif
         <br><br>
-
-      </div>
-      {!! $errors->first('tipo_asistencia', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
-
+{!! $errors->first('asistencia', '<p class="help-block" style="color:red";>:message</p>') !!}
+</div>-->
 
   @if ($asistencia_socioeconomica==3)
 
@@ -226,7 +223,7 @@ session_start();
   @endif
 
 
-
+</div>
    @if ($institucion->socioeconomicosIds()->contains(6))
     <div id="cualF2I" {{ $errors->has('socioeconomica_otro') ? 'has-error' : ''}}>
     <label for="socioeconomica_otro_cualF2I">Cuál?:</label>
@@ -273,13 +270,13 @@ session_start();
   <script>
            function selectOnChangeF2(sel) {
                           if (sel.value=="1"){
-                              divC = document.getElementById("tipo_asistencia_si");
+                              divC = document.getElementById("asistencia");
                               divC.style.display = "";
 
                             }
 
                               else{
-                                divC = document.getElementById("tipo_asistencia_si");
+                                divC = document.getElementById("asistencia");
                                 divC.style.display = "none";
                               document.getElementById("Jurídica").checked= false;
                               document.getElementById("Psicológica").checked= false;

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Conviviente;
 use App\Conviviente_nuevo;
+use App\Victim;
 use Validator;
 
 class ConvivientePanelController extends Controller
@@ -50,7 +51,82 @@ class ConvivientePanelController extends Controller
              return redirect("paneldecontrol/{$conviviente->idCaso}#C");}
 
 
- public function detalle($id) {
+
+
+public function vinculoconviviente(request $form) {
+
+    $reglas = [
+    
+      "vinculo_victima"=>"required",
+    ];
+
+    $validator = Validator::make($form->all(), $reglas);
+
+    $validator->sometimes('vinculo_otro', 'required|min:3|max:60|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {
+      return $input->vinculo_victima == 6;
+    });
+
+    if ($validator->fails()) {
+        return back()
+                    ->withErrors($validator)
+                    ->withInput();
+    }
+
+    $conviviente = Conviviente::find(session("idConviviente"));
+
+   
+    $conviviente->vinculo_victima= $form["vinculo_victima"];
+    $conviviente->vinculo_otro= $form["vinculo_otro"];
+    
+    $conviviente->userID_modify= Auth::id();
+
+    $conviviente->idCaso= $form ["idCaso"];
+
+             $conviviente->save();
+
+      $conviviente_nuevo = new Conviviente_nuevo();
+
+
+
+      $conviviente_nuevo->idVictim= session("idVictim");
+      $conviviente_nuevo->idConviviente= $form["idConviviente"];
+      $conviviente_nuevo->vinculo_victima=$form["vinculo_victima"];
+      $conviviente_nuevo->vinculo_otro= $form["vinculo_otro"];
+
+      $conviviente_nuevo->save();
+
+
+        return redirect("agregarconviviente");}
+        
+
+
+
+ public function detalleconviviente($id) {
+      $convivientes=Conviviente::all();
+      $conviviente = Conviviente::find($id);
+      session(["idConviviente" => $id]);
+      $nombre_y_apellido=$conviviente->nombre_y_apellido;
+      $edad_conviviente=$conviviente->edad;
+      $vinculo_victima=$conviviente->vinculo_victima;
+      $vinculo_otro=$conviviente->vinculo_otro;
+      $niveleducativo_id=$conviviente->niveleducativo_id;
+      $condiciones_de_trabajo=$conviviente->condiciones_de_trabajo;
+ if(Conviviente_nuevo::where("idVictim",session("idVictim"))->where("idConviviente",$id)->count()==0){
+
+      return view("detalleconvivientevinculo", compact("conviviente","convivientes","nombre_y_apellido","edad_conviviente","vinculo_victima","vinculo_otro","niveleducativo_id","condiciones_de_trabajo"));
+    }
+else{
+          $duplicado=Conviviente::find($id)->nombre_y_apellido;
+         return view("duplicarreferente",compact("duplicado"));
+         return redirect("agregarconviviente");
+
+
+
+        }
+}
+
+
+public function detalle($id) {
       $convivientes=Conviviente::all();
       $conviviente = Conviviente::find($id);
       session(["idConviviente" => $id]);
@@ -62,7 +138,9 @@ class ConvivientePanelController extends Controller
       $condiciones_de_trabajo=$conviviente->condiciones_de_trabajo;
 
       return view("detalleconviviente", compact("conviviente","convivientes","nombre_y_apellido","edad_conviviente","vinculo_victima","vinculo_otro","niveleducativo_id","condiciones_de_trabajo"));
-    }
+    
+        }
+
 
   public function agregar(request $form) {
 
@@ -129,7 +207,7 @@ class ConvivientePanelController extends Controller
 
     $conviviente->save();
 
-    $conviviente->victims()->attach($form ["idVictim"], array("vinculo_victima"=> $form ["vinculo_victima"]));
+    $conviviente->victims()->attach($form ["idVictim"], array("vinculo_victima"=> $form ["vinculo_victima"],"vinculo_otro"=> $form ["vinculo_otro"]));
 
 
  return redirect("paneldecontrol/{$conviviente->idCaso}#C");

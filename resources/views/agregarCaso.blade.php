@@ -12,6 +12,7 @@ session_start();
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href="https:fonts.googleapis.com/css?family=Muli" rel="stylesheet">
       <link rel="stylesheet" href="https:stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
       <link rel="stylesheet" href="css/app.css">
       <script src="https:ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <title>Eje A: Datos institucionales</title>
@@ -25,6 +26,11 @@ session_start();
    <header>
 
     @include('navbar')
+     <div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%;margin-top: 0.2%">
+                <a class="navbar-brand"  href="/home">
+                    <h3 style="color:white">INICIO</h3>
+                </a>
+                </div>
 
    </header>
    <body>
@@ -106,7 +112,7 @@ session_start();
 
         <div class="form-group" {{ $errors->has('descripcion_caso') ? 'has-error' : ''}}">
         <label for="breve_descripcion_caso">A 3. Breve descripción del caso:</label>
-        <input type="text" class="form-control" name="descripcion_caso" id="breve_descripcion_caso" value="{{old('descripcion_caso')}}" style="height:80px">
+        <input type="text"class="form-control" name="descripcion_caso" id="breve_descripcion_caso" value="{{old('descripcion_caso')}} ">
         {!! $errors->first('descripcion_caso', '<p class="help-block" style="color:red";>:message</p>') !!}
         </div>
 
@@ -396,7 +402,7 @@ session_start();
   </div>
   <br>
 
-  <!-D1 Tipo de fecha->
+  <!-A12 Tipo de fecha->
 
       <div class="form-group" {{ $errors->has('fecha_delito') ? 'has-error' : ''}}>
       <label>A 12. Tipo de fecha del hecho:</label>
@@ -418,7 +424,7 @@ session_start();
 
 
 
-  <!-D2 Fecha del hecho->
+  <!- Fecha del hecho->
    @if(old("fecha_delito") == 1)
     <div class="form-group" id="fecha_si"{{ $errors->has('fecha_hecho_si') ? 'has-error' : ''}}>
     @else
@@ -488,27 +494,39 @@ session_start();
       </div>
 
 
-<!<!-D3 País del hecho->
+<!<A 13 País del hecho->
+
 
     <div class="form-group" {{ $errors->has('pais_hecho') ? 'has-error' : ''}}>
-    <label for="countryId2">D 3. País del hecho:</label>
+    <label for="countryId2">A 13. País del hecho:</label>
     <select name="pais_hecho" class="countries2 order-alpha form-control" id="countryId2">
       <option value="" selected=disabled>Seleccionar...</option>
       @if((old("pais_hecho")==1))
       <option value="1" selected>Argentina</option>
       @else
-      <option value="1">Argentina</option>
+      <option value="1" >Argentina</option>
       @endif
+      @if((old("pais_hecho")==2))
+      <option value="2" selected>Se Desconoce</option>
+      @else
+      <option value="2" >Se Desconoce</option>
+      @endif
+     
     </select>
     <br>
     {!! $errors->first('pais_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
 
 
-<!-D4 Provincia del hecho->
 
-    <div class="form-group" {{ $errors->has('provincia_hecho') ? 'has-error' : ''}}>
-    <label for="stateId2">D 3. Provincia del hecho:</label>
+<!-A14 Provincia del hecho->
+
+   @if((old("pais_hecho") == 1))
+    <div class="form-group" id="provincia_hecho" {{ $errors->has('provincia_hecho') ? 'has-error' : ''}}>
+  @else
+  <div class="form-group" id="provincia_hecho" style="display: none">
+    @endif
+    <label for="stateId2">A 14. Provincia del hecho:</label>
     <select name="provincia_hecho" class="states2 order-alpha form-control" id="stateId2" onChange="selectOnChangePcia(this)">
     <option value="" selected=disabled>Seleccionar...</option>
 
@@ -522,23 +540,24 @@ session_start();
     @endforeach
     </select>
  
-    {!! $errors->first('provincia_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
+      {!! $errors->first('provincia_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
 
 
 
 
-<!-D5 Localidad del hecho->
+<!-A15 Localidad del hecho->
 
 
 
- @if(old("provincia_hecho")<25)
- <div class="form-group" id="localidad_hecho" >
+ @if(old("provincia_hecho") < 25 && (old("pais_hecho")==1))
+
+ <div class="form-group" id="localidad_hecho" {{ $errors->has('localidad_hecho') ? 'has-error' : ''}}>
   @else
 
-<div class="form-group" id="localidad_hecho" style="display: none" {{ $errors->has('localidad_hecho') ? 'has-error' : ''}}>
+<div class="form-group" id="localidad_hecho" style="display: none" >
 @endif
-    <label for="cityId2">D 4. Localidad del hecho:</label>
+    <label for="cityId2">D 15. Localidad del hecho:</label>
     <select name="localidad_hecho" class="cities2 order-alpha form-control" id="cityId2">
     <option value="" selected=disabled>Seleccionar...</option>
    
@@ -554,18 +573,29 @@ session_start();
     {!! $errors->first('localidad_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
    </div>
 
- 
- @if(old("provincia_hecho") ==25)
- <div class="form-group" id="localidad_otra"  >
-  @else
 
- <div class="form-group" id="localidad_otra" style="display: none"  {{ $errors->has('localidad_otra') ? 'has-error' : ''}}>
-@endif
-       <label for="">D 4. Localidad Hecho: </label>
-      <input type="text" class="form-control" id="localidad_otra" name="localidad_otra" value="{{old("localidad_otra")}}"><br>
-      {!! $errors->first('localidad_otra', '<p class="help-block" style="color:red";>:message</p>') !!}
-      </div>
-  
+
+ <script type="text/javascript">
+    document.querySelector("#countryId2").onchange = function() {
+      var value = this.options[this.selectedIndex].value;
+      if (value=="1"){
+        
+           divC = document.getElementById("provincia_hecho");
+                divC.style.display = "";
+
+              }
+
+ if (value=="2"){divCp = document.getElementById("provincia_hecho");
+               $('#stateId2').val('');
+                divCp.style.display = "none"; 
+               
+
+               divCl = document.getElementById("localidad_hecho");
+               $('#cityId2').val('');
+                divCl.style.display = "none"; 
+               }
+            }
+    </script>
 
 
 
@@ -582,18 +612,17 @@ session_start();
                                   (value=="17")||(value=="18")||(value=="19")||(value=="20")||
                                   (value=="21")||(value=="22")||(value=="23")||(value=="24")){
                 divC = document.getElementById("localidad_hecho");
+              $('#localidad_hecho').val(' ');
                 divC.style.display = "";
 
-                divC = document.getElementById("localidad_otra");
-                divC.style.display = "none";
+              
 
               }
 if (value=="25"){
+
                 divC = document.getElementById("localidad_hecho");
                 divC.style.display = "none";
-
-                divC = document.getElementById("localidad_otra");
-                divC.style.display = "";
+            
 
               }
       var opciones = document.querySelectorAll(".opcionProvincia");
@@ -607,10 +636,11 @@ if (value=="25"){
       for (var i = 0; i < opciones.length; i++) {
         opciones[i].style.display = "block";
       }
-       
+ 
 
     }
   </script>
+
 
   </section>
 

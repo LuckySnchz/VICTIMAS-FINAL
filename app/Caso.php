@@ -37,8 +37,8 @@ class Caso extends MiModelo
     return $this->userID_create;
   }
 
-  public function delitos() {
-    return $this->belongsToMany(Delito::class,"caratulas","caso_id","delito_id");
+public function delito() {
+    return $this->belongsTo(Delito::class, "delito");
   }
 
   public function cavajs() {

@@ -38,7 +38,7 @@ public function agregar(Request $form){
 "nombre_y_apellido_de_la_victima" => "required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/",
 "fecha_delito"=>"required",
 "pais_hecho"=>"required",
-"provincia_hecho"=>"required",
+
 
 
     ];
@@ -72,12 +72,14 @@ return $input->delito == 73;
   $validator->sometimes('fecha_hecho_otro', "required|min:3|max:100|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
     return $input->fecha_delito == 2;
   });
-  $validator->sometimes('localidad_otra', 'required', function ($input) {
-return $input->provincia_hecho == 25;
+
+  $validator->sometimes('provincia_hecho', 'required', function ($input) {
+return $input->pais_hecho == 1;
   });
+ 
 
  $validator->sometimes('localidad_hecho', 'required', function ($input) {
-return $input->provincia_hecho < 25;
+return $input-> provincia_hecho > 0 && $input-> provincia_hecho < 25;
   });
 
 if ($validator->fails()) {
@@ -113,7 +115,7 @@ $caso->fecha_hecho_otro  = $form ["fecha_hecho_otro"];
 $caso->pais_hecho= $form ["pais_hecho"];
 $caso->provincia_hecho= $form ["provincia_hecho"];
 $caso->localidad_hecho= $form ["localidad_hecho"];
-$caso->localidad_otra= $form ["localidad_otra"];
+
 $caso->activo=1;
 
 $caso->userID_create= Auth::id();
@@ -124,8 +126,8 @@ $caso->save();
 $idCaso = $caso->id;
 
 session(["idCaso" => $idCaso]);
-if(Auth::user()->hasRole('profesional')){
-$caso->usuarios()->attach(Auth::user());}
+/*if(Auth::user()->hasRole('profesional')){
+$caso->usuarios()->attach($form ["idCaso"], array("nombre_profesional_interviniente"=> Auth::user()));}*/
 
     return redirect("agregarProfesional");
 

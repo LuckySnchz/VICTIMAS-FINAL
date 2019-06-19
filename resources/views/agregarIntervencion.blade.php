@@ -19,7 +19,11 @@
 
    <header>
      @include('navbar')
-     <br>
+    <div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%">
+                <a class="navbar-brand"  href="/home">
+                    <h3 style="color:white">INICIO</h3>
+                </a>
+                </div>
 
    </header>
    <body>
@@ -44,6 +48,7 @@
 <div>
   <label class="font-weight-bold">Nombre de referencia: </label>
   {{$casoActual->nombre_referencia}}
+
 </div>
 
 @if($casoActual->nro_carpeta == NULL)
@@ -284,15 +289,11 @@
                   @else <option value="1" >Sí</option>
                   @endif
 
-                  @if (old("intervencion")==2)
-                    <option value="2" selected>No</option>
-                  @else <option value="2" >No</option>
-                  @endif
+                 
 
         </select><br>
          
-    {!! $errors->first('intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}
-
+  {!! $errors->first('intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}</div>
 
     @if (old("intervencion") == 1) <div id="agregar_intervencion_si" {{ $errors->has('agregar_intervencion_si') ? 'has-error' : ''}}>
     @else
@@ -310,7 +311,8 @@
         <input type="text" rows="15" cols="80" class="form-control" name="detalle_intervencion" value="{{old('detalle_intervencion')}}" style="height:80px">
         {!! $errors->first('detalle_intervencion', '<p class="help-block" style="color:red";>:message</p>') !!}</div>
   
-    {!! $errors->first('agregar_intervencion_si', '<p class="help-block" style="color:red";>:message</p>') !!}
+  {!! $errors->first('agregar_intervencion_si', '<p class="help-block" style="color:red";>:message</p>') !!}</div>
+   
       <div id="botones" >
   <div class="btn-1" > <button class="btn btn-primary col-xl" name="button" style="width:108%" >Agregar</button><br><br></div>
   </div>
@@ -326,7 +328,7 @@
       </form>
 </section>
 
-      <div class="btn-4">   <button style="width:100%" class="btn btn-danger col-xl" name="button" onclick="window.open('home', 'width=800,height=600')"; >FINALIZAR CARGA DE CASO - HOME</button><br><br></div>
+      <div class="btn-4" style="display: ">   <button style="width:100%" class="btn btn-danger col-xl" name="button" onclick="window.open('/home', 'width=800,height=600')"; >FINALIZAR CARGA DE CASO - HOME</button><br><br></div>
  <script>
            function selectOnChangeA5A(sel) {
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2019 a las 14:49:39
+-- Tiempo de generación: 19-06-2019 a las 19:18:00
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -116,7 +116,7 @@ INSERT INTO `users` (`id`, `email`, `sede`, `area`, `nombre`, `apellido`, `email
 (67, 'natalia_cascardo@hotmail.com', 'MAR DEL PLATA', 'PSICÓLOGA', 'Natalia', 'CASCARDO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (68, 'monidimauro@hotmail.com', 'MAR DEL PLATA', 'ADMINISTRATIVA', 'Mónica', 'DI MAURO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (69, 'patriciohorn@hotmail.com', 'MAR DEL PLATA', 'ABOGADO', 'Patricio', 'HORN', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(70, 'joseluismartins@hotmail.com', 'MAR DEL PLATA', 'ABOGADO', ' José Luis', 'MARTINS', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
+(70, 'joseluismartins@hotmail.com', 'MAR DEL PLATA', 'ABOGADO', ' José Luis', 'MARTINS', '2019-06-03 18:14:40', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', 'xnQL6pCoXlXAYgdqRI6I76OnFU0tp0pkntlLDHtAaQlAkaHM4Qk1ChGHkr2c', NULL, NULL),
 (71, 'luz_22_mm@hotmail.com', 'MAR DEL PLATA', 'TRABAJADORA SOCIAL', 'Luz', 'MUÑIZ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (72, 'florencianovello@yahoo.com.ar', 'MAR DEL PLATA', 'PSICÓLOGA', 'Florencia', 'NOVELLO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (73, 'catalinaespil@hotmail.com', 'MERCEDES', 'PSICÓLOGA', 'Catalina', 'ESPIL', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
@@ -144,7 +144,7 @@ INSERT INTO `users` (`id`, `email`, `sede`, `area`, `nombre`, `apellido`, `email
 (95, 'rivarolamarinag@gmail.com', 'QUILMES', 'ABOGADA', 'Marina', 'RIVAROLA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (96, 'carolinavenosa@gmail.com', 'QUILMES', 'PSICÓLOGA', 'Carolina', 'VENOSA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (97, 'campiflorencia@hotmail.com', 'SAN FERNANDO', 'ABOGADA', 'Florencia', 'CAMPI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(98, 'midaverio@hotmail.com', 'SAN FERNANDO', 'ADMINISTRATIVA', 'María Inés', 'DAVERIO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
+(98, 'midaverio@hotmail.com', 'SAN FERNANDO', 'ADMINISTRATIVA', 'María Inés', 'DAVERIO', '2019-06-03 16:28:01', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', 'xNJZWmmvzj3Bm23wHNLgUMCfLdOxTNHPJXClMBOpqmlugR5du5jzmAGKLvWG', NULL, NULL),
 (99, 'jupa_8@hotmail.com', 'SAN FERNANDO', 'PSICÓLOGA', 'María Julia', 'PALAVICINI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (100, 'veronicasoriano@yahoo.com', 'SAN FERNANDO', 'ADMINISTRATIVA', 'Verónica', 'SORIANO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (101, 'carobusquier@yahoo.com.ar', 'SAN MARTIN', 'PSICÓLOGA', 'Carolina', 'BUSQUIER', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
@@ -160,9 +160,9 @@ INSERT INTO `users` (`id`, `email`, `sede`, `area`, `nombre`, `apellido`, `email
 (111, 'nataliacribelli@hotmail.com.a', 'ZARATE', 'PSICÓLOGA', 'Natalia', 'CRIBELLI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (112, 'l.fraccarolli@live.com', 'ZARATE', 'ABOGADA', 'Lucía', 'FRACCAROLLI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
 (113, 'minuccisol@gmail.com', 'BAHIA BLANCA', 'TRABAJADORA SOCIAL', 'Solange', 'MINUCCI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(114, 'ignacioklena@hotmail.com', 'LA PLATA', 'ABOGADO', 'Ignacio ', 'KLENA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
+(114, 'ignacioklena@hotmail.com', 'LA PLATA', 'ABOGADO', 'Ignacio ', 'KLENA', '2019-06-19 16:32:26', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', '4WjhQShA0FfgXFi30hAKEyakcUiVPnj5utDfgFFiRZcepgVGGzz3lNyKHiMw', NULL, NULL),
 (115, 'mariaemiliamathe@gmail.com', 'SAN ISIDRO', 'ABOGADA', 'Maria Emilia', 'MATHE', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(116, 'xul27@hotmail.com', 'LA PLATA', 'DIRECTORA', 'LUCKY', 'SANCHEZ', '2019-05-27 15:57:00', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', '2AbbcaAptdzad09e2WNyDseGxEbIlAkznsct4wRzasMKV8QTv1MQYED9zSew', NULL, NULL);
+(116, 'xul27@hotmail.com', 'LA PLATA', 'DIRECTORA', 'LUCKY', 'SANCHEZ', '2019-05-28 20:48:40', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', 'rz9MPuUEVY1eYfMF04v0y0LJqTRJ5kisFvRyRAlSbCgRsTXaaAlYA8FviM2t', NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -182,7 +182,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

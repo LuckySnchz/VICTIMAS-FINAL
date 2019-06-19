@@ -12,9 +12,10 @@ use App\Victim;
 class ImputadoController extends Controller
 {
   public function agregar(request $form) {
-
+ $cantVictimas = Victim::where("idCaso",session("idCaso"))->count();
     $reglas = [
 
+ 
 
     ];
 
@@ -37,11 +38,15 @@ $validator->sometimes('tipodocumento_id', 'required', function ($input) {
     return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
           });
 
-$validator->sometimes('vinculo_id', 'required', function ($input) {
-  return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
-        });
+$validator->sometimes('vinculo_victima', 'required',function ($input) {
+    return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
+          });
 
-$validator->sometimes('caratulacion_judicial', 'required|min:3|max:100|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {        return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
+
+
+
+
+$validator->sometimes('caratulacion_judicial', 'required|min:3|max:100|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
         });
 
   $validator->sometimes('antecedentes_id', 'required', function ($input) {
@@ -56,15 +61,15 @@ $validator->sometimes('defensor_particular', 'required|integer', function ($inpu
   return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
         });
 
-$validator->sometimes('defensoria_numero', 'required|min:1|max:50|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {
+$validator->sometimes('defensoria_numero', 'required|min:1|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {
   return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
         });
 
-$validator->sometimes('fiscalia_juzgado', 'required|min:3|max:50|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {
+$validator->sometimes('fiscalia_juzgado', 'required|min:3|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {
   return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
         });
 
-$validator->sometimes('causa_id_judicial', 'required|numeric', function ($input) {
+$validator->sometimes('causa_id_judicial', 'required|numeric|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {
   return $input->agregar_imputado == 1 || $input->cantVictimas ==1;
         });
 
@@ -73,7 +78,7 @@ $validator->sometimes('causa_id_judicial', 'required|numeric', function ($input)
             });
 
     $validator->sometimes('vinculo_otro', "required|min:3|max:100|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
-      return $input->vinculo_id == 6;
+      return $input->vinculo_victima == 6;
                     });
 
     $validator->sometimes('antecedentes', "required|min:3|max:100|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/", function ($input) {
@@ -103,6 +108,7 @@ $validator->sometimes('causa_id_judicial', 'required|numeric', function ($input)
     $imputado->tipo_documento_id= $form["tipodocumento_id"];
     $imputado->tipo_documento_otro= $form["imputado_tipo_documento_otro"];
     $imputado->documento_nro= $form["imputado_documento"];
+    $imputado->vinculo_victima= $form["vinculo_victima"];
     $imputado->vinculo_otro= $form["vinculo_otro"];
     $imputado->caratulacion_judicial= $form["caratulacion_judicial"];
     $imputado->antecedentes_id= $form["antecedentes_id"];
@@ -119,7 +125,7 @@ $validator->sometimes('causa_id_judicial', 'required|numeric', function ($input)
 
     $imputado->save();
 
-    $imputado->victims()->attach($form ["idVictim"], array("vinculo_id"=> $form ["vinculo_id"]));
+    $imputado->victims()->attach($form ["idVictim"], array("vinculo_victima"=> $form ["vinculo_victima"],"vinculo_otro"=> $form ["vinculo_otro"]));
 
     return redirect("agregarimputado");
 }}

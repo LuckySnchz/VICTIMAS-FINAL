@@ -18,7 +18,11 @@ session_start();
    <header>
 
      @include('navbar')
- <br>
+<div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%">
+                <a class="navbar-brand"  href="/home">
+                    <h3 style="color:white">INICIO</h3>
+                </a>
+                </div>
   
    </header>
 
@@ -47,6 +51,7 @@ session_start();
           @foreach($convivientes as $conviviente)
           @if($conviviente->id==$conviviente_nuevo->idConviviente)
                   {{$conviviente->nombre_y_apellido}}
+
                   @endif
                   @endforeach
 
@@ -62,7 +67,7 @@ session_start();
 
       <!Listado Referentes afectivos>
 
- @if($cantdeVictimas>1)
+ @if($cantVictimas>1)
  <div class="flex-container" style="display: flex;
   flex-direction: column;
  ">
@@ -73,11 +78,16 @@ session_start();
         <div style="text-align: center">
           <li>
             {{$conviviente->nombre_y_apellido}}<br>
-           <div id="btn-1"><input type ='button' style="width:150px;background-color:#97c93f;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar relación' onclick="window.open('/duplicarreferente/{{$conviviente->id}}', 'width=800,height=600')"/></button></div><br>
+
+    <a type="button" href="/detalleconvivientevinculo/{{$conviviente->id}}" target="_self" style="width:250px;
+  color:black;border: solid black 1px;background-color:#ffffcc;" class="btn btn-danger">Agregar Referente Afectivo</button> </a><br><br>
+     
+
 
 
           </li>
         </div>
+  
         @endif
       @endforeach
   </ul>
@@ -100,12 +110,12 @@ session_start();
       <div class="form-group">
       <input type="hidden" name="idCaso" value="{{session("idCaso")}}">
       <input type="hidden" name="idVictim" value="{{session("idVictim")}}">
-      <input type="hidden" name="cantVictimas" value="{{$cantdeVictimas}}">
+      <input type="hidden" name="cantVictimas" value="{{$cantVictimas}}">
 
 
 </div>
 
-    @if($cantdeVictimas>1)
+    @if($cantVictimas>1)
  <div id="agregar"class="form-group"  {{ $errors->has('agregar_conviviente') ? 'has-error' : ''}}>
       <label for="agregar_conviviente">Desea agregar un nuevo referente afectivo? </label>
       <select class="form-control" name="agregar_conviviente" id="agregar_conviviente" onChange="selectOnChangeA14I(this)">
@@ -125,7 +135,7 @@ session_start();
   @endif
 </div></div>
 
-      @if(old("agregar_conviviente") == 1||$cantdeVictimas==1)
+      @if(old("agregar_conviviente") == 1||$cantVictimas==1)
         <div id="agregar_conviviente_si" {{ $errors->has('agregar_conviviente_si') ? 'has-error' : ''}}>
         @else
           <div id="agregar_conviviente_si" style="display: none;">

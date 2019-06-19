@@ -23,7 +23,11 @@ session_start();
    <header>
 
     @include('navbar')
-
+<div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%">
+                <a class="navbar-brand"  href="/home">
+                    <h3 style="color:white">INICIO</h3>
+                </a>
+                </div>
    </header>
    <body>
       <h1 class="text-center" style="padding: 15px;">Derivación</h1>

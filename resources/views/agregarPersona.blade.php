@@ -21,7 +21,11 @@
    </head>
    <header>
          @include('navbar')
-<br>
+<div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%">
+                <a class="navbar-brand"  href="/home">
+                    <h3 style="color:white">INICIO</h3>
+                </a>
+                </div>
   
    </header>
 
@@ -66,7 +70,7 @@
 
       <!Listado Personas asistidas>
 
-  @if($cantdeVictimas>1)
+  @if($cantVictimas>1)
   <div class="flex-container" style="display: flex;
   flex-direction: column;
   ">
@@ -78,9 +82,10 @@
           <li>
             {{$persona->nombre_persona_asistida}}<br>
 
-           <div id="btn-1"><input type ='button' style="width:150px;background-color:#97c93f;color:black;border: solid black 1px" class="btn btn-danger col-xs" name="button" value = 'Agregar relación' onclick="window.open('/duplicar/{{$persona->id}}', 'width=800,height=600')"/></button></div><br>
+         
 
-       
+         <a type="button" href="/detallePersonaVinculo/{{$persona->id}}" target="_self" style="width:250px;
+  color:black;border: solid black 1px;background-color:#ffffcc;" class="btn btn-danger">Agregar Referente Afectivo</button> </a><br><br>
 
 
           </li>
@@ -108,10 +113,10 @@
   {{csrf_field()}}
 <input type="hidden" name="idCaso" value="{{session("idCaso")}}">
 <input type="hidden" name="idVictim" value="{{session("idVictim")}}">
-<input type="hidden" name="cantVictimas" value="{{$cantdeVictimas}}">
+<input type="hidden" name="cantVictimas" value="{{$cantVictimas}}">
 
 
-  @if($cantdeVictimas>1)
+  @if($cantVictimas>1)
  <div id="agregar"class="form-group"  {{ $errors->has('agregar_persona') ? 'has-error' : ''}}>
       <label for="agregar_persona">Desea agregar una nueva persona asistida? </label>
       <select class="form-control" name="agregar_persona" id="agregar_persona" onChange="selectOnChangeA14I(this)">
@@ -131,7 +136,7 @@
   @endif
 </div></div>
 
-      @if(old("agregar_persona") == 1||$cantdeVictimas==1)
+      @if(old("agregar_persona") == 1||$cantVictimas==1)
         <div id="agregar_persona_si" {{ $errors->has('agregar_persona_si') ? 'has-error' : ''}}>
         @else
           <div id="agregar_persona_si" style="display: none;">
@@ -171,36 +176,36 @@
 <!-A14II Tipo de vínculo>
 
       <div class="form-group" {{ $errors->has('vinculo_persona_asistida') ? 'has-error' : ''}}>
-      <label for="vinculo_persona_asistida">A 14II. Tipo de vínculo con la víctima: </label>
-      <select class="form-control" name="vinculo_persona_asistida" id="vinculo_victima" onChange="selectOnChangeA14II(this)">
+      <label for="">A 14II. Tipo de vínculo con la víctima: </label>
+      <select class="form-control" name="vinculo_victima" id="vinculo_victima" onChange="selectOnChangeA14II(this)">
             <option value="" selected=disabled>Seleccionar...</option>
-              @if(old("vinculo_persona_asistida")==1)
+              @if(old("vinculo_victima")==1)
               <option value="1" selected >Familiar</option>
               @else <option value="1">Familiar</option>@endif
 
-              @if(old("vinculo_persona_asistida")==2)
+              @if(old("vinculo_victima")==2)
               <option value="2" selected >Lazo afectivo</option>
               @else  <option value="2" >Lazo afectivo</option>@endif
 
-              @if(old("vinculo_persona_asistida")==3)
+              @if(old("vinculo_victima")==3)
               <option value="3" selected >Organismo o institución</option>
               @else  <option value="3">Organismo o institución</option>@endif
 
-              @if(old("vinculo_persona_asistida")==4)
+              @if(old("vinculo_victima")==4)
               <option value="4" selected >Otro</option>
               @else<option value="4" >Otro</option>@endif
               </select>
-      {!! $errors->first('vinculo_persona_asistida', '<p class="help-block" style="color:red";>:message</p>') !!}
+      {!! $errors->first('vinculo_victima', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
 
-      @if(old("vinculo_persona_asistida") == 4)
+      @if(old("vinculo_victima") == 4)
         <div id="vinculo_victima_cual" {{ $errors->has('otro_vinculo_persona_asistida_cual') ? 'has-error' : ''}}>
         @else
           <div id="vinculo_victima_cual" style="display: none;">
       @endif
       <br><label for="">Cuál?</label>
       <div class="">
-      <input class="form-control" name="otro_vinculo_persona_asistida_cual" id="vinculo_victima_cual_otro" type="text" value="{{old("otro_vinculo_persona_asistida_cual")}}"><br>
+      <input class="form-control" name="vinculo_otro" id="vinculo_victima_cual_otro" type="text" value="{{old("vinculo_otro")}}"><br>
       {!! $errors->first('otro_vinculo_persona_asistida_cual', '<p class="help-block" style="color:red";>:message</p>') !!}
       </div>
       </div>

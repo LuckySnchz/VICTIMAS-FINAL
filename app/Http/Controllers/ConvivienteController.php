@@ -14,7 +14,7 @@ class ConvivienteController extends Controller
 {
 
   public function agregar(request $form) {
-
+ $cantVictimas =Victim::where("idCaso",session("idCaso"))->count();
   $reglas = [
 
   ];
@@ -78,19 +78,22 @@ class ConvivienteController extends Controller
 
     $conviviente->save();
 
-    $conviviente->victims()->attach($form ["idVictim"], array("vinculo_victima"=> $form ["vinculo_victima"]));
+    $conviviente->victims()->attach($form ["idVictim"], array("vinculo_victima"=> $form ["vinculo_victima"],"vinculo_otro"=> $form ["vinculo_otro"]));
 
 
     return redirect("agregarconviviente");
   }}
 
-  public function duplicar($id) {
+  public function duplicar($id,$vinculo_victima,$vinculo_otro=0) {
 
   if(Conviviente_nuevo::where("idVictim",session("idVictim"))->where("idConviviente",$id)->count()==0)
   {
       $conviviente_nuevo = Conviviente_nuevo::find(1)->replicate();
+
       $conviviente_nuevo->idVictim= session("idVictim");
       $conviviente_nuevo->idConviviente= $id;
+      $conviviente_nuevo->vinculo_victima= $vinculo_victima;
+      $conviviente_nuevo->vinculo_otro= $vinculo_otro;
       $conviviente_nuevo->save();
 
 
@@ -98,7 +101,9 @@ class ConvivienteController extends Controller
         else{
           $duplicado=Conviviente::find($id);
           $victima=Victim::find(session("idVictim"));
-          return view("duplicarreferente",compact("duplicado","victima"));
+         return view("duplicarreferente",compact("duplicado","victima"));
+
+
 
         }
 

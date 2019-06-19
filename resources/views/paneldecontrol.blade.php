@@ -38,17 +38,27 @@ session_start();
 
  <div class="container jumbotron shadow p-3 mb-5 bg-green rounded" style="max-width: 100%;margin-top: 5%;background-color:rgb(137, 210, 14)">
     <strong><h3 style="color: white;text-align: center">Panel de Control</h3></strong>
+ 
  </div>
 
-  <div class="dropdown">
+<div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 4%;margin-top: -4%">
+                <a class="navbar-brand"  href="/home">
+                    <h3 style="color:white">INICIO</h3>
+                </a>
+                </div>
+ <!-- <div class="dropdown">
     <button type="button"  style="background-color:white;position: fixed;display: inline-block;margin-top: -3.43%;margin-left: 0.1%;width: 23%"data-toggle="dropdown">
      Menu
     </button>
 
     <div class="dropdown-menu">
+     
     
      <ul>
          <li class="nav-item"> <strong><a class="nav-link " style="color:black;font-size:1.1em" href="#INICIO">Seleccionar Víctima</a> </li></strong>
+        
+
+
 
             <li class="nav-item"><strong> <a class="nav-link "  style="color:black;font-size:1.1em" href="#A">Institución/Personas Asistidas</a> </li></strong>
 
@@ -69,7 +79,7 @@ session_start();
     
     </div>
 
-  </div>
+  </div>-->
 
    <br><br>
 <a name="Ancla" id="INICIO"></a>
@@ -81,6 +91,7 @@ session_start();
 
      <h4 class="text-center" style="padding: 15px;">Selecciona una Víctima</h4>
 <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 
+
       </spam></strong><br><strong><span style="text-align: center;color:red"<br>{{$casoNombre}}</spam></strong> 
          
          </p>
@@ -90,9 +101,18 @@ session_start();
           @if($victima->idCaso==session("idCaso")&&$victima->id==session("idVictim"))
             <br>
           
-                  <strong style="text-align: center;color:red">{{$victima->victima_nombre_y_apellido}}</strong>
-
-           @endif
+                  <strong style="text-align: center;color:red">{{$victima->victima_nombre_y_apellido}}</strong><br>
+                   <strong style="text-align: center;color:red">Edad:{{$victima->victima_edad}}</strong><br>
+ <strong style="text-align: center;color:red">Delito:{{$delitoActual->nombre}}</strong><br>
+  <strong style="text-align: center;color:red">Genero:</strong><br>
+ @if($victima->genero == 1) Mujer Cis
+    @elseif ($victima->genero == 2) Mujer Trans
+    @elseif ($victima->genero == 3) Varon Cis
+    @elseif ($victima->genero == 4) Varon Trans
+    @elseif ($victima->genero == 5) Otro
+    @endif
+            
+             @endif
            @endforeach</p>
 
 
@@ -118,7 +138,6 @@ session_start();
                </ul>
 
            </div>
-
 
 
 <a name="Ancla" id="A"></a>
@@ -241,14 +260,26 @@ session_start();
 
 
        
-         @foreach($profesionales as $profesional)
+         @foreach($profesionales as $profesional)  
 
-       @if($profesional->idCaso==session("idCaso"))
+
+ @if($profesional->idCaso==session("idCaso"))
                 <li >
 
-               <strong style="text-align: center">{{$profesional->usuario->nombre_y_apellido}}</strong><br>
+@if($profesional->nombre_profesional_interviniente==0)
 
-
+{{$profesional->nombre_profesional_interviniente_otro}}
+@endif
+               @foreach ($usuarios as $usuario)
+            
+              @if($usuario->id==$profesional->nombre_profesional_interviniente)
+                            <strong style="text-align: center">{{$usuario->nombre_y_apellido}}</strong><br>
+              
+             
+       
+             @endif
+            @endforeach
+            
 
    <a type="button"  href="/detalleProfesional/{{$profesional->id}} target="_self" style="width:100%;
   color:black;border: solid black 1px;background-color:#ffffcc;" class="btn btn-danger">Editar</button> </a><br><br> 
@@ -265,9 +296,12 @@ session_start();
 
 
        @endif
+
          @endforeach
 
        </ul>
+
+
 
    </div>
 

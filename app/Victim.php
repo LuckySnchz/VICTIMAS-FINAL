@@ -17,7 +17,7 @@ class Victim extends MiModelo
 public $table="victims";
   public $guarded=[];
 
-  public function casos(){
+  public function caso(){
     return $this->hasOne(Caso::class,"id");
   }
 

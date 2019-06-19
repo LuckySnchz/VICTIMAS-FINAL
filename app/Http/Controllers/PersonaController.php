@@ -14,7 +14,7 @@ class PersonaController extends Controller
 {
 public function agregar(Request $form){
 
-
+$cantVictimas =Victim::where("idCaso",session("idCaso"))->count();
   $reglas = [
 
     ];
@@ -28,7 +28,7 @@ public function agregar(Request $form){
   $validator->sometimes('nombre_persona_asistida', 'required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {        return $input->agregar_persona == 1 || $input->cantVictimas ==1;
           });
 
-  $validator->sometimes('vinculo_persona_asistida', 'required', function ($input)
+  $validator->sometimes('vinculo_victima', 'required', function ($input)
   {        return $input->agregar_persona == 1 || $input->cantVictimas ==1;
           });
 
@@ -45,7 +45,7 @@ public function agregar(Request $form){
           });
 
 
-  $validator->sometimes('otro_vinculo_persona_asistida_cual', 'required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {        return $input->vinculo_persona_asistida == 4;
+  $validator->sometimes('vinculo_otro', 'required|min:3|max:255|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/', function ($input) {        return $input->vinculo_victima == 4;
           });
 
   if ($validator->fails()) {
@@ -62,8 +62,8 @@ public function agregar(Request $form){
 $persona= new Persona();
 
 $persona->nombre_persona_asistida= $form ["nombre_persona_asistida"];
-$persona->vinculo_persona_asistida= $form ["vinculo_persona_asistida"];
-$persona->otro_vinculo_persona_asistida_cual= $form ["otro_vinculo_persona_asistida_cual"];
+$persona->vinculo_victima= $form ["vinculo_victima"];
+$persona->vinculo_otro= $form ["vinculo_otro"];
 $persona->telefono_persona_asistida= $form ["telefono_persona_asistida"];
 $persona->domicilio_persona_asistida= $form ["domicilio_persona_asistida"];
 $persona->localidad_persona_asistida= $form ["localidad_persona_asistida"];
@@ -75,23 +75,12 @@ $persona->idVictim= session("idVictim");
 $persona->save();
 
 
-$persona->victims()->attach($form ["idVictim"], array("vinculo_persona_asistida"=> $form ["vinculo_persona_asistida"]));
-
-
-return redirect ("agregarPersona");
+$persona->victims()->attach($form ["idVictim"],array("vinculo_victima"=> $form ["vinculo_victima"],"vinculo_otro"=> $form ["vinculo_otro"]));
+return redirect("agregarPersona");
 
 }}
 
-public function vincular(Request $f) {
-  $persona_nueva = new Persona_nueva();
-  $persona_nueva->idVictim= session("idVictim");
-  $persona_nueva->idPersona= 99999;
-  $persona_nueva->idPersona= $f ["vinculo_persona_asistida"];
 
-  return redirect ("agregarPersona");
-
-
-}
 
  public function duplicar($id) {
 

@@ -22,7 +22,12 @@
    <header>
 
     @include('navbar')
-<br>
+
+<div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%">
+                <a class="navbar-brand"  href="/home">
+                    <h3 style="color:white">INICIO</h3>
+                </a>
+                </div>
    </header>
    <body>
 
@@ -34,15 +39,27 @@
 
     <div class="form-group">
     <ul>
+      
       @foreach($profesionales as $profesional)
-        @if($profesional->idCaso==session("idCaso"))
+        @if($profesional->idCaso==session("idCaso") && ($profesional->nombre_profesional_interviniente > 0))
+        
         <li>
 
-            {{$profesional->usuario->nombre_y_apellido}}
+            {{$profesional->usuario->nombre_y_apellido }}
+     
+        </li>
+        @endif
+
+         @if($profesional->idCaso==session("idCaso") && ($profesional->nombre_profesional_interviniente == 0))
+        
+        <li>
+
+            {{$profesional->nombre_profesional_interviniente_otro }}
      
         </li>
         @endif
       @endforeach
+
     </ul>
     </div>
 
@@ -53,20 +70,64 @@
 
 <!A15 Profesional interviniente>
 
+   
     <div class="form-group"{{ $errors->has('nombre_profesional_interviniente') ? 'has-error' : ''}}>
     <label>A 15. Profesional Interviniente:</label>
-    <select class="form-control" name="nombre_profesional_interviniente">
-      <option value="" selected=disabled>Seleccionar...</option>
-      @foreach ($usuarios as $usuario)
-        @if ($usuario->id == old('nombre_profesional_interviniente'))
-            <option selected value="{{ $usuario->id }}">{{ $usuario->nombre_y_apellido}}</option>
-        @else
-          <option value="{{ $usuario->id }}">{{ $usuario->id}}</option>
-        @endif
-      @endforeach
+    <select class="form-control" name="nombre_profesional_interviniente" onChange="selectOnChangeProf(this)" >
+      <option value="" selected="disabled">Seleccionar...</option>
+     <option value="0">Otro Profesional</option>
+  
+    @if( $countprofsinter>0)
+
+    @foreach($usuarios as $usuario)  
+  @foreach($array2 as $ar2)
+  @if($usuario->id==$ar2)
+    
+        @if($ar2== old('nombre_profesional_interviniente'))
+                 <option disabled value="{{$ar2}}">{{ $usuario->nombre_y_apellido}}</option>
+         @else
+                 <option value="{{$ar2}}">{{ $usuario->nombre_y_apellido}}</option>
+                 @endif
+   @endif
+   @endforeach
+ @endforeach
+
+ @else
+
+ @foreach($usuarios as $usuario)
+@if($usuario== old('nombre_profesional_interviniente'))
+                 <option disabled value="{{$usuario->id}}">{{ $usuario->nombre_y_apellido}}</option>
+         @else
+                 <option value="{{$usuario->id}}">{{ $usuario->nombre_y_apellido}}</option>
+                 @endif
+@endforeach
+@endif
     </select>
     {!! $errors->first('nombre_profesional_interviniente', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
+
+
+@if (old("nombre_profesional_interviniente") !== 0)
+  <div id="cualprof" style="display:none"  {{ $errors->has('nombre_profesional_interviniente_otro') ? 'has-error' : ''}}>
+@else
+<div id="cualprof" >
+@endif
+  <label for="nombre_profesional_interviniente_otro"> Profesional Interviniente- Profesión:</label>
+  <input class="form-control" name="nombre_profesional_interviniente_otro" type="text" id="nombre_profesional_interviniente_otro" value="{{old("nombre_profesional_interviniente_otro")}}">
+  {!! $errors->first('nombre_profesional_interviniente_otro', '<p class="help-block" style="color:red";>:message</p>') !!}
+  </div>
+
+ <script>
+     function selectOnChangeProf(sel) {
+      if (sel.value=="0"){
+          divCp = document.getElementById("cualprof");
+          divCp.style.display = "";}
+          else{divCp= document.getElementById("cualprof");
+          divCp.style.display = "none";}
+          $('#nombre_profesional_interviniente_otro').val('');
+        }
+        </script>
+
 
 <!A15.3 Interviene desde>
 
@@ -111,9 +172,9 @@
   </form>
   </section>
 
-  <div class="btn-4" >   <button style="width:100%;color:white;background-color:rgb(137, 210, 14)" class="btn col-xl" name="button" onclick="window.open('agregarVictima', 'width=800,height=600')"; >SIGUIENTE </button><br><br></div>
 
 
+   <button style="width:100%; color:white;background-color:rgb(137, 210, 14)" class="btn col-XL" name="button" onclick="window.open('agregarVictima', 'width=800,height=600')"; >SIGUIENTE </button><br><br>
 
 
       <script>

@@ -206,33 +206,33 @@
 
   <div class="form-group" {{ $errors->has('vinculo_id') ? 'has-error' : ''}}>
   <label for="vinculo_id">E 5. Vinculación con la víctima:</label>
-  <select  class="form-control vinculo" onChange="selectOnChangeE4(this)" name="vinculo_id">
+  <select  class="form-control vinculo" onChange="selectOnChangeE4(this)" name="vinculo_victima">
       <option value="" selected=disabled>Seleccionar...</option>
-      @if($vinculo_id == 1) <option value="1" selected>Familiar</option>
+      @if($vinculo_victima == 1) <option value="1" selected>Familiar</option>
       @else <option value="1" >Familiar</option>@endif
 
-      @if($vinculo_id == 2) <option value="2" selected>Pareja</option>
+      @if($vinculo_victima == 2) <option value="2" selected>Pareja</option>
       @else<option value="2" >Pareja</option>@endif
 
-      @if($vinculo_id == 3) <option value="3" selected>Amistad</option>
+      @if($vinculo_victima == 3) <option value="3" selected>Amistad</option>
       @else<option value="3" >Amistad</option>@endif
 
-      @if($vinculo_id == 4) <option value="4" selected>Conocido</option>
+      @if($vinculo_victima == 4) <option value="4" selected>Conocido</option>
       @else<option value="4" >Conocido</option>@endif
 
-      @if($vinculo_id == 5) <option value="5" selected>Sin vínculo</option>
+      @if($vinculo_victima == 5) <option value="5" selected>Sin vínculo</option>
       @else<option value="4" >Sin Vínculo</option>@endif
 
-      @if($vinculo_id == 6) <option value="6" selected>Otro</option>
+      @if($vinculo_victima == 6) <option value="6" selected>Otro</option>
       @else<option value="6" >Otro</option>@endif
 
-      @if($vinculo_id == 7) <option value="7" selected>Se desconoce</option>
+      @if($vinculo_victima == 7) <option value="7" selected>Se desconoce</option>
       @else<option value="7" >Se desconoce</option>@endif
   </select>
   {!! $errors->first('vinculo_id', '<p class="help-block" style="color:red";>:message</p>') !!}
   </div>
 
-  @if($vinculo_id == 6)
+  @if($vinculo_victima == 6)
     <div id="cualE4" {{ $errors->has('vinculo_otro') ? 'has-error' : ''}}>
   @else
     <div id="cualE4" style="display: none">

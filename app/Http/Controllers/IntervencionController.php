@@ -20,7 +20,7 @@ class IntervencionController extends Controller
     $hoy = date("d-m-Y",strtotime($hoy."+ 1 days"));
 
     $reglas = [
-   
+   "intervencion" => "required",
     ];
 
     $validator = Validator::make($form->all(), $reglas);
@@ -50,7 +50,7 @@ return $input->intervencion == 1;
 
   $intervencion->save();
 
-  return redirect ("agregarIntervencion/$intervencion->idCasos");
+  return redirect ("agregarIntervencion/");
 }
 
    public function eliminarintervencion($id) {

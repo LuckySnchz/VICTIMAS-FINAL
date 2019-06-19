@@ -6,7 +6,7 @@
             <div class="container">
 
                 <div class="titulo">
-                <a class="navbar-brand" style="margin-bottom: 1%" href="{{ url('/home') }}">
+                <a class="navbar-brand" style="margin-bottom: 1%">
                     <h3 style="color:white">Dirección Provincial del Centro de Protección de los Derechos de la Víctima</h3>
 
                    
