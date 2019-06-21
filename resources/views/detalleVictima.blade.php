@@ -777,9 +777,9 @@ document.getElementById('victima_numero_documento').style.background="white";
         @foreach ($discapacidades as $discapacidad)
             <label class="form-check-inline form-check-label">
              @if ($victim->discapacidadesIds()->contains($discapacidad->id))
-            <input type="checkbox" value="{{ $discapacidad->id }}" class="form-check-inline" name="discapacidades[]" checked>
+            <input type="checkbox" value="{{ $discapacidad->id }}" id="{{$discapacidad->nombre }}" class="form-check-inline discap" name="discapacidades[]" checked>
           @else
-            <input type="checkbox" value="{{ $discapacidad->id }}" class="form-check-inline" name="discapacidades[]">
+            <input type="checkbox" value="{{ $discapacidad->id }}" id="{{$discapacidad->nombre }}" class="form-check-inline discap" name="discapacidades[]">
           @endif
             {{ $discapacidad->nombre }}
             </label><br>
@@ -787,6 +787,28 @@ document.getElementById('victima_numero_documento').style.background="white";
 
     {!! $errors->first('discapacidades', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
+<script type="text/javascript">
+        var discapacidades = document.querySelectorAll(".discap")
+        var desconoce = discapacidades[discapacidades.length-1]
+
+
+ desconoce.onclick = function(){
+                 document.getElementById("físico-motriz").checked= false;
+                 document.getElementById("físico-motriz").disabled = true;
+
+                 document.getElementById("intelectual-adaptativo").checked= false;
+                 document.getElementById("intelectual-adaptativo").disabled = true;
+
+                 document.getElementById("psíquica").checked= false;
+                 document.getElementById("psíquica").disabled = true;
+
+                 document.getElementById("sensorial").checked= false;
+                 document.getElementById("sensorial").disabled = true;
+
+
+           }
+
+</script>
 
     <script>
          function checkB14(checkbox)

@@ -736,7 +736,7 @@ if (sel.value=="3"){
   </select>
   </div>
   <div class="form-group" id="colegio" style="display:none">
-  <label for="colegio_departamental">F 4 III.Colegio Departamental:</label>
+  <label for="colegio_departamental">F 5 III.Colegio Departamental:</label>
   <select class="form-control" name="colegio_departamental" id="colegio_departamental">
     <option value="" selected=disabled>Seleccionar...</option>
     @foreach ($departamentos as $departamento)

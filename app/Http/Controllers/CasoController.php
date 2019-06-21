@@ -76,6 +76,10 @@ return $input->delito == 73;
   $validator->sometimes('provincia_hecho', 'required', function ($input) {
 return $input->pais_hecho == 1;
   });
+
+    $validator->sometimes('pais_hecho_otro', 'required', function ($input) {
+return $input->pais_hecho == 3;
+  });
  
 
  $validator->sometimes('localidad_hecho', 'required', function ($input) {
@@ -113,6 +117,7 @@ $caso->fecha_delito= $form ["fecha_delito"];
 $caso->fecha_hecho= $form ["fecha_hecho"];
 $caso->fecha_hecho_otro  = $form ["fecha_hecho_otro"];
 $caso->pais_hecho= $form ["pais_hecho"];
+$caso->pais_hecho_otro= $form ["pais_hecho_otro"];
 $caso->provincia_hecho= $form ["provincia_hecho"];
 $caso->localidad_hecho= $form ["localidad_hecho"];
 

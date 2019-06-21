@@ -89,7 +89,9 @@ return $input->pais_hecho == 1;
  $validator->sometimes('localidad_hecho', 'required', function ($input) {
 return $input-> provincia_hecho > 0 && $input-> provincia_hecho < 25;
   });
-
+  $validator->sometimes('pais_hecho_otro', 'required', function ($input) {
+return $input->pais_hecho == 3;
+  });
 
  if ($validator->fails()) {
     return back()
@@ -122,6 +124,7 @@ $caso->fecha_delito= $form ["fecha_delito"];
 $caso->fecha_hecho= $form ["fecha_hecho"];
 $caso->fecha_hecho_otro  = $form ["fecha_hecho_otro"];
 $caso->pais_hecho= $form ["pais_hecho"];
+$caso->pais_hecho_otro= $form ["pais_hecho_otro"];
 $caso->provincia_hecho= $form ["provincia_hecho"];
 $caso->localidad_hecho= $form ["localidad_hecho"];
 $caso->userID_modify= Auth::id();
@@ -183,10 +186,11 @@ $fecha_delito=$caso->fecha_delito;
 $fecha_hecho=$caso->fecha_hecho;
 $fecha_hecho_otro=$caso->fecha_hecho_otro;
 $pais_hecho=$caso->pais_hecho;
+$pais_hecho_otro=$caso->pais_hecho_otro;
 $provincia_hecho=$caso->provincia_hecho;
 $localidad_hecho=$caso->localidad_hecho;
 
-return view("detalleCaso", compact("delitos", "cavajs","usuarios","organismos","departamentos","provincias","ciudades","nombre_referencia","nro_carpeta","delito","otro_delito","descripcion_caso","fecha_ingreso","modalidad_ingreso","organismo","cual_otro_organismo","cavaj","comisaria","denuncias_previas","departamento_judicial","estado","nombre_y_apellido_de_la_victima","motivospasivos","cual_otro_motivospasivo","fecha_delito","fecha_hecho","fecha_hecho_otro","pais_hecho","provincia_hecho","localidad_hecho","caso"));
+return view("detalleCaso", compact("delitos", "cavajs","usuarios","organismos","departamentos","provincias","ciudades","nombre_referencia","nro_carpeta","delito","otro_delito","descripcion_caso","fecha_ingreso","modalidad_ingreso","organismo","cual_otro_organismo","cavaj","comisaria","denuncias_previas","departamento_judicial","estado","nombre_y_apellido_de_la_victima","motivospasivos","cual_otro_motivospasivo","fecha_delito","fecha_hecho","fecha_hecho_otro","pais_hecho","pais_hecho_otro","provincia_hecho","localidad_hecho","caso"));
 
 
       }

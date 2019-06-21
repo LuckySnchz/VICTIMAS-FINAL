@@ -83,8 +83,9 @@ session_start();
 
    <br><br>
 <a name="Ancla" id="INICIO"></a>
-     
-
+    
+caso:{{session("idCaso")}}<br>
+vistimas: {{session("idVictim")}}
 
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: -8%;">
 
@@ -139,7 +140,16 @@ session_start();
 
            </div>
 
+           @foreach($victimas as $victima)
+           @if($victima->idCaso==session("idCaso")&&$victima->id==session("idVictim"))
 
+<div id="mostrar_ocultar">
+
+@else
+
+<div id="mostrar_ocultar" style="display: none">
+  @endif
+  
 <a name="Ancla" id="A"></a>
 
 
@@ -664,7 +674,7 @@ session_start();
 
 </div>
 
-
-
+@endforeach
+</div>
    </body>
 </html>

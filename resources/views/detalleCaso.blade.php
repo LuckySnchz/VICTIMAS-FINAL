@@ -489,6 +489,27 @@ session_start();
       @else
       <option value="2" >Se Desconoce</option>
       @endif
+      @if($caso->pais_hecho ==3)
+      <option value="3" selected>Otro</option>
+      @else
+      <option value="3" >Otro</option>
+      @endif
+     
+    </select>
+    <br>
+    {!! $errors->first('pais_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div>
+
+   @if($caso->pais_hecho == 3)
+  <div class="form-group" id="otro_pais" {{ $errors->has('pais_hecho_otro') ? 'has-error' : ''}}>
+    @else
+    <div class="form-group" id="otro_pais" style="display: none">
+@endif
+  <label for="">A 13. Otro pais del hecho:</label>
+  <input type="text" class="form-control" name="pais_hecho_otro" id="pais_hecho_otro" value="{{$caso->pais_hecho_otro}}">
+  {!! $errors->first('pais_hecho_otro', '<p class="help-block" style="color:red";>:message</p>') !!}
+  </div>
+  <br>
      
     </select>
     <br>
@@ -551,8 +572,6 @@ session_start();
     {!! $errors->first('localidad_hecho', '<p class="help-block" style="color:red";>:message</p>') !!}
    </div>
 
-
-
  <script type="text/javascript">
     document.querySelector("#countryId2").onchange = function() {
       var value = this.options[this.selectedIndex].value;
@@ -561,17 +580,42 @@ session_start();
            divC = document.getElementById("provincia_hecho");
                 divC.style.display = "";
 
+                   $('#pais_hecho_otro').val('');
+                   divCo= document.getElementById("otro_pais");
+                      divCo.style.display="none";
+                       
+
               }
 
  if (value=="2"){divCp = document.getElementById("provincia_hecho");
                $('#stateId2').val('');
                 divCp.style.display = "none"; 
                
-
                divCl = document.getElementById("localidad_hecho");
                $('#cityId2').val('');
-                divCl.style.display = "none"; 
+                divCl.style.display = "none";
+
+          
+                      $('#pais_hecho_otro').val('');
+                   divCo= document.getElementById("otro_pais");
+                      divCo.style.display="none";
+                       
                }
+
+               if (value=="3"){
+        
+           divC = document.getElementById("otro_pais");
+                divC.style.display = "";
+
+                divCp = document.getElementById("provincia_hecho");
+               $('#stateId2').val('');
+                divCp.style.display = "none"; 
+               
+               divCl = document.getElementById("localidad_hecho");
+               $('#cityId2').val('');
+                divCl.style.display = "none";
+
+              }
             }
     </script>
 

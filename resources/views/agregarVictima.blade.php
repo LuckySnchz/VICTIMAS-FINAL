@@ -21,7 +21,7 @@ session_start();
    </head>
    <header>
      @include('navbar')
-<div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%">
+<div class="panel"style="background-color:rgb(137, 210, 14);text-align: center;margin-bottom: 0.1%;margin-top: 0.2%">
                 <a class="navbar-brand"  href="/home">
                     <h3 style="color:white">INICIO</h3>
                 </a>
@@ -789,9 +789,9 @@ document.getElementById('victima_numero_documento').style.background="white";
         @foreach ($discapacidades as $discapacidad)
             <label class="form-check-inline form-check-label">
               @if(is_array(old("discapacidades")) && in_array($discapacidad->id, old("discapacidades")))
-            <input type="checkbox" value="{{ $discapacidad->id }}" class="form-check-inline" name="discapacidades[]" checked>
+            <input type="checkbox" value="{{ $discapacidad->id }}" id="{{$discapacidad->nombre }}" class="form-check-inline discap" name="discapacidades[]" checked>
           @else
-            <input type="checkbox" value="{{ $discapacidad->id }}" class="form-check-inline" name="discapacidades[]">
+            <input type="checkbox" value="{{ $discapacidad->id }}" id="{{$discapacidad->nombre }}" class="form-check-inline discap" name="discapacidades[]">
           @endif
             {{ $discapacidad->nombre }}
             </label><br>
@@ -799,6 +799,29 @@ document.getElementById('victima_numero_documento').style.background="white";
 
     {!! $errors->first('discapacidades', '<p class="help-block" style="color:red";>:message</p>') !!}
     </div>
+
+
+<script type="text/javascript">
+        var discapacidades = document.querySelectorAll(".discap")
+        var desconoce = discapacidades[discapacidades.length-1]
+
+
+ desconoce.onclick = function(){
+                 document.getElementById("físico-motriz").checked= false;
+                 document.getElementById("físico-motriz").disabled = true;
+
+                 document.getElementById("intelectual-adaptativo").checked= false;
+                 document.getElementById("intelectual-adaptativo").disabled = true;
+
+                 document.getElementById("psíquica").checked= false;
+                 document.getElementById("psíquica").disabled = true;
+
+                 document.getElementById("sensorial").checked= false;
+                 document.getElementById("sensorial").disabled = true;
+
+           }
+
+</script>
 
     <script>
          function checkB14(checkbox)
