@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-06-2019 a las 15:53:12
+-- Tiempo de generación: 22-06-2019 a las 16:18:51
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -85,7 +85,8 @@ CREATE TABLE `casos` (
   `fecha_delito` int(11) DEFAULT NULL,
   `fecha_hecho` varchar(20) DEFAULT NULL,
   `fecha_hecho_otro` varchar(100) DEFAULT NULL,
-  `pais_hecho` varchar(20) DEFAULT NULL,
+  `pais_hecho` int(11) DEFAULT NULL,
+  `pais_hecho_otro` varchar(255) DEFAULT NULL,
   `provincia_hecho` int(11) DEFAULT NULL,
   `localidad_hecho` int(11) DEFAULT NULL,
   `usuarios` int(11) DEFAULT NULL,
@@ -99,47 +100,54 @@ CREATE TABLE `casos` (
 -- Volcado de datos para la tabla `casos`
 --
 
-INSERT INTO `casos` (`id`, `created_at`, `updated_at`, `nombre_referencia`, `nro_carpeta`, `delito`, `otro_delito`, `descripcion_caso`, `fecha_ingreso`, `modalidad_ingreso`, `organismo`, `cual_otro_organismo`, `cavaj`, `comisaria`, `denuncias_previas`, `departamento_judicial`, `estado`, `motivospasivos`, `cual_otro_motivospasivo`, `nombre_y_apellido_de_la_victima`, `persona_asistida`, `fecha_delito`, `fecha_hecho`, `fecha_hecho_otro`, `pais_hecho`, `provincia_hecho`, `localidad_hecho`, `usuarios`, `userID_create`, `userID_modify`, `sede`, `activo`) VALUES
-(1, '2019-05-23 18:00:08', '2019-05-23 18:00:08', 'CASO PRUEBA PROFESIONALES', NULL, 48, NULL, 'BREVE', '2019-05-15', 2, 0, NULL, 12, 'COMISARIA', 1, 11, 1, NULL, NULL, 'LUIS MASA', NULL, 3, NULL, NULL, '1', 1, 2, NULL, 3, NULL, 'LA PLATA', 1),
-(2, '2019-05-23 19:05:33', '2019-05-23 19:05:33', 'PRUEBA', NULL, 42, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 10, 'COMISARIA', 1, 3, 1, NULL, NULL, 'JOSE LEON SUAREZ', NULL, 3, NULL, NULL, '1', 2, 880, NULL, 2, NULL, 'LA PLATA', 1),
-(3, '2019-05-23 19:55:34', '2019-05-23 19:55:34', 'CASO INTERVINO ADMIN', NULL, 47, NULL, 'BREVE', '2019-05-15', 1, 0, NULL, 10, 'COMI', 1, 15, 1, NULL, NULL, 'SAMUEL ISMAEL', NULL, 3, NULL, NULL, '1', 1, 7, NULL, 1, NULL, 'LINCOLN', 1),
-(4, '2019-05-23 21:02:44', '2019-05-23 21:02:44', 'CASO YO', NULL, 52, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 3, 'Se desconoce', 1, 7, 1, NULL, NULL, 'SAN LORENZO', NULL, 3, NULL, NULL, '1', 2, 878, NULL, 3, NULL, 'LA PLATA', 1),
-(5, '2019-05-23 21:06:46', '2019-05-23 21:06:46', 'CASO INTERVINO YO', NULL, 42, NULL, 'BREVE', '2019-05-16', 1, 0, NULL, 7, 'COMI', 1, 1, 1, NULL, NULL, 'ESTABAN QUITO', NULL, 3, NULL, NULL, '1', 2, 885, NULL, 3, NULL, 'LA PLATA', 1),
-(6, '2019-05-23 21:12:05', '2019-05-23 21:12:05', 'OTRO YO', NULL, 49, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 9, 'COMI', 1, 5, 1, NULL, NULL, 'MARIA DEL MAR', NULL, 3, NULL, NULL, '1', 2, 881, NULL, 3, NULL, 'LA PLATA', 1),
-(7, '2019-05-24 00:04:54', '2019-05-24 00:04:54', 'CASO PRUEBA PROFESIONAL', NULL, 49, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 2, 'COM', 1, 6, 1, NULL, NULL, 'CARLOS CALVO', NULL, 3, NULL, NULL, '1', 1, 1, NULL, 3, NULL, 'LA PLATA', 1),
-(8, '2019-05-24 00:37:01', '2019-05-24 00:37:01', 'PRUEBA INTERVINIENTE', NULL, 52, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 8, 'COMI', 1, 18, 1, NULL, NULL, 'JUAN RAMON', NULL, 3, NULL, NULL, '1', 1, 2, NULL, 2, NULL, 'LA PLATA', 1),
-(9, '2019-05-27 02:44:37', '2019-05-27 02:44:37', 'CASO PRUEBA CIUDAD SE DESCONOCE', NULL, 52, NULL, 'BREVE', '2019-05-01', 1, 0, NULL, 2, 'COMI', 1, 5, 1, NULL, NULL, 'JORGE RAMOS', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 12, NULL, NULL, 1),
-(10, '2019-05-27 02:47:22', '2019-05-27 02:47:22', 'CASO PRUEBA CIUDAD SE DESCONOCE', NULL, 52, NULL, 'BREVE', '2019-05-03', 1, 0, NULL, 15, 'COMI', 1, 2, 1, NULL, NULL, 'JOSE SAN MARTIN', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 12, NULL, NULL, 1),
-(11, '2019-05-27 02:48:52', '2019-05-27 02:48:52', 'CASO PRUEBA CIUDAD SE CONOCE', NULL, 42, NULL, 'BREVE', '2019-05-26', 1, 0, NULL, 5, 'COMI', 1, 18, 1, NULL, NULL, 'JUANA MOLINA', NULL, 3, NULL, NULL, '1', 1, 3, NULL, 12, NULL, NULL, 1),
-(12, '2019-05-28 20:33:56', '2019-05-28 20:33:56', 'CASO PROVINCIAS CIUDADES', '20', 52, NULL, 'BREVE LESIONES', '2019-05-22', 3, 15, NULL, 9, 'COMISARIA', 1, 12, 1, NULL, NULL, 'JOSEFA MORALES', NULL, 3, NULL, NULL, '1', 25, 943, NULL, 116, NULL, 'LA PLATA', 1),
-(13, '2019-05-28 23:03:16', '2019-05-28 23:03:16', 'PRUEBA PROFESIONALES', NULL, 52, NULL, 'BREVE DESCRIP', '2019-05-28', 1, 0, NULL, 15, 'COMI', 1, 10, 1, NULL, NULL, 'JUAN', NULL, 3, NULL, NULL, '1', 1, 2, NULL, 116, NULL, 'LA PLATA', 1),
-(14, '2019-05-28 23:50:13', '2019-05-28 23:50:13', 'NUEVO CASO', NULL, 52, NULL, 'BREVE', '2019-05-21', 1, 0, NULL, 6, 'COMISARIA', 1, 15, 1, NULL, NULL, 'JOSE MARTIN', NULL, 3, NULL, NULL, '1', 3, 942, NULL, 116, NULL, 'LA PLATA', 1),
-(15, '2019-05-29 02:40:28', '2019-05-29 02:40:28', 'CASO PROF', NULL, 42, NULL, 'BREVE DESCRIP', '2019-05-28', 1, 0, NULL, 11, 'COMISARIA', 1, 2, 1, NULL, NULL, 'PEDRO ALMODOVAR', NULL, 3, NULL, NULL, '1', 1, 3, NULL, 116, NULL, 'LA PLATA', 1),
-(16, '2019-05-29 15:41:50', '2019-05-29 15:41:50', 'PRUEBA', NULL, 51, NULL, 'BREVE', '2019-05-29', 1, 0, NULL, 10, 'COMI', 1, 8, 1, NULL, NULL, 'JUAN JOSE', NULL, 3, NULL, NULL, '1', 1, 2, NULL, 1, NULL, 'LA PLATA', 1),
-(17, '2019-05-29 15:49:52', '2019-05-29 15:49:52', 'CASO RACK', NULL, 52, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 3, 'COMISARIA', 1, 15, 1, NULL, NULL, 'RACK', NULL, 3, NULL, NULL, '1', 1, 15, NULL, 50, NULL, 'LA PLATA', 1),
-(18, '2019-05-29 16:56:29', '2019-05-29 16:56:29', 'CASO SIN ATACH', NULL, 52, NULL, 'BREVE', '2019-05-22', 1, 0, NULL, 9, 'COMI', 1, 15, 1, NULL, NULL, 'NORMA SERRANO', NULL, 3, NULL, NULL, '1', 3, 944, NULL, 50, NULL, 'LA PLATA', 1),
-(19, '2019-05-29 19:57:19', '2019-05-29 19:57:19', 'CASO 115', NULL, 38, NULL, 'BREVE', '2019-05-29', 1, 0, NULL, 5, 'COMISARIA', 1, 14, 1, NULL, NULL, 'SAMUEL', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 115, NULL, 'SAN ISIDRO', 1),
-(20, '2019-05-29 20:08:47', '2019-05-29 20:08:47', 'CASO INTERVIENE', '22', 44, NULL, 'BREVE', '2019-05-29', 1, 0, NULL, 2, 'COMISARIA', 1, 11, 1, NULL, NULL, 'LUJAN', NULL, 3, NULL, NULL, '1', 3, 934, NULL, 115, NULL, 'SAN ISIDRO', 1),
-(21, '2019-05-30 02:52:20', '2019-05-30 02:52:20', 'CASO IGNACIO', NULL, 52, NULL, 'BREVE', '2019-05-29', 1, 0, NULL, 4, 'COMISARIA', 1, 11, 1, NULL, NULL, 'JUAN SEBASTIAN', NULL, 3, NULL, NULL, '1', 1, 7, NULL, 114, NULL, 'LA PLATA', 1),
-(22, '2019-05-30 14:03:18', '2019-05-30 14:03:18', 'CASO COUNT', NULL, 49, NULL, 'BREVE', '2019-05-30', 1, 0, NULL, 17, 'COMI', 2, 9, 1, NULL, NULL, 'MARCOS PAL', NULL, 3, NULL, NULL, '1', 1, 6, NULL, 114, NULL, 'LA PLATA', 1),
-(23, '2019-05-30 18:33:17', '2019-05-30 18:33:17', 'CASO COUNT CERO', NULL, 44, NULL, 'BREVE', '2019-05-30', 1, 0, NULL, 13, 'COMISARIA', 1, 11, 1, NULL, NULL, 'MARIO MOLINA', NULL, 3, NULL, NULL, '1', 1, 16, NULL, 114, NULL, 'LA PLATA', 1),
-(24, '2019-05-31 02:51:32', '2019-05-31 02:51:32', 'CASO PROFESIONALES', NULL, 52, NULL, 'BREVE', '2019-05-30', 1, 0, NULL, 10, 'COMISARIA', 1, 13, 1, NULL, NULL, 'LOLA MORA', NULL, 3, NULL, NULL, '1', 1, 13, NULL, 114, NULL, 'LA PLATA', 1),
-(25, '2019-05-31 13:54:23', '2019-05-31 13:54:23', 'CASO PROF INTERV', NULL, 52, NULL, 'BREVE', '2019-05-31', 1, 0, NULL, 15, 'COMI', 1, 12, 1, NULL, NULL, 'OSCAR ROJAS', NULL, 3, NULL, NULL, '1', 1, 15, NULL, 114, NULL, 'LA PLATA', 1),
-(26, '2019-06-02 16:32:07', '2019-06-02 16:32:07', 'CASO SELECT PROFESIONALES', NULL, 42, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 9, 'COMISARIA', 1, 14, 1, NULL, NULL, 'MARTA SIMON', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
-(27, '2019-06-02 16:33:25', '2019-06-02 16:33:25', 'CASO SELECT PROFESIONALES', NULL, 42, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 9, 'COMISARIA', 1, 14, 1, NULL, NULL, 'MARTA SIMON', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
-(28, '2019-06-02 16:35:18', '2019-06-02 16:35:18', 'CASO SELECT PROFESIONALES', NULL, 42, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 9, 'COMISARIA', 1, 14, 1, NULL, NULL, 'MARTA SIMON', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
-(29, '2019-06-03 18:34:24', '2019-06-14 03:49:54', 'CASO PRUEBA LUCIA', '22', 12, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 3, 'COMI', 1, 7, 1, NULL, NULL, 'JOSE PER', NULL, 3, NULL, NULL, '1', 1, 1, NULL, 114, 114, 'LA PLATA', 1),
-(30, '2019-06-03 21:12:39', '2019-06-03 21:12:39', 'CASO INTERVENGO A KLENA', '22', 11, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 14, 'COMI', 2, 13, 1, NULL, NULL, 'MARCOS LUJAN', NULL, 3, NULL, NULL, '1', 2, 885, NULL, 70, NULL, 'MAR DEL PLATA', 1),
-(31, '2019-06-10 02:45:44', '2019-06-10 02:45:44', 'mlllmlmlm', NULL, 42, NULL, 'brevevvevev', '2019-06-09', 1, 0, NULL, 12, 'comi', 1, 2, 1, NULL, NULL, 'monokom', NULL, 1, '1900-01-01', NULL, '2', 12, 2, NULL, 114, NULL, 'LA PLATA', 1),
-(32, '2019-06-11 19:55:59', '2019-06-11 19:55:59', 'CASO VINCULOS', NULL, 5, NULL, 'BREVE', '2019-06-11', 1, 0, NULL, 9, 'COMISARIA', 1, 10, 1, NULL, NULL, 'PRUEBA VINCULO', NULL, 3, NULL, NULL, '1', 1, 4, NULL, 114, NULL, 'LA PLATA', 1),
-(33, '2019-06-12 13:53:37', '2019-06-12 13:53:37', 'CASO CONVIVIENTES', '22', 9, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 17, 'Se desconoce', 1, 1, 1, NULL, NULL, 'JUAN PADILLA', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
-(34, '2019-06-12 14:25:59', '2019-06-12 14:25:59', 'JUAN RAMON', '22', 11, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 12, 'Se desconoce', 2, 3, 1, NULL, NULL, 'JUAN RAMON', NULL, 3, NULL, NULL, '1', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
-(35, '2019-06-12 16:20:51', '2019-06-12 16:20:51', 'PRUEBA LOCALIDAD', NULL, 9, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 8, 'COMI', 1, 11, 1, NULL, NULL, 'JUAN JUAN', NULL, 3, NULL, NULL, '2', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
-(36, '2019-06-12 19:14:12', '2019-06-12 19:14:12', 'CASO PRUEBA', NULL, 13, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 9, 'Se desconoce', 2, 15, 1, NULL, NULL, 'PEDRO', NULL, 3, NULL, NULL, '2', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
-(37, '2019-06-12 23:19:50', '2019-06-12 23:19:50', 'CASO PERSONAS ASISTIDAS', NULL, 7, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 11, 'COMI', 2, 18, 1, NULL, NULL, 'JOSE PEDRASA', NULL, 3, NULL, NULL, '2', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
-(38, '2019-06-13 04:38:05', '2019-06-13 04:38:05', 'CASO PERSONAS', NULL, 12, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 14, 'Se desconoce', 2, 18, 1, NULL, NULL, 'JUAN MOREIRA', NULL, 3, NULL, NULL, '2', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
-(39, '2019-06-13 13:46:28', '2019-06-13 13:46:28', 'PRUEBA VINCULOS', NULL, 11, NULL, 'BREVE', '2019-06-13', 1, 0, NULL, 12, 'Se desconoce', 2, 14, 1, NULL, NULL, 'JORGE MARIO', NULL, 3, NULL, NULL, '2', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
-(40, '2019-06-14 14:09:54', '2019-06-14 14:09:54', 'PRUEBA IMPUTADO', NULL, 8, NULL, 'BREVE', '2019-06-14', 2, 0, NULL, 4, 'Se desconoce', 1, 6, 1, NULL, NULL, 'JOSE JUAN', NULL, 3, NULL, NULL, '2', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1);
+INSERT INTO `casos` (`id`, `created_at`, `updated_at`, `nombre_referencia`, `nro_carpeta`, `delito`, `otro_delito`, `descripcion_caso`, `fecha_ingreso`, `modalidad_ingreso`, `organismo`, `cual_otro_organismo`, `cavaj`, `comisaria`, `denuncias_previas`, `departamento_judicial`, `estado`, `motivospasivos`, `cual_otro_motivospasivo`, `nombre_y_apellido_de_la_victima`, `persona_asistida`, `fecha_delito`, `fecha_hecho`, `fecha_hecho_otro`, `pais_hecho`, `pais_hecho_otro`, `provincia_hecho`, `localidad_hecho`, `usuarios`, `userID_create`, `userID_modify`, `sede`, `activo`) VALUES
+(1, '2019-05-23 18:00:08', '2019-05-23 18:00:08', 'CASO PRUEBA PROFESIONALES', NULL, 48, NULL, 'BREVE', '2019-05-15', 2, 0, NULL, 12, 'COMISARIA', 1, 11, 1, NULL, NULL, 'LUIS MASA', NULL, 3, NULL, NULL, 1, '', 1, 2, NULL, 3, NULL, 'LA PLATA', 1),
+(2, '2019-05-23 19:05:33', '2019-05-23 19:05:33', 'PRUEBA', NULL, 42, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 10, 'COMISARIA', 1, 3, 1, NULL, NULL, 'JOSE LEON SUAREZ', NULL, 3, NULL, NULL, 1, '', 2, 880, NULL, 2, NULL, 'LA PLATA', 1),
+(3, '2019-05-23 19:55:34', '2019-05-23 19:55:34', 'CASO INTERVINO ADMIN', NULL, 47, NULL, 'BREVE', '2019-05-15', 1, 0, NULL, 10, 'COMI', 1, 15, 1, NULL, NULL, 'SAMUEL ISMAEL', NULL, 3, NULL, NULL, 1, '', 1, 7, NULL, 1, NULL, 'LINCOLN', 1),
+(4, '2019-05-23 21:02:44', '2019-05-23 21:02:44', 'CASO YO', NULL, 52, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 3, 'Se desconoce', 1, 7, 1, NULL, NULL, 'SAN LORENZO', NULL, 3, NULL, NULL, 1, '', 2, 878, NULL, 3, NULL, 'LA PLATA', 1),
+(5, '2019-05-23 21:06:46', '2019-05-23 21:06:46', 'CASO INTERVINO YO', NULL, 42, NULL, 'BREVE', '2019-05-16', 1, 0, NULL, 7, 'COMI', 1, 1, 1, NULL, NULL, 'ESTABAN QUITO', NULL, 3, NULL, NULL, 1, '', 2, 885, NULL, 3, NULL, 'LA PLATA', 1),
+(6, '2019-05-23 21:12:05', '2019-05-23 21:12:05', 'OTRO YO', NULL, 49, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 9, 'COMI', 1, 5, 1, NULL, NULL, 'MARIA DEL MAR', NULL, 3, NULL, NULL, 1, '', 2, 881, NULL, 3, NULL, 'LA PLATA', 1),
+(7, '2019-05-24 00:04:54', '2019-05-24 00:04:54', 'CASO PRUEBA PROFESIONAL', NULL, 49, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 2, 'COM', 1, 6, 1, NULL, NULL, 'CARLOS CALVO', NULL, 3, NULL, NULL, 1, '', 1, 1, NULL, 3, NULL, 'LA PLATA', 1),
+(8, '2019-05-24 00:37:01', '2019-05-24 00:37:01', 'PRUEBA INTERVINIENTE', NULL, 52, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 8, 'COMI', 1, 18, 1, NULL, NULL, 'JUAN RAMON', NULL, 3, NULL, NULL, 1, '', 1, 2, NULL, 2, NULL, 'LA PLATA', 1),
+(9, '2019-05-27 02:44:37', '2019-05-27 02:44:37', 'CASO PRUEBA CIUDAD SE DESCONOCE', NULL, 52, NULL, 'BREVE', '2019-05-01', 1, 0, NULL, 2, 'COMI', 1, 5, 1, NULL, NULL, 'JORGE RAMOS', NULL, 3, NULL, NULL, 1, '', 25, NULL, NULL, 12, NULL, NULL, 1),
+(10, '2019-05-27 02:47:22', '2019-05-27 02:47:22', 'CASO PRUEBA CIUDAD SE DESCONOCE', NULL, 52, NULL, 'BREVE', '2019-05-03', 1, 0, NULL, 15, 'COMI', 1, 2, 1, NULL, NULL, 'JOSE SAN MARTIN', NULL, 3, NULL, NULL, 1, '', 25, NULL, NULL, 12, NULL, NULL, 1),
+(11, '2019-05-27 02:48:52', '2019-05-27 02:48:52', 'CASO PRUEBA CIUDAD SE CONOCE', NULL, 42, NULL, 'BREVE', '2019-05-26', 1, 0, NULL, 5, 'COMI', 1, 18, 1, NULL, NULL, 'JUANA MOLINA', NULL, 3, NULL, NULL, 1, '', 1, 3, NULL, 12, NULL, NULL, 1),
+(12, '2019-05-28 20:33:56', '2019-05-28 20:33:56', 'CASO PROVINCIAS CIUDADES', '20', 52, NULL, 'BREVE LESIONES', '2019-05-22', 3, 15, NULL, 9, 'COMISARIA', 1, 12, 1, NULL, NULL, 'JOSEFA MORALES', NULL, 3, NULL, NULL, 1, '', 25, 943, NULL, 116, NULL, 'LA PLATA', 1),
+(13, '2019-05-28 23:03:16', '2019-05-28 23:03:16', 'PRUEBA PROFESIONALES', NULL, 52, NULL, 'BREVE DESCRIP', '2019-05-28', 1, 0, NULL, 15, 'COMI', 1, 10, 1, NULL, NULL, 'JUAN', NULL, 3, NULL, NULL, 1, '', 1, 2, NULL, 116, NULL, 'LA PLATA', 1),
+(14, '2019-05-28 23:50:13', '2019-05-28 23:50:13', 'NUEVO CASO', NULL, 52, NULL, 'BREVE', '2019-05-21', 1, 0, NULL, 6, 'COMISARIA', 1, 15, 1, NULL, NULL, 'JOSE MARTIN', NULL, 3, NULL, NULL, 1, '', 3, 942, NULL, 116, NULL, 'LA PLATA', 1),
+(15, '2019-05-29 02:40:28', '2019-05-29 02:40:28', 'CASO PROF', NULL, 42, NULL, 'BREVE DESCRIP', '2019-05-28', 1, 0, NULL, 11, 'COMISARIA', 1, 2, 1, NULL, NULL, 'PEDRO ALMODOVAR', NULL, 3, NULL, NULL, 1, '', 1, 3, NULL, 116, NULL, 'LA PLATA', 1),
+(16, '2019-05-29 15:41:50', '2019-05-29 15:41:50', 'PRUEBA', NULL, 51, NULL, 'BREVE', '2019-05-29', 1, 0, NULL, 10, 'COMI', 1, 8, 1, NULL, NULL, 'JUAN JOSE', NULL, 3, NULL, NULL, 1, '', 1, 2, NULL, 1, NULL, 'LA PLATA', 1),
+(17, '2019-05-29 15:49:52', '2019-05-29 15:49:52', 'CASO RACK', NULL, 52, NULL, 'BREVE', '2019-05-23', 1, 0, NULL, 3, 'COMISARIA', 1, 15, 1, NULL, NULL, 'RACK', NULL, 3, NULL, NULL, 1, '', 1, 15, NULL, 50, NULL, 'LA PLATA', 1),
+(18, '2019-05-29 16:56:29', '2019-05-29 16:56:29', 'CASO SIN ATACH', NULL, 52, NULL, 'BREVE', '2019-05-22', 1, 0, NULL, 9, 'COMI', 1, 15, 1, NULL, NULL, 'NORMA SERRANO', NULL, 3, NULL, NULL, 1, '', 3, 944, NULL, 50, NULL, 'LA PLATA', 1),
+(19, '2019-05-29 19:57:19', '2019-05-29 19:57:19', 'CASO 115', NULL, 38, NULL, 'BREVE', '2019-05-29', 1, 0, NULL, 5, 'COMISARIA', 1, 14, 1, NULL, NULL, 'SAMUEL', NULL, 3, NULL, NULL, 1, '', 25, NULL, NULL, 115, NULL, 'SAN ISIDRO', 1),
+(20, '2019-05-29 20:08:47', '2019-05-29 20:08:47', 'CASO INTERVIENE', '22', 44, NULL, 'BREVE', '2019-05-29', 1, 0, NULL, 2, 'COMISARIA', 1, 11, 1, NULL, NULL, 'LUJAN', NULL, 3, NULL, NULL, 1, '', 3, 934, NULL, 115, NULL, 'SAN ISIDRO', 1),
+(21, '2019-05-30 02:52:20', '2019-05-30 02:52:20', 'CASO IGNACIO', NULL, 52, NULL, 'BREVE', '2019-05-29', 1, 0, NULL, 4, 'COMISARIA', 1, 11, 1, NULL, NULL, 'JUAN SEBASTIAN', NULL, 3, NULL, NULL, 1, '', 1, 7, NULL, 114, NULL, 'LA PLATA', 1),
+(22, '2019-05-30 14:03:18', '2019-05-30 14:03:18', 'CASO COUNT', NULL, 49, NULL, 'BREVE', '2019-05-30', 1, 0, NULL, 17, 'COMI', 2, 9, 1, NULL, NULL, 'MARCOS PAL', NULL, 3, NULL, NULL, 1, '', 1, 6, NULL, 114, NULL, 'LA PLATA', 1),
+(23, '2019-05-30 18:33:17', '2019-05-30 18:33:17', 'CASO COUNT CERO', NULL, 44, NULL, 'BREVE', '2019-05-30', 1, 0, NULL, 13, 'COMISARIA', 1, 11, 1, NULL, NULL, 'MARIO MOLINA', NULL, 3, NULL, NULL, 1, '', 1, 16, NULL, 114, NULL, 'LA PLATA', 1),
+(24, '2019-05-31 02:51:32', '2019-05-31 02:51:32', 'CASO PROFESIONALES', NULL, 52, NULL, 'BREVE', '2019-05-30', 1, 0, NULL, 10, 'COMISARIA', 1, 13, 1, NULL, NULL, 'LOLA MORA', NULL, 3, NULL, NULL, 1, '', 1, 13, NULL, 114, NULL, 'LA PLATA', 1),
+(25, '2019-05-31 13:54:23', '2019-05-31 13:54:23', 'CASO PROF INTERV', NULL, 52, NULL, 'BREVE', '2019-05-31', 1, 0, NULL, 15, 'COMI', 1, 12, 1, NULL, NULL, 'OSCAR ROJAS', NULL, 3, NULL, NULL, 1, '', 1, 15, NULL, 114, NULL, 'LA PLATA', 1),
+(26, '2019-06-02 16:32:07', '2019-06-02 16:32:07', 'CASO SELECT PROFESIONALES', NULL, 42, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 9, 'COMISARIA', 1, 14, 1, NULL, NULL, 'MARTA SIMON', NULL, 3, NULL, NULL, 1, '', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(27, '2019-06-02 16:33:25', '2019-06-02 16:33:25', 'CASO SELECT PROFESIONALES', NULL, 42, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 9, 'COMISARIA', 1, 14, 1, NULL, NULL, 'MARTA SIMON', NULL, 3, NULL, NULL, 1, '', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(28, '2019-06-02 16:35:18', '2019-06-02 16:35:18', 'CASO SELECT PROFESIONALES', NULL, 42, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 9, 'COMISARIA', 1, 14, 1, NULL, NULL, 'MARTA SIMON', NULL, 3, NULL, NULL, 1, '', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(29, '2019-06-03 18:34:24', '2019-06-20 05:25:56', 'CASO PRUEBA LUCIA', '22', 12, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 3, 'COMI', 1, 7, 1, NULL, NULL, 'JOSE PEREZ', NULL, 3, NULL, NULL, 3, 'OTRO NEW PAIS', NULL, NULL, NULL, 114, 114, 'LA PLATA', 1),
+(30, '2019-06-03 21:12:39', '2019-06-03 21:12:39', 'CASO INTERVENGO A KLENA', '22', 11, NULL, 'BREVE', '2019-06-01', 1, 0, NULL, 14, 'COMI', 2, 13, 1, NULL, NULL, 'MARCOS LUJAN', NULL, 3, NULL, NULL, 1, '', 2, 885, NULL, 70, NULL, 'MAR DEL PLATA', 1),
+(31, '2019-06-10 02:45:44', '2019-06-10 02:45:44', 'mlllmlmlm', NULL, 42, NULL, 'brevevvevev', '2019-06-09', 1, 0, NULL, 12, 'comi', 1, 2, 1, NULL, NULL, 'monokom', NULL, 1, '1900-01-01', NULL, 2, '', 12, 2, NULL, 114, NULL, 'LA PLATA', 1),
+(32, '2019-06-11 19:55:59', '2019-06-11 19:55:59', 'CASO VINCULOS', NULL, 5, NULL, 'BREVE', '2019-06-11', 1, 0, NULL, 9, 'COMISARIA', 1, 10, 1, NULL, NULL, 'PRUEBA VINCULO', NULL, 3, NULL, NULL, 1, '', 1, 4, NULL, 114, NULL, 'LA PLATA', 1),
+(33, '2019-06-12 13:53:37', '2019-06-12 13:53:37', 'CASO CONVIVIENTES', '22', 9, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 17, 'Se desconoce', 1, 1, 1, NULL, NULL, 'JUAN PADILLA', NULL, 3, NULL, NULL, 1, '', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(34, '2019-06-12 14:25:59', '2019-06-12 14:25:59', 'JUAN RAMON', '22', 11, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 12, 'Se desconoce', 2, 3, 1, NULL, NULL, 'JUAN RAMON', NULL, 3, NULL, NULL, 1, '', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(35, '2019-06-12 16:20:51', '2019-06-12 16:20:51', 'PRUEBA LOCALIDAD', NULL, 9, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 8, 'COMI', 1, 11, 1, NULL, NULL, 'JUAN JUAN', NULL, 3, NULL, NULL, 2, '', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(36, '2019-06-12 19:14:12', '2019-06-12 19:14:12', 'CASO PRUEBA', NULL, 13, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 9, 'Se desconoce', 2, 15, 1, NULL, NULL, 'PEDRO', NULL, 3, NULL, NULL, 2, '', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(37, '2019-06-12 23:19:50', '2019-06-12 23:19:50', 'CASO PERSONAS ASISTIDAS', NULL, 7, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 11, 'COMI', 2, 18, 1, NULL, NULL, 'JOSE PEDRASA', NULL, 3, NULL, NULL, 2, '', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(38, '2019-06-13 04:38:05', '2019-06-13 04:38:05', 'CASO PERSONAS', NULL, 12, NULL, 'BREVE', '2019-06-12', 1, 0, NULL, 14, 'Se desconoce', 2, 18, 1, NULL, NULL, 'JUAN MOREIRA', NULL, 3, NULL, NULL, 2, '', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(39, '2019-06-13 13:46:28', '2019-06-13 13:46:28', 'PRUEBA VINCULOS', NULL, 11, NULL, 'BREVE', '2019-06-13', 1, 0, NULL, 12, 'Se desconoce', 2, 14, 1, NULL, NULL, 'JORGE MARIO', NULL, 3, NULL, NULL, 2, '', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(40, '2019-06-14 14:09:54', '2019-06-14 14:09:54', 'PRUEBA IMPUTADO', NULL, 8, NULL, 'BREVE', '2019-06-14', 2, 0, NULL, 4, 'Se desconoce', 1, 6, 1, NULL, NULL, 'JOSE JUAN', NULL, 3, NULL, NULL, 2, '', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(41, '2019-06-14 19:36:59', '2019-06-14 19:36:59', 'CASO PRUEBA IMPUTADO', NULL, 5, NULL, 'BREVE', '2019-06-14', 1, 0, NULL, 13, 'Se desconoce', 2, 2, 1, NULL, NULL, 'MARIO LUIS', NULL, 3, NULL, NULL, 1, '', 25, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(42, '2019-06-17 00:50:28', '2019-06-17 00:50:28', 'PRUEBA FINAL', NULL, 12, NULL, 'NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN', '2019-06-05', 1, 0, NULL, 9, 'Se desconoce', 1, 11, 1, NULL, NULL, 'SAMUEL', NULL, 3, NULL, NULL, 2, '', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(43, '2019-06-17 04:19:18', '2019-06-17 04:19:18', 'ULTIMO CASO', NULL, 15, NULL, 'BREVE', '2019-06-16', 1, 0, NULL, 9, 'Se desconoce', 2, 2, 1, NULL, NULL, 'SONIA SALERNO', NULL, 3, NULL, NULL, 2, '', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(44, '2019-06-17 17:45:19', '2019-06-17 17:45:19', 'CASO AGREGAR', NULL, 5, NULL, 'BREVE', '2019-06-17', 1, 0, NULL, 2, 'Se desconoce', 2, 9, 1, NULL, NULL, 'SANDRA', NULL, 3, NULL, NULL, 2, '', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1),
+(45, '2019-06-17 19:57:54', '2019-06-17 22:12:35', 'CASO NUEVO', NULL, 9, NULL, 'BREVE', '2019-06-17', 1, 0, NULL, 9, 'Se desconoce', 2, 13, 1, NULL, NULL, 'JOSE MOURA', NULL, 3, NULL, NULL, 1, '', 3, 941, NULL, 114, 114, 'LA PLATA', 1),
+(46, '2019-06-18 17:58:16', '2019-06-18 17:58:16', 'PRUEBA LUCIA NUEVO', NULL, 15, NULL, 'BREVE', '2019-06-18', 1, 0, NULL, 14, 'Se desconoce', 1, 10, 1, NULL, NULL, 'JUAN JOSE', NULL, 3, NULL, NULL, 1, '', 3, 939, NULL, 114, NULL, 'LA PLATA', 1),
+(47, '2019-06-20 04:20:33', '2019-06-20 04:20:33', 'CASO OTRO PAIS', NULL, 36, NULL, 'BREVE', '2019-06-19', 1, 0, NULL, 11, 'Se desconoce', 1, 11, 1, NULL, NULL, 'RAUL CASTRO', NULL, 1, '1900-01-01', NULL, 3, 'BRASIL', NULL, NULL, NULL, 114, NULL, 'LA PLATA', 1);
 
 -- --------------------------------------------------------
 
@@ -4390,7 +4398,16 @@ INSERT INTO `convivientes` (`id`, `nombre_y_apellido`, `edad`, `vinculo_victima`
 (49, 'CARLOS SALAS', 20, 6, 'CARLOS SALAS', 2, 2, 39, 64, '2019-06-13 13:50:48', 114, '2019-06-13 19:12:32', 114, NULL),
 (50, 'JUAN SOLAS', 33, 2, NULL, 2, 1, 29, 45, '2019-06-14 04:04:15', 114, '2019-06-14 04:04:15', NULL, NULL),
 (51, 'NUEVO REFERENTE', 40, 2, NULL, 6, 3, 29, 45, '2019-06-14 04:09:44', 114, '2019-06-14 04:09:44', NULL, NULL),
-(52, 'NORMA SERRANO', 33, 4, NULL, 3, 2, 40, 66, '2019-06-14 14:11:57', 114, '2019-06-14 14:15:16', 114, NULL);
+(52, 'NORMA SERRANO', 33, 4, NULL, 3, 2, 40, 66, '2019-06-14 14:11:57', 114, '2019-06-14 14:15:16', 114, NULL),
+(53, 'OSCAR L', 27, 1, NULL, 5, 4, 41, 68, '2019-06-14 19:38:55', 114, '2019-06-14 19:44:01', 114, NULL),
+(54, 'MARIA ESTHER', 29, 6, 'ENCUENTRO CASUAL', 2, 1, 41, 68, '2019-06-14 19:39:30', 114, '2019-06-14 19:44:12', 114, NULL),
+(55, 'MARATA LIDIA', 24, 2, NULL, 5, 3, 42, 70, '2019-06-17 00:57:31', 114, '2019-06-17 06:04:51', 114, NULL),
+(56, 'PABLO LUIS', 30, 6, 'OTRO PABLO LUIS', 4, 2, 42, 70, '2019-06-17 00:57:58', 114, '2019-06-17 02:58:33', 114, NULL),
+(57, 'NUEVO REFEREFTE', 32, 4, NULL, 7, 1, 42, 71, '2019-06-17 02:48:48', 114, '2019-06-17 02:48:48', NULL, NULL),
+(58, 'JOSE SALAS', 28, 2, NULL, 2, 3, 43, 73, '2019-06-17 04:27:15', 114, '2019-06-17 04:36:51', 114, NULL),
+(59, 'JOSE MOLINA', 33, 6, 'OTRO', 4, 2, 45, 76, '2019-06-17 20:02:36', 114, '2019-06-17 20:16:34', 114, NULL),
+(60, 'HECTOR PEREZ', 33, 6, 'OTRO VINCULO', 2, 2, 46, 79, '2019-06-18 18:05:47', 114, '2019-06-18 18:16:08', 114, NULL),
+(61, 'MATIAS PEREZ', 0, 3, NULL, 4, 2, 46, 79, '2019-06-18 18:06:13', 114, '2019-06-18 18:24:07', 114, NULL);
 
 -- --------------------------------------------------------
 
@@ -4567,11 +4584,11 @@ CREATE TABLE `discapacidades` (
 --
 
 INSERT INTO `discapacidades` (`id`, `nombre`) VALUES
-(1, 'Físico/Motriz'),
-(2, 'Intelectual/Adaptativo'),
-(3, 'Psíquica'),
-(4, 'Sensorial'),
-(5, 'Se desconoce');
+(1, 'físico-motriz'),
+(2, 'intelectual-adaptativo'),
+(3, 'psíquica'),
+(4, 'sensorial'),
+(5, 'desconoce');
 
 -- --------------------------------------------------------
 
@@ -4605,7 +4622,8 @@ INSERT INTO `documentos` (`id`, `tipo_documento`, `nombre_documento`, `archivo`,
 (52, '3', 'NOTAS', 'Nt9GB6QEO23RUxHswKHCUbULKSj2h0cLzRHHDEpM.docx', 14, 1, '2019-05-07 03:15:45', NULL, '2019-05-07 03:15:45', NULL),
 (53, '3', 'DOCUMENTO', 'xkeh1JvX8vbiKYVE2TA3a3QEeSWyMkjWSKY63AZd.png', 15, 1, '2019-05-16 19:37:15', NULL, '2019-05-16 19:37:15', NULL),
 (56, '3', 'NOTAS DOC', 'paucVao1siwxu1RQVFCJTp2tQiX5SyPKJFzRImEo.docx', 28, 114, '2019-06-02 17:26:56', NULL, '2019-06-02 17:26:56', NULL),
-(57, '1', 'NOTAS DOC', 'KoJK8ehSM6CL2jhFNfBZkhx1HQ1ApHKaiJCdxgcl.docx', 29, 114, '2019-06-03 19:02:22', NULL, '2019-06-03 19:02:22', NULL);
+(57, '1', 'NOTAS DOC', 'KoJK8ehSM6CL2jhFNfBZkhx1HQ1ApHKaiJCdxgcl.docx', 29, 114, '2019-06-03 19:02:22', NULL, '2019-06-03 19:02:22', NULL),
+(58, '2', 'DOC', 'aVM6OIpTuaJP60SZZS1FW1RlBD4VUe0QyjADPDPk.png', 46, 114, '2019-06-18 18:33:02', NULL, '2019-06-18 18:33:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -4690,7 +4708,7 @@ INSERT INTO `imputados` (`id`, `nombre_y_apellido`, `apodo`, `tipo_documento_id`
 (24, 'RAMON JUAREZ', 'Se desconoce', '5', NULL, 253125563, NULL, NULL, 'CARATULACION', 2, NULL, 2, NULL, 2, '1231231', 'FISCALIA', 45642313, 28, 41, 114, '2019-06-02 16:44:19', NULL, '2019-06-02 16:44:19', NULL),
 (25, 'JUAN LUIS', 'Se desconoce', NULL, NULL, NULL, 2, NULL, 'CARAT/CAR', 2, NULL, 2, NULL, 1, 'N°233 LA PLATA', 'LA#PLATA', 1231323, 29, 45, 114, '2019-06-03 18:50:35', NULL, '2019-06-14 04:15:52', NULL),
 (26, 'RAUL ROSALES', 'Se desconoce', '2', NULL, 0, NULL, NULL, 'CARATULACION', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCALIA', 1235, 32, 47, 114, '2019-06-11 20:00:48', NULL, '2019-06-11 20:00:48', NULL),
-(27, 'JUAN MOLINA', 'PEPE', '4', NULL, 0, NULL, NULL, 'CARAT', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCALIA', 123456, 33, 49, 114, '2019-06-12 13:58:01', NULL, '2019-06-12 13:58:01', NULL),
+(27, 'JUAN MOLINA', 'PEPE', '4', NULL, 0, 1, NULL, 'CARAT', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCALIA', 123456, 33, 49, 114, '2019-06-12 13:58:01', NULL, '2019-06-12 13:58:01', NULL),
 (28, 'LUIS RAMOS', 'Se desconoce', '2', NULL, 0, NULL, NULL, 'CARAT', 2, NULL, 2, NULL, 2, '123221231', 'FISCALIA', 45654546, 35, 54, 114, '2019-06-12 16:48:53', NULL, '2019-06-12 16:48:53', NULL),
 (29, 'JORGE PEDRO', 'Se desconoce', '2', NULL, 0, NULL, NULL, 'CARART', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCALIA', 123213, 35, 54, 114, '2019-06-12 16:50:35', NULL, '2019-06-12 16:50:35', NULL),
 (30, 'ESTEBAN LUIS', 'Se desconoce', '2', NULL, 0, NULL, NULL, 'CARAT', 2, NULL, 2, NULL, 3, 'Se desconoce', 'FISCAL', 123456, 36, 56, 114, '2019-06-12 19:17:31', NULL, '2019-06-12 19:17:31', NULL),
@@ -4698,7 +4716,14 @@ INSERT INTO `imputados` (`id`, `nombre_y_apellido`, `apodo`, `tipo_documento_id`
 (32, 'JOSE FLORES', 'Se desconoce', NULL, NULL, NULL, 1, NULL, 'CARAT', 2, NULL, 2, NULL, 3, 'Se desconoce', '12131321312321', 123131, 38, 60, 114, '2019-06-13 04:41:45', NULL, '2019-06-13 05:22:21', NULL),
 (33, 'MARITO', 'Se desconoce', NULL, NULL, NULL, NULL, NULL, 'CARAT', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCALIA', 123456545, 38, 63, 114, '2019-06-13 05:27:43', NULL, '2019-06-13 05:53:49', NULL),
 (34, 'PEDRO WALTER', 'Se desconoce', NULL, NULL, NULL, 3, NULL, 'CARAT', 2, NULL, 2, NULL, 2, 'Se desconoce', '1231313', 2131213, NULL, 64, 114, '2019-06-13 13:52:06', NULL, '2019-06-14 03:36:57', NULL),
-(35, 'RAMON JUAREZ', 'Se desconoce', NULL, NULL, NULL, 4, NULL, 'CARAT', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCAL', 123123, 40, 66, 114, '2019-06-14 14:13:48', NULL, '2019-06-14 16:29:49', NULL);
+(35, 'RAMON JUAREZ', 'Se desconoce', NULL, NULL, NULL, 4, NULL, 'CARAT', 2, NULL, 2, NULL, 2, 'Se desconoce', 'FISCAL', 123123, 40, 66, 114, '2019-06-14 14:13:48', NULL, '2019-06-14 16:29:49', NULL),
+(36, 'ANIBAL LOPEZ', 'Se desconoce', NULL, NULL, NULL, 2, NULL, '45451313', 2, NULL, 3, NULL, 2, 'Se desconoce', 'JUZGADO', 4564794, 41, 68, 114, '2019-06-14 19:41:15', NULL, '2019-06-14 19:44:39', NULL),
+(38, 'JUAN MOLINA', 'Se desconoce', '1', NULL, 0, NULL, NULL, 'CARAT', 1, 'Se desconoce', 2, NULL, 2, 'Se desconoce', 'JUZGADO', 123456, 42, 71, 114, '2019-06-17 03:26:41', NULL, '2019-06-17 03:26:41', NULL),
+(39, 'NUEVO IMPUTADO', 'Se desconoce', '1', NULL, 0, 2, NULL, 'CARAT', 2, NULL, 2, NULL, 3, 'Se desconoce', 'KALKALALA', 54644132, 42, 71, 114, '2019-06-17 03:46:35', NULL, '2019-06-17 03:46:35', NULL),
+(40, 'NUEVO IMPUTADO II', 'Se desconoce', '2', NULL, 0, 6, 'OTRO VINCULO', 'CAARATTA', 3, NULL, 2, NULL, 2, '123541233', 'FISCALIA', 879846546, 42, 71, 114, '2019-06-17 03:47:57', NULL, '2019-06-17 03:47:57', NULL),
+(41, 'JOSE ANTONIO', 'PEPE', '3', NULL, 0, 6, 'OTRO JOSE ANTONIO', 'CARAT', 2, NULL, 2, NULL, 2, '1234564', 'FISCALIA', 123456879, 43, 73, 114, '2019-06-17 04:29:30', NULL, '2019-06-17 04:42:06', NULL),
+(42, 'ROBERTO DIAZ', 'Se desconoce', '2', NULL, 0, 4, NULL, 'CARAT', 2, NULL, 3, NULL, 2, 'Se desconoce', 'FISCAL', 12345689, 45, 77, 114, '2019-06-17 20:18:58', NULL, '2019-06-17 20:18:58', NULL),
+(43, 'JUAN RAMON', 'Se desconoce', '3', NULL, 0, 3, NULL, 'CARAT', 2, NULL, 2, NULL, 2, '123333', 'FISCALIA12323', 123145663, 46, 79, 114, '2019-06-18 18:11:17', NULL, '2019-06-18 18:24:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -4736,7 +4761,9 @@ INSERT INTO `instituciones` (`id`, `organismos_intervinieron`, `cual_otro_organi
 (1, 1, 'OPREVIOS', 1, 'SOCIO', 1, 'OARTICULA', 0, NULL, NULL, NULL, NULL, NULL, '1', 29, 114, '2019-06-07 04:55:14', NULL, '2019-06-07 04:55:14'),
 (2, 1, 'OTRO ORG', 1, 'OTRA', 1, 'OTRO', 0, NULL, NULL, NULL, NULL, NULL, '1', NULL, 114, '2019-06-08 04:08:52', NULL, '2019-06-08 04:08:52'),
 (3, 2, NULL, 2, NULL, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL, '1', NULL, 114, '2019-06-09 00:45:07', NULL, '2019-06-09 00:45:07'),
-(4, 2, NULL, 2, NULL, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL, '0', NULL, 114, '2019-06-09 16:05:29', NULL, '2019-06-09 16:05:29');
+(4, 2, NULL, 2, NULL, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL, '0', NULL, 114, '2019-06-09 16:05:29', NULL, '2019-06-09 16:05:29'),
+(5, 1, 'OTRO ORGANISMO', 1, 'OTRA SOCIEDAD', 1, 'OTRO ORGANISMO', NULL, NULL, NULL, NULL, NULL, NULL, '1', 43, 114, '2019-06-17 05:38:41', NULL, '2019-06-17 05:38:41'),
+(6, 1, 'OTRO ORGANISMO', 1, 'OTRO SOCIO', 1, 'OTRO', 3, NULL, 'Se desconoce', 1, 15, '2019-06-18 00:00:00', '2', 46, 114, '2019-06-18 18:32:34', NULL, '2019-06-18 18:32:34');
 
 -- --------------------------------------------------------
 
@@ -4758,7 +4785,12 @@ INSERT INTO `institucion_asistencia` (`id`, `institucion_id`, `asistencia_id`) V
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
-(4, 2, 1);
+(4, 2, 1),
+(5, 5, 1),
+(6, 5, 3),
+(7, 6, 1),
+(8, 6, 2),
+(9, 6, 3);
 
 -- --------------------------------------------------------
 
@@ -4784,7 +4816,13 @@ INSERT INTO `institucion_oarticula` (`id`, `institucion_id`, `oarticula_id`) VAL
 (5, 2, 1),
 (6, 2, 2),
 (7, 2, 24),
-(8, 4, 3);
+(8, 4, 3),
+(9, 5, 1),
+(10, 5, 2),
+(11, 5, 24),
+(12, 6, 1),
+(13, 6, 2),
+(14, 6, 24);
 
 -- --------------------------------------------------------
 
@@ -4810,7 +4848,13 @@ INSERT INTO `institucion_oprevio` (`id`, `institucion_id`, `oprevio_id`) VALUES
 (5, 2, 2),
 (6, 2, 3),
 (7, 2, 4),
-(8, 2, 24);
+(8, 2, 24),
+(9, 5, 2),
+(10, 5, 3),
+(11, 5, 24),
+(12, 6, 1),
+(13, 6, 2),
+(14, 6, 24);
 
 -- --------------------------------------------------------
 
@@ -4834,7 +4878,12 @@ INSERT INTO `institucion_socioeconomico` (`id`, `institucion_id`, `socioeconomic
 (3, 1, 6),
 (4, 2, 1),
 (5, 2, 2),
-(6, 2, 6);
+(6, 2, 6),
+(7, 5, 1),
+(8, 5, 6),
+(9, 6, 1),
+(10, 6, 2),
+(11, 6, 6);
 
 -- --------------------------------------------------------
 
@@ -4887,7 +4936,8 @@ INSERT INTO `intervenciones` (`id`, `fecha_intervencion`, `campo_reservado`, `de
 (51, '2019-06-11', NULL, 'caso', 29, 114, '2019-06-11 18:51:29', NULL, '2019-06-11 18:51:29', NULL),
 (52, '2019-06-11', NULL, 'caso2', 29, 114, '2019-06-11 18:52:11', NULL, '2019-06-11 18:52:11', NULL),
 (53, '2019-06-11', NULL, 'pruebaaaaaaaaaaaaaaaa', 29, 114, '2019-06-11 18:58:56', NULL, '2019-06-11 18:58:56', NULL),
-(54, '2019-06-11', NULL, 'SIIIIIIIIII', 29, 114, '2019-06-11 19:25:24', NULL, '2019-06-11 19:25:24', NULL);
+(55, '2019-06-16', NULL, 'DDDDDDDDDDDDDD', 42, 114, '2019-06-17 05:55:18', NULL, '2019-06-17 05:55:18', NULL),
+(56, '2019-06-18', NULL, 'HOY', 46, 114, '2019-06-18 18:34:36', NULL, '2019-06-18 18:34:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -5184,7 +5234,7 @@ CREATE TABLE `personas` (
   `nombre_persona_asistida` varchar(255) DEFAULT NULL,
   `vinculo_victima` int(11) DEFAULT NULL,
   `vinculo_otro` varchar(255) DEFAULT NULL,
-  `telefono_persona_asistida` varchar(30) DEFAULT NULL,
+  `telefono_persona_asistida` int(30) DEFAULT NULL,
   `domicilio_persona_asistida` varchar(255) DEFAULT NULL,
   `localidad_persona_asistida` varchar(255) DEFAULT NULL,
   `idCaso` int(11) DEFAULT NULL,
@@ -5201,86 +5251,104 @@ CREATE TABLE `personas` (
 --
 
 INSERT INTO `personas` (`id`, `nombre_persona_asistida`, `vinculo_victima`, `vinculo_otro`, `telefono_persona_asistida`, `domicilio_persona_asistida`, `localidad_persona_asistida`, `idCaso`, `idVictim`, `userID_create`, `created_at`, `userID_modify`, `updated_at`, `activo`) VALUES
-(5, 'SONIA LOPEZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 4, 4, 1, '2019-05-02 23:18:25', NULL, '2019-05-02 23:18:25', NULL),
-(6, 'ESTEBAN LLANOS', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 4, 4, 1, '2019-05-02 23:18:52', NULL, '2019-05-02 23:18:52', NULL),
-(7, 'PERSONA ASISTIDA1', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 4, 9, 1, '2019-05-03 01:05:51', NULL, '2019-05-03 01:05:51', NULL),
-(8, 'PERSONA ASISTIDA 2', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 4, 9, 1, '2019-05-03 01:06:33', NULL, '2019-05-03 01:06:33', NULL),
-(11, 'RAUL RAMOS', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 1, 12, 1, '2019-05-03 04:09:17', NULL, '2019-05-03 04:09:17', NULL),
-(12, 'SONIA ROJO', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 5, 12, 1, '2019-05-03 04:18:01', NULL, '2019-05-03 04:18:01', NULL),
-(13, 'MARIA', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 5, 13, NULL, '2019-05-03 04:27:29', 1, '2019-05-14 01:24:07', NULL),
-(14, 'SOL MARIN', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 6, 18, 1, '2019-05-03 06:37:52', NULL, '2019-05-03 06:37:52', NULL),
-(15, 'RAUL MORAN', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 6, 19, 1, '2019-05-03 06:42:32', NULL, '2019-05-03 06:42:32', NULL),
-(16, 'RAQUEL', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 6, 19, 1, '2019-05-03 06:46:11', NULL, '2019-05-03 06:46:11', NULL),
-(17, 'NUEVA PERSONA', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:13:50', NULL, '2019-05-03 16:13:50', NULL),
-(18, 'NORMA SERRANO', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 29, NULL, NULL, '2019-05-03 16:28:33', 114, '2019-06-14 03:58:48', NULL),
-(19, 'LIDIA SERRANO', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:31:10', NULL, '2019-05-03 16:31:10', NULL),
-(20, 'JOAQUIN SERRANO', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:32:27', NULL, '2019-05-03 16:32:27', NULL),
-(21, 'NUEVA PERSONA', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:40:51', NULL, '2019-05-03 16:40:51', NULL),
-(22, 'PABLO NESTOR', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 6, 20, 1, '2019-05-03 17:29:46', NULL, '2019-05-03 17:29:46', NULL),
-(23, 'LUCKY LINCH', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 6, 20, 1, '2019-05-03 17:48:41', NULL, '2019-05-03 17:48:41', NULL),
-(24, 'LAURA SARA', 4, 'OTRO VINC', '0', 'Se desconoce', 'Se desconoce', 6, 21, 1, '2019-05-03 17:52:00', NULL, '2019-05-03 17:52:00', NULL),
-(25, 'ISMAEL', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 6, 20, 1, '2019-05-03 21:50:20', NULL, '2019-05-03 21:50:20', NULL),
-(26, 'JUANSE', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 8, 23, 1, '2019-05-03 22:18:43', NULL, '2019-05-03 22:18:43', NULL),
-(27, 'JUAN CARLOS', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 8, 24, 1, '2019-05-03 22:21:57', NULL, '2019-05-03 22:21:57', NULL),
-(28, 'CRISTINA PEREZ', 1, NULL, '41523263', 'DRAGO 1001', 'LINCOLN', 9, 26, 1, '2019-05-04 02:31:16', NULL, '2019-05-04 02:31:16', NULL),
-(29, 'SONIA PEREZ', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 9, 26, 1, '2019-05-04 02:31:55', NULL, '2019-05-04 02:31:55', NULL),
-(30, 'ESTEBAN GARCIA', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 9, 26, 1, '2019-05-04 22:40:42', NULL, '2019-05-04 22:40:42', NULL),
-(31, 'AGUSTINA FERNANDEZ', 3, NULL, '4256398', 'Se desconoce', 'Se desconoce', 9, 26, 1, '2019-05-04 22:47:24', NULL, '2019-05-04 22:47:24', NULL),
-(32, 'NATALIA SOSA', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 9, 26, NULL, '2019-05-05 06:22:33', 1, '2019-05-05 06:45:29', NULL),
-(33, 'CRISTIAN RAMOS', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 9, 26, 1, '2019-05-05 06:25:23', NULL, '2019-05-05 06:25:23', NULL),
-(34, 'CRISTIAN RAMOS', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 9, 26, 1, '2019-05-05 06:27:28', NULL, '2019-05-05 06:27:28', NULL),
-(35, 'CARLOS MARIN', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 9, 26, 1, '2019-05-05 06:47:12', NULL, '2019-05-05 06:47:12', NULL),
-(36, 'ANDRES PEREZ', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-05 17:37:21', NULL, '2019-05-05 17:37:21', NULL),
-(37, 'LAURA PEREZ', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-05 17:37:43', NULL, '2019-05-05 17:37:43', NULL),
-(38, 'JOSE LUIS', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 28, 1, '2019-05-05 22:39:23', NULL, '2019-05-05 22:39:23', NULL),
-(39, 'MARIA LUISA', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:15:48', NULL, '2019-05-06 00:15:48', NULL),
-(40, 'MARIA LUISA', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:17:13', NULL, '2019-05-06 00:17:13', NULL),
-(41, 'MARIA LUISA', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:18:37', NULL, '2019-05-06 00:18:37', NULL),
-(42, 'MARIA LUISA', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:19:11', NULL, '2019-05-06 00:19:11', NULL),
-(43, 'MARIA LUISA', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:20:09', NULL, '2019-05-06 00:20:09', NULL),
-(44, 'JUAN JOSE', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:21:00', NULL, '2019-05-06 00:21:00', NULL),
-(45, 'JUAN JOSE', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:21:40', NULL, '2019-05-06 00:21:40', NULL),
-(46, 'MARIA LUISA', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:22:59', NULL, '2019-05-06 00:22:59', NULL),
-(47, 'JOSE ANTONIO', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:26:08', NULL, '2019-05-06 00:26:08', NULL),
-(48, 'MARCO ANTONIO', 3, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:31:29', NULL, '2019-05-06 00:31:29', NULL),
-(49, 'MARIA LUISA', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, NULL, '2019-05-06 00:32:20', 1, '2019-05-06 00:40:11', NULL),
-(50, 'PABLO LUIS', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:32:46', NULL, '2019-05-06 00:32:46', NULL),
-(51, 'JOSE', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, NULL, '2019-05-06 00:33:34', 1, '2019-05-06 00:33:54', NULL),
-(52, 'JOSE', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:34:22', NULL, '2019-05-06 00:34:22', NULL),
-(53, 'PABLO LUIS', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:39:18', NULL, '2019-05-06 00:39:18', NULL),
-(54, 'NUEVA PERSONA', 1, NULL, '42563256633', 'Se desconoce', 'Se desconoce', 11, 27, NULL, '2019-05-06 00:55:40', 1, '2019-05-06 00:56:08', NULL),
-(55, 'SUSANA SUN', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 11, 31, NULL, '2019-05-06 01:45:59', 1, '2019-05-06 01:46:14', NULL),
-(56, 'CARLA SANSO', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 13, 32, 1, '2019-05-06 05:14:01', NULL, '2019-05-06 05:14:01', NULL),
-(57, 'PABLO PEREZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 13, 33, 1, '2019-05-06 05:18:52', NULL, '2019-05-06 05:18:52', NULL),
-(58, 'NORMA LIMA', 1, NULL, '425698796', 'MITRE 1000', 'TRES LOMAS', 14, 34, NULL, '2019-05-07 02:56:59', 1, '2019-05-07 03:39:01', NULL),
-(59, 'OSCAR LIMA', 1, NULL, '454123126', '9 DE JULIO Y MITRE', 'JUNIN', 14, 34, 1, '2019-05-07 02:58:28', NULL, '2019-05-07 02:58:28', NULL),
-(60, 'JEREMIAS ROJO', 4, 'OTRO VINCULO', '0', 'Se desconoce', 'Se desconoce', 14, 35, 1, '2019-05-07 03:07:52', NULL, '2019-05-07 03:07:52', NULL),
-(61, 'MARIO LOPEZ', 4, 'OTRO VINCULO', '45698789', 'MITRE Y DRAGO', 'TRES LOMAS', 14, 34, 1, '2019-05-07 03:37:24', NULL, '2019-05-07 03:37:24', NULL),
-(62, 'JORGE PEREZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 16, 38, 1, '2019-05-09 21:22:05', NULL, '2019-05-09 21:22:05', NULL),
-(63, 'NATALIA BUENO', 1, NULL, '451231223', 'Se desconoce', 'Se desconoce', 15, 37, NULL, '2019-05-16 19:02:21', 1, '2019-05-16 19:02:44', NULL),
-(64, 'JOSE FLORES', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 24, 39, 114, '2019-05-31 04:38:19', NULL, '2019-05-31 04:38:19', NULL),
-(65, 'JOSE PEREZ', 1, NULL, '21455266', 'DRAGO Y NUEVE DE JULIO', 'LANUS', 28, 41, NULL, '2019-06-02 16:40:37', 114, '2019-06-02 17:14:48', NULL),
-(66, 'JOSEFINA PEREZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 28, 41, NULL, '2019-06-02 16:40:57', 114, '2019-06-02 17:15:02', NULL),
-(67, 'ISMAEL ISAC', 4, 'OTRO VINCULO', '0', 'Se desconoce', 'Se desconoce', 28, 41, 114, '2019-06-02 16:41:34', NULL, '2019-06-02 16:41:34', NULL),
-(68, 'MARCOS SIMON', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 28, 42, 114, '2019-06-02 16:48:35', NULL, '2019-06-02 16:48:35', NULL),
-(69, 'PERSONA ASISTIDA AGREGADA', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 28, 43, 114, '2019-06-02 16:55:05', NULL, '2019-06-02 16:55:05', NULL),
-(70, 'CARLOS PEREZ', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 29, 45, 114, '2019-06-03 18:42:39', NULL, '2019-06-03 18:42:39', NULL),
-(71, 'SOFIA LOPEZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 29, 45, 114, '2019-06-03 18:43:04', NULL, '2019-06-03 18:43:04', NULL),
-(72, 'LAURA OLIVA', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 29, 46, 114, '2019-06-03 18:54:16', NULL, '2019-06-03 18:54:16', NULL),
-(73, 'JOSE RAMOS', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 32, 47, 114, '2019-06-11 19:58:42', NULL, '2019-06-11 19:58:42', NULL),
-(74, 'JUAN CASTRO', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 33, 49, 114, '2019-06-12 13:55:44', NULL, '2019-06-12 13:55:44', NULL),
-(75, 'ROMINA CASTRO', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 33, 49, 114, '2019-06-12 13:56:02', NULL, '2019-06-12 13:56:02', NULL),
-(76, 'JOSE SARAMAGO', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 35, 54, 114, '2019-06-12 16:22:35', NULL, '2019-06-12 16:22:35', NULL),
-(77, 'LAURA RAMOS', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 35, 54, 114, '2019-06-12 16:22:54', NULL, '2019-06-12 16:22:54', NULL),
-(78, 'JOSE PEREZ', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 36, 56, 114, '2019-06-12 19:15:50', NULL, '2019-06-12 19:15:50', NULL),
-(79, 'MARISOL PEREZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 37, 58, NULL, '2019-06-12 23:35:44', 114, '2019-06-13 03:01:58', NULL),
-(80, 'JULIAN GOMEZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 37, 58, NULL, '2019-06-12 23:41:24', 114, '2019-06-13 04:00:20', NULL),
-(81, 'MARIA GOMEZ', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 37, 58, NULL, '2019-06-13 00:11:32', 114, '2019-06-13 03:04:43', NULL),
-(82, 'NUEVA PERSONA', 2, NULL, '0', 'Se desconoce', 'Se desconoce', 37, 59, NULL, '2019-06-13 03:11:18', 114, '2019-06-13 03:11:29', NULL),
-(83, 'JOSEFINA MORALES', 4, 'OTRO JOSEFINA', '0', 'Se desconoce', 'Se desconoce', NULL, 60, NULL, '2019-06-13 04:39:45', 114, '2019-06-13 13:42:59', NULL),
-(84, 'PABLO MORALES', 4, 'OTRO VINC', '0', 'Se desconoce', 'Se desconoce', 38, 60, NULL, '2019-06-13 04:40:05', 114, '2019-06-13 04:54:43', NULL),
-(85, 'ROMINA MAS', 1, NULL, '0', 'Se desconoce', 'Se desconoce', 39, 64, NULL, '2019-06-13 13:48:48', 114, '2019-06-13 22:30:16', NULL),
-(86, 'JOSE MAS', 4, 'OTRO JOSE JOSE', '12346465412', 'DRAGO 1035', 'LINCOLN', 39, 64, NULL, '2019-06-13 13:49:20', 114, '2019-06-13 22:42:38', NULL);
+(5, 'SONIA LOPEZ', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 4, 4, 1, '2019-05-02 23:18:25', NULL, '2019-05-02 23:18:25', NULL),
+(6, 'ESTEBAN LLANOS', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 4, 4, 1, '2019-05-02 23:18:52', NULL, '2019-05-02 23:18:52', NULL),
+(7, 'PERSONA ASISTIDA1', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 4, 9, 1, '2019-05-03 01:05:51', NULL, '2019-05-03 01:05:51', NULL),
+(8, 'PERSONA ASISTIDA 2', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 4, 9, 1, '2019-05-03 01:06:33', NULL, '2019-05-03 01:06:33', NULL),
+(11, 'RAUL RAMOS', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 1, 12, 1, '2019-05-03 04:09:17', NULL, '2019-05-03 04:09:17', NULL),
+(12, 'SONIA ROJO', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 5, 12, 1, '2019-05-03 04:18:01', NULL, '2019-05-03 04:18:01', NULL),
+(13, 'MARIA', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 5, 13, NULL, '2019-05-03 04:27:29', 1, '2019-05-14 01:24:07', NULL),
+(14, 'SOL MARIN', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 6, 18, 1, '2019-05-03 06:37:52', NULL, '2019-05-03 06:37:52', NULL),
+(15, 'RAUL MORAN', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 6, 19, 1, '2019-05-03 06:42:32', NULL, '2019-05-03 06:42:32', NULL),
+(16, 'RAQUEL', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 6, 19, 1, '2019-05-03 06:46:11', NULL, '2019-05-03 06:46:11', NULL),
+(17, 'NUEVA PERSONA', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:13:50', NULL, '2019-05-03 16:13:50', NULL),
+(18, 'NORMA SERRANO', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 29, NULL, NULL, '2019-05-03 16:28:33', 114, '2019-06-20 05:28:02', NULL),
+(19, 'LIDIA SERRANO', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:31:10', NULL, '2019-05-03 16:31:10', NULL),
+(20, 'JOAQUIN SERRANO', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:32:27', NULL, '2019-05-03 16:32:27', NULL),
+(21, 'NUEVA PERSONA', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 6, NULL, 1, '2019-05-03 16:40:51', NULL, '2019-05-03 16:40:51', NULL),
+(22, 'PABLO NESTOR', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 6, 20, 1, '2019-05-03 17:29:46', NULL, '2019-05-03 17:29:46', NULL),
+(23, 'LUCKY LINCH', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 6, 20, 1, '2019-05-03 17:48:41', NULL, '2019-05-03 17:48:41', NULL),
+(24, 'LAURA SARA', 4, 'OTRO VINC', 0, 'Se desconoce', 'Se desconoce', 6, 21, 1, '2019-05-03 17:52:00', NULL, '2019-05-03 17:52:00', NULL),
+(25, 'ISMAEL', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 6, 20, 1, '2019-05-03 21:50:20', NULL, '2019-05-03 21:50:20', NULL),
+(26, 'JUANSE', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 8, 23, 1, '2019-05-03 22:18:43', NULL, '2019-05-03 22:18:43', NULL),
+(27, 'JUAN CARLOS', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 8, 24, 1, '2019-05-03 22:21:57', NULL, '2019-05-03 22:21:57', NULL),
+(28, 'CRISTINA PEREZ', 1, NULL, 41523263, 'DRAGO 1001', 'LINCOLN', 9, 26, 1, '2019-05-04 02:31:16', NULL, '2019-05-04 02:31:16', NULL),
+(29, 'SONIA PEREZ', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 9, 26, 1, '2019-05-04 02:31:55', NULL, '2019-05-04 02:31:55', NULL),
+(30, 'ESTEBAN GARCIA', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 9, 26, 1, '2019-05-04 22:40:42', NULL, '2019-05-04 22:40:42', NULL),
+(31, 'AGUSTINA FERNANDEZ', 3, NULL, 4256398, 'Se desconoce', 'Se desconoce', 9, 26, 1, '2019-05-04 22:47:24', NULL, '2019-05-04 22:47:24', NULL),
+(32, 'NATALIA SOSA', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 9, 26, NULL, '2019-05-05 06:22:33', 1, '2019-05-05 06:45:29', NULL),
+(33, 'CRISTIAN RAMOS', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 9, 26, 1, '2019-05-05 06:25:23', NULL, '2019-05-05 06:25:23', NULL),
+(34, 'CRISTIAN RAMOS', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 9, 26, 1, '2019-05-05 06:27:28', NULL, '2019-05-05 06:27:28', NULL),
+(35, 'CARLOS MARIN', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 9, 26, 1, '2019-05-05 06:47:12', NULL, '2019-05-05 06:47:12', NULL),
+(36, 'ANDRES PEREZ', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-05 17:37:21', NULL, '2019-05-05 17:37:21', NULL),
+(37, 'LAURA PEREZ', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-05 17:37:43', NULL, '2019-05-05 17:37:43', NULL),
+(38, 'JOSE LUIS', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 28, 1, '2019-05-05 22:39:23', NULL, '2019-05-05 22:39:23', NULL),
+(39, 'MARIA LUISA', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:15:48', NULL, '2019-05-06 00:15:48', NULL),
+(40, 'MARIA LUISA', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:17:13', NULL, '2019-05-06 00:17:13', NULL),
+(41, 'MARIA LUISA', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:18:37', NULL, '2019-05-06 00:18:37', NULL),
+(42, 'MARIA LUISA', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:19:11', NULL, '2019-05-06 00:19:11', NULL),
+(43, 'MARIA LUISA', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:20:09', NULL, '2019-05-06 00:20:09', NULL),
+(44, 'JUAN JOSE', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:21:00', NULL, '2019-05-06 00:21:00', NULL),
+(45, 'JUAN JOSE', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:21:40', NULL, '2019-05-06 00:21:40', NULL),
+(46, 'MARIA LUISA', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:22:59', NULL, '2019-05-06 00:22:59', NULL),
+(47, 'JOSE ANTONIO', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:26:08', NULL, '2019-05-06 00:26:08', NULL),
+(48, 'MARCO ANTONIO', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:31:29', NULL, '2019-05-06 00:31:29', NULL),
+(49, 'MARIA LUISA', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, NULL, '2019-05-06 00:32:20', 1, '2019-05-06 00:40:11', NULL),
+(50, 'PABLO LUIS', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:32:46', NULL, '2019-05-06 00:32:46', NULL),
+(51, 'JOSE', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, NULL, '2019-05-06 00:33:34', 1, '2019-05-06 00:33:54', NULL),
+(52, 'JOSE', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:34:22', NULL, '2019-05-06 00:34:22', NULL),
+(53, 'PABLO LUIS', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 27, 1, '2019-05-06 00:39:18', NULL, '2019-05-06 00:39:18', NULL),
+(54, 'NUEVA PERSONA', 1, NULL, 2147483647, 'Se desconoce', 'Se desconoce', 11, 27, NULL, '2019-05-06 00:55:40', 1, '2019-05-06 00:56:08', NULL),
+(55, 'SUSANA SUN', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 11, 31, NULL, '2019-05-06 01:45:59', 1, '2019-05-06 01:46:14', NULL),
+(56, 'CARLA SANSO', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 13, 32, 1, '2019-05-06 05:14:01', NULL, '2019-05-06 05:14:01', NULL),
+(57, 'PABLO PEREZ', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 13, 33, 1, '2019-05-06 05:18:52', NULL, '2019-05-06 05:18:52', NULL),
+(58, 'NORMA LIMA', 1, NULL, 425698796, 'MITRE 1000', 'TRES LOMAS', 14, 34, NULL, '2019-05-07 02:56:59', 1, '2019-05-07 03:39:01', NULL),
+(59, 'OSCAR LIMA', 1, NULL, 454123126, '9 DE JULIO Y MITRE', 'JUNIN', 14, 34, 1, '2019-05-07 02:58:28', NULL, '2019-05-07 02:58:28', NULL),
+(60, 'JEREMIAS ROJO', 4, 'OTRO VINCULO', 0, 'Se desconoce', 'Se desconoce', 14, 35, 1, '2019-05-07 03:07:52', NULL, '2019-05-07 03:07:52', NULL),
+(61, 'MARIO LOPEZ', 4, 'OTRO VINCULO', 45698789, 'MITRE Y DRAGO', 'TRES LOMAS', 14, 34, 1, '2019-05-07 03:37:24', NULL, '2019-05-07 03:37:24', NULL),
+(62, 'JORGE PEREZ', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 16, 38, 1, '2019-05-09 21:22:05', NULL, '2019-05-09 21:22:05', NULL),
+(63, 'NATALIA BUENO', 1, NULL, 451231223, 'Se desconoce', 'Se desconoce', 15, 37, NULL, '2019-05-16 19:02:21', 1, '2019-05-16 19:02:44', NULL),
+(64, 'JOSE FLORES', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 24, 39, 114, '2019-05-31 04:38:19', NULL, '2019-05-31 04:38:19', NULL),
+(65, 'JOSE PEREZ', 1, NULL, 21455266, 'DRAGO Y NUEVE DE JULIO', 'LANUS', 28, 41, NULL, '2019-06-02 16:40:37', 114, '2019-06-02 17:14:48', NULL),
+(66, 'JOSEFINA PEREZ', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 28, 41, NULL, '2019-06-02 16:40:57', 114, '2019-06-02 17:15:02', NULL),
+(67, 'ISMAEL ISAC', 4, 'OTRO VINCULO', 0, 'Se desconoce', 'Se desconoce', 28, 41, 114, '2019-06-02 16:41:34', NULL, '2019-06-02 16:41:34', NULL),
+(68, 'MARCOS SIMON', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 28, 42, 114, '2019-06-02 16:48:35', NULL, '2019-06-02 16:48:35', NULL),
+(69, 'PERSONA ASISTIDA AGREGADA', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 28, 43, 114, '2019-06-02 16:55:05', NULL, '2019-06-02 16:55:05', NULL),
+(70, 'CARLOS PEREZ', 1, NULL, 221, 'Se desconoce', 'Se desconoce', 29, 45, NULL, '2019-06-03 18:42:39', 114, '2019-06-18 05:14:56', NULL),
+(71, 'SOFIA LOPEZ', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 29, 45, 114, '2019-06-03 18:43:04', NULL, '2019-06-03 18:43:04', NULL),
+(72, 'LAURA OLIVA', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 29, 46, 114, '2019-06-03 18:54:16', NULL, '2019-06-03 18:54:16', NULL),
+(73, 'JOSE RAMOS', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 32, 47, 114, '2019-06-11 19:58:42', NULL, '2019-06-11 19:58:42', NULL),
+(74, 'JUAN CASTRO', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 33, 49, 114, '2019-06-12 13:55:44', NULL, '2019-06-12 13:55:44', NULL),
+(75, 'ROMINA CASTRO', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 33, 49, 114, '2019-06-12 13:56:02', NULL, '2019-06-12 13:56:02', NULL),
+(76, 'JOSE SARAMAGO', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 35, 54, 114, '2019-06-12 16:22:35', NULL, '2019-06-12 16:22:35', NULL),
+(77, 'LAURA RAMOS', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 35, 54, 114, '2019-06-12 16:22:54', NULL, '2019-06-12 16:22:54', NULL),
+(78, 'JOSE PEREZ', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 36, 56, 114, '2019-06-12 19:15:50', NULL, '2019-06-12 19:15:50', NULL),
+(79, 'MARISOL PEREZ', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 37, 58, NULL, '2019-06-12 23:35:44', 114, '2019-06-13 03:01:58', NULL),
+(80, 'JULIAN GOMEZ', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 37, 58, NULL, '2019-06-12 23:41:24', 114, '2019-06-13 04:00:20', NULL),
+(81, 'MARIA GOMEZ', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 37, 58, NULL, '2019-06-13 00:11:32', 114, '2019-06-13 03:04:43', NULL),
+(82, 'NUEVA PERSONA', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 37, 59, NULL, '2019-06-13 03:11:18', 114, '2019-06-13 03:11:29', NULL),
+(83, 'JOSEFINA MORALES', 4, 'OTRO JOSEFINA', 0, 'Se desconoce', 'Se desconoce', NULL, 60, NULL, '2019-06-13 04:39:45', 114, '2019-06-13 13:42:59', NULL),
+(84, 'PABLO MORALES', 4, 'OTRO VINC', 0, 'Se desconoce', 'Se desconoce', 38, 60, NULL, '2019-06-13 04:40:05', 114, '2019-06-13 04:54:43', NULL),
+(85, 'ROMINA MAS', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 39, 64, NULL, '2019-06-13 13:48:48', 114, '2019-06-13 22:30:16', NULL),
+(86, 'JOSE MAS', 4, 'OTRO JOSE JOSE', 2147483647, 'DRAGO 1035', 'LINCOLN', 39, 64, NULL, '2019-06-13 13:49:20', 114, '2019-06-13 22:42:38', NULL),
+(87, 'JORGE LUIS', NULL, NULL, 0, 'Se desconoce', 'Se desconoce', 41, 69, 114, '2019-06-14 19:43:41', NULL, '2019-06-14 19:43:41', NULL),
+(88, 'JOSE PEREZ', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 42, 70, NULL, '2019-06-17 00:56:35', 114, '2019-06-17 05:57:11', NULL),
+(89, 'NATALIA PEREZ', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 42, 70, NULL, '2019-06-17 00:56:54', 114, '2019-06-17 03:58:24', NULL),
+(90, 'JOSEFINA PEREZ', NULL, NULL, 0, 'Se desconoce', 'Se desconoce', 42, 71, 114, '2019-06-17 01:42:03', NULL, '2019-06-17 01:42:03', NULL),
+(91, 'OMAR', NULL, NULL, 0, 'Se desconoce', 'Se desconoce', 42, 71, 114, '2019-06-17 02:38:59', NULL, '2019-06-17 02:38:59', NULL),
+(92, 'NUEVA PERSONA', NULL, NULL, 0, 'Se desconoce', 'Se desconoce', 42, 72, 114, '2019-06-17 03:58:59', NULL, '2019-06-17 03:58:59', NULL),
+(93, 'NUEVA PERSONA II', NULL, NULL, 0, 'Se desconoce', 'Se desconoce', 42, 72, 114, '2019-06-17 03:59:47', NULL, '2019-06-17 03:59:47', NULL),
+(94, 'PERSONA NUEVA III', NULL, NULL, 0, 'Se desconoce', 'Se desconoce', 42, 72, 114, '2019-06-17 04:03:43', NULL, '2019-06-17 04:03:43', NULL),
+(95, 'OTRA PERSONA', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 42, 72, 114, '2019-06-17 04:12:53', NULL, '2019-06-17 04:12:53', NULL),
+(96, 'SILVIA PEREZ', 4, 'OTRO SILVIA', 0, 'Se desconoce', 'Se desconoce', 43, 73, NULL, '2019-06-17 04:23:50', 114, '2019-06-17 04:32:45', NULL),
+(97, 'ESTEBAN PEREZ', 2, NULL, 0, 'Se desconoce', 'Se desconoce', 43, 73, NULL, '2019-06-17 04:24:17', 114, '2019-06-17 04:35:57', NULL),
+(98, NULL, NULL, NULL, NULL, NULL, NULL, 44, 75, 114, '2019-06-17 17:57:25', NULL, '2019-06-17 17:57:25', NULL),
+(99, NULL, NULL, NULL, NULL, NULL, NULL, 44, 75, 114, '2019-06-17 18:01:48', NULL, '2019-06-17 18:01:48', NULL),
+(100, NULL, NULL, NULL, NULL, NULL, NULL, 44, 75, 114, '2019-06-17 18:39:46', NULL, '2019-06-17 18:39:46', NULL),
+(101, 'JOSE FLORES', 3, NULL, 42156329, 'Se desconoce', 'Se desconoce', 45, 76, NULL, '2019-06-17 20:00:46', 114, '2019-06-17 23:16:25', NULL),
+(102, 'JOSEFINA FLOREZ', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 46, 79, NULL, '2019-06-18 18:04:17', 114, '2019-06-18 18:13:45', NULL),
+(103, 'MARTA FLORES', 1, NULL, 0, 'Se desconoce', 'Se desconoce', 46, 79, NULL, '2019-06-18 18:04:36', 114, '2019-06-18 18:14:30', NULL),
+(104, 'RAUL RAMOS', 3, NULL, 0, 'Se desconoce', 'Se desconoce', 46, 80, NULL, '2019-06-18 18:15:11', 114, '2019-06-18 18:23:21', NULL);
 
 -- --------------------------------------------------------
 
@@ -5290,8 +5358,8 @@ INSERT INTO `personas` (`id`, `nombre_persona_asistida`, `vinculo_victima`, `vin
 
 CREATE TABLE `profesionales` (
   `id` int(10) UNSIGNED NOT NULL,
-  `nombre_profesional_interviniente` varchar(255) DEFAULT NULL,
-  `nombre_profesional_interviniente_otro` varchar(100) DEFAULT NULL,
+  `nombre_profesional_interviniente` int(3) NOT NULL,
+  `nombre_profesional_interviniente_otro` varchar(250) DEFAULT NULL,
   `desde_profesional_interviniente` varchar(20) DEFAULT NULL,
   `actual_profesional_interviniente` int(11) DEFAULT NULL,
   `hasta_profesional_interviniente` varchar(20) DEFAULT NULL,
@@ -5308,172 +5376,186 @@ CREATE TABLE `profesionales` (
 --
 
 INSERT INTO `profesionales` (`id`, `nombre_profesional_interviniente`, `nombre_profesional_interviniente_otro`, `desde_profesional_interviniente`, `actual_profesional_interviniente`, `hasta_profesional_interviniente`, `idCaso`, `userID_create`, `created_at`, `userID_modify`, `updated_at`, `activo`) VALUES
-(1, '31', '', '2019-05-23', 1, NULL, 1, 3, '2019-05-23 18:01:03', NULL, '2019-05-23 18:01:03', NULL),
-(2, '44', '', '2019-05-23', 1, NULL, 1, 3, '2019-05-23 18:09:10', NULL, '2019-05-23 18:09:10', NULL),
-(3, '3', '', '2019-05-23', 1, NULL, 2, 2, '2019-05-23 19:08:33', NULL, '2019-05-23 19:08:33', NULL),
-(4, '35', '', '2019-05-22', 1, NULL, 2, 2, '2019-05-23 19:09:33', NULL, '2019-05-23 19:09:33', NULL),
-(5, '3', '', '2019-05-16', 1, NULL, 3, 1, '2019-05-23 19:55:58', NULL, '2019-05-23 19:55:58', NULL),
-(6, '4', '', NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, NULL),
-(7, '56', '', '2019-05-23', 1, NULL, 4, 3, '2019-05-23 21:03:37', NULL, '2019-05-23 21:03:37', NULL),
-(8, '3', '', NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL),
-(9, '88', '', '2019-05-23', 1, NULL, 5, 3, '2019-05-23 21:08:03', NULL, '2019-05-23 21:08:03', NULL),
-(10, '70', '', '2019-05-23', 1, NULL, 5, 3, '2019-05-23 21:08:56', NULL, '2019-05-23 21:08:56', NULL),
-(11, '3', '', NULL, NULL, NULL, 6, NULL, NULL, NULL, NULL, NULL),
-(12, '70', '', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:12:53', NULL, '2019-05-23 21:12:53', NULL),
-(13, '70', '', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:12:54', NULL, '2019-05-23 21:12:54', NULL),
-(14, '37', '', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:13:16', NULL, '2019-05-23 21:13:16', NULL),
-(15, '101', '', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:13:41', NULL, '2019-05-23 21:13:41', NULL),
-(16, '3', '', NULL, NULL, NULL, 7, NULL, NULL, NULL, NULL, NULL),
-(17, '93', '', '2019-05-23', 1, NULL, 7, 3, '2019-05-24 00:05:18', NULL, '2019-05-24 00:05:18', NULL),
-(19, '3', '', '2019-05-23', 1, NULL, 8, 2, '2019-05-24 00:37:28', NULL, '2019-05-24 00:37:28', NULL),
-(20, '12', '', NULL, NULL, NULL, 9, NULL, NULL, NULL, NULL, NULL),
-(21, '12', '', NULL, NULL, NULL, 10, NULL, NULL, NULL, NULL, NULL),
-(22, '12', '', NULL, NULL, NULL, 11, NULL, NULL, NULL, NULL, NULL),
-(23, '3', '', '2019-05-28', 1, NULL, 12, 116, '2019-05-28 20:36:39', NULL, '2019-05-28 20:36:39', NULL),
-(24, '107', '', '2019-05-02', 1, NULL, 12, 116, '2019-05-28 20:38:49', NULL, '2019-05-28 20:38:49', NULL),
-(25, '87', '', '2019-05-21', 1, NULL, 12, 116, '2019-05-28 20:42:50', NULL, '2019-05-28 20:42:50', NULL),
-(26, '87', '', '2019-05-21', 1, NULL, 12, 116, '2019-05-28 20:44:56', NULL, '2019-05-28 20:44:56', NULL),
-(27, '12', '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:03:35', NULL, '2019-05-28 23:03:35', NULL),
-(28, '12', '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:14:27', NULL, '2019-05-28 23:14:27', NULL),
-(29, '12', '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:20:30', NULL, '2019-05-28 23:20:30', NULL),
-(30, '12', '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:24:17', NULL, '2019-05-28 23:24:17', NULL),
-(31, '12', '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:24:54', NULL, '2019-05-28 23:24:54', NULL),
-(32, '12', '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:25:14', NULL, '2019-05-28 23:25:14', NULL),
-(33, '12', '', '2019-05-16', 1, NULL, 14, 116, '2019-05-28 23:52:22', NULL, '2019-05-28 23:52:22', NULL),
-(34, '35', '', '2019-05-28', 1, NULL, 15, 116, '2019-05-29 02:40:44', NULL, '2019-05-29 02:40:44', NULL),
-(35, '35', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
-(36, '70', '', '2019-05-09', 1, NULL, 15, 116, '2019-05-29 02:41:01', NULL, '2019-05-29 02:41:01', NULL),
-(37, '70', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
-(38, '3', '', '2019-05-28', 1, NULL, 15, 116, '2019-05-29 02:41:58', NULL, '2019-05-29 02:41:58', NULL),
-(39, '3', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
-(40, '73', '', '2019-05-28', 1, NULL, 15, 116, '2019-05-29 02:42:54', NULL, '2019-05-29 02:42:54', NULL),
-(41, '73', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
-(42, '70', '', '2019-05-28', 1, NULL, 15, 116, '2019-05-29 03:31:23', NULL, '2019-05-29 03:31:23', NULL),
-(43, '70', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
-(44, '93', '', '2019-05-16', 1, NULL, 15, 116, '2019-05-29 03:31:38', NULL, '2019-05-29 03:31:38', NULL),
-(45, '93', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
-(46, '34', '', '2019-05-22', 1, NULL, 15, 116, '2019-05-29 03:33:19', NULL, '2019-05-29 03:33:19', NULL),
-(47, '34', '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
-(48, '35', '', '2019-05-15', 1, NULL, 16, 1, '2019-05-29 15:42:48', NULL, '2019-05-29 15:42:48', NULL),
-(49, '50', '', '2019-05-29', 1, NULL, 16, 1, '2019-05-29 15:47:45', NULL, '2019-05-29 15:47:45', NULL),
-(50, '35', '', '2019-05-29', 1, NULL, 17, 50, '2019-05-29 16:00:37', NULL, '2019-05-29 16:00:37', NULL),
-(51, '35', '', '2019-05-29', 1, NULL, 17, 50, '2019-05-29 16:02:23', NULL, '2019-05-29 16:02:23', NULL),
-(52, '35', '', NULL, NULL, NULL, 17, NULL, NULL, NULL, NULL, NULL),
-(53, '44', '', '2019-05-09', 1, NULL, 17, 50, '2019-05-29 16:02:41', NULL, '2019-05-29 16:02:41', NULL),
-(54, '44', '', NULL, NULL, NULL, 17, NULL, NULL, NULL, NULL, NULL),
-(55, '70', '', '2019-05-29', 1, NULL, 18, 50, '2019-05-29 16:57:23', NULL, '2019-05-29 16:57:23', NULL),
-(56, '70', '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
-(57, '35', '', '2019-05-17', 1, NULL, 18, 50, '2019-05-29 16:58:29', NULL, '2019-05-29 16:58:29', NULL),
-(58, '107', '', '2019-05-15', 1, NULL, 18, 50, '2019-05-29 17:00:24', NULL, '2019-05-29 17:00:24', NULL),
-(59, '{\"id\":50,\"email\":\"patriciarack@gmail.com\",\"sede\":\"LA PLATA\",\"area\":\"TRABAJADORA SOCIAL\",\"nombre\":\"M. PATRICIA\",\"apellido\":\"RACK\",\"email_verified_at\":null,\"created_at\":null,\"updated_at\":null}', '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
-(60, '88', '', '2019-05-09', 1, NULL, 18, 50, '2019-05-29 17:04:53', NULL, '2019-05-29 17:04:53', NULL),
-(61, '{\"id\":50,\"email\":\"patriciarack@gmail.com\",\"sede\":\"LA PLATA\",\"area\":\"TRABAJADORA SOCIAL\",\"nombre\":\"M. PATRICIA\",\"apellido\":\"RACK\",\"email_verified_at\":null,\"created_at\":null,\"updated_at\":null}', '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
-(62, '44', '', '2019-05-15', 1, NULL, 18, 50, '2019-05-29 17:06:30', NULL, '2019-05-29 17:06:30', NULL),
-(63, '50', '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
-(64, '70', '', '2019-05-29', 1, NULL, 18, 50, '2019-05-29 17:14:57', NULL, '2019-05-29 17:14:57', NULL),
-(65, '50', '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
-(66, '44', '', '2019-05-29', 1, NULL, 18, 50, '2019-05-29 17:15:18', NULL, '2019-05-29 17:15:18', NULL),
-(67, '50', '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
-(68, '70', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 19:58:17', NULL, '2019-05-29 19:58:17', NULL),
-(69, '70', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 19:59:37', NULL, '2019-05-29 19:59:37', NULL),
-(70, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
-(71, '107', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 19:59:54', NULL, '2019-05-29 19:59:54', NULL),
-(72, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
-(73, '12', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:00:18', NULL, '2019-05-29 20:00:18', NULL),
-(74, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
-(75, '34', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:00:45', NULL, '2019-05-29 20:00:45', NULL),
-(76, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
-(77, '34', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:00:46', NULL, '2019-05-29 20:00:46', NULL),
-(78, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
-(79, '21', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:02:35', NULL, '2019-05-29 20:02:35', NULL),
-(80, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
-(81, '21', '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:02:35', NULL, '2019-05-29 20:02:35', NULL),
-(82, '115', '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
-(83, '44', '', '2019-05-29', 1, NULL, 20, 115, '2019-05-29 20:09:17', NULL, '2019-05-29 20:09:17', NULL),
-(84, '115', '', NULL, NULL, NULL, 20, NULL, NULL, NULL, NULL, NULL),
-(85, '61', '', '2019-05-29', 1, NULL, 20, 115, '2019-05-29 20:10:29', NULL, '2019-05-29 20:10:29', NULL),
-(86, '115', '', NULL, NULL, NULL, 20, NULL, NULL, NULL, NULL, NULL),
-(87, '70', '', '2019-05-29', 1, NULL, 21, 114, '2019-05-30 02:52:34', NULL, '2019-05-30 02:52:34', NULL),
-(88, '114', '', NULL, NULL, NULL, 21, NULL, NULL, NULL, NULL, NULL),
-(89, '21', '', '2019-05-29', 1, NULL, 21, 114, '2019-05-30 02:53:50', NULL, '2019-05-30 02:53:50', NULL),
-(90, '114', '', NULL, NULL, NULL, 21, NULL, NULL, NULL, NULL, NULL),
-(91, '87', '', '2019-05-29', 1, NULL, 21, 114, '2019-05-30 04:39:24', NULL, '2019-05-30 04:39:24', NULL),
-(92, '114', '', NULL, NULL, NULL, 21, NULL, NULL, NULL, NULL, NULL),
-(93, '35', '', '2019-05-30', 1, NULL, 22, 114, '2019-05-30 14:03:40', NULL, '2019-05-30 14:03:40', NULL),
-(94, '35', '', '2019-05-30', 1, NULL, 22, 114, '2019-05-30 14:10:31', NULL, '2019-05-30 14:10:31', NULL),
-(95, '37', '', '2019-05-30', 1, NULL, 22, 114, '2019-05-30 14:10:58', NULL, '2019-05-30 14:10:58', NULL),
-(96, '21', '', '2019-05-30', 1, NULL, 22, 114, '2019-05-30 14:14:51', NULL, '2019-05-30 14:14:51', NULL),
-(97, '88', '', '2019-05-16', 1, NULL, 22, 114, '2019-05-30 14:15:29', NULL, '2019-05-30 14:15:29', NULL),
-(98, '114', '', NULL, NULL, NULL, 22, NULL, NULL, NULL, NULL, NULL),
-(99, '101', '', '2019-05-30', 1, NULL, 23, 114, '2019-05-30 18:35:28', NULL, '2019-05-30 18:35:28', NULL),
-(100, '114', '', NULL, NULL, NULL, 23, NULL, NULL, NULL, NULL, NULL),
-(101, '94', '', '2019-05-30', 1, NULL, 23, 114, '2019-05-30 18:36:02', NULL, '2019-05-30 18:36:02', NULL),
-(102, '61', '', '2019-05-30', 1, NULL, 23, 114, '2019-05-30 18:38:27', NULL, '2019-05-30 18:38:27', NULL),
-(103, '94', '', '2019-05-16', 1, NULL, 23, 114, '2019-05-30 20:16:25', NULL, '2019-05-30 20:16:25', NULL),
-(104, '21', '', '2019-05-30', 1, NULL, 24, 114, '2019-05-31 03:05:26', NULL, '2019-05-31 03:05:26', NULL),
-(105, '114', '', NULL, NULL, NULL, 24, NULL, NULL, NULL, NULL, NULL),
-(106, '85', '', '2019-05-30', 1, NULL, 24, 114, '2019-05-31 03:05:46', NULL, '2019-05-31 03:05:46', NULL),
-(107, '70', '', '2019-05-16', 1, NULL, 24, 114, '2019-05-31 04:04:53', NULL, '2019-05-31 04:04:53', NULL),
-(108, '70', '', '2019-05-31', 1, NULL, 25, 114, '2019-05-31 13:54:46', NULL, '2019-05-31 13:54:46', NULL),
-(109, '114', '', NULL, NULL, NULL, 25, NULL, NULL, NULL, NULL, NULL),
-(110, '56', '', '2019-05-31', 1, NULL, 25, 114, '2019-05-31 14:11:12', NULL, '2019-05-31 14:11:12', NULL),
-(111, '93', '', '2019-05-24', 1, NULL, 25, 114, '2019-05-31 14:12:01', NULL, '2019-05-31 14:12:01', NULL),
-(112, '85', '', '2019-05-31', 1, NULL, 25, 114, '2019-05-31 14:12:52', NULL, '2019-05-31 14:12:52', NULL),
-(113, '87', '', '2019-05-31', 1, NULL, 25, 114, '2019-05-31 14:14:20', NULL, '2019-05-31 14:14:20', NULL),
-(114, '85', '', '2019-05-24', 1, NULL, NULL, 114, '2019-06-01 03:06:53', NULL, '2019-06-01 03:06:53', NULL),
-(115, '103', '', '2019-05-31', 1, NULL, NULL, 114, '2019-06-01 03:17:04', NULL, '2019-06-01 03:17:04', NULL),
-(116, '70', '', '2019-05-02', 1, NULL, NULL, 114, '2019-06-01 03:28:42', NULL, '2019-06-01 03:28:42', NULL),
-(117, '21', '', '2019-05-31', 1, NULL, NULL, 114, '2019-06-01 04:16:25', NULL, '2019-06-01 04:16:25', NULL),
-(118, '56', '', '2019-05-23', 1, NULL, NULL, 114, '2019-06-01 04:20:04', NULL, '2019-06-01 04:20:04', NULL),
-(119, '21', '', '2019-05-31', 1, NULL, NULL, 114, '2019-06-01 04:24:24', NULL, '2019-06-01 04:24:24', NULL),
-(120, '93', '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-01 20:49:06', NULL, '2019-06-01 20:49:06', NULL),
-(121, '17', '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:48:27', NULL, '2019-06-02 04:48:27', NULL),
-(122, '17', '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:48:30', NULL, '2019-06-02 04:48:30', NULL),
-(123, '107', '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:48:52', NULL, '2019-06-02 04:48:52', NULL),
-(124, '12', '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:49:17', NULL, '2019-06-02 04:49:17', NULL),
-(125, '61', '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:50:53', NULL, '2019-06-02 04:50:53', NULL),
-(126, '1', '', '2019-06-02', 1, NULL, 28, 114, '2019-06-02 16:35:39', 114, '2019-06-03 01:26:29', NULL),
-(127, '114', '', NULL, NULL, NULL, 28, NULL, NULL, NULL, NULL, NULL),
-(128, '18', '', '2019-06-01', 1, NULL, 28, 114, '2019-06-02 16:36:03', 114, '2019-06-02 17:15:48', NULL),
-(129, '107', '', '2019-06-01', 1, NULL, 28, 114, '2019-06-02 16:36:22', NULL, '2019-06-02 16:36:22', NULL),
-(130, '80', '', '2019-06-01', 1, NULL, 28, 114, '2019-06-02 16:36:59', NULL, '2019-06-02 16:36:59', NULL),
-(131, '95', '', '2019-06-01', 1, NULL, 28, 114, '2019-06-03 01:24:43', NULL, '2019-06-03 01:24:43', NULL),
-(132, '70', '', '2019-06-01', 1, NULL, 28, 114, '2019-06-03 01:26:03', NULL, '2019-06-03 01:26:03', NULL),
-(133, '70', '', '2019-06-01', 1, NULL, 29, 114, '2019-06-03 18:34:53', 114, '2019-06-14 04:02:05', NULL),
-(134, '114', '', NULL, NULL, NULL, 29, NULL, NULL, NULL, NULL, NULL),
-(135, '21', '', '2019-06-01', 1, NULL, 29, 114, '2019-06-03 18:36:57', NULL, '2019-06-03 18:36:57', NULL),
-(136, '21', '', '2019-06-01', 1, NULL, 30, 70, '2019-06-03 21:13:13', NULL, '2019-06-03 21:13:13', NULL),
-(137, '70', '', NULL, NULL, NULL, 30, NULL, NULL, NULL, NULL, NULL),
-(138, '114', '', '2019-06-01', 1, NULL, 30, 70, '2019-06-03 21:13:57', NULL, '2019-06-03 21:13:57', NULL),
-(139, '0', 'OTRO PROFESIONAL', '2019-06-01', 1, NULL, 31, 114, '2019-06-10 04:12:40', NULL, '2019-06-10 04:12:40', NULL),
-(140, '0', 'OTRO PROFESIONAL', '2019-06-01', 1, NULL, 31, 114, '2019-06-10 04:14:35', NULL, '2019-06-10 04:14:35', NULL),
-(141, '114', NULL, NULL, NULL, NULL, 31, NULL, NULL, NULL, NULL, NULL),
-(142, '0', 'OTRO PROFESIONAL', '2019-06-09', 1, NULL, 31, 114, '2019-06-10 04:18:31', NULL, '2019-06-10 04:18:31', NULL),
-(143, '101', NULL, '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 15:45:50', NULL, '2019-06-10 15:45:50', NULL),
-(144, '35', NULL, '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 15:46:33', NULL, '2019-06-10 15:46:33', NULL),
-(145, '37', NULL, '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 15:47:24', NULL, '2019-06-10 15:47:24', NULL),
-(146, '0', 'NUEVO PROFESIONAL', '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 16:03:01', NULL, '2019-06-10 16:03:01', NULL),
-(147, '0', 'JUAN ROJAS', '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 16:07:17', NULL, '2019-06-10 16:07:17', NULL),
-(148, '0', 'JUAN JOSE-ABOGADO', '2019-06-11', 1, NULL, 32, 114, '2019-06-11 19:56:21', NULL, '2019-06-11 19:56:21', NULL),
-(149, '114', NULL, NULL, NULL, NULL, 32, NULL, NULL, NULL, NULL, NULL),
-(150, '85', NULL, '2019-06-11', 1, NULL, 32, 114, '2019-06-11 19:56:37', NULL, '2019-06-11 19:56:37', NULL),
-(151, '61', NULL, '2019-06-12', 1, NULL, 33, 114, '2019-06-12 13:53:51', NULL, '2019-06-12 13:53:51', NULL),
-(152, '114', NULL, NULL, NULL, NULL, 33, NULL, NULL, NULL, NULL, NULL),
-(153, '21', NULL, '2019-06-12', 1, NULL, 35, 114, '2019-06-12 16:21:05', NULL, '2019-06-12 16:21:05', NULL),
-(154, '114', NULL, NULL, NULL, NULL, 35, NULL, NULL, NULL, NULL, NULL),
-(155, '96', NULL, '2019-06-12', 1, NULL, 36, 114, '2019-06-12 19:14:27', NULL, '2019-06-12 19:14:27', NULL),
-(156, '114', NULL, NULL, NULL, NULL, 36, NULL, NULL, NULL, NULL, NULL),
-(157, '88', NULL, '2019-06-12', 1, NULL, 37, 114, '2019-06-12 23:20:05', NULL, '2019-06-12 23:20:05', NULL),
-(158, '114', NULL, NULL, NULL, NULL, 37, NULL, NULL, NULL, NULL, NULL),
-(159, '70', NULL, '2019-06-12', 1, NULL, 37, 114, '2019-06-12 23:20:23', NULL, '2019-06-12 23:20:23', NULL),
-(160, '0', 'OTRO PROFESIONAL-ABOGADO', '2019-06-12', 1, NULL, 37, 114, '2019-06-12 23:20:49', NULL, '2019-06-12 23:20:49', NULL),
-(161, '87', NULL, '2019-06-12', 1, NULL, 38, 114, '2019-06-13 04:38:18', NULL, '2019-06-13 04:38:18', NULL),
-(162, '114', NULL, NULL, NULL, NULL, 38, NULL, NULL, NULL, NULL, NULL),
-(163, '37', NULL, '2019-06-13', 1, NULL, 39, 114, '2019-06-13 13:46:43', NULL, '2019-06-13 13:46:43', NULL),
-(164, '114', NULL, NULL, NULL, NULL, 39, NULL, NULL, NULL, NULL, NULL),
-(165, '56', NULL, '2019-06-13', 1, NULL, 29, 114, '2019-06-14 04:25:21', NULL, '2019-06-14 04:25:21', NULL),
-(167, '61', NULL, '2019-06-14', 1, NULL, 40, 114, '2019-06-14 14:10:08', NULL, '2019-06-14 14:10:08', NULL),
-(168, '114', NULL, NULL, NULL, NULL, 40, NULL, NULL, NULL, NULL, NULL);
+(1, 31, '', '2019-05-23', 1, NULL, 1, 3, '2019-05-23 18:01:03', NULL, '2019-05-23 18:01:03', NULL),
+(2, 44, '', '2019-05-23', 1, NULL, 1, 3, '2019-05-23 18:09:10', NULL, '2019-05-23 18:09:10', NULL),
+(3, 3, '', '2019-05-23', 1, NULL, 2, 2, '2019-05-23 19:08:33', NULL, '2019-05-23 19:08:33', NULL),
+(4, 35, '', '2019-05-22', 1, NULL, 2, 2, '2019-05-23 19:09:33', NULL, '2019-05-23 19:09:33', NULL),
+(5, 3, '', '2019-05-16', 1, NULL, 3, 1, '2019-05-23 19:55:58', NULL, '2019-05-23 19:55:58', NULL),
+(6, 4, '', NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, NULL),
+(7, 56, '', '2019-05-23', 1, NULL, 4, 3, '2019-05-23 21:03:37', NULL, '2019-05-23 21:03:37', NULL),
+(8, 3, '', NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL),
+(9, 88, '', '2019-05-23', 1, NULL, 5, 3, '2019-05-23 21:08:03', NULL, '2019-05-23 21:08:03', NULL),
+(10, 70, '', '2019-05-23', 1, NULL, 5, 3, '2019-05-23 21:08:56', NULL, '2019-05-23 21:08:56', NULL),
+(11, 3, '', NULL, NULL, NULL, 6, NULL, NULL, NULL, NULL, NULL),
+(12, 70, '', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:12:53', NULL, '2019-05-23 21:12:53', NULL),
+(13, 70, '', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:12:54', NULL, '2019-05-23 21:12:54', NULL),
+(14, 37, '', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:13:16', NULL, '2019-05-23 21:13:16', NULL),
+(15, 101, '', '2019-05-23', 1, NULL, 6, 3, '2019-05-23 21:13:41', NULL, '2019-05-23 21:13:41', NULL),
+(16, 3, '', NULL, NULL, NULL, 7, NULL, NULL, NULL, NULL, NULL),
+(17, 93, '', '2019-05-23', 1, NULL, 7, 3, '2019-05-24 00:05:18', NULL, '2019-05-24 00:05:18', NULL),
+(19, 3, '', '2019-05-23', 1, NULL, 8, 2, '2019-05-24 00:37:28', NULL, '2019-05-24 00:37:28', NULL),
+(20, 12, '', NULL, NULL, NULL, 9, NULL, NULL, NULL, NULL, NULL),
+(21, 12, '', NULL, NULL, NULL, 10, NULL, NULL, NULL, NULL, NULL),
+(22, 12, '', NULL, NULL, NULL, 11, NULL, NULL, NULL, NULL, NULL),
+(23, 3, '', '2019-05-28', 1, NULL, 12, 116, '2019-05-28 20:36:39', NULL, '2019-05-28 20:36:39', NULL),
+(24, 107, '', '2019-05-02', 1, NULL, 12, 116, '2019-05-28 20:38:49', NULL, '2019-05-28 20:38:49', NULL),
+(25, 87, '', '2019-05-21', 1, NULL, 12, 116, '2019-05-28 20:42:50', NULL, '2019-05-28 20:42:50', NULL),
+(26, 87, '', '2019-05-21', 1, NULL, 12, 116, '2019-05-28 20:44:56', NULL, '2019-05-28 20:44:56', NULL),
+(27, 12, '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:03:35', NULL, '2019-05-28 23:03:35', NULL),
+(28, 12, '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:14:27', NULL, '2019-05-28 23:14:27', NULL),
+(29, 12, '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:20:30', NULL, '2019-05-28 23:20:30', NULL),
+(30, 12, '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:24:17', NULL, '2019-05-28 23:24:17', NULL),
+(31, 12, '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:24:54', NULL, '2019-05-28 23:24:54', NULL),
+(32, 12, '', '2019-05-01', 1, NULL, 13, 116, '2019-05-28 23:25:14', NULL, '2019-05-28 23:25:14', NULL),
+(33, 12, '', '2019-05-16', 1, NULL, 14, 116, '2019-05-28 23:52:22', NULL, '2019-05-28 23:52:22', NULL),
+(34, 35, '', '2019-05-28', 1, NULL, 15, 116, '2019-05-29 02:40:44', NULL, '2019-05-29 02:40:44', NULL),
+(35, 35, '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(36, 70, '', '2019-05-09', 1, NULL, 15, 116, '2019-05-29 02:41:01', NULL, '2019-05-29 02:41:01', NULL),
+(37, 70, '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(38, 3, '', '2019-05-28', 1, NULL, 15, 116, '2019-05-29 02:41:58', NULL, '2019-05-29 02:41:58', NULL),
+(39, 3, '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(40, 73, '', '2019-05-28', 1, NULL, 15, 116, '2019-05-29 02:42:54', NULL, '2019-05-29 02:42:54', NULL),
+(41, 73, '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(42, 70, '', '2019-05-28', 1, NULL, 15, 116, '2019-05-29 03:31:23', NULL, '2019-05-29 03:31:23', NULL),
+(43, 70, '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(44, 93, '', '2019-05-16', 1, NULL, 15, 116, '2019-05-29 03:31:38', NULL, '2019-05-29 03:31:38', NULL),
+(45, 93, '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(46, 34, '', '2019-05-22', 1, NULL, 15, 116, '2019-05-29 03:33:19', NULL, '2019-05-29 03:33:19', NULL),
+(47, 34, '', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(48, 35, '', '2019-05-15', 1, NULL, 16, 1, '2019-05-29 15:42:48', NULL, '2019-05-29 15:42:48', NULL),
+(49, 50, '', '2019-05-29', 1, NULL, 16, 1, '2019-05-29 15:47:45', NULL, '2019-05-29 15:47:45', NULL),
+(50, 35, '', '2019-05-29', 1, NULL, 17, 50, '2019-05-29 16:00:37', NULL, '2019-05-29 16:00:37', NULL),
+(51, 35, '', '2019-05-29', 1, NULL, 17, 50, '2019-05-29 16:02:23', NULL, '2019-05-29 16:02:23', NULL),
+(52, 35, '', NULL, NULL, NULL, 17, NULL, NULL, NULL, NULL, NULL),
+(53, 44, '', '2019-05-09', 1, NULL, 17, 50, '2019-05-29 16:02:41', NULL, '2019-05-29 16:02:41', NULL),
+(54, 44, '', NULL, NULL, NULL, 17, NULL, NULL, NULL, NULL, NULL),
+(55, 70, '', '2019-05-29', 1, NULL, 18, 50, '2019-05-29 16:57:23', NULL, '2019-05-29 16:57:23', NULL),
+(56, 70, '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(57, 35, '', '2019-05-17', 1, NULL, 18, 50, '2019-05-29 16:58:29', NULL, '2019-05-29 16:58:29', NULL),
+(58, 107, '', '2019-05-15', 1, NULL, 18, 50, '2019-05-29 17:00:24', NULL, '2019-05-29 17:00:24', NULL),
+(59, 0, '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(60, 88, '', '2019-05-09', 1, NULL, 18, 50, '2019-05-29 17:04:53', NULL, '2019-05-29 17:04:53', NULL),
+(61, 0, '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(62, 44, '', '2019-05-15', 1, NULL, 18, 50, '2019-05-29 17:06:30', NULL, '2019-05-29 17:06:30', NULL),
+(63, 50, '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(64, 70, '', '2019-05-29', 1, NULL, 18, 50, '2019-05-29 17:14:57', NULL, '2019-05-29 17:14:57', NULL),
+(65, 50, '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(66, 44, '', '2019-05-29', 1, NULL, 18, 50, '2019-05-29 17:15:18', NULL, '2019-05-29 17:15:18', NULL),
+(67, 50, '', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(68, 70, '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 19:58:17', NULL, '2019-05-29 19:58:17', NULL),
+(69, 70, '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 19:59:37', NULL, '2019-05-29 19:59:37', NULL),
+(70, 115, '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(71, 107, '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 19:59:54', NULL, '2019-05-29 19:59:54', NULL),
+(72, 115, '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(73, 12, '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:00:18', NULL, '2019-05-29 20:00:18', NULL),
+(74, 115, '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(75, 34, '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:00:45', NULL, '2019-05-29 20:00:45', NULL),
+(76, 115, '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(77, 34, '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:00:46', NULL, '2019-05-29 20:00:46', NULL),
+(78, 115, '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(79, 21, '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:02:35', NULL, '2019-05-29 20:02:35', NULL),
+(80, 115, '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(81, 21, '', '2019-05-29', 1, NULL, 19, 115, '2019-05-29 20:02:35', NULL, '2019-05-29 20:02:35', NULL),
+(82, 115, '', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(83, 44, '', '2019-05-29', 1, NULL, 20, 115, '2019-05-29 20:09:17', NULL, '2019-05-29 20:09:17', NULL),
+(84, 115, '', NULL, NULL, NULL, 20, NULL, NULL, NULL, NULL, NULL),
+(85, 61, '', '2019-05-29', 1, NULL, 20, 115, '2019-05-29 20:10:29', NULL, '2019-05-29 20:10:29', NULL),
+(86, 115, '', NULL, NULL, NULL, 20, NULL, NULL, NULL, NULL, NULL),
+(87, 70, '', '2019-05-29', 1, NULL, 21, 114, '2019-05-30 02:52:34', NULL, '2019-05-30 02:52:34', NULL),
+(88, 114, '', NULL, NULL, NULL, 21, NULL, NULL, NULL, NULL, NULL),
+(89, 21, '', '2019-05-29', 1, NULL, 21, 114, '2019-05-30 02:53:50', NULL, '2019-05-30 02:53:50', NULL),
+(90, 114, '', NULL, NULL, NULL, 21, NULL, NULL, NULL, NULL, NULL),
+(91, 87, '', '2019-05-29', 1, NULL, 21, 114, '2019-05-30 04:39:24', NULL, '2019-05-30 04:39:24', NULL),
+(92, 114, '', NULL, NULL, NULL, 21, NULL, NULL, NULL, NULL, NULL),
+(93, 35, '', '2019-05-30', 1, NULL, 22, 114, '2019-05-30 14:03:40', NULL, '2019-05-30 14:03:40', NULL),
+(94, 35, '', '2019-05-30', 1, NULL, 22, 114, '2019-05-30 14:10:31', NULL, '2019-05-30 14:10:31', NULL),
+(95, 37, '', '2019-05-30', 1, NULL, 22, 114, '2019-05-30 14:10:58', NULL, '2019-05-30 14:10:58', NULL),
+(96, 21, '', '2019-05-30', 1, NULL, 22, 114, '2019-05-30 14:14:51', NULL, '2019-05-30 14:14:51', NULL),
+(97, 88, '', '2019-05-16', 1, NULL, 22, 114, '2019-05-30 14:15:29', NULL, '2019-05-30 14:15:29', NULL),
+(98, 114, '', NULL, NULL, NULL, 22, NULL, NULL, NULL, NULL, NULL),
+(99, 101, '', '2019-05-30', 1, NULL, 23, 114, '2019-05-30 18:35:28', NULL, '2019-05-30 18:35:28', NULL),
+(100, 114, '', NULL, NULL, NULL, 23, NULL, NULL, NULL, NULL, NULL),
+(101, 94, '', '2019-05-30', 1, NULL, 23, 114, '2019-05-30 18:36:02', NULL, '2019-05-30 18:36:02', NULL),
+(102, 61, '', '2019-05-30', 1, NULL, 23, 114, '2019-05-30 18:38:27', NULL, '2019-05-30 18:38:27', NULL),
+(103, 94, '', '2019-05-16', 1, NULL, 23, 114, '2019-05-30 20:16:25', NULL, '2019-05-30 20:16:25', NULL),
+(104, 21, '', '2019-05-30', 1, NULL, 24, 114, '2019-05-31 03:05:26', NULL, '2019-05-31 03:05:26', NULL),
+(105, 114, '', NULL, NULL, NULL, 24, NULL, NULL, NULL, NULL, NULL),
+(106, 85, '', '2019-05-30', 1, NULL, 24, 114, '2019-05-31 03:05:46', NULL, '2019-05-31 03:05:46', NULL),
+(107, 70, '', '2019-05-16', 1, NULL, 24, 114, '2019-05-31 04:04:53', NULL, '2019-05-31 04:04:53', NULL),
+(108, 70, '', '2019-05-31', 1, NULL, 25, 114, '2019-05-31 13:54:46', NULL, '2019-05-31 13:54:46', NULL),
+(109, 114, '', NULL, NULL, NULL, 25, NULL, NULL, NULL, NULL, NULL),
+(110, 56, '', '2019-05-31', 1, NULL, 25, 114, '2019-05-31 14:11:12', NULL, '2019-05-31 14:11:12', NULL),
+(111, 93, '', '2019-05-24', 1, NULL, 25, 114, '2019-05-31 14:12:01', NULL, '2019-05-31 14:12:01', NULL),
+(112, 85, '', '2019-05-31', 1, NULL, 25, 114, '2019-05-31 14:12:52', NULL, '2019-05-31 14:12:52', NULL),
+(113, 87, '', '2019-05-31', 1, NULL, 25, 114, '2019-05-31 14:14:20', NULL, '2019-05-31 14:14:20', NULL),
+(114, 85, '', '2019-05-24', 1, NULL, NULL, 114, '2019-06-01 03:06:53', NULL, '2019-06-01 03:06:53', NULL),
+(115, 103, '', '2019-05-31', 1, NULL, NULL, 114, '2019-06-01 03:17:04', NULL, '2019-06-01 03:17:04', NULL),
+(116, 70, '', '2019-05-02', 1, NULL, NULL, 114, '2019-06-01 03:28:42', NULL, '2019-06-01 03:28:42', NULL),
+(117, 21, '', '2019-05-31', 1, NULL, NULL, 114, '2019-06-01 04:16:25', NULL, '2019-06-01 04:16:25', NULL),
+(118, 56, '', '2019-05-23', 1, NULL, NULL, 114, '2019-06-01 04:20:04', NULL, '2019-06-01 04:20:04', NULL),
+(119, 21, '', '2019-05-31', 1, NULL, NULL, 114, '2019-06-01 04:24:24', NULL, '2019-06-01 04:24:24', NULL),
+(120, 93, '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-01 20:49:06', NULL, '2019-06-01 20:49:06', NULL),
+(121, 17, '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:48:27', NULL, '2019-06-02 04:48:27', NULL),
+(122, 17, '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:48:30', NULL, '2019-06-02 04:48:30', NULL),
+(123, 107, '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:48:52', NULL, '2019-06-02 04:48:52', NULL),
+(124, 12, '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:49:17', NULL, '2019-06-02 04:49:17', NULL),
+(125, 61, '', '2019-06-01', 1, NULL, NULL, 114, '2019-06-02 04:50:53', NULL, '2019-06-02 04:50:53', NULL),
+(126, 1, '', '2019-06-02', 1, NULL, 28, 114, '2019-06-02 16:35:39', 114, '2019-06-03 01:26:29', NULL),
+(127, 114, '', NULL, NULL, NULL, 28, NULL, NULL, NULL, NULL, NULL),
+(128, 18, '', '2019-06-01', 1, NULL, 28, 114, '2019-06-02 16:36:03', 114, '2019-06-02 17:15:48', NULL),
+(129, 107, '', '2019-06-01', 1, NULL, 28, 114, '2019-06-02 16:36:22', NULL, '2019-06-02 16:36:22', NULL),
+(130, 80, '', '2019-06-01', 1, NULL, 28, 114, '2019-06-02 16:36:59', NULL, '2019-06-02 16:36:59', NULL),
+(131, 95, '', '2019-06-01', 1, NULL, 28, 114, '2019-06-03 01:24:43', NULL, '2019-06-03 01:24:43', NULL),
+(132, 70, '', '2019-06-01', 1, NULL, 28, 114, '2019-06-03 01:26:03', NULL, '2019-06-03 01:26:03', NULL),
+(133, 70, '', '2019-05-01', 1, NULL, 29, 114, '2019-06-03 18:34:53', 114, '2019-06-20 05:28:33', NULL),
+(134, 114, '', '2019-06-17', 1, NULL, 29, NULL, NULL, 114, '2019-06-18 05:13:56', NULL),
+(135, 21, '', '2019-06-01', 1, NULL, 29, 114, '2019-06-03 18:36:57', NULL, '2019-06-03 18:36:57', NULL),
+(136, 21, '', '2019-06-01', 1, NULL, 30, 70, '2019-06-03 21:13:13', NULL, '2019-06-03 21:13:13', NULL),
+(137, 70, '', NULL, NULL, NULL, 30, NULL, NULL, NULL, NULL, NULL),
+(138, 114, '', '2019-06-01', 1, NULL, 30, 70, '2019-06-03 21:13:57', NULL, '2019-06-03 21:13:57', NULL),
+(139, 0, 'OTRO PROFESIONAL', '2019-06-01', 1, NULL, 31, 114, '2019-06-10 04:12:40', NULL, '2019-06-10 04:12:40', NULL),
+(140, 0, 'OTRO PROFESIONAL', '2019-06-01', 1, NULL, 31, 114, '2019-06-10 04:14:35', NULL, '2019-06-10 04:14:35', NULL),
+(141, 114, NULL, NULL, NULL, NULL, 31, NULL, NULL, NULL, NULL, NULL),
+(142, 0, 'OTRO PROFESIONAL-ABOGADO', '2019-04-11', 1, NULL, 29, 114, '2019-06-10 04:18:31', 114, '2019-06-18 05:56:14', NULL),
+(143, 101, NULL, '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 15:45:50', NULL, '2019-06-10 15:45:50', NULL),
+(144, 35, NULL, '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 15:46:33', NULL, '2019-06-10 15:46:33', NULL),
+(145, 37, NULL, '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 15:47:24', NULL, '2019-06-10 15:47:24', NULL),
+(146, 0, 'NUEVO PROFESIONAL', '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 16:03:01', NULL, '2019-06-10 16:03:01', NULL),
+(147, 0, 'JUAN ROJAS', '2019-06-10', 1, NULL, NULL, 114, '2019-06-10 16:07:17', NULL, '2019-06-10 16:07:17', NULL),
+(148, 0, 'JUAN JOSE-ABOGADO', '2019-06-11', 1, NULL, 32, 114, '2019-06-11 19:56:21', NULL, '2019-06-11 19:56:21', NULL),
+(149, 114, NULL, NULL, NULL, NULL, 32, NULL, NULL, NULL, NULL, NULL),
+(150, 85, NULL, '2019-06-11', 1, NULL, 32, 114, '2019-06-11 19:56:37', NULL, '2019-06-11 19:56:37', NULL),
+(151, 61, NULL, '2019-06-12', 1, NULL, 33, 114, '2019-06-12 13:53:51', NULL, '2019-06-12 13:53:51', NULL),
+(152, 114, NULL, NULL, NULL, NULL, 33, NULL, NULL, NULL, NULL, NULL),
+(153, 21, NULL, '2019-06-12', 1, NULL, 35, 114, '2019-06-12 16:21:05', NULL, '2019-06-12 16:21:05', NULL),
+(154, 114, NULL, NULL, NULL, NULL, 35, NULL, NULL, NULL, NULL, NULL),
+(155, 96, NULL, '2019-06-12', 1, NULL, 36, 114, '2019-06-12 19:14:27', NULL, '2019-06-12 19:14:27', NULL),
+(156, 114, NULL, NULL, NULL, NULL, 36, NULL, NULL, NULL, NULL, NULL),
+(157, 88, NULL, '2019-06-12', 1, NULL, 37, 114, '2019-06-12 23:20:05', NULL, '2019-06-12 23:20:05', NULL),
+(158, 114, NULL, NULL, NULL, NULL, 37, NULL, NULL, NULL, NULL, NULL),
+(159, 70, NULL, '2019-06-12', 1, NULL, 37, 114, '2019-06-12 23:20:23', NULL, '2019-06-12 23:20:23', NULL),
+(160, 0, 'OTRO PROFESIONAL-ABOGADO', '2019-06-12', 1, NULL, 37, 114, '2019-06-12 23:20:49', NULL, '2019-06-12 23:20:49', NULL),
+(161, 87, NULL, '2019-06-12', 1, NULL, 38, 114, '2019-06-13 04:38:18', NULL, '2019-06-13 04:38:18', NULL),
+(162, 114, NULL, NULL, NULL, NULL, 38, NULL, NULL, NULL, NULL, NULL),
+(163, 37, NULL, '2019-06-13', 1, NULL, 39, 114, '2019-06-13 13:46:43', NULL, '2019-06-13 13:46:43', NULL),
+(164, 114, NULL, NULL, NULL, NULL, 39, NULL, NULL, NULL, NULL, NULL),
+(167, 61, NULL, '2019-05-01', 1, NULL, 40, 114, '2019-06-14 14:10:08', 114, '2019-06-18 05:44:04', NULL),
+(168, 114, NULL, NULL, NULL, NULL, 40, NULL, NULL, NULL, NULL, NULL),
+(169, 35, NULL, '2019-06-14', 1, NULL, 41, 114, '2019-06-14 19:37:20', NULL, '2019-06-14 19:37:20', NULL),
+(170, 114, NULL, NULL, NULL, NULL, 41, NULL, NULL, NULL, NULL, NULL),
+(171, 21, NULL, '2019-06-16', 1, NULL, 42, 114, '2019-06-17 00:50:42', 114, '2019-06-17 06:04:06', NULL),
+(172, 114, NULL, NULL, NULL, NULL, 42, NULL, NULL, NULL, NULL, NULL),
+(173, 56, NULL, '2019-06-16', 1, NULL, 42, 114, '2019-06-17 00:50:57', NULL, '2019-06-17 00:50:57', NULL),
+(174, 17, NULL, '2019-06-16', 1, NULL, 43, 114, '2019-06-17 04:19:35', NULL, '2019-06-17 04:19:35', NULL),
+(175, 114, NULL, NULL, NULL, NULL, 43, NULL, NULL, NULL, NULL, NULL),
+(176, 21, NULL, '2019-06-17', 1, NULL, 44, 114, '2019-06-17 17:45:40', NULL, '2019-06-17 17:45:40', NULL),
+(177, 114, NULL, NULL, NULL, NULL, 44, NULL, NULL, NULL, NULL, NULL),
+(178, 0, 'OTRO ', '2019-06-05', 1, NULL, 45, 114, '2019-06-17 19:58:08', 114, '2019-06-18 00:59:09', NULL),
+(179, 0, 'OTR P', NULL, NULL, NULL, 45, NULL, NULL, NULL, NULL, NULL),
+(180, 70, NULL, '2019-06-18', 1, NULL, 46, 114, '2019-06-18 18:00:12', NULL, '2019-06-18 18:00:12', NULL),
+(181, 114, NULL, NULL, NULL, NULL, 46, NULL, NULL, NULL, NULL, NULL),
+(182, 0, 'JOSE PEREZ-ABOGADO', '2019-06-04', 1, NULL, 46, 114, '2019-06-18 18:02:17', NULL, '2019-06-18 18:02:17', NULL),
+(183, 93, NULL, '2019-06-19', 1, NULL, 29, 114, '2019-06-20 05:30:25', 114, '2019-06-20 05:30:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -5797,6 +5879,7 @@ INSERT INTO `tipo_demandas` (`id`, `nombre`) VALUES
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `NewPass` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sede` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `area` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -5812,123 +5895,123 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `sede`, `area`, `nombre`, `apellido`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'VEROBINCAZ@hotmail.com ', 'LA PLATA', 'DIRECTORA PROVINCIAL', 'Veronica Haydeé', 'BINCAZ ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(2, 'lic.juanbombelli@gmail.com', 'LA PLATA', 'DIRECTORA DE SEDES DECENTRALIZADAS', 'LUCIA', 'TEALDI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(3, 'tealdi.lucia@gmail.com', 'LA PLATA', 'DIRECTOR DE ASISTENCIA Y PROTECCIÓN A LA VÍCTIMA', 'Juan Ignacio', 'BOMBELLI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(4, 'rominabenitezar@hotmail.com', 'ALTE. BRWON', 'PSICÓLOGA', 'Romina', 'BENITEZ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(5, 'veritoapc@hotmail.com', 'ALTE. BRWON', 'TRABAJADORA SOCIAL', 'Verónica', 'PEREZ  ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(6, 'norbertoricco@hotmail.com', 'ALTE. BRWON', 'ABOGADO', 'Norberto', 'RICCO ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(7, 'mflorencia_aramburu@hotmail.com', 'AZUL', 'ABOGADA', 'María Florencia', 'ARAMBURU', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(8, 'josefina.casado@gmail.com', 'AZUL', 'PSICÓLOGA', 'Josefina', 'CASADO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(9, 'jime_ciappina@hotmail.com', 'AZUL', 'TRABAJADORA SOCIAL', 'María Jimena', 'CIAPPINA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(10, 'ignaciobarsellini@estudiobarsellini.com', 'BAHIA BLANCA', 'ABOGADO', 'Ignacio Armando', 'BARSELLINI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(11, 'iglesiabraun@hotmail.com.ar', 'BAHIA BLANCA', 'ADMINISTRATIVO', 'Martín', 'IGLESIA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(12, 'catalinaotero.bblanca@gmail.com', 'BAHIA BLANCA', 'PSICÓLOGA', 'Ana Catalina', 'OTERO D.', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(13, 'mariela_delf@hotmail.com', 'EZEIZA', 'TRABAJADORA SOCIAL', 'Mariela', 'FORNARI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(14, 'noeliadlombardo@gmail.com', 'EZEIZA', 'ABOGADA', 'Noelia', 'LOMBARDO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(15, 'gmatthesius@hotmail.com', 'EZEIZA', 'PSICÓLOGA', 'Gladys Mabel', 'MATTHESIUS', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(16, 'cortes.m.soledad@gmail.com', 'JOSE C. PAZ', 'ABOGADA', 'María Soledad', 'CORTES', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(17, 'alimichela@hotmail.com', 'JOSE C. PAZ', 'PSICÓLOGA', 'Alicia', 'MICHELA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(18, 'anabela_romero_03@hotmail.com', 'JOSE C. PAZ', 'TRABAJADORA SOCIAL', 'Soledad Anabela', 'ROMERO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(19, 'giuliettacuozzo@hotmail.com', 'LA MATANZA', 'PSICÓLOGA', 'Giulietta', 'CUOZZO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(20, 'jecru@yahoo.com.ar', 'LA MATANZA', 'TRABAJADORA SOCIAL', 'Jesica', 'CRUZ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(21, 'agustina.iriondo@hotmail.es', 'LA MATANZA', 'PSICÓLOGA', 'AGUSTINA A.', 'IRIONDO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(22, 'mariel_velazquez@hotmail.com.ar', 'LA MATANZA', 'ABOGADA', 'Rafaela Mariel', 'Velazquez', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(23, 'rjapecechea@gmail.com', 'LA PLATA', 'ABOGADO', 'Jorge', 'APECECHEA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(24, 'julietapsi@gmail.com', 'LA PLATA', 'PSICÓLOGA', 'Julieta Anahí', 'ARAGUES', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(25, 'veronica.ardohain76@gmail.com', 'LA PLATA', 'TRABAJADORA SOCIAL', 'Veronica Haydeé', 'ARDOHAIN', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(26, 'elbeca_81@hotmail.com', 'LA PLATA', 'ADMINISTRATIVO', 'Agustín', 'BEJARANO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(27, 'maiacalabrese85@gmail.com', 'LA PLATA', 'EQUIPO DIRECCIÓN', 'Maia Yésica', 'CALABRESE', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(28, 'marialujancic@gmail.com', 'LA PLATA', 'PSICÓLOGA', 'Maria Lujan', 'CICCONI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(29, 'lu.comp1989@gmail.com', 'LA PLATA', 'EQUIPO DIRECCIÓN', 'Lucia', 'COMPAGNUCCI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(30, 'rocuccia@hotmail.com', 'LA PLATA', 'PSICÓLOGA', 'Rosario Leontina', 'CUCCIA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(31, 'deandreisagustina@gmail.com', 'LA PLATA', 'ADMINISTRATIVA', 'Agustina Soledad', 'DE ANDREIS', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(32, 'ludeantoni@hotmail.com', 'LA PLATA', 'ADMINISTRATIVA', 'Lucía', 'DE ANTONI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(33, 'juanfdinardo@gmail.com', 'LA PLATA', 'ABOGADO', 'Juan Francisco', 'DI NARDO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(34, 'carogassull@gmail.com', 'LA PLATA', 'ADMINISTRATIVA', ' María Carolina', 'GASSULL', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(35, 'andreagiacomino04@yahoo.com.ar', 'LA PLATA', 'PSICÓLOGA', 'Andrea Daniela', 'GIACOMINO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(36, 'dantegiu@yahoo.com.ar', 'LA PLATA', 'ADMINISTRATIVO', 'Dante Bautista', 'GUILIANI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(37, 'azul.labalta@gmail.com', 'LA PLATA', 'ABOGADA', 'Azul', 'LABALTA R.', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(38, 'MilagrosLuayza@hotmail.com', 'LA PLATA', 'ABOGADA', 'Milagros Aldana', 'LUAYZA T.', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(39, 'macloughlinmartin@gmail.com', 'LA PLATA', 'ADMINISTRATIVO', 'Martín Darío', 'MAC LOUGHLIN', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(40, 'lucianomac@gmail.com', 'LA PLATA', 'PSICÓLOGO', 'Luciano', 'MACIEL', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(41, 'slommac@hotmail.com', 'LA PLATA', 'ADMINISTRATIVO', 'Sebastián ', 'MACUCHO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(42, 'veropsicol@hotmail.com', 'LA PLATA', 'PSICÓLOGA', 'Verónica Isabel', 'MARTINUZZI R.', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(43, 'silviomonti@gmail.com', 'LA PLATA', 'PSICÓLOGO', 'Silvio Gabriel', 'MONTI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(44, 'agus_montone@hotmail.com', 'LA PLATA', 'ADMINISTRATIVO', 'Agustín', 'MONTONE', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(45, 'elimorrone@gmail.com', 'LA PLATA', 'PSICÓLOGO', 'Eliana Silvina', 'MORRONE', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(46, 'lisandropanelli@gmail.com', 'LA PLATA', 'ABOGADO', 'Lisandro Ariel', 'PANELLI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(47, 'cuchipellegrini@hotmail.com', 'LA PLATA', 'ADMINISTRATIVO', 'Héctor Rubén', 'PELLEGRINI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(48, 'guillerisso@hotmail.com', 'LA PLATA', 'PSICÓLOGA', 'Guillermina', 'RISSO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(49, 'vaninaseminara@hotmail.com', 'LA PLATA', 'PSICÓLOGA', 'Vanina Eleonora', 'SEMINARA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(50, 'patriciarack@gmail.com', 'LA PLATA', 'TRABAJADORA SOCIAL', 'M. PATRICIA', 'RACK', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(51, 'valerinasoto12@gmail.com', 'LA PLATA', 'TRABAJADORA SOCIAL', 'Valeria', 'SOTO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(52, 'cpvconsultadir@gmail.com', 'LA PLATA', 'ADMINISTRATIVA', 'Maria Guadalupe', 'SOSA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(53, 'candeservin@gmail.com', 'LA PLATA', 'PSICÓLOGA', 'María Candela', 'SERVIN', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(54, 'paustroppolo25@hotmail.com', 'LA PLATA', 'ADMINISTRATIVA', 'Paula', 'STROPPOLO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(55, 'meelinasulasguzman@gmail.com', 'LA PLATA', 'ADMINISTRATIVA', 'Jacqueline Melina', 'SULAS', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(56, 'alfonsovicinanza@yahoo.com.ar', 'LA PLATA', 'ABOGADO', 'Alfonso', 'VICINANZAS', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(57, 'laura_logriego@yahoo.com.ar', 'LANUS', 'ABOGADA', 'Laura', 'LOGRIEGO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(58, 'ramonaruizdiaz@hotmail.com', 'LANUS', 'TRABAJADORA SOCIAL', 'Ramona', 'RUIZ DIAZ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(59, 'mvtemudio@hotmail.com', 'LANUS', 'PSICÓLOGA', 'María Victoria', 'TEMUDIO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(60, 'malearrieta76@hotmail.com', 'LOMAS Z.', 'ADMINISTRATIVA', 'María Alejandra', 'ARRIETA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(61, 'ana_liagallo@yahoo.com.ar', 'LOMAS Z.', 'PSICÓLOGA', 'Analía', 'GALLO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(62, 'galvanvirginia@yahoo.com.ar', 'LOMAS Z.', 'TRABAJADORA SOCIAL', 'Virginia', 'GALVAN', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(63, 'nataliajofre22@gmail.com', 'LOMAS Z.', 'ABOGADA', 'Natalia', 'JOFRE', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(64, 'ordoñez.sol85@gmail.com', 'LOS TOLDOS', 'TRABAJADORA SOCIAL', 'Mariciel', 'ORDOÑEZ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(65, 'lia_sanchez8@yahoo.com.ar', 'LOS TOLDOS', 'PSICÓLOGA', 'LIA', 'SANCHEZ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(66, 'cpvgralviamonte@hotmail.com', 'LOS TOLDOS', 'PSICÓLOGA', 'María Belén', 'TAGLIAFERRO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(67, 'natalia_cascardo@hotmail.com', 'MAR DEL PLATA', 'PSICÓLOGA', 'Natalia', 'CASCARDO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(68, 'monidimauro@hotmail.com', 'MAR DEL PLATA', 'ADMINISTRATIVA', 'Mónica', 'DI MAURO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(69, 'patriciohorn@hotmail.com', 'MAR DEL PLATA', 'ABOGADO', 'Patricio', 'HORN', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(70, 'joseluismartins@hotmail.com', 'MAR DEL PLATA', 'ABOGADO', ' José Luis', 'MARTINS', '2019-06-03 18:14:40', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', 'xnQL6pCoXlXAYgdqRI6I76OnFU0tp0pkntlLDHtAaQlAkaHM4Qk1ChGHkr2c', NULL, NULL),
-(71, 'luz_22_mm@hotmail.com', 'MAR DEL PLATA', 'TRABAJADORA SOCIAL', 'Luz', 'MUÑIZ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(72, 'florencianovello@yahoo.com.ar', 'MAR DEL PLATA', 'PSICÓLOGA', 'Florencia', 'NOVELLO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(73, 'catalinaespil@hotmail.com', 'MERCEDES', 'PSICÓLOGA', 'Catalina', 'ESPIL', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(74, 'pia.frattini@hotmail.com', 'MERCEDES', 'TRABAJADORA SOCIAL', 'María Pía', 'FRATTINI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(75, 'valeriamanfria@gmail.com', 'MERECEDES', 'ABOGADA', 'Valeria', 'MANFRIA MASSA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(76, 'sb.gonzalo@hotmail.com', 'MORENO', 'ABOGADO', 'Jorge Gonzalo', 'SESSAREGO B.', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(77, 'german.landgraf@gmail.com', 'MORENO', 'ABOGADO', 'Germán', 'LANDGRAF', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(78, 'valtasan0910@gmail.com', 'MORENO', 'PSICÓLOGA', 'VALERIA', 'SANCHEZ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(79, 'gomezmiguelangel12@yahoo.com.ar', 'MORON', 'TRABAJADOR SOCIAL', 'Miguel Angel', 'GOMEZ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(80, 'jessin23@hotmail.com', 'MORON', 'ABOGADA', 'Yésica', 'IZARRIAGA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(81, 'dralucero@live.com', 'MORON', 'ABOGADA', 'Viviana', 'LUCERO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(82, 'isabel_men@hotmail.com', 'MORON', 'PSICÓLOGA', 'Isabel', 'MENGHINI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(83, 'malenap_@hotmail.com', 'MORON', 'ADMINISTRATIVA', 'Malena', 'PEREZ SOTO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(84, 'fantemanuel2@gmail.com', 'PERGAMINO', 'TRABAJADOR SOCIAL', 'EMANUEL', 'FANTE', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(85, 'cecimarquiselli@hotmail.com', 'PERGAMINO', 'PSICÓLOGA', 'Cecilia', 'MARQUISELLI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(86, 'valentinapiccinimanfredini@gmail.com', 'PERGAMINO', 'ABOGADA', 'Valentina', 'PICCINI M.', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(87, 'dra.diazcecilia@gmail.com', 'PILAR', 'ABOGADA', 'Cecilia', 'DIAZ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(88, 'barbara.ramallo.1980@outlook.com', 'PILAR', 'TRABAJADORA SOCIAL', 'Bárbara Mariela', 'RAMALLO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(89, 'mariana_sv3@hotmail.com', 'PILAR', 'PSICÓLOGA', 'Mariana', 'SEMENZATO V.', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(90, 'estudiojuridicodona@gmail.com', 'PINAMAR', 'ABOGADA', 'María José', 'DOÑA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(91, 'matutaur2@hotmail.com', 'PINAMAR', 'PSICÓLOGA', 'Matilde', 'PAGGI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(92, 'RIVEROMARIAJ@GMAIL.COM', 'PINAMAR', 'PSICÓLOGA', 'María José', 'RIVERO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(93, 'alejandracaceres07@yahoo.com>', 'QUILMES', 'TRABAJADORA SOCIAL', 'Alejandra', 'CACERES', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(94, 'palacios669@hotmail.com', 'QUILMES', 'ADMINISTRATIVA', 'CAROLINA', 'PALACIOS', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(95, 'rivarolamarinag@gmail.com', 'QUILMES', 'ABOGADA', 'Marina', 'RIVAROLA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(96, 'carolinavenosa@gmail.com', 'QUILMES', 'PSICÓLOGA', 'Carolina', 'VENOSA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(97, 'campiflorencia@hotmail.com', 'SAN FERNANDO', 'ABOGADA', 'Florencia', 'CAMPI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(98, 'midaverio@hotmail.com', 'SAN FERNANDO', 'ADMINISTRATIVA', 'María Inés', 'DAVERIO', '2019-06-03 16:28:01', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', 'xNJZWmmvzj3Bm23wHNLgUMCfLdOxTNHPJXClMBOpqmlugR5du5jzmAGKLvWG', NULL, NULL),
-(99, 'jupa_8@hotmail.com', 'SAN FERNANDO', 'PSICÓLOGA', 'María Julia', 'PALAVICINI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(100, 'veronicasoriano@yahoo.com', 'SAN FERNANDO', 'ADMINISTRATIVA', 'Verónica', 'SORIANO', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(101, 'carobusquier@yahoo.com.ar', 'SAN MARTIN', 'PSICÓLOGA', 'Carolina', 'BUSQUIER', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(102, 'daianabrendacordoba@yahoo.com.ar', 'SAN MARTIN', 'ABOGADA', 'Daiana', 'CORDOBA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(103, 'estudiodt@gmail.com', 'SAN MARTIN', 'ABOGADO', 'Diego', 'DALLA TORRE', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(104, 'loremagista@gmail.com', 'SAN MARTIN', 'ADMINISTRATIVA', 'Lorena', 'MAGISTA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(105, 'alcuazm@hotmail.com', 'TANDIL', 'ABOGADA', 'Micaela', 'ALCUAZ', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(106, 'casilvana@hotmail.com', 'TANDIL', 'PSICÓLOGA', 'Silvana', 'CERDA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(107, 'alicia_rubilar@hotmail.com', 'TANDIL', 'TRABAJADORA SOCIAL', 'Alicia', 'RUBILAR', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(108, 'verocracea@yahoo.com', 'VICENTE LOPEZ', 'PSICÓLOGA', 'Verónica', 'ATTALA', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(109, 'lutipirovani@hotmail.com', 'VICENTE LOPEZ', 'ABOGADA', 'Lucía', 'PIROVANI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(110, 'pablo.porubsky@gmail.com', 'VICENTE LOPEZ', 'ABOGADO', 'Pablo', 'PORUBSKY', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(111, 'nataliacribelli@hotmail.com.a', 'ZARATE', 'PSICÓLOGA', 'Natalia', 'CRIBELLI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(112, 'l.fraccarolli@live.com', 'ZARATE', 'ABOGADA', 'Lucía', 'FRACCAROLLI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(113, 'minuccisol@gmail.com', 'BAHIA BLANCA', 'TRABAJADORA SOCIAL', 'Solange', 'MINUCCI', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(114, 'ignacioklena@hotmail.com', 'LA PLATA', 'ABOGADO', 'Ignacio ', 'KLENA', '2019-06-13 01:34:15', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', 'zO1dtJdI1ycNZ74WVgzT74gvXpVMSgApdBu8frZDRBWYKgCE6g9njV6nzNrX', NULL, NULL),
-(115, 'mariaemiliamathe@gmail.com', 'SAN ISIDRO', 'ABOGADA', 'Maria Emilia', 'MATHE', NULL, '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', NULL, NULL, NULL),
-(116, 'xul27@hotmail.com', 'LA PLATA', 'DIRECTORA', 'LUCKY', 'SANCHEZ', '2019-05-28 20:48:40', '$2y$10$o/DdQokVeaIN2SIHWSe5Le7lUt5Ht8qfrgfmtSE.Av.ldsUfZ0kSy', 'rz9MPuUEVY1eYfMF04v0y0LJqTRJ5kisFvRyRAlSbCgRsTXaaAlYA8FviM2t', NULL, NULL);
+INSERT INTO `users` (`id`, `email`, `NewPass`, `sede`, `area`, `nombre`, `apellido`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'VEROBINCAZ@hotmail.com ', 'IVyWSA', 'LA PLATA', 'DIRECTORA PROVINCIAL', 'Veronica Haydeé', 'BINCAZ ', '2019-06-22 12:19:45', '$2y$10$a3vGpi46HbmkzHIc.gExEum9X.iS3LtrAPbbxIICUyjgzNjHflJBq', '2nf4dnSjSILYqISzqYRLiTsjw6H6w6YF2vFIR1pt4VHcGKrVakkW1hsQriel', NULL, '2019-06-22 15:15:29'),
+(2, 'lic.juanbombelli@gmail.com', 'SjXJ8g', 'LA PLATA', 'DIRECTORA DE SEDES DECENTRALIZADAS', 'LUCIA', 'TEALDI', '2019-06-22 12:15:29', '$2y$10$R4g/tNy9vWEPUxU/C.KYxODH/YgmCwLWs6xQxpAri8i5IWAUZiLOm', NULL, NULL, '2019-06-22 15:15:29'),
+(3, 'tealdi.lucia@gmail.com', 'mHJkfS', 'LA PLATA', 'DIRECTOR DE ASISTENCIA Y PROTECCIÓN A LA VÍCTIMA', 'Juan Ignacio', 'BOMBELLI', '2019-06-22 12:15:29', '$2y$10$X62UH7V48hbAhcE0y9vrLu1S/dZjOl1Mhii7ra52Ewbp6Fnjpkg02', NULL, NULL, '2019-06-22 15:15:29'),
+(4, 'rominabenitezar@hotmail.com', 'AML4Wg', 'ALTE. BRWON', 'PSICÓLOGA', 'Romina', 'BENITEZ', '2019-06-22 12:15:29', '$2y$10$bR8c7T1EB6Y7JVvsVejmC.K0n4HnVU1fwAbRbactE22llynJExVX6', NULL, NULL, '2019-06-22 15:15:29'),
+(5, 'veritoapc@hotmail.com', 'W1fFrG', 'ALTE. BRWON', 'TRABAJADORA SOCIAL', 'Verónica', 'PEREZ  ', '2019-06-22 12:15:29', '$2y$10$Lsp19fpuqclJIMn2LCUXJOOrGIR56T8Df2dXethCbri/SlEKPM366', NULL, NULL, '2019-06-22 15:15:29'),
+(6, 'norbertoricco@hotmail.com', 'k2tdcu', 'ALTE. BRWON', 'ABOGADO', 'Norberto', 'RICCO ', '2019-06-22 12:15:30', '$2y$10$JElRn2Rr/53ocPwthHGzgOLxr98sTYsEPlkYri2LGlQXzphV3Lewi', NULL, NULL, '2019-06-22 15:15:30'),
+(7, 'mflorencia_aramburu@hotmail.com', 'SRtC56', 'AZUL', 'ABOGADA', 'María Florencia', 'ARAMBURU', '2019-06-22 12:15:30', '$2y$10$Wmi8jRQ1gkp8NfT0fbIUUeV3aXiySk4BoxpBkijbtyFrqW2.UgQIq', NULL, NULL, '2019-06-22 15:15:30'),
+(8, 'josefina.casado@gmail.com', 'sl6BcP', 'AZUL', 'PSICÓLOGA', 'Josefina', 'CASADO', '2019-06-22 12:15:30', '$2y$10$xQd/Dp6c2VyVayR/53FCa.4CqRLnoIR1FoYr9iCbXCnFkmBgeZBeK', NULL, NULL, '2019-06-22 15:15:30'),
+(9, 'jime_ciappina@hotmail.com', 'fwqXKD', 'AZUL', 'TRABAJADORA SOCIAL', 'María Jimena', 'CIAPPINA', '2019-06-22 12:15:30', '$2y$10$ZQTIITTfNNaZLwFZ08hoVeBsdzVEvOr.8MZTh6Bmh80AxpYn3bIyO', NULL, NULL, '2019-06-22 15:15:30'),
+(10, 'ignaciobarsellini@estudiobarsellini.com', '8cQryX', 'BAHIA BLANCA', 'ABOGADO', 'Ignacio Armando', 'BARSELLINI', '2019-06-22 12:15:30', '$2y$10$DBAofgndxZ2tE8SrGmykqu3KFIFEZvSooDJF966VTxVmoDfRusGMW', NULL, NULL, '2019-06-22 15:15:30'),
+(11, 'iglesiabraun@hotmail.com.ar', 'B5v64i', 'BAHIA BLANCA', 'ADMINISTRATIVO', 'Martín', 'IGLESIA', '2019-06-22 12:15:30', '$2y$10$UVeSysSHkWS6eEGqyyXxR.Y8zLMp4k5j9cFVbN9jQgKNuedk6HQwi', NULL, NULL, '2019-06-22 15:15:30'),
+(12, 'catalinaotero.bblanca@gmail.com', 'f8RiAN', 'BAHIA BLANCA', 'PSICÓLOGA', 'Ana Catalina', 'OTERO D.', '2019-06-22 12:15:31', '$2y$10$b0HsxOIgLUcRL/bltHEE/ObccIXm8r8JcyLw84wBp/LxGfQRlniQC', NULL, NULL, '2019-06-22 15:15:31'),
+(13, 'mariela_delf@hotmail.com', 'IyRTAr', 'EZEIZA', 'TRABAJADORA SOCIAL', 'Mariela', 'FORNARI', '2019-06-22 12:15:31', '$2y$10$Iq7/LFQkEXiDQ7gdpIhSQu5i20bSoOxGrVBAeXHVAiSY/B0vNJhdK', NULL, NULL, '2019-06-22 15:15:31'),
+(14, 'noeliadlombardo@gmail.com', 'ipTUFn', 'EZEIZA', 'ABOGADA', 'Noelia', 'LOMBARDO', '2019-06-22 12:15:31', '$2y$10$tW8Oda5K8ZRhPhbt748VC.VVn4ExYvkBy7FcI4rvtDyfN94e7JVI.', NULL, NULL, '2019-06-22 15:15:31'),
+(15, 'gmatthesius@hotmail.com', 'Rt4mTq', 'EZEIZA', 'PSICÓLOGA', 'Gladys Mabel', 'MATTHESIUS', '2019-06-22 12:15:31', '$2y$10$/9mdFjaoQTph6s/8kmg7eOTg7kTTevDYBHk904JcwvTXCW4k/okuS', NULL, NULL, '2019-06-22 15:15:31'),
+(16, 'cortes.m.soledad@gmail.com', 'vqj3zK', 'JOSE C. PAZ', 'ABOGADA', 'María Soledad', 'CORTES', '2019-06-22 12:15:31', '$2y$10$0NC8z5ULiYnFM9DZ2X0YleVCmmRNyOlKSeCKPrRSbJLzVJHDpjkVe', NULL, NULL, '2019-06-22 15:15:31'),
+(17, 'alimichela@hotmail.com', 'nqhrow', 'JOSE C. PAZ', 'PSICÓLOGA', 'Alicia', 'MICHELA', '2019-06-22 12:15:32', '$2y$10$RzPHO9tGqQDbkwV2cmAfHuJb8YXQXX1GC6vxevgH/0Hm2pBqzyr4e', NULL, NULL, '2019-06-22 15:15:32'),
+(18, 'anabela_romero_03@hotmail.com', 'q8FcoH', 'JOSE C. PAZ', 'TRABAJADORA SOCIAL', 'Soledad Anabela', 'ROMERO', '2019-06-22 12:15:32', '$2y$10$FMZL2rX9DblOJFil4hsiveh/bvZ8hNgiLpHDjcNspFPjoggR.Vabq', NULL, NULL, '2019-06-22 15:15:32'),
+(19, 'giuliettacuozzo@hotmail.com', 'IOKYEA', 'LA MATANZA', 'PSICÓLOGA', 'Giulietta', 'CUOZZO', '2019-06-22 12:43:23', '$2y$10$4JDuFvguGV9CxiwPEGLL/eiuN4/d5wQlldI48jHQv7v2SoHpNiiOq', 'kLnkx9mrqRMDY1X1v2Ea8Gvv68Ekpn6wvVD2uHZhMUnUT9fMzxEs17VnAh7R', NULL, '2019-06-22 15:15:32'),
+(20, 'jecru@yahoo.com.ar', '49R8Hk', 'LA MATANZA', 'TRABAJADORA SOCIAL', 'Jesica', 'CRUZ', '2019-06-22 12:15:32', '$2y$10$/DbiBm/COEbltETfCsE7n.WhVST4jIHNYJZKMb/YcjlURrAYmlNWK', NULL, NULL, '2019-06-22 15:15:32'),
+(21, 'agustina.iriondo@hotmail.es', 'BYF3GH', 'LA MATANZA', 'PSICÓLOGA', 'AGUSTINA A.', 'IRIONDO', '2019-06-22 12:15:32', '$2y$10$9XEetM6YSvv1hd2EE9l7euLh.fRe9W5An5IBL0hfebM/fhsIepWB2', NULL, NULL, '2019-06-22 15:15:32'),
+(22, 'mariel_velazquez@hotmail.com.ar', 'yCSDRm', 'LA MATANZA', 'ABOGADA', 'Rafaela Mariel', 'Velazquez', '2019-06-22 12:15:32', '$2y$10$VSh7.GlwShRdDb9O7dgEfepJR7m2YkgmbaFpTUIcqq9tw3EwRe0IC', NULL, NULL, '2019-06-22 15:15:32'),
+(23, 'rjapecechea@gmail.com', 'ydciqD', 'LA PLATA', 'ABOGADO', 'Jorge', 'APECECHEA', '2019-06-22 12:15:32', '$2y$10$NZ0ztysGtZ4Jv8QS40clB.QnC8hvH8.AnWEsq2SzITSokrnVc1vHO', NULL, NULL, '2019-06-22 15:15:32'),
+(24, 'julietapsi@gmail.com', '7PG92H', 'LA PLATA', 'PSICÓLOGA', 'Julieta Anahí', 'ARAGUES', '2019-06-22 12:15:33', '$2y$10$I654FF1c76m3v2XGo/rVU.nggRCzozkXNAmcn7mOHmyuD7tlt59LS', NULL, NULL, '2019-06-22 15:15:33'),
+(25, 'veronica.ardohain76@gmail.com', 'ldrZRj', 'LA PLATA', 'TRABAJADORA SOCIAL', 'Veronica Haydeé', 'ARDOHAIN', '2019-06-22 12:15:33', '$2y$10$HMkErbbNSd8Ct/niQQcwse.AWGvbl3H832EGNnKRo4F6L1YJSV/Gu', NULL, NULL, '2019-06-22 15:15:33'),
+(26, 'elbeca_81@hotmail.com', 'wfbdI3', 'LA PLATA', 'ADMINISTRATIVO', 'Agustín', 'BEJARANO', '2019-06-22 12:15:33', '$2y$10$KHSFIbwtPZIfG/wWKA1WdOh09I13gxN3CUDcGEzV6PNRF24kwuU4y', NULL, NULL, '2019-06-22 15:15:33'),
+(27, 'maiacalabrese85@gmail.com', 'sSG2XQ', 'LA PLATA', 'EQUIPO DIRECCIÓN', 'Maia Yésica', 'CALABRESE', '2019-06-22 12:15:33', '$2y$10$.Zzrduactpn3Mk0sZDKyvOMkCu7Zc.x1WlyCx44dPylRT16hS2GWG', NULL, NULL, '2019-06-22 15:15:33'),
+(28, 'marialujancic@gmail.com', 'uQMKDT', 'LA PLATA', 'PSICÓLOGA', 'Maria Lujan', 'CICCONI', '2019-06-22 12:15:34', '$2y$10$gStrfjlY9oaRfF3PriG3LudzODh.DoKR26lJpw4IAAX9Nflk1wtLW', NULL, NULL, '2019-06-22 15:15:34'),
+(29, 'lu.comp1989@gmail.com', 'mbJci3', 'LA PLATA', 'EQUIPO DIRECCIÓN', 'Lucia', 'COMPAGNUCCI', '2019-06-22 12:15:34', '$2y$10$sYzkWjYjN6OBz0KNYJ2Qv.6RQBeJ/6OWTyNHrX9aUvI5rHLl308Te', NULL, NULL, '2019-06-22 15:15:34'),
+(30, 'rocuccia@hotmail.com', '13BONr', 'LA PLATA', 'PSICÓLOGA', 'Rosario Leontina', 'CUCCIA', '2019-06-22 12:15:34', '$2y$10$z7nzepsXEqUijlXIBau6.OSsNxjh3vklYb1LhLHdqu6XbSzlt75RS', NULL, NULL, '2019-06-22 15:15:34'),
+(31, 'deandreisagustina@gmail.com', 'nlCkTx', 'LA PLATA', 'ADMINISTRATIVA', 'Agustina Soledad', 'DE ANDREIS', '2019-06-22 12:15:34', '$2y$10$8v87w7ACrlnMDIIIXXwTsuNgMZaaUiks1UE../fqIrbiVazmM.pby', NULL, NULL, '2019-06-22 15:15:34'),
+(32, 'ludeantoni@hotmail.com', 'suXG0a', 'LA PLATA', 'ADMINISTRATIVA', 'Lucía', 'DE ANTONI', '2019-06-22 12:15:34', '$2y$10$Wuzz3vNm16/h5slf8N/oIOnKpX2adMl1nl8J1D57HpRGOzL0R4.RW', NULL, NULL, '2019-06-22 15:15:34'),
+(33, 'juanfdinardo@gmail.com', 'M0xROt', 'LA PLATA', 'ABOGADO', 'Juan Francisco', 'DI NARDO', '2019-06-22 12:15:35', '$2y$10$i0VrfeZNWAWYfSOghiHe/OKoDgJziw.QtfKporpgQjvoSEc5CxSym', NULL, NULL, '2019-06-22 15:15:35'),
+(34, 'carogassull@gmail.com', 'tVuBWk', 'LA PLATA', 'ADMINISTRATIVA', ' María Carolina', 'GASSULL', '2019-06-22 12:15:35', '$2y$10$pU4lMj76UOwKloRQ1KCP9.eRpw/7hFt1Wcn6APScJC/DOvEUx/17a', NULL, NULL, '2019-06-22 15:15:35'),
+(35, 'andreagiacomino04@yahoo.com.ar', '3EimK1', 'LA PLATA', 'PSICÓLOGA', 'Andrea Daniela', 'GIACOMINO', '2019-06-22 12:15:35', '$2y$10$ao9d6EvU/G.6.HU8LYtLGOeaFNEi4IHu1154e1RR1lcwihOxRzRXi', NULL, NULL, '2019-06-22 15:15:35'),
+(36, 'dantegiu@yahoo.com.ar', 'rHtSgU', 'LA PLATA', 'ADMINISTRATIVO', 'Dante Bautista', 'GUILIANI', '2019-06-22 12:15:35', '$2y$10$ISIZwEwCKtCzcnzp5ZuIg.5jW5D7p9m29ah61pOi8iIcd0x/AkVJK', NULL, NULL, '2019-06-22 15:15:35'),
+(37, 'azul.labalta@gmail.com', 'MjtZ6N', 'LA PLATA', 'ABOGADA', 'Azul', 'LABALTA R.', '2019-06-22 12:15:35', '$2y$10$GytMw44IhjSR9fDxoHlTqOWMFXcqVQGwFv4yN3lH23FBH4Ddwgb9i', NULL, NULL, '2019-06-22 15:15:35'),
+(38, 'MilagrosLuayza@hotmail.com', 'EJpIlH', 'LA PLATA', 'ABOGADA', 'Milagros Aldana', 'LUAYZA T.', '2019-06-22 12:15:36', '$2y$10$5US9anjSA0exYHG55BNdwObROUeZLGWtkc85do2XKFcVtZi8sy/b2', NULL, NULL, '2019-06-22 15:15:36'),
+(39, 'macloughlinmartin@gmail.com', 'hspuIr', 'LA PLATA', 'ADMINISTRATIVO', 'Martín Darío', 'MAC LOUGHLIN', '2019-06-22 12:15:36', '$2y$10$ZduUaa3jyyzPDeH1Bdlk7.TY6oPbjqj16KlYgNsksImxKXBb9bj1.', NULL, NULL, '2019-06-22 15:15:36'),
+(40, 'lucianomac@gmail.com', '9fnh4T', 'LA PLATA', 'PSICÓLOGO', 'Luciano', 'MACIEL', '2019-06-22 12:15:36', '$2y$10$nFSYNA34qdPMoIpLGimFVeclnTwRmMLzycFtH5dmrkK5DmhPvvnca', NULL, NULL, '2019-06-22 15:15:36'),
+(41, 'slommac@hotmail.com', 'OWYVQE', 'LA PLATA', 'ADMINISTRATIVO', 'Sebastián ', 'MACUCHO', '2019-06-22 12:15:36', '$2y$10$YOy9QqqoDiJZY2S.5BPBYeOA3Hl8tYGjexoqhEgxY7kckYOM2NIOC', NULL, NULL, '2019-06-22 15:15:36'),
+(42, 'veropsicol@hotmail.com', '9WoinT', 'LA PLATA', 'PSICÓLOGA', 'Verónica Isabel', 'MARTINUZZI R.', '2019-06-22 12:15:36', '$2y$10$C5KXpOiO.IioWre.36gKb.LGhEGWk9VUsezl5LyZv/ryYN08Pvc5O', NULL, NULL, '2019-06-22 15:15:36'),
+(43, 'silviomonti@gmail.com', 'kYFQpv', 'LA PLATA', 'PSICÓLOGO', 'Silvio Gabriel', 'MONTI', '2019-06-22 12:15:36', '$2y$10$SUBBYBp1cBjpj2jIOlALbu5OeduD1EKzk2Vbhd1V1VegTvDu4D8FG', NULL, NULL, '2019-06-22 15:15:36'),
+(44, 'agus_montone@hotmail.com', 'ENQc52', 'LA PLATA', 'ADMINISTRATIVO', 'Agustín', 'MONTONE', '2019-06-22 12:15:37', '$2y$10$dyaELpxdAVc1XAQvqaVGoOGoqXcjGSSvclui76/B76GNuc743Y0Zq', NULL, NULL, '2019-06-22 15:15:37'),
+(45, 'elimorrone@gmail.com', 'R7NiWb', 'LA PLATA', 'PSICÓLOGO', 'Eliana Silvina', 'MORRONE', '2019-06-22 12:15:37', '$2y$10$HRkaELEdTPD.XqLSH/n9cOcbFLXTZf5p9lOsCwsNCPr3ly.zndvSa', NULL, NULL, '2019-06-22 15:15:37'),
+(46, 'lisandropanelli@gmail.com', 'CHnb1G', 'LA PLATA', 'ABOGADO', 'Lisandro Ariel', 'PANELLI', '2019-06-22 12:15:37', '$2y$10$..kqXIUNcTw6nseERZID8.fnML07OCortnWa3lhqOf95DIInUlQMe', NULL, NULL, '2019-06-22 15:15:37'),
+(47, 'cuchipellegrini@hotmail.com', 'WRwXkr', 'LA PLATA', 'ADMINISTRATIVO', 'Héctor Rubén', 'PELLEGRINI', '2019-06-22 12:15:37', '$2y$10$Ql..5nYLPqBPO/5BVKGjzODqXrNDSNLW5xgl556vvhzr06.sVvTWq', NULL, NULL, '2019-06-22 15:15:37'),
+(48, 'guillerisso@hotmail.com', '0L5nif', 'LA PLATA', 'PSICÓLOGA', 'Guillermina', 'RISSO', '2019-06-22 12:15:37', '$2y$10$OeVsPaRkiOcVbsLNDnBeNe1bIW8gLs8dInOH8bS/fz1u3ZqCd3bJC', NULL, NULL, '2019-06-22 15:15:37'),
+(49, 'vaninaseminara@hotmail.com', 'eHD7UT', 'LA PLATA', 'PSICÓLOGA', 'Vanina Eleonora', 'SEMINARA', '2019-06-22 12:15:38', '$2y$10$rCNhjdkVrZkYBQUttbB2MePWXvvmGU8lBioFYxgHgAB7wvGXEhEmi', NULL, NULL, '2019-06-22 15:15:38'),
+(50, 'patriciarack@gmail.com', 'rpfhqO', 'LA PLATA', 'TRABAJADORA SOCIAL', 'M. PATRICIA', 'RACK', '2019-06-22 12:15:38', '$2y$10$sqBixRMNChNH4VLV6Zi1xOaDrp4c3C4ONuY3wEh3VAV24VEey5tRi', NULL, NULL, '2019-06-22 15:15:38'),
+(51, 'valerinasoto12@gmail.com', 'toXMVZ', 'LA PLATA', 'TRABAJADORA SOCIAL', 'Valeria', 'SOTO', '2019-06-22 12:15:38', '$2y$10$9Ss3KVQzIPBIU.og1szpeeRx1zSVItobNn1fcWT14C2d7MFQbj.T.', NULL, NULL, '2019-06-22 15:15:38'),
+(52, 'cpvconsultadir@gmail.com', 'sVECIB', 'LA PLATA', 'ADMINISTRATIVA', 'Maria Guadalupe', 'SOSA', '2019-06-22 12:15:38', '$2y$10$P.0QpsCfCC8gAHWW17PdUOWM4BmyTTihu1fcjHt6qPCR9PfWyyHKK', NULL, NULL, '2019-06-22 15:15:38'),
+(53, 'candeservin@gmail.com', 'cLTRJP', 'LA PLATA', 'PSICÓLOGA', 'María Candela', 'SERVIN', '2019-06-22 12:15:38', '$2y$10$Z4D4MjlAoNcdCBW2CBefkukchnHe8SX0oLHQA.f28SS/xKF3T/8um', NULL, NULL, '2019-06-22 15:15:38'),
+(54, 'paustroppolo25@hotmail.com', '2VWtwu', 'LA PLATA', 'ADMINISTRATIVA', 'Paula', 'STROPPOLO', '2019-06-22 12:15:38', '$2y$10$RNRHy9ubskdIWCD7sqdmnu5yeROvVoOmv8weJrh2rvkKw3O7DOZ1q', NULL, NULL, '2019-06-22 15:15:38'),
+(55, 'meelinasulasguzman@gmail.com', 'J0ELNF', 'LA PLATA', 'ADMINISTRATIVA', 'Jacqueline Melina', 'SULAS', '2019-06-22 12:15:39', '$2y$10$C/Wud3hHoDy1bgp8aApsj.jaYH/Aa8ZQbwUPtHgi.DBDZcyHQJTU.', NULL, NULL, '2019-06-22 15:15:39'),
+(56, 'alfonsovicinanza@yahoo.com.ar', 'RIpNeK', 'LA PLATA', 'ABOGADO', 'Alfonso', 'VICINANZAS', '2019-06-22 12:15:39', '$2y$10$Hoh2M0r9TRo/854ZweO8uOyeQgiP.oyx6dmv8jddU5knfbbgYb8R.', NULL, NULL, '2019-06-22 15:15:39'),
+(57, 'laura_logriego@yahoo.com.ar', 'sXDMGu', 'LANUS', 'ABOGADA', 'Laura', 'LOGRIEGO', '2019-06-22 12:15:39', '$2y$10$PFOwZR7xlHFBj2tb4NSPoO6HvQhtFFuMCYMUdaEbnFzUhaikdvmim', NULL, NULL, '2019-06-22 15:15:39'),
+(58, 'ramonaruizdiaz@hotmail.com', '6gBfec', 'LANUS', 'TRABAJADORA SOCIAL', 'Ramona', 'RUIZ DIAZ', '2019-06-22 12:15:39', '$2y$10$6QZ27ljQd2Z/rP/PCtWWVO8EHwbjtkDEsZRBlq7Hb1HoWQLB5UCeu', NULL, NULL, '2019-06-22 15:15:39'),
+(59, 'mvtemudio@hotmail.com', 'uibNcW', 'LANUS', 'PSICÓLOGA', 'María Victoria', 'TEMUDIO', '2019-06-22 12:15:40', '$2y$10$1rYw8HGvGJ5n3SaiMgCfJOwUXpnwOZEhNkfhp//amJBGxSQsvSEFW', NULL, NULL, '2019-06-22 15:15:40'),
+(60, 'malearrieta76@hotmail.com', 'QpwWiM', 'LOMAS Z.', 'ADMINISTRATIVA', 'María Alejandra', 'ARRIETA', '2019-06-22 12:15:40', '$2y$10$eTxc8P79YV1B1PwXNJJT6uVSYueKNyDNi/XWG.kUc0T2zehdyMhDW', NULL, NULL, '2019-06-22 15:15:40'),
+(61, 'ana_liagallo@yahoo.com.ar', 'wSyTZo', 'LOMAS Z.', 'PSICÓLOGA', 'Analía', 'GALLO', '2019-06-22 12:15:40', '$2y$10$Mv8QWMTuyoApAW6pGg1wSOx.7HhnEbwQpQkrIEun/H8LEeK79VNsy', NULL, NULL, '2019-06-22 15:15:40'),
+(62, 'galvanvirginia@yahoo.com.ar', 'hPyoxr', 'LOMAS Z.', 'TRABAJADORA SOCIAL', 'Virginia', 'GALVAN', '2019-06-22 12:15:40', '$2y$10$bABaM9D6hQAoSLAlwfEz3eOMyoe76E3j7AFeUTuXm8Lp.oeUYp2.y', NULL, NULL, '2019-06-22 15:15:40'),
+(63, 'nataliajofre22@gmail.com', 'K3Yd0s', 'LOMAS Z.', 'ABOGADA', 'Natalia', 'JOFRE', '2019-06-22 12:15:40', '$2y$10$2owz6hygh.OstameezaQTOMI.Nsijhv78ILc26vK6J/O7ydMpqAla', NULL, NULL, '2019-06-22 15:15:40'),
+(64, 'ordoñez.sol85@gmail.com', 'cqMBV1', 'LOS TOLDOS', 'TRABAJADORA SOCIAL', 'Mariciel', 'ORDOÑEZ', '2019-06-22 12:15:41', '$2y$10$oNONoj.V7YaxWCxL6GV6jO2iLxUQuTqsrNGlLeXRFNVYimnBgeiQi', NULL, NULL, '2019-06-22 15:15:41'),
+(65, 'lia_sanchez8@yahoo.com.ar', 'U8aQuH', 'LOS TOLDOS', 'PSICÓLOGA', 'LIA', 'SANCHEZ', '2019-06-22 12:15:41', '$2y$10$8O/ZsoEvManeAqHeM1.UpuneOh1t.U941m9.BhGb/auQ4WRSiI5w2', NULL, NULL, '2019-06-22 15:15:41'),
+(66, 'cpvgralviamonte@hotmail.com', 'wh91Ao', 'LOS TOLDOS', 'PSICÓLOGA', 'María Belén', 'TAGLIAFERRO', '2019-06-22 12:15:41', '$2y$10$euTkgb65C/KoEUpNzeHPN.ZVPVr1QaW6ieAJom.Bd3w6TQ7K2IHEq', NULL, NULL, '2019-06-22 15:15:41'),
+(67, 'natalia_cascardo@hotmail.com', 'd5GFSl', 'MAR DEL PLATA', 'PSICÓLOGA', 'Natalia', 'CASCARDO', '2019-06-22 12:15:41', '$2y$10$lrTztWCw6oGnWJT7dzw4H.CtOwon45w4pgO6qrKumObE6LH28WbUO', NULL, NULL, '2019-06-22 15:15:41'),
+(68, 'monidimauro@hotmail.com', '7UBqnv', 'MAR DEL PLATA', 'ADMINISTRATIVA', 'Mónica', 'DI MAURO', '2019-06-22 12:15:41', '$2y$10$ARPpudS5vtwcT05jJVQ7HODAb/I4vzqdQtdScKQZeOiMJAMs1lAXS', NULL, NULL, '2019-06-22 15:15:41'),
+(69, 'patriciohorn@hotmail.com', 'iEFyoM', 'MAR DEL PLATA', 'ABOGADO', 'Patricio', 'HORN', '2019-06-22 12:15:42', '$2y$10$Y0w.FkQt9v.Jd8NbhiZj3.TiThrRWhYunZfMkUqaMbVa54gJvhMt6', NULL, NULL, '2019-06-22 15:15:42'),
+(70, 'joseluismartins@hotmail.com', '3NbGOP', 'MAR DEL PLATA', 'ABOGADO', ' José Luis', 'MARTINS', '2019-06-22 12:15:42', '$2y$10$YDKVt7YIa/B8oDB4qFGC4.8lFtFE9q1IGpotBZECavEOV4V8qf9xy', 'xnQL6pCoXlXAYgdqRI6I76OnFU0tp0pkntlLDHtAaQlAkaHM4Qk1ChGHkr2c', NULL, '2019-06-22 15:15:42'),
+(71, 'luz_22_mm@hotmail.com', 'Q5r7oL', 'MAR DEL PLATA', 'TRABAJADORA SOCIAL', 'Luz', 'MUÑIZ', '2019-06-22 12:15:42', '$2y$10$LNbOmBRtREbuWNogkJWbRe4uG5ERa7B8h7cKpln8JC1VME6N7ju3a', NULL, NULL, '2019-06-22 15:15:42'),
+(72, 'florencianovello@yahoo.com.ar', 'hDYBvJ', 'MAR DEL PLATA', 'PSICÓLOGA', 'Florencia', 'NOVELLO', '2019-06-22 12:15:42', '$2y$10$RJGCCr3SwCcCzxXn1cD98ePTwMlcFkm1Wo6dQOB/.3d1vc/Ew2Bsu', NULL, NULL, '2019-06-22 15:15:42'),
+(73, 'catalinaespil@hotmail.com', '8kAzrl', 'MERCEDES', 'PSICÓLOGA', 'Catalina', 'ESPIL', '2019-06-22 12:15:42', '$2y$10$FOKhPgYUFx6MOiAMjw2Scep9Q553DeSDNo7T76tcENtcpLltObNQ.', NULL, NULL, '2019-06-22 15:15:42'),
+(74, 'pia.frattini@hotmail.com', 'vzyDOM', 'MERCEDES', 'TRABAJADORA SOCIAL', 'María Pía', 'FRATTINI', '2019-06-22 12:15:42', '$2y$10$9iywB2kiYsQK.ni49KdEm.E0EGuGXLd18rht98rqXycNz2/ASkHY2', NULL, NULL, '2019-06-22 15:15:42'),
+(75, 'valeriamanfria@gmail.com', 'Ojog5b', 'MERECEDES', 'ABOGADA', 'Valeria', 'MANFRIA MASSA', '2019-06-22 12:15:43', '$2y$10$2r1CN6MqepjhIttshzsWmes4Mb2fAsMPjbkq1qMsNTc3P2e7yBM0i', NULL, NULL, '2019-06-22 15:15:43'),
+(76, 'sb.gonzalo@hotmail.com', 'vMXus7', 'MORENO', 'ABOGADO', 'Jorge Gonzalo', 'SESSAREGO B.', '2019-06-22 12:15:43', '$2y$10$ygCBb8q47icNM8pAq.GjnOPRPBBrBpuWVdiScXedjt6hkI0zZZlO2', NULL, NULL, '2019-06-22 15:15:43'),
+(77, 'german.landgraf@gmail.com', 'vpWlN1', 'MORENO', 'ABOGADO', 'Germán', 'LANDGRAF', '2019-06-22 12:15:43', '$2y$10$RHPIzUlKP9yKxMZ9MV1KOORQv4JM9gD5p9VMMDT2.TKoak9045iLO', NULL, NULL, '2019-06-22 15:15:43'),
+(78, 'valtasan0910@gmail.com', 'firW8e', 'MORENO', 'PSICÓLOGA', 'VALERIA', 'SANCHEZ', '2019-06-22 12:15:43', '$2y$10$.JJUqVgRmaL6KmIkrDIKlu1ZoOrak7./ZTo4Apzbir/iJ3cK.a8cu', NULL, NULL, '2019-06-22 15:15:43'),
+(79, 'gomezmiguelangel12@yahoo.com.ar', '5bG7Zm', 'MORON', 'TRABAJADOR SOCIAL', 'Miguel Angel', 'GOMEZ', '2019-06-22 12:15:43', '$2y$10$/yr.mO49AOMyaRoY4uzhMOGNGg8AyLyvrZjvisSv51jaNqUYVI9Lm', NULL, NULL, '2019-06-22 15:15:43'),
+(80, 'jessin23@hotmail.com', '7xPLiE', 'MORON', 'ABOGADA', 'Yésica', 'IZARRIAGA', '2019-06-22 12:15:43', '$2y$10$lTkPUSGQ/Ok7IJXu0gncIutPwUYAbjqBvikb8x0r16KYnGhe.ZqcO', NULL, NULL, '2019-06-22 15:15:43'),
+(81, 'dralucero@live.com', 'YlBrEK', 'MORON', 'ABOGADA', 'Viviana', 'LUCERO', '2019-06-22 12:15:43', '$2y$10$WuYyb7sw6M7WpZuJCbFJzeY3E.P42doR3BOlegKkskAlEb5QA0/AW', NULL, NULL, '2019-06-22 15:15:43'),
+(82, 'isabel_men@hotmail.com', 'wbJNCo', 'MORON', 'PSICÓLOGA', 'Isabel', 'MENGHINI', '2019-06-22 12:15:44', '$2y$10$NL/dpSGvh5CdyjHEDjozuOaXBUIwYKLU6nHqO66dEpVmVy1bb46yO', NULL, NULL, '2019-06-22 15:15:44'),
+(83, 'malenap_@hotmail.com', 'Dfeloy', 'MORON', 'ADMINISTRATIVA', 'Malena', 'PEREZ SOTO', '2019-06-22 12:15:44', '$2y$10$imWb6TukJDYkjUL2xZoERe3miZ./42pLNWrixM3mYpt/dQfxkobq6', NULL, NULL, '2019-06-22 15:15:44'),
+(84, 'fantemanuel2@gmail.com', '8VujH5', 'PERGAMINO', 'TRABAJADOR SOCIAL', 'EMANUEL', 'FANTE', '2019-06-22 12:15:44', '$2y$10$4awRgbDyCjGh666dtZt/0Op4yBLuKN8eUFgzMo5CGiejHkk6kswLK', NULL, NULL, '2019-06-22 15:15:44'),
+(85, 'cecimarquiselli@hotmail.com', 'ordaWh', 'PERGAMINO', 'PSICÓLOGA', 'Cecilia', 'MARQUISELLI', '2019-06-22 12:15:44', '$2y$10$XnQh55zacU11ZvXejbAm9OLCHoEyRwF.YiQnAnvJY6RIei9uNucru', NULL, NULL, '2019-06-22 15:15:44'),
+(86, 'valentinapiccinimanfredini@gmail.com', 'Ug0xrA', 'PERGAMINO', 'ABOGADA', 'Valentina', 'PICCINI M.', '2019-06-22 12:15:44', '$2y$10$7Xr83OkPFrVpKSbyZxH8jeY.VF.J6VTg/rqwRy70z3JQB/ZW/NQ/W', NULL, NULL, '2019-06-22 15:15:44'),
+(87, 'dra.diazcecilia@gmail.com', 'j5Jad2', 'PILAR', 'ABOGADA', 'Cecilia', 'DIAZ', '2019-06-22 12:15:44', '$2y$10$oXhSvvgWjztO0IVY6b4gre6dSdn.wMkhgYMG7ZG9mpksfjvpQZwqa', NULL, NULL, '2019-06-22 15:15:44'),
+(88, 'barbara.ramallo.1980@outlook.com', 'LFyMkU', 'PILAR', 'TRABAJADORA SOCIAL', 'Bárbara Mariela', 'RAMALLO', '2019-06-22 12:15:45', '$2y$10$rxwL7YWC0npek5kGc.UVLeJKhac5mTZ0WJlX/8RMTek4PUeWOY6ye', NULL, NULL, '2019-06-22 15:15:45'),
+(89, 'mariana_sv3@hotmail.com', 'nP7tXV', 'PILAR', 'PSICÓLOGA', 'Mariana', 'SEMENZATO V.', '2019-06-22 12:15:45', '$2y$10$Fpitbkn2TaAVUHcUPVKp2OCOKIxZhY6zY5g.mhAQluPdw/bc71h/m', NULL, NULL, '2019-06-22 15:15:45'),
+(90, 'estudiojuridicodona@gmail.com', 'o1e4Gb', 'PINAMAR', 'ABOGADA', 'María José', 'DOÑA', '2019-06-22 12:15:45', '$2y$10$w8sLtrcDR81SYrwvFHT3NuuFCxQllwPFtSXpxQ2p8axHdU5swHa6K', NULL, NULL, '2019-06-22 15:15:45'),
+(91, 'matutaur2@hotmail.com', '2w4eqc', 'PINAMAR', 'PSICÓLOGA', 'Matilde', 'PAGGI', '2019-06-22 12:15:45', '$2y$10$4sh55Rlru4wfvkPBBmYZm.YbW.GeehNkypQkfRaF4h6FFMFlmLDGq', NULL, NULL, '2019-06-22 15:15:45'),
+(92, 'RIVEROMARIAJ@GMAIL.COM', '8YR6Uh', 'PINAMAR', 'PSICÓLOGA', 'María José', 'RIVERO', '2019-06-22 12:15:46', '$2y$10$9oyrHJBCl8jFY6yTZEDG3ebJ9BPsSKbgbYQJUR2Zkfy1E3gWL/kZG', NULL, NULL, '2019-06-22 15:15:46'),
+(93, 'alejandracaceres07@yahoo.com>', 'IRjKgU', 'QUILMES', 'TRABAJADORA SOCIAL', 'Alejandra', 'CACERES', '2019-06-22 12:15:46', '$2y$10$E4KSMem.Xrox7puhjjz12exTqSYM9lZSbbj7rIeTFheo3XYQt/sZe', NULL, NULL, '2019-06-22 15:15:46'),
+(94, 'palacios669@hotmail.com', 'dxlgeo', 'QUILMES', 'ADMINISTRATIVA', 'CAROLINA', 'PALACIOS', '2019-06-22 12:15:47', '$2y$10$txF4PY2rtGx2PhHQfQkNGejjxcprClKAeD5k5l.wV/Iq01YMAg1ui', NULL, NULL, '2019-06-22 15:15:47'),
+(95, 'rivarolamarinag@gmail.com', '7sNKbF', 'QUILMES', 'ABOGADA', 'Marina', 'RIVAROLA', '2019-06-22 12:15:47', '$2y$10$veOc81lf52v1.Djcf6dgu.JYaXXh46FVyqkiQsW7R7sdnTVQR/p4C', NULL, NULL, '2019-06-22 15:15:47'),
+(96, 'carolinavenosa@gmail.com', '0PzIy4', 'QUILMES', 'PSICÓLOGA', 'Carolina', 'VENOSA', '2019-06-22 12:15:47', '$2y$10$JWDa.lKNv8cBkkta7wpAG.3uUgPkm1zxy0/n2CuToX1zmtOWxN0L.', NULL, NULL, '2019-06-22 15:15:47'),
+(97, 'campiflorencia@hotmail.com', 'KkG1hB', 'SAN FERNANDO', 'ABOGADA', 'Florencia', 'CAMPI', '2019-06-22 12:15:47', '$2y$10$Zmzb1iQvPlr.EC8H8z.DYO3mEm8xT.KDsvN6uQHslBEHJnxMIowXK', NULL, NULL, '2019-06-22 15:15:47'),
+(98, 'midaverio@hotmail.com', 'F1EHp5', 'SAN FERNANDO', 'ADMINISTRATIVA', 'María Inés', 'DAVERIO', '2019-06-22 12:15:48', '$2y$10$d83CQjnAbgomkgE32Ps46.joeYOAnyK.3UjJG/R6OgBAb0Lr49XwG', 'xNJZWmmvzj3Bm23wHNLgUMCfLdOxTNHPJXClMBOpqmlugR5du5jzmAGKLvWG', NULL, '2019-06-22 15:15:48'),
+(99, 'jupa_8@hotmail.com', 'mZpUOa', 'SAN FERNANDO', 'PSICÓLOGA', 'María Julia', 'PALAVICINI', '2019-06-22 12:15:48', '$2y$10$oHEixVkRaPoEDTvDrzJwze18OHHBYTrrl0b19756SbAHBsdG/s0aW', NULL, NULL, '2019-06-22 15:15:48'),
+(100, 'veronicasoriano@yahoo.com', 'OmhLxr', 'SAN FERNANDO', 'ADMINISTRATIVA', 'Verónica', 'SORIANO', '2019-06-22 12:15:48', '$2y$10$eH4ZGvvmti1oC6swESIO.eqk1g49fJ582pJdoywWpYHjFHOJUijk2', NULL, NULL, '2019-06-22 15:15:48'),
+(101, 'carobusquier@yahoo.com.ar', 'rcOR5U', 'SAN MARTIN', 'PSICÓLOGA', 'Carolina', 'BUSQUIER', '2019-06-22 12:15:48', '$2y$10$OO.NgF5I3bEOFyr8g65dUeXU4BxxllFM286Eygk7n8vWXoRYK4bFm', NULL, NULL, '2019-06-22 15:15:48'),
+(102, 'daianabrendacordoba@yahoo.com.ar', 'OfQAkZ', 'SAN MARTIN', 'ABOGADA', 'Daiana', 'CORDOBA', '2019-06-22 12:15:48', '$2y$10$Y0jeTBaUqaUADSOf5tPPZuw9kmhyoH.rxkTamGDPYG6CmueOvqOe.', NULL, NULL, '2019-06-22 15:15:48'),
+(103, 'estudiodt@gmail.com', 'iQ8Cnu', 'SAN MARTIN', 'ABOGADO', 'Diego', 'DALLA TORRE', '2019-06-22 12:15:48', '$2y$10$Syod/qbwqS6auZlBQ2abMuV.4sSPPd.eaafbIeZJWMPkMAfR7azKu', NULL, NULL, '2019-06-22 15:15:48'),
+(104, 'loremagista@gmail.com', 'L29IPp', 'SAN MARTIN', 'ADMINISTRATIVA', 'Lorena', 'MAGISTA', '2019-06-22 12:15:49', '$2y$10$s4yyEB179Jx5Nf.T.GVQMeuIZb26u90Qn.DbEOZrx.UnErlZlb5BO', NULL, NULL, '2019-06-22 15:15:49'),
+(105, 'alcuazm@hotmail.com', 'Va3AWF', 'TANDIL', 'ABOGADA', 'Micaela', 'ALCUAZ', '2019-06-22 12:15:49', '$2y$10$Syor6nEInBtTEyfAd1NkvOuod2khfbHvk/tZ0hriQ5JU/G.iob5Bu', NULL, NULL, '2019-06-22 15:15:49'),
+(106, 'casilvana@hotmail.com', 'VRkbEQ', 'TANDIL', 'PSICÓLOGA', 'Silvana', 'CERDA', '2019-06-22 12:15:49', '$2y$10$x4GrO09KomzB43SNamput.96ESaSR0e2tOxHxg6ynLy1HExk1zIg.', NULL, NULL, '2019-06-22 15:15:49'),
+(107, 'alicia_rubilar@hotmail.com', 'eCsl3q', 'TANDIL', 'TRABAJADORA SOCIAL', 'Alicia', 'RUBILAR', '2019-06-22 12:15:49', '$2y$10$.jteCIvWQLZAvw8M04BMPuntRq7Twd0Spluo5OAij294AfSSsyN5C', NULL, NULL, '2019-06-22 15:15:49'),
+(108, 'verocracea@yahoo.com', 'PHWdel', 'VICENTE LOPEZ', 'PSICÓLOGA', 'Verónica', 'ATTALA', '2019-06-22 12:15:49', '$2y$10$H57Smy8cfUPWe1YPilUmZuxYexgNBgWeguibZpAzor6CdDm2G9/X2', NULL, NULL, '2019-06-22 15:15:49'),
+(109, 'lutipirovani@hotmail.com', 'ycvTUC', 'VICENTE LOPEZ', 'ABOGADA', 'Lucía', 'PIROVANI', '2019-06-22 12:15:49', '$2y$10$sQWix8oI2oeGelAdj/JY4ucV9KS.q7QYETS0YvODP6J4XVLDLTBn2', NULL, NULL, '2019-06-22 15:15:49'),
+(110, 'pablo.porubsky@gmail.com', 'TJQNR8', 'VICENTE LOPEZ', 'ABOGADO', 'Pablo', 'PORUBSKY', '2019-06-22 12:15:49', '$2y$10$jXficnJFwb1xwDF7SBbS3uwK3rNA/EGfQJi3ebdhO1pZ4k1YieXpq', NULL, NULL, '2019-06-22 15:15:49'),
+(111, 'nataliacribelli@hotmail.com.a', 'jEsXUe', 'ZARATE', 'PSICÓLOGA', 'Natalia', 'CRIBELLI', '2019-06-22 12:15:49', '$2y$10$Ky2Oh/U97In6Xke45Pmipuwqn9.plD9Hlj3DzhE1dI80SWeVzLlA2', NULL, NULL, '2019-06-22 15:15:49'),
+(112, 'l.fraccarolli@live.com', 'z5bVZ6', 'ZARATE', 'ABOGADA', 'Lucía', 'FRACCAROLLI', '2019-06-22 12:15:50', '$2y$10$goJ9SwoUc/VSZNOuJPDK3.tM8caQl5WZRDx4NJMGxG8QV42oEKG3y', NULL, NULL, '2019-06-22 15:15:50'),
+(113, 'minuccisol@gmail.com', 'FHjJDu', 'BAHIA BLANCA', 'TRABAJADORA SOCIAL', 'Solange', 'MINUCCI', '2019-06-22 12:15:50', '$2y$10$eAAd.Yp6DxNqiBseg0DmuurS.eebtsRSa8116eNJOck2PCvmn/LhW', NULL, NULL, '2019-06-22 15:15:50'),
+(114, 'ignacioklena@hotmail.com', 'Hi7nOf', 'LA PLATA', 'ABOGADO', 'Ignacio ', 'KLENA', '2019-06-22 12:17:46', '$2y$10$cTL2/wf7HWbafSHHkTEWDeTSapbHFrXAItgFKK7M3zTviTRWc3foC', 'pzEk2KfDRudSj0WwFU8ZymiWUbuC9GQ0qnKcxg5feccoejrJVCUHKIrebpV7', NULL, '2019-06-22 15:15:50'),
+(115, 'mariaemiliamathe@gmail.com', 'pl0b2y', 'SAN ISIDRO', 'ABOGADA', 'Maria Emilia', 'MATHE', '2019-06-22 12:15:50', '$2y$10$LZmqHoRfxAJYVxOGudS2h.z.Ui8PYtJMedBdAzy7fofhbvqzaRV0y', NULL, NULL, '2019-06-22 15:15:50'),
+(116, 'xul27@hotmail.com', 'rkO7YM', 'LA PLATA', 'DIRECTORA', 'LUCKY', 'SANCHEZ', '2019-06-22 12:18:08', '$2y$10$UIrSeWrudD6CdWbXISFf3eKzlbNE7.7zL.0HLAFT7Y9rJcPGFY7ZS', 'p5ERez6Fjm9GEGRxXxgxYTxeh6xswJbQsheuecqaTptibNGiajdgG5xfBpoX', NULL, '2019-06-22 15:15:50');
 
 -- --------------------------------------------------------
 
@@ -5942,6 +6025,7 @@ CREATE TABLE `usuarios` (
   `sede` varchar(255) DEFAULT NULL,
   `area` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
+  `NewPass` varchar(255) NOT NULL,
   `rol` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -5949,122 +6033,122 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre_y_apellido`, `sede`, `area`, `email`, `rol`) VALUES
-(1, 'Veronica Haydeé BINCAZ -DIRECTORA PROVINCIAL ', 'LA PLATA ', 'DIRECTORA PROVINCIAL ', 'VEROBINCAZ@hotmail.com ', 1),
-(2, 'LUCIA TEALDI-DIRECTORA DE SEDES DECENTRALIZADAS ', 'LA PLATA ', 'DIRECTORA DE SEDES DECENTRALIZADAS ', 'lic.juanbombelli@gmail.com', 1),
-(3, 'Juan Ignacio BOMBELLI-DIRECTOR DE ASISTENCIA Y PROTECCIÓN A LA VÍCTIMA ', 'LA PLATA ', 'DIRECTOR DE ASISTENCIA Y PROTECCIÓN A LA VÍCTIMA ', 'tealdi.lucia@gmail.com', 1),
-(4, 'Romina BENITEZ-PSICÓLOGA ', 'ALTE. BRWON ', 'PSICÓLOGA ', 'rominabenitezar@hotmail.com', 3),
-(5, 'Verónica PEREZ  -TRABAJADORA SOCIAL ', 'ALTE. BRWON ', 'TRABAJADORA SOCIAL ', 'veritoapc@hotmail.com', 3),
-(6, 'Norberto RICCO -ABOGADO ', 'ALTE. BRWON ', 'ABOGADO ', 'norbertoricco@hotmail.com', 3),
-(7, 'María Florencia ARAMBURU-ABOGADA ', 'AZUL ', 'ABOGADA ', 'mflorencia_aramburu@hotmail.com', 3),
-(8, 'Josefina CASADO-PSICÓLOGA ', 'AZUL ', 'PSICÓLOGA ', 'josefina.casado@gmail.com', 3),
-(9, 'María Jimena CIAPPINA-TRABAJADORA SOCIAL ', 'AZUL ', 'TRABAJADORA SOCIAL ', 'jime_ciappina@hotmail.com', 3),
-(10, 'Ignacio Armando BARSELLINI-ABOGADO ', 'BAHIA BLANCA ', 'ABOGADO ', 'ignaciobarsellini@estudiobarsellini.com', 3),
-(11, 'Martín IGLESIA-ADMINISTRATIVO ', 'BAHIA BLANCA ', 'ADMINISTRATIVO ', 'iglesiabraun@hotmail.com.ar', 2),
-(12, 'Ana Catalina OTERO D.-PSICÓLOGA ', 'BAHIA BLANCA ', 'PSICÓLOGA ', 'catalinaotero.bblanca@gmail.com', 3),
-(13, 'Mariela FORNARI-TRABAJADORA SOCIAL ', 'EZEIZA ', 'TRABAJADORA SOCIAL ', 'mariela_delf@hotmail.com', 3),
-(14, 'Noelia LOMBARDO-ABOGADA ', 'EZEIZA ', 'ABOGADA ', 'noeliadlombardo@gmail.com', 3),
-(15, 'Gladys Mabel MATTHESIUS-PSICÓLOGA ', 'EZEIZA ', 'PSICÓLOGA ', 'gmatthesius@hotmail.com', 3),
-(16, 'María Soledad CORTES-ABOGADA ', 'JOSE C. PAZ ', 'ABOGADA ', 'cortes.m.soledad@gmail.com', 3),
-(17, 'Alicia MICHELA-PSICÓLOGA ', 'JOSE C. PAZ ', 'PSICÓLOGA ', 'alimichela@hotmail.com', 3),
-(18, 'Soledad Anabela ROMERO-TRABAJADORA SOCIAL ', 'JOSE C. PAZ ', 'TRABAJADORA SOCIAL ', 'anabela_romero_03@hotmail.com', 3),
-(19, 'Giulietta CUOZZO-PSICÓLOGA ', 'LA MATANZA ', 'PSICÓLOGA ', 'giuliettacuozzo@hotmail.com', 3),
-(20, 'Jesica CRUZ-TRABAJADORA SOCIAL ', 'LA MATANZA ', 'TRABAJADORA SOCIAL ', 'jecru@yahoo.com.ar', 3),
-(21, 'AGUSTINA A. IRIONDO-PSICÓLOGA ', 'LA MATANZA ', 'PSICÓLOGA ', 'agustina.iriondo@hotmail.es', 3),
-(22, 'Rafaela Mariel Velazquez-ABOGADA ', 'LA MATANZA ', 'ABOGADA ', 'mariel_velazquez@hotmail.com.ar', 3),
-(23, 'Jorge APECECHEA-ABOGADO ', 'LA PLATA ', 'ABOGADO ', 'rjapecechea@gmail.com', 3),
-(24, 'Julieta Anahí ARAGUES-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'julietapsi@gmail.com', 3),
-(25, 'Veronica Haydeé ARDOHAIN-TRABAJADORA SOCIAL ', 'LA PLATA ', 'TRABAJADORA SOCIAL ', 'veronica.ardohain76@gmail.com', 3),
-(26, 'Agustín BEJARANO-ADMINISTRATIVO ', 'LA PLATA ', 'ADMINISTRATIVO ', 'elbeca_81@hotmail.com', 2),
-(27, 'Maia Yésica CALABRESE-EQUIPO DIRECCIÓN ', 'LA PLATA ', 'EQUIPO DIRECCIÓN ', 'maiacalabrese85@gmail.com', 1),
-(28, 'Maria Lujan CICCONI-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'marialujancic@gmail.com', 3),
-(29, 'Lucia COMPAGNUCCI-EQUIPO DIRECCIÓN ', 'LA PLATA ', 'EQUIPO DIRECCIÓN ', 'lu.comp1989@gmail.com', 1),
-(30, 'Rosario Leontina CUCCIA-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'rocuccia@hotmail.com', 3),
-(31, 'Agustina Soledad DE ANDREIS-ADMINISTRATIVA ', 'LA PLATA ', 'ADMINISTRATIVA ', 'deandreisagustina@gmail.com', 2),
-(32, 'Lucía DE ANTONI-ADMINISTRATIVA ', 'LA PLATA ', 'ADMINISTRATIVA ', 'ludeantoni@hotmail.com', 2),
-(33, 'Juan Francisco DI NARDO-ABOGADO ', 'LA PLATA ', 'ABOGADO ', 'juanfdinardo@gmail.com', 3),
-(34, ' María Carolina GASSULL-ADMINISTRATIVA ', 'LA PLATA ', 'ADMINISTRATIVA ', 'carogassull@gmail.com', 2),
-(35, 'Andrea Daniela GIACOMINO-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'andreagiacomino04@yahoo.com.ar', 3),
-(36, 'Dante Bautista GUILIANI-ADMINISTRATIVO ', 'LA PLATA ', 'ADMINISTRATIVO ', 'dantegiu@yahoo.com.ar', 2),
-(37, 'Azul LABALTA R.-ABOGADA ', 'LA PLATA ', 'ABOGADA ', 'azul.labalta@gmail.com', 3),
-(38, 'Milagros Aldana LUAYZA T.-ABOGADA ', 'LA PLATA ', 'ABOGADA ', 'MilagrosLuayza@hotmail.com', 3),
-(39, 'Martín Darío MAC LOUGHLIN-ADMINISTRATIVO ', 'LA PLATA ', 'ADMINISTRATIVO ', 'macloughlinmartin@gmail.com', 2),
-(40, 'Luciano MACIEL-PSICÓLOGO ', 'LA PLATA ', 'PSICÓLOGO ', 'lucianomac@gmail.com', 3),
-(41, 'Sebastián  MACUCHO-ADMINISTRATIVO ', 'LA PLATA ', 'ADMINISTRATIVO ', 'slommac@hotmail.com', 2),
-(42, 'Verónica Isabel MARTINUZZI R.-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'veropsicol@hotmail.com', 3),
-(43, 'Silvio Gabriel MONTI-PSICÓLOGO ', 'LA PLATA ', 'PSICÓLOGO ', 'silviomonti@gmail.com', 3),
-(44, 'Agustín MONTONE-ADMINISTRATIVO ', 'LA PLATA ', 'ADMINISTRATIVO ', 'agus_montone@hotmail.com', 2),
-(45, 'Eliana Silvina MORRONE-PSICÓLOGO ', 'LA PLATA ', 'PSICÓLOGO ', 'elimorrone@gmail.com', 3),
-(46, 'Lisandro Ariel PANELLI-ABOGADO ', 'LA PLATA ', 'ABOGADO ', 'lisandropanelli@gmail.com', 3),
-(47, 'Héctor Rubén PELLEGRINI-ADMINISTRATIVO ', 'LA PLATA ', 'ADMINISTRATIVO ', 'cuchipellegrini@hotmail.com', 2),
-(48, 'Guillermina RISSO-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'guillerisso@hotmail.com', 3),
-(49, 'Vanina Eleonora SEMINARA-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'vaninaseminara@hotmail.com', 3),
-(50, 'M. PATRICIA RACK-TRABAJADORA SOCIAL ', 'LA PLATA ', 'TRABAJADORA SOCIAL ', 'patriciarack@gmail.com', 3),
-(51, 'Valeria SOTO-TRABAJADORA SOCIAL ', 'LA PLATA ', 'TRABAJADORA SOCIAL ', 'valerinasoto12@gmail.com', 3),
-(52, 'Maria Guadalupe SOSA-ADMINISTRATIVA ', 'LA PLATA ', 'ADMINISTRATIVA ', 'cpvconsultadir@gmail.com', 2),
-(53, 'María Candela SERVIN-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'candeservin@gmail.com', 3),
-(54, 'Paula STROPPOLO-ADMINISTRATIVA ', 'LA PLATA ', 'ADMINISTRATIVA ', 'paustroppolo25@hotmail.com', 2),
-(55, 'Jacqueline Melina SULAS-ADMINISTRATIVA ', 'LA PLATA ', 'ADMINISTRATIVA ', 'meelinasulasguzman@gmail.com', 2),
-(56, 'Alfonso VICINANZAS-ABOGADO ', 'LA PLATA ', 'ABOGADO ', 'alfonsovicinanza@yahoo.com.ar', 3),
-(57, 'Laura LOGRIEGO-ABOGADA ', 'LANUS ', 'ABOGADA ', 'laura_logriego@yahoo.com.ar', 3),
-(58, 'Ramona RUIZ DIAZ-TRABAJADORA SOCIAL ', 'LANUS ', 'TRABAJADORA SOCIAL ', 'ramonaruizdiaz@hotmail.com', 3),
-(59, 'María Victoria TEMUDIO-PSICÓLOGA ', 'LANUS ', 'PSICÓLOGA ', 'mvtemudio@hotmail.com', 3),
-(60, 'María Alejandra ARRIETA-ADMINISTRATIVA ', 'LOMAS Z. ', 'ADMINISTRATIVA ', 'malearrieta76@hotmail.com', 2),
-(61, 'Analía GALLO-PSICÓLOGA ', 'LOMAS Z. ', 'PSICÓLOGA ', 'ana_liagallo@yahoo.com.ar', 3),
-(62, 'Virginia GALVAN-TRABAJADORA SOCIAL ', 'LOMAS Z. ', 'TRABAJADORA SOCIAL ', 'galvanvirginia@yahoo.com.ar', 3),
-(63, 'Natalia JOFRE-ABOGADA ', 'LOMAS Z. ', 'ABOGADA ', 'nataliajofre22@gmail.com', 3),
-(64, 'Mariciel ORDOÑEZ-TRABAJADORA SOCIAL ', 'LOS TOLDOS ', 'TRABAJADORA SOCIAL ', 'ordoñez.sol85@gmail.com', 3),
-(65, 'LIA SANCHEZ-PSICÓLOGA ', 'LOS TOLDOS ', 'PSICÓLOGA ', 'lia_sanchez8@yahoo.com.ar', 3),
-(66, 'María Belén TAGLIAFERRO-PSICÓLOGA ', 'LOS TOLDOS ', 'PSICÓLOGA ', 'cpvgralviamonte@hotmail.com', 3),
-(67, 'Natalia CASCARDO-PSICÓLOGA ', 'MAR DEL PLATA ', 'PSICÓLOGA ', 'natalia_cascardo@hotmail.com', 3),
-(68, 'Mónica DI MAURO-ADMINISTRATIVA ', 'MAR DEL PLATA ', 'ADMINISTRATIVA ', 'monidimauro@hotmail.com', 2),
-(69, 'Patricio HORN-ABOGADO ', 'MAR DEL PLATA ', 'ABOGADO ', 'patriciohorn@hotmail.com', 3),
-(70, ' José Luis MARTINS-ABOGADO ', 'MAR DEL PLATA ', 'ABOGADO ', 'joseluismartins@hotmail.com', 3),
-(71, 'Luz MUÑIZ-TRABAJADORA SOCIAL ', 'MAR DEL PLATA ', 'TRABAJADORA SOCIAL ', 'luz_22_mm@hotmail.com', 3),
-(72, 'Florencia NOVELLO-PSICÓLOGA ', 'MAR DEL PLATA ', 'PSICÓLOGA ', 'florencianovello@yahoo.com.ar', 3),
-(73, 'Catalina ESPIL-PSICÓLOGA ', 'MERCEDES ', 'PSICÓLOGA ', 'catalinaespil@hotmail.com', 3),
-(74, 'María Pía FRATTINI-TRABAJADORA SOCIAL ', 'MERCEDES ', 'TRABAJADORA SOCIAL ', 'pia.frattini@hotmail.com', 3),
-(75, 'Valeria MANFRIA MASSA-ABOGADA ', 'MERECEDES ', 'ABOGADA ', 'valeriamanfria@gmail.com', 3),
-(76, 'Jorge Gonzalo SESSAREGO B.-ABOGADO ', 'MORENO ', 'ABOGADO ', 'sb.gonzalo@hotmail.com', 3),
-(77, 'Germán LANDGRAF-ABOGADO ', 'MORENO ', 'ABOGADO ', 'german.landgraf@gmail.com', 3),
-(78, 'VALERIA SANCHEZ-PSICÓLOGA ', 'MORENO ', 'PSICÓLOGA ', 'valtasan0910@gmail.com', 3),
-(79, 'Miguel Angel GOMEZ-TRABAJADOR SOCIAL ', 'MORON ', 'TRABAJADOR SOCIAL ', 'gomezmiguelangel12@yahoo.com.ar', 3),
-(80, 'Yésica IZARRIAGA-ABOGADA ', 'MORON ', 'ABOGADA ', 'jessin23@hotmail.com', 3),
-(81, 'Viviana LUCERO-ABOGADA ', 'MORON ', 'ABOGADA ', 'dralucero@live.com', 3),
-(82, 'Isabel MENGHINI-PSICÓLOGA ', 'MORON ', 'PSICÓLOGA ', 'isabel_men@hotmail.com', 3),
-(83, 'Malena PEREZ SOTO-ADMINISTRATIVA ', 'MORON ', 'ADMINISTRATIVA ', 'malenap_@hotmail.com', 2),
-(84, 'EMANUEL FANTE-TRABAJADOR SOCIAL ', 'PERGAMINO ', 'TRABAJADOR SOCIAL ', 'fantemanuel2@gmail.com', 3),
-(85, 'Cecilia MARQUISELLI-PSICÓLOGA ', 'PERGAMINO ', 'PSICÓLOGA ', 'cecimarquiselli@hotmail.com', 3),
-(86, 'Valentina PICCINI M.-ABOGADA ', 'PERGAMINO ', 'ABOGADA ', 'valentinapiccinimanfredini@gmail.com', 3),
-(87, 'Cecilia DIAZ-ABOGADA ', 'PILAR ', 'ABOGADA ', 'dra.diazcecilia@gmail.com', 3),
-(88, 'Bárbara Mariela RAMALLO-TRABAJADORA SOCIAL ', 'PILAR ', 'TRABAJADORA SOCIAL ', 'barbara.ramallo.1980@outlook.com', 3),
-(89, 'Mariana SEMENZATO V.-PSICÓLOGA ', 'PILAR ', 'PSICÓLOGA ', 'mariana_sv3@hotmail.com', 3),
-(90, 'María José DOÑA-ABOGADA ', 'PINAMAR ', 'ABOGADA ', 'estudiojuridicodona@gmail.com', 3),
-(91, 'Matilde PAGGI-PSICÓLOGA ', 'PINAMAR ', 'PSICÓLOGA ', 'matutaur2@hotmail.com', 3),
-(92, 'María José RIVERO-PSICÓLOGA ', 'PINAMAR ', 'PSICÓLOGA ', 'RIVEROMARIAJ@GMAIL.COM', 3),
-(93, 'Alejandra CACERES-TRABAJADORA SOCIAL ', 'QUILMES ', 'TRABAJADORA SOCIAL ', 'alejandracaceres07@yahoo.com>', 3),
-(94, 'CAROLINA PALACIOS-ADMINISTRATIVA ', 'QUILMES ', 'ADMINISTRATIVA ', 'palacios669@hotmail.com', 2),
-(95, 'Marina RIVAROLA-ABOGADA ', 'QUILMES ', 'ABOGADA ', 'rivarolamarinag@gmail.com', 3),
-(96, 'Carolina VENOSA-PSICÓLOGA ', 'QUILMES ', 'PSICÓLOGA ', 'carolinavenosa@gmail.com', 3),
-(97, 'Florencia CAMPI-ABOGADA ', 'SAN FERNANDO ', 'ABOGADA ', 'campiflorencia@hotmail.com', 3),
-(98, 'María Inés DAVERIO-ADMINISTRATIVA ', 'SAN FERNANDO ', 'ADMINISTRATIVA ', 'midaverio@hotmail.com', 2),
-(99, 'María Julia PALAVICINI-PSICÓLOGA ', 'SAN FERNANDO ', 'PSICÓLOGA ', 'jupa_8@hotmail.com', 3),
-(100, 'Verónica SORIANO-ADMINISTRATIVA ', 'SAN FERNANDO ', 'ADMINISTRATIVA ', 'veronicasoriano@yahoo.com', 2),
-(101, 'Carolina BUSQUIER-PSICÓLOGA ', 'SAN MARTIN ', 'PSICÓLOGA ', 'carobusquier@yahoo.com.ar', 3),
-(102, 'Daiana CORDOBA-ABOGADA ', 'SAN MARTIN ', 'ABOGADA ', 'daianabrendacordoba@yahoo.com.ar', 3),
-(103, 'Diego DALLA TORRE-ABOGADO ', 'SAN MARTIN ', 'ABOGADO ', 'estudiodt@gmail.com', 3),
-(104, 'Lorena MAGISTA-ADMINISTRATIVA ', 'SAN MARTIN ', 'ADMINISTRATIVA ', 'loremagista@gmail.com', 2),
-(105, 'Micaela ALCUAZ-ABOGADA ', 'TANDIL ', 'ABOGADA ', 'alcuazm@hotmail.com', 3),
-(106, 'Silvana CERDA-PSICÓLOGA ', 'TANDIL ', 'PSICÓLOGA ', 'casilvana@hotmail.com', 3),
-(107, 'Alicia RUBILAR-TRABAJADORA SOCIAL ', 'TANDIL ', 'TRABAJADORA SOCIAL ', 'alicia_rubilar@hotmail.com', 3),
-(108, 'Verónica ATTALA-PSICÓLOGA ', 'VICENTE LOPEZ ', 'PSICÓLOGA ', 'verocracea@yahoo.com', 3),
-(109, 'Lucía PIROVANI-ABOGADA ', 'VICENTE LOPEZ ', 'ABOGADA ', 'lutipirovani@hotmail.com', 3),
-(110, 'Pablo PORUBSKY-ABOGADO ', 'VICENTE LOPEZ ', 'ABOGADO ', 'pablo.porubsky@gmail.com', 3),
-(111, 'Natalia CRIBELLI-PSICÓLOGA ', 'ZARATE ', 'PSICÓLOGA ', 'nataliacribelli@hotmail.com.a', 3),
-(112, 'Lucía FRACCAROLLI-ABOGADA ', 'ZARATE ', 'ABOGADA ', 'l.fraccarolli@live.com', 3),
-(113, 'Solange MINUCCI-TRABAJADORA SOCIAL ', 'BAHIA BLANCA ', 'TRABAJADORA SOCIAL ', 'minuccisol@gmail.com', 3),
-(114, 'Ignacio  KLENA-ABOGADO ', 'LA PLATA ', 'ABOGADO ', 'ignacioklena@hotmail.com', 3),
-(115, 'Maria Emilia MATHE-ABOGADA ', 'SAN ISIDRO ', 'ABOGADA ', 'mariaemiliamathe@gmail.com', 3);
+INSERT INTO `usuarios` (`id`, `nombre_y_apellido`, `sede`, `area`, `email`, `NewPass`, `rol`) VALUES
+(1, 'Veronica Haydeé BINCAZ -DIRECTORA PROVINCIAL ', 'LA PLATA ', 'DIRECTORA PROVINCIAL ', 'VEROBINCAZ@hotmail.com ', '', 1),
+(2, 'LUCIA TEALDI-DIRECTORA DE SEDES DECENTRALIZADAS ', 'LA PLATA ', 'DIRECTORA DE SEDES DECENTRALIZADAS ', 'lic.juanbombelli@gmail.com', '', 1),
+(3, 'Juan Ignacio BOMBELLI-DIRECTOR DE ASISTENCIA Y PROTECCIÓN A LA VÍCTIMA ', 'LA PLATA ', 'DIRECTOR DE ASISTENCIA Y PROTECCIÓN A LA VÍCTIMA ', 'tealdi.lucia@gmail.com', '', 1),
+(4, 'Romina BENITEZ-PSICÓLOGA ', 'ALTE. BRWON ', 'PSICÓLOGA ', 'rominabenitezar@hotmail.com', '', 3),
+(5, 'Verónica PEREZ  -TRABAJADORA SOCIAL ', 'ALTE. BRWON ', 'TRABAJADORA SOCIAL ', 'veritoapc@hotmail.com', '', 3),
+(6, 'Norberto RICCO -ABOGADO ', 'ALTE. BRWON ', 'ABOGADO ', 'norbertoricco@hotmail.com', '', 3),
+(7, 'María Florencia ARAMBURU-ABOGADA ', 'AZUL ', 'ABOGADA ', 'mflorencia_aramburu@hotmail.com', '', 3),
+(8, 'Josefina CASADO-PSICÓLOGA ', 'AZUL ', 'PSICÓLOGA ', 'josefina.casado@gmail.com', '', 3),
+(9, 'María Jimena CIAPPINA-TRABAJADORA SOCIAL ', 'AZUL ', 'TRABAJADORA SOCIAL ', 'jime_ciappina@hotmail.com', '', 3),
+(10, 'Ignacio Armando BARSELLINI-ABOGADO ', 'BAHIA BLANCA ', 'ABOGADO ', 'ignaciobarsellini@estudiobarsellini.com', '', 3),
+(11, 'Martín IGLESIA-ADMINISTRATIVO ', 'BAHIA BLANCA ', 'ADMINISTRATIVO ', 'iglesiabraun@hotmail.com.ar', '', 2),
+(12, 'Ana Catalina OTERO D.-PSICÓLOGA ', 'BAHIA BLANCA ', 'PSICÓLOGA ', 'catalinaotero.bblanca@gmail.com', '', 3),
+(13, 'Mariela FORNARI-TRABAJADORA SOCIAL ', 'EZEIZA ', 'TRABAJADORA SOCIAL ', 'mariela_delf@hotmail.com', '', 3),
+(14, 'Noelia LOMBARDO-ABOGADA ', 'EZEIZA ', 'ABOGADA ', 'noeliadlombardo@gmail.com', '', 3),
+(15, 'Gladys Mabel MATTHESIUS-PSICÓLOGA ', 'EZEIZA ', 'PSICÓLOGA ', 'gmatthesius@hotmail.com', '', 3),
+(16, 'María Soledad CORTES-ABOGADA ', 'JOSE C. PAZ ', 'ABOGADA ', 'cortes.m.soledad@gmail.com', '', 3),
+(17, 'Alicia MICHELA-PSICÓLOGA ', 'JOSE C. PAZ ', 'PSICÓLOGA ', 'alimichela@hotmail.com', '', 3),
+(18, 'Soledad Anabela ROMERO-TRABAJADORA SOCIAL ', 'JOSE C. PAZ ', 'TRABAJADORA SOCIAL ', 'anabela_romero_03@hotmail.com', '', 3),
+(19, 'Giulietta CUOZZO-PSICÓLOGA ', 'LA MATANZA ', 'PSICÓLOGA ', 'giuliettacuozzo@hotmail.com', '', 3),
+(20, 'Jesica CRUZ-TRABAJADORA SOCIAL ', 'LA MATANZA ', 'TRABAJADORA SOCIAL ', 'jecru@yahoo.com.ar', '', 3),
+(21, 'AGUSTINA A. IRIONDO-PSICÓLOGA ', 'LA MATANZA ', 'PSICÓLOGA ', 'agustina.iriondo@hotmail.es', '', 3),
+(22, 'Rafaela Mariel Velazquez-ABOGADA ', 'LA MATANZA ', 'ABOGADA ', 'mariel_velazquez@hotmail.com.ar', '', 3),
+(23, 'Jorge APECECHEA-ABOGADO ', 'LA PLATA ', 'ABOGADO ', 'rjapecechea@gmail.com', '', 3),
+(24, 'Julieta Anahí ARAGUES-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'julietapsi@gmail.com', '', 3),
+(25, 'Veronica Haydeé ARDOHAIN-TRABAJADORA SOCIAL ', 'LA PLATA ', 'TRABAJADORA SOCIAL ', 'veronica.ardohain76@gmail.com', '', 3),
+(26, 'Agustín BEJARANO-ADMINISTRATIVO ', 'LA PLATA ', 'ADMINISTRATIVO ', 'elbeca_81@hotmail.com', '', 2),
+(27, 'Maia Yésica CALABRESE-EQUIPO DIRECCIÓN ', 'LA PLATA ', 'EQUIPO DIRECCIÓN ', 'maiacalabrese85@gmail.com', '', 1),
+(28, 'Maria Lujan CICCONI-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'marialujancic@gmail.com', '', 3),
+(29, 'Lucia COMPAGNUCCI-EQUIPO DIRECCIÓN ', 'LA PLATA ', 'EQUIPO DIRECCIÓN ', 'lu.comp1989@gmail.com', '', 1),
+(30, 'Rosario Leontina CUCCIA-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'rocuccia@hotmail.com', '', 3),
+(31, 'Agustina Soledad DE ANDREIS-ADMINISTRATIVA ', 'LA PLATA ', 'ADMINISTRATIVA ', 'deandreisagustina@gmail.com', '', 2),
+(32, 'Lucía DE ANTONI-ADMINISTRATIVA ', 'LA PLATA ', 'ADMINISTRATIVA ', 'ludeantoni@hotmail.com', '', 2),
+(33, 'Juan Francisco DI NARDO-ABOGADO ', 'LA PLATA ', 'ABOGADO ', 'juanfdinardo@gmail.com', '', 3),
+(34, ' María Carolina GASSULL-ADMINISTRATIVA ', 'LA PLATA ', 'ADMINISTRATIVA ', 'carogassull@gmail.com', '', 2),
+(35, 'Andrea Daniela GIACOMINO-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'andreagiacomino04@yahoo.com.ar', '', 3),
+(36, 'Dante Bautista GUILIANI-ADMINISTRATIVO ', 'LA PLATA ', 'ADMINISTRATIVO ', 'dantegiu@yahoo.com.ar', '', 2),
+(37, 'Azul LABALTA R.-ABOGADA ', 'LA PLATA ', 'ABOGADA ', 'azul.labalta@gmail.com', '', 3),
+(38, 'Milagros Aldana LUAYZA T.-ABOGADA ', 'LA PLATA ', 'ABOGADA ', 'MilagrosLuayza@hotmail.com', '', 3),
+(39, 'Martín Darío MAC LOUGHLIN-ADMINISTRATIVO ', 'LA PLATA ', 'ADMINISTRATIVO ', 'macloughlinmartin@gmail.com', '', 2),
+(40, 'Luciano MACIEL-PSICÓLOGO ', 'LA PLATA ', 'PSICÓLOGO ', 'lucianomac@gmail.com', '', 3),
+(41, 'Sebastián  MACUCHO-ADMINISTRATIVO ', 'LA PLATA ', 'ADMINISTRATIVO ', 'slommac@hotmail.com', '', 2),
+(42, 'Verónica Isabel MARTINUZZI R.-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'veropsicol@hotmail.com', '', 3),
+(43, 'Silvio Gabriel MONTI-PSICÓLOGO ', 'LA PLATA ', 'PSICÓLOGO ', 'silviomonti@gmail.com', '', 3),
+(44, 'Agustín MONTONE-ADMINISTRATIVO ', 'LA PLATA ', 'ADMINISTRATIVO ', 'agus_montone@hotmail.com', '', 2),
+(45, 'Eliana Silvina MORRONE-PSICÓLOGO ', 'LA PLATA ', 'PSICÓLOGO ', 'elimorrone@gmail.com', '', 3),
+(46, 'Lisandro Ariel PANELLI-ABOGADO ', 'LA PLATA ', 'ABOGADO ', 'lisandropanelli@gmail.com', '', 3),
+(47, 'Héctor Rubén PELLEGRINI-ADMINISTRATIVO ', 'LA PLATA ', 'ADMINISTRATIVO ', 'cuchipellegrini@hotmail.com', '', 2),
+(48, 'Guillermina RISSO-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'guillerisso@hotmail.com', '', 3),
+(49, 'Vanina Eleonora SEMINARA-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'vaninaseminara@hotmail.com', '', 3),
+(50, 'M. PATRICIA RACK-TRABAJADORA SOCIAL ', 'LA PLATA ', 'TRABAJADORA SOCIAL ', 'patriciarack@gmail.com', '', 3),
+(51, 'Valeria SOTO-TRABAJADORA SOCIAL ', 'LA PLATA ', 'TRABAJADORA SOCIAL ', 'valerinasoto12@gmail.com', '', 3),
+(52, 'Maria Guadalupe SOSA-ADMINISTRATIVA ', 'LA PLATA ', 'ADMINISTRATIVA ', 'cpvconsultadir@gmail.com', '', 2),
+(53, 'María Candela SERVIN-PSICÓLOGA ', 'LA PLATA ', 'PSICÓLOGA ', 'candeservin@gmail.com', '', 3),
+(54, 'Paula STROPPOLO-ADMINISTRATIVA ', 'LA PLATA ', 'ADMINISTRATIVA ', 'paustroppolo25@hotmail.com', '', 2),
+(55, 'Jacqueline Melina SULAS-ADMINISTRATIVA ', 'LA PLATA ', 'ADMINISTRATIVA ', 'meelinasulasguzman@gmail.com', '', 2),
+(56, 'Alfonso VICINANZAS-ABOGADO ', 'LA PLATA ', 'ABOGADO ', 'alfonsovicinanza@yahoo.com.ar', '', 3),
+(57, 'Laura LOGRIEGO-ABOGADA ', 'LANUS ', 'ABOGADA ', 'laura_logriego@yahoo.com.ar', '', 3),
+(58, 'Ramona RUIZ DIAZ-TRABAJADORA SOCIAL ', 'LANUS ', 'TRABAJADORA SOCIAL ', 'ramonaruizdiaz@hotmail.com', '', 3),
+(59, 'María Victoria TEMUDIO-PSICÓLOGA ', 'LANUS ', 'PSICÓLOGA ', 'mvtemudio@hotmail.com', '', 3),
+(60, 'María Alejandra ARRIETA-ADMINISTRATIVA ', 'LOMAS Z. ', 'ADMINISTRATIVA ', 'malearrieta76@hotmail.com', '', 2),
+(61, 'Analía GALLO-PSICÓLOGA ', 'LOMAS Z. ', 'PSICÓLOGA ', 'ana_liagallo@yahoo.com.ar', '', 3),
+(62, 'Virginia GALVAN-TRABAJADORA SOCIAL ', 'LOMAS Z. ', 'TRABAJADORA SOCIAL ', 'galvanvirginia@yahoo.com.ar', '', 3),
+(63, 'Natalia JOFRE-ABOGADA ', 'LOMAS Z. ', 'ABOGADA ', 'nataliajofre22@gmail.com', '', 3),
+(64, 'Mariciel ORDOÑEZ-TRABAJADORA SOCIAL ', 'LOS TOLDOS ', 'TRABAJADORA SOCIAL ', 'ordoñez.sol85@gmail.com', '', 3),
+(65, 'LIA SANCHEZ-PSICÓLOGA ', 'LOS TOLDOS ', 'PSICÓLOGA ', 'lia_sanchez8@yahoo.com.ar', '', 3),
+(66, 'María Belén TAGLIAFERRO-PSICÓLOGA ', 'LOS TOLDOS ', 'PSICÓLOGA ', 'cpvgralviamonte@hotmail.com', '', 3),
+(67, 'Natalia CASCARDO-PSICÓLOGA ', 'MAR DEL PLATA ', 'PSICÓLOGA ', 'natalia_cascardo@hotmail.com', '', 3),
+(68, 'Mónica DI MAURO-ADMINISTRATIVA ', 'MAR DEL PLATA ', 'ADMINISTRATIVA ', 'monidimauro@hotmail.com', '', 2),
+(69, 'Patricio HORN-ABOGADO ', 'MAR DEL PLATA ', 'ABOGADO ', 'patriciohorn@hotmail.com', '', 3),
+(70, ' José Luis MARTINS-ABOGADO ', 'MAR DEL PLATA ', 'ABOGADO ', 'joseluismartins@hotmail.com', '', 3),
+(71, 'Luz MUÑIZ-TRABAJADORA SOCIAL ', 'MAR DEL PLATA ', 'TRABAJADORA SOCIAL ', 'luz_22_mm@hotmail.com', '', 3),
+(72, 'Florencia NOVELLO-PSICÓLOGA ', 'MAR DEL PLATA ', 'PSICÓLOGA ', 'florencianovello@yahoo.com.ar', '', 3),
+(73, 'Catalina ESPIL-PSICÓLOGA ', 'MERCEDES ', 'PSICÓLOGA ', 'catalinaespil@hotmail.com', '', 3),
+(74, 'María Pía FRATTINI-TRABAJADORA SOCIAL ', 'MERCEDES ', 'TRABAJADORA SOCIAL ', 'pia.frattini@hotmail.com', '', 3),
+(75, 'Valeria MANFRIA MASSA-ABOGADA ', 'MERECEDES ', 'ABOGADA ', 'valeriamanfria@gmail.com', '', 3),
+(76, 'Jorge Gonzalo SESSAREGO B.-ABOGADO ', 'MORENO ', 'ABOGADO ', 'sb.gonzalo@hotmail.com', '', 3),
+(77, 'Germán LANDGRAF-ABOGADO ', 'MORENO ', 'ABOGADO ', 'german.landgraf@gmail.com', '', 3),
+(78, 'VALERIA SANCHEZ-PSICÓLOGA ', 'MORENO ', 'PSICÓLOGA ', 'valtasan0910@gmail.com', '', 3),
+(79, 'Miguel Angel GOMEZ-TRABAJADOR SOCIAL ', 'MORON ', 'TRABAJADOR SOCIAL ', 'gomezmiguelangel12@yahoo.com.ar', '', 3),
+(80, 'Yésica IZARRIAGA-ABOGADA ', 'MORON ', 'ABOGADA ', 'jessin23@hotmail.com', '', 3),
+(81, 'Viviana LUCERO-ABOGADA ', 'MORON ', 'ABOGADA ', 'dralucero@live.com', '', 3),
+(82, 'Isabel MENGHINI-PSICÓLOGA ', 'MORON ', 'PSICÓLOGA ', 'isabel_men@hotmail.com', '', 3),
+(83, 'Malena PEREZ SOTO-ADMINISTRATIVA ', 'MORON ', 'ADMINISTRATIVA ', 'malenap_@hotmail.com', '', 2),
+(84, 'EMANUEL FANTE-TRABAJADOR SOCIAL ', 'PERGAMINO ', 'TRABAJADOR SOCIAL ', 'fantemanuel2@gmail.com', '', 3),
+(85, 'Cecilia MARQUISELLI-PSICÓLOGA ', 'PERGAMINO ', 'PSICÓLOGA ', 'cecimarquiselli@hotmail.com', '', 3),
+(86, 'Valentina PICCINI M.-ABOGADA ', 'PERGAMINO ', 'ABOGADA ', 'valentinapiccinimanfredini@gmail.com', '', 3),
+(87, 'Cecilia DIAZ-ABOGADA ', 'PILAR ', 'ABOGADA ', 'dra.diazcecilia@gmail.com', '', 3),
+(88, 'Bárbara Mariela RAMALLO-TRABAJADORA SOCIAL ', 'PILAR ', 'TRABAJADORA SOCIAL ', 'barbara.ramallo.1980@outlook.com', '', 3),
+(89, 'Mariana SEMENZATO V.-PSICÓLOGA ', 'PILAR ', 'PSICÓLOGA ', 'mariana_sv3@hotmail.com', '', 3),
+(90, 'María José DOÑA-ABOGADA ', 'PINAMAR ', 'ABOGADA ', 'estudiojuridicodona@gmail.com', '', 3),
+(91, 'Matilde PAGGI-PSICÓLOGA ', 'PINAMAR ', 'PSICÓLOGA ', 'matutaur2@hotmail.com', '', 3),
+(92, 'María José RIVERO-PSICÓLOGA ', 'PINAMAR ', 'PSICÓLOGA ', 'RIVEROMARIAJ@GMAIL.COM', '', 3),
+(93, 'Alejandra CACERES-TRABAJADORA SOCIAL ', 'QUILMES ', 'TRABAJADORA SOCIAL ', 'alejandracaceres07@yahoo.com>', '', 3),
+(94, 'CAROLINA PALACIOS-ADMINISTRATIVA ', 'QUILMES ', 'ADMINISTRATIVA ', 'palacios669@hotmail.com', '', 2),
+(95, 'Marina RIVAROLA-ABOGADA ', 'QUILMES ', 'ABOGADA ', 'rivarolamarinag@gmail.com', '', 3),
+(96, 'Carolina VENOSA-PSICÓLOGA ', 'QUILMES ', 'PSICÓLOGA ', 'carolinavenosa@gmail.com', '', 3),
+(97, 'Florencia CAMPI-ABOGADA ', 'SAN FERNANDO ', 'ABOGADA ', 'campiflorencia@hotmail.com', '', 3),
+(98, 'María Inés DAVERIO-ADMINISTRATIVA ', 'SAN FERNANDO ', 'ADMINISTRATIVA ', 'midaverio@hotmail.com', '', 2),
+(99, 'María Julia PALAVICINI-PSICÓLOGA ', 'SAN FERNANDO ', 'PSICÓLOGA ', 'jupa_8@hotmail.com', '', 3),
+(100, 'Verónica SORIANO-ADMINISTRATIVA ', 'SAN FERNANDO ', 'ADMINISTRATIVA ', 'veronicasoriano@yahoo.com', '', 2),
+(101, 'Carolina BUSQUIER-PSICÓLOGA ', 'SAN MARTIN ', 'PSICÓLOGA ', 'carobusquier@yahoo.com.ar', '', 3),
+(102, 'Daiana CORDOBA-ABOGADA ', 'SAN MARTIN ', 'ABOGADA ', 'daianabrendacordoba@yahoo.com.ar', '', 3),
+(103, 'Diego DALLA TORRE-ABOGADO ', 'SAN MARTIN ', 'ABOGADO ', 'estudiodt@gmail.com', '', 3),
+(104, 'Lorena MAGISTA-ADMINISTRATIVA ', 'SAN MARTIN ', 'ADMINISTRATIVA ', 'loremagista@gmail.com', '', 2),
+(105, 'Micaela ALCUAZ-ABOGADA ', 'TANDIL ', 'ABOGADA ', 'alcuazm@hotmail.com', '', 3),
+(106, 'Silvana CERDA-PSICÓLOGA ', 'TANDIL ', 'PSICÓLOGA ', 'casilvana@hotmail.com', '', 3),
+(107, 'Alicia RUBILAR-TRABAJADORA SOCIAL ', 'TANDIL ', 'TRABAJADORA SOCIAL ', 'alicia_rubilar@hotmail.com', '', 3),
+(108, 'Verónica ATTALA-PSICÓLOGA ', 'VICENTE LOPEZ ', 'PSICÓLOGA ', 'verocracea@yahoo.com', '', 3),
+(109, 'Lucía PIROVANI-ABOGADA ', 'VICENTE LOPEZ ', 'ABOGADA ', 'lutipirovani@hotmail.com', '', 3),
+(110, 'Pablo PORUBSKY-ABOGADO ', 'VICENTE LOPEZ ', 'ABOGADO ', 'pablo.porubsky@gmail.com', '', 3),
+(111, 'Natalia CRIBELLI-PSICÓLOGA ', 'ZARATE ', 'PSICÓLOGA ', 'nataliacribelli@hotmail.com.a', '', 3),
+(112, 'Lucía FRACCAROLLI-ABOGADA ', 'ZARATE ', 'ABOGADA ', 'l.fraccarolli@live.com', '', 3),
+(113, 'Solange MINUCCI-TRABAJADORA SOCIAL ', 'BAHIA BLANCA ', 'TRABAJADORA SOCIAL ', 'minuccisol@gmail.com', '', 3),
+(114, 'Ignacio  KLENA-ABOGADO ', 'LA PLATA ', 'ABOGADO ', 'ignacioklena@hotmail.com', '', 3),
+(115, 'Maria Emilia MATHE-ABOGADA ', 'SAN ISIDRO ', 'ABOGADA ', 'mariaemiliamathe@gmail.com', '', 3);
 
 -- --------------------------------------------------------
 
@@ -6095,7 +6179,14 @@ INSERT INTO `victima_discapacidad` (`id`, `victima_id`, `discapacidad_id`) VALUE
 (12, 45, 1),
 (13, 45, 2),
 (14, 45, 3),
-(15, 45, 4);
+(15, 45, 4),
+(18, 72, 1),
+(19, 72, 4),
+(20, 70, 1),
+(21, 70, 2),
+(22, 79, 1),
+(23, 79, 2),
+(24, 81, 1);
 
 -- --------------------------------------------------------
 
@@ -6162,7 +6253,10 @@ INSERT INTO `victima_necesidad` (`id`, `victima_id`, `necesidad_id`) VALUES
 (26, 45, 4),
 (27, 45, 6),
 (28, 45, 7),
-(29, 45, 8);
+(29, 45, 8),
+(33, 81, 1),
+(34, 81, 2),
+(35, 81, 8);
 
 -- --------------------------------------------------------
 
@@ -6197,7 +6291,10 @@ INSERT INTO `victima_programa` (`id`, `victima_id`, `programa_id`) VALUES
 (18, 45, 2),
 (19, 45, 3),
 (20, 45, 4),
-(21, 45, 5);
+(21, 45, 5),
+(25, 81, 1),
+(26, 81, 2),
+(27, 81, 5);
 
 -- --------------------------------------------------------
 
@@ -6272,7 +6369,6 @@ INSERT INTO `victims` (`id`, `victima_nombre_y_apellido`, `genero`, `victima_fec
 (42, 'MARIELA SIMON', 1, '1900-01-01', 20, 3, '1', '6', NULL, 1, '1231245612', 3, 3, 2, NULL, 2, NULL, 2, 2, 2, NULL, 2, NULL, 2, NULL, 2, 1, 28, 114, '2019-06-02 16:45:57', NULL, '2019-06-02 16:45:57', NULL),
 (43, 'ESTEBAN SIMON', 3, '1900-01-01', 27, 3, '6', '0', NULL, NULL, NULL, 4, 3, 3, NULL, 3, NULL, NULL, 3, 3, NULL, 2, NULL, 2, NULL, 2, 2, 28, 114, '2019-06-02 16:53:15', NULL, '2019-06-02 16:53:15', NULL),
 (44, 'ROSA SALAS', 1, '1900-01-01', 52, 5, '1', '7', NULL, NULL, '25631678', 2, 2, 3, NULL, 3, NULL, 2, 3, 2, NULL, 3, NULL, 2, NULL, 2, 1, 28, 114, '2019-06-02 16:57:51', NULL, '2019-06-02 16:57:51', NULL),
-(45, 'JOSE PEREZ', 3, '1900-01-01', 33, 4, '1', '3', NULL, NULL, '213123131', 4, 1, 1, NULL, 1, 'lllll', NULL, 1, 2, NULL, 2, NULL, 1, 'OTRA LIMITACION', 2, 1, 29, 114, '2019-06-03 18:42:14', 114, '2019-06-14 04:27:27', NULL),
 (46, 'JOSEFINA OLIVA', 1, '1900-01-01', 28, 3, '3', '0', NULL, NULL, NULL, 2, 2, 2, NULL, 2, NULL, 2, 2, 3, NULL, 2, NULL, 3, NULL, 2, 1, 29, 114, '2019-06-03 18:51:49', NULL, '2019-06-03 18:51:49', NULL),
 (47, 'PRUEBA VINCULO', 1, '1900-01-01', 44, 4, '1', '1', NULL, NULL, '256315136', 1, 1, 2, NULL, 2, NULL, 2, 2, 3, NULL, 3, NULL, 3, NULL, 1, 1, 32, 114, '2019-06-11 19:58:13', NULL, '2019-06-11 19:58:13', NULL),
 (48, 'OTRO VINCULO', 3, '1900-01-01', 28, 3, '1', '2', NULL, NULL, '0', 3, 3, 3, NULL, 2, NULL, NULL, 3, 2, NULL, 2, NULL, 2, NULL, 2, 2, 32, 114, '2019-06-11 20:02:11', NULL, '2019-06-11 20:02:11', NULL),
@@ -6294,7 +6390,21 @@ INSERT INTO `victims` (`id`, `victima_nombre_y_apellido`, `genero`, `victima_fec
 (64, 'SUSANA ESTHER', 1, '1900-01-01', 0, 7, '1', '1', NULL, NULL, '0', 6, 2, 2, NULL, 2, NULL, 2, 3, 2, NULL, 2, NULL, 2, NULL, 1, 1, 39, 114, '2019-06-13 13:48:08', NULL, '2019-06-13 13:48:08', NULL),
 (65, 'RAUL QUIROGAS', 3, '1900-01-01', 40, 4, '1', '6', NULL, 1, '0', 2, 5, 2, NULL, 2, NULL, NULL, 3, 3, NULL, 2, NULL, 2, NULL, 2, 1, 39, 114, '2019-06-13 13:53:47', NULL, '2019-06-13 13:53:47', NULL),
 (66, 'JOSE JUAN', 3, '1900-01-01', 20, 3, '3', '0', NULL, NULL, NULL, 4, 5, 3, NULL, 2, NULL, NULL, 2, 3, NULL, 3, NULL, 2, NULL, 1, 2, 40, 114, '2019-06-14 14:11:23', NULL, '2019-06-14 14:11:23', NULL),
-(67, 'JUANA MOLINA', 1, '1900-01-01', 40, 4, '1', '1', NULL, NULL, '0', 5, 1, 2, NULL, 2, NULL, 2, 3, 2, NULL, 2, NULL, 3, NULL, 2, 2, 40, 114, '2019-06-14 14:15:03', NULL, '2019-06-14 14:15:03', NULL);
+(67, 'JUANA MOLINA', 1, '1900-01-01', 40, 4, '1', '1', NULL, NULL, '0', 5, 1, 2, NULL, 2, NULL, 2, 3, 2, NULL, 2, NULL, 3, NULL, 2, 2, 40, 114, '2019-06-14 14:15:03', NULL, '2019-06-14 14:15:03', NULL),
+(68, 'MARIO LUIS', 3, '1900-01-01', 40, 4, '1', '5', NULL, NULL, '0', 3, 3, 3, NULL, 3, NULL, NULL, 3, 2, NULL, 3, NULL, 2, NULL, 2, 1, 41, 114, '2019-06-14 19:38:26', NULL, '2019-06-14 19:38:26', NULL),
+(69, 'NATALIA LUIS', 1, '1900-01-01', 44, 4, '5', '1', NULL, NULL, '0', 1, 2, 2, NULL, 2, NULL, 2, 3, 2, NULL, 3, NULL, 3, NULL, 1, 1, 41, 114, '2019-06-14 19:43:18', NULL, '2019-06-14 19:43:18', NULL),
+(70, 'SAMUEL', 3, '1900-01-01', 44, 4, '1', '9', 'OTROOOO DOC', NULL, '2564616', 4, 1, 2, NULL, 2, NULL, NULL, 2, 1, 'LESIONES', 1, 'CRONICAS', 2, NULL, 1, 1, 42, 114, '2019-06-17 00:54:01', 114, '2019-06-17 06:01:05', NULL),
+(71, 'ISMAEL', 3, '1900-01-01', 30, 3, '3', '0', NULL, NULL, NULL, 4, 2, 2, NULL, 2, NULL, NULL, 3, 3, NULL, 2, NULL, 3, NULL, 2, 1, 42, 114, '2019-06-17 01:00:29', NULL, '2019-06-17 01:00:29', NULL),
+(72, 'ISRAEL', 3, '1900-01-01', 20, 3, '5', '0', NULL, NULL, '0', 3, 2, 2, NULL, 2, NULL, NULL, 1, 3, NULL, 3, NULL, 3, NULL, 2, 1, 42, 114, '2019-06-17 03:57:07', NULL, '2019-06-17 03:57:07', NULL),
+(73, 'SONIA SALERNO', 3, '1900-01-01', 40, 4, '5', '1', NULL, NULL, '0', 6, 2, 2, NULL, 2, NULL, NULL, 2, 2, NULL, 2, NULL, 2, NULL, 1, 1, 43, 114, '2019-06-17 04:23:13', NULL, '2019-06-17 04:23:13', NULL),
+(74, 'ROBERTO SALERNO', 3, '1900-01-01', 60, 5, '3', '0', NULL, NULL, NULL, 3, 2, 2, NULL, 2, NULL, NULL, 2, 2, NULL, 3, NULL, 3, NULL, 1, 1, 43, 114, '2019-06-17 04:31:25', NULL, '2019-06-17 04:31:25', NULL),
+(75, 'SANDRA', 1, '1900-01-01', 23, 3, '3', '0', NULL, NULL, NULL, 2, 4, 2, NULL, 2, NULL, 2, 2, 2, NULL, 2, NULL, 2, NULL, 1, 1, 44, 114, '2019-06-17 17:46:51', NULL, '2019-06-17 17:46:51', NULL),
+(76, 'JOSE MOURA', 1, '1900-01-01', 44, 4, '5', '2', NULL, NULL, '0', 7, 4, 3, NULL, 3, NULL, 2, 2, 3, NULL, 3, NULL, 3, NULL, 1, 1, 45, 114, '2019-06-17 20:00:17', NULL, '2019-06-17 20:00:17', NULL),
+(77, 'MARTA', 1, '1900-01-01', 44, 4, '3', '0', NULL, NULL, NULL, 6, 2, 2, NULL, 2, NULL, 2, 2, 2, NULL, 2, NULL, 3, NULL, 2, 1, 45, 114, '2019-06-17 20:15:46', NULL, '2019-06-17 20:15:46', NULL),
+(78, 'PABLO LUIS', 3, '1900-01-01', 46, 4, '3', '0', NULL, NULL, NULL, 3, 3, 3, NULL, 2, NULL, NULL, 3, 2, NULL, 3, NULL, 2, NULL, 2, 1, 45, 114, '2019-06-17 20:20:07', NULL, '2019-06-17 20:20:07', NULL),
+(79, 'JUAN JOSE', 3, '1900-01-01', 44, 4, '3', '0', NULL, NULL, NULL, 2, 2, 2, NULL, 2, NULL, NULL, 1, 3, NULL, 3, NULL, 2, NULL, 1, 1, 46, 114, '2019-06-18 18:03:54', NULL, '2019-06-18 18:03:54', NULL),
+(80, 'NATALIA PEREZ', 1, '1900-01-01', 28, 3, '1', '1', NULL, NULL, '123131655', 4, 3, 2, NULL, 2, NULL, 2, 2, 2, NULL, 3, NULL, 2, NULL, 2, 1, 46, 114, '2019-06-18 18:12:59', NULL, '2019-06-18 18:12:59', NULL),
+(81, 'MARTA LOPEZ', 1, '1900-01-01', 25, 3, '1', '4', NULL, NULL, '0', 1, 1, 1, 'OTRA NECESIDAD', 1, 'OTRO PLAN', 2, 1, 2, NULL, 2, NULL, 2, NULL, 1, 1, 46, 114, '2019-06-18 18:22:05', NULL, '2019-06-18 18:22:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -6315,7 +6425,20 @@ CREATE TABLE `victim_im` (
 --
 
 INSERT INTO `victim_im` (`id`, `idVictim`, `idImputado`, `vinculo_victima`, `vinculo_otro`) VALUES
-(3, 67, 35, 4, NULL);
+(3, 67, 27, 4, NULL),
+(4, 67, 25, 2, NULL),
+(5, 68, 36, 4, NULL),
+(6, 69, 36, 2, NULL),
+(7, 70, 37, 1, NULL),
+(10, 71, 38, 1, NULL),
+(11, 71, 39, 2, NULL),
+(12, 71, 40, 6, 'OTRO VINCULO'),
+(13, 73, 41, 4, NULL),
+(14, 74, 41, 6, 'OTRO JOSE ANTONIO'),
+(15, 77, 42, 4, NULL),
+(16, 79, 43, 4, NULL),
+(17, 80, 43, 2, NULL),
+(18, 81, 43, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -6379,7 +6502,36 @@ INSERT INTO `victim_pa` (`id`, `idVictim`, `idPersona`, `vinculo_victima`, `vinc
 (82, 47, 73, 1, NULL),
 (83, 49, 74, 1, NULL),
 (84, 49, 75, 2, NULL),
-(85, 51, 74, 2, NULL);
+(85, 51, 74, 2, NULL),
+(120, 69, 87, NULL, NULL),
+(121, 70, 88, NULL, NULL),
+(122, 70, 89, NULL, NULL),
+(123, 71, 88, 1, NULL),
+(124, 71, 89, NULL, NULL),
+(125, 71, 90, NULL, NULL),
+(126, 71, 91, NULL, NULL),
+(127, 72, 88, 4, 'OTRO VINCULO'),
+(128, 72, 89, 1, NULL),
+(129, 72, 92, NULL, NULL),
+(130, 72, 93, NULL, NULL),
+(131, 72, 94, NULL, NULL),
+(132, 72, 95, 3, NULL),
+(133, 73, 96, 1, NULL),
+(134, 73, 97, 3, NULL),
+(135, 74, 96, 4, 'OTRO SILVIA'),
+(136, 74, 97, 2, NULL),
+(137, 75, 98, NULL, NULL),
+(138, 75, 99, NULL, NULL),
+(139, 75, 100, NULL, NULL),
+(140, 76, 101, 1, NULL),
+(141, 77, 101, 2, NULL),
+(142, 78, 101, 3, NULL),
+(143, 79, 102, 1, NULL),
+(144, 79, 103, 2, NULL),
+(145, 80, 102, 1, NULL),
+(146, 80, 103, 1, NULL),
+(147, 80, 104, 2, NULL),
+(148, 81, 104, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -6461,7 +6613,25 @@ INSERT INTO `victim_ra` (`id`, `idVictim`, `idConviviente`, `vinculo_victima`, `
 (116, 45, 50, 2, NULL),
 (121, 45, 51, 2, NULL),
 (122, 66, 52, 2, NULL),
-(123, 67, 52, 4, NULL);
+(123, 67, 52, 4, NULL),
+(124, 68, 53, 2, NULL),
+(125, 68, 54, 6, 'ENCUENTRO CASUAL'),
+(126, 69, 53, 1, NULL),
+(127, 69, 54, 6, 'ENCUENTRO CASUAL'),
+(128, 70, 55, 4, NULL),
+(129, 70, 56, 3, NULL),
+(130, 71, 55, 6, 'OTRO VINCULO'),
+(132, 71, 57, 4, NULL),
+(133, 71, 56, 6, 'OTRO PABLO LUIS'),
+(134, 73, 58, 3, NULL),
+(135, 74, 58, 2, NULL),
+(136, 76, 59, 4, NULL),
+(137, 77, 59, 6, 'OTRO'),
+(138, 78, 59, 6, 'OTRO'),
+(139, 79, 60, 4, NULL),
+(140, 79, 61, 6, 'OTRO VINCULO'),
+(141, 80, 60, 6, 'OTRO VINCULO'),
+(142, 81, 61, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -6759,7 +6929,7 @@ ALTER TABLE `vistas`
 -- AUTO_INCREMENT de la tabla `casos`
 --
 ALTER TABLE `casos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `caso_cavaj`
@@ -6783,7 +6953,7 @@ ALTER TABLE `cavajs`
 -- AUTO_INCREMENT de la tabla `convivientes`
 --
 ALTER TABLE `convivientes`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de la tabla `delitos`
@@ -6831,43 +7001,43 @@ ALTER TABLE `hechos`
 -- AUTO_INCREMENT de la tabla `imputados`
 --
 ALTER TABLE `imputados`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `instituciones`
 --
 ALTER TABLE `instituciones`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `institucion_asistencia`
 --
 ALTER TABLE `institucion_asistencia`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `institucion_oarticula`
 --
 ALTER TABLE `institucion_oarticula`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `institucion_oprevio`
 --
 ALTER TABLE `institucion_oprevio`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `institucion_socioeconomico`
 --
 ALTER TABLE `institucion_socioeconomico`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `intervenciones`
 --
 ALTER TABLE `intervenciones`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `limitaciones`
@@ -6915,13 +7085,13 @@ ALTER TABLE `organismos`
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT de la tabla `profesionales`
 --
 ALTER TABLE `profesionales`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 
 --
 -- AUTO_INCREMENT de la tabla `programas`
@@ -6963,49 +7133,49 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `victima_discapacidad`
 --
 ALTER TABLE `victima_discapacidad`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `victima_limitacion`
 --
 ALTER TABLE `victima_limitacion`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `victima_necesidad`
 --
 ALTER TABLE `victima_necesidad`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `victima_programa`
 --
 ALTER TABLE `victima_programa`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `victims`
 --
 ALTER TABLE `victims`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT de la tabla `victim_im`
 --
 ALTER TABLE `victim_im`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `victim_pa`
 --
 ALTER TABLE `victim_pa`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
 
 --
 -- AUTO_INCREMENT de la tabla `victim_ra`
 --
 ALTER TABLE `victim_ra`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
