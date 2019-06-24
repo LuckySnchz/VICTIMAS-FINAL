@@ -33,8 +33,11 @@ session_start();
 
 
 
- <div class="container">   
-          
+ <div class="container">
+
+<a name="Ancla" id="INICIO"></a>
+
+         
 
  <div class="container jumbotron shadow p-3 mb-5 bg-green rounded" style="max-width: 100%;margin-top: 5%;background-color:rgb(137, 210, 14)">
     <strong><h3 style="color: white;text-align: center">Panel de Control</h3></strong>
@@ -82,13 +85,12 @@ session_start();
   </div>-->
 
    <br><br>
-<a name="Ancla" id="INICIO"></a>
+
     
-caso:{{session("idCaso")}}<br>
-vistimas: {{session("idVictim")}}
+
 
 <div class="container jumbotron shadow p-3 mb-5 bg-white rounded" style="max-width: 100%;margin-top: -8%;">
-
+<a href="#Ancla"><img src="{{ URL::to('/assets/img/ancla.png') }}" style="position: fixed;margin-left: 75%"></a>
 
      <h4 class="text-center" style="padding: 15px;">Selecciona una Víctima</h4>
 <p style="text-align: center"><strong><span style="text-decoration: underline"> Caso: 

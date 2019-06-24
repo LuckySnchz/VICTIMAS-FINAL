@@ -497,7 +497,7 @@ function selectOnChangeF4(sel) {
  if (sel.value=="1") {
        divf4 = document.getElementById("Patro");
        divf4.style.display = "none";
-       $('#pratocinio_gratuito').val('0');
+       $('#pratocinio_gratuito').val('');
           
 
 
@@ -509,15 +509,15 @@ function selectOnChangeF4(sel) {
        document.getElementById("bloqueof5").checked=false;
        divf44 = document.getElementById("bloqueof5");
        divf44.style.display = "none";
-       
- document.getElementById("designado").removeAttribute("readonly");
-          document.getElementById("bloqueo5").checked=false;
-          $("#designado").val("");
-          divfd = document.getElementById("cualF6");
-          divfd.style.display = "none";
 
 
-        $("#pratocinio_gratuito-designado").val("");
+            $("#letrado_designado").val("");
+        divfc= document.getElementById("designado");
+        divfc.style.display = "none";
+
+document.getElementById("bloqueof7").checked=false;
+
+ $("#pratocinio_gratuito-designado").val("");
         divfc= document.getElementById("conformidad");
         divfc.style.display = "none";
 
@@ -528,15 +528,22 @@ function selectOnChangeF4(sel) {
        divf55.style.display = "none";
 
 
+          document.getElementById("bloqueo5").checked=false;
+
+          divfd = document.getElementById("cualF6");
+          divfd.style.display = "none";   
 
 
-        $("#fecha_designacion_del_letrado").val("");
-
-    divf555= document.getElementById("fecha_designacion");
-
-    divf555.style.display = "none";
+$('#fecha_designacion_del_letrado').val('');
+         document.getElementById("bloqueof54").checked=false;
+         document.getElementById('fecha_designacion_del_letrado').removeAttribute("readonly");
 
 
+    divdeg= document.getElementById("fecha");
+
+    divdeg.style.display = "none";
+
+ 
 
 
      }
@@ -546,66 +553,7 @@ function selectOnChangeF4(sel) {
 
 
 
-  <script type="text/javascript">
-  function selectOnChangeF6(sel) {
-   if (sel.value=="1" || sel.value=="2"){
-       divf4 = document.getElementById("solicitud");
-       divf4.style.display = "";}
-
-       else {
-         divf4 = document.getElementById("solicitud");
-         divf4.style.display = "none";
-         $('#fecha_de_solicitud').val('');
-         document.getElementById("bloqueof5").checked=false;
-         document.getElementById('fecha_de_solicitud').removeAttribute("readonly");
-
-
-       }
-
-
-if (sel.value=="3"){
-       divf5 = document.getElementById("cualF6");
-       divf5.style.display = "";
-
-       divf5 = document.getElementById("conformidad");
-       divf5.style.display = "";
-       divf5 = document.getElementById("colegio");
-       divf5.style.display = "";
-       divf5 = document.getElementById("fecha_designacion");
-       divf5.style.display = "";}
-
-       else {
-         document.getElementById("designado").removeAttribute("readonly");
-          document.getElementById("bloqueo5").checked=false;
-          $("#designado").val("");
-          divfd = document.getElementById("cualF6");
-          divfd.style.display = "none";
-
-
-        $("#pratocinio_gratuito-designado").val("");
-        divfc= document.getElementById("conformidad");
-        divfc.style.display = "none";
-
-
-     $('#colegio_departamental').val('');
-
-        divf55= document.getElementById("colegio");
-       divf55.style.display = "none";
-
-
-
-
-        $("#fecha_designacion_del_letrado").val("");
-
-    divf555= document.getElementById("fecha_designacion");
-
-    divf555.style.display = "none";
-        }
-
-
-
-       }
-  </script>
+  
 <script type="text/javascript">
 
    function checkf51(checkbox)
@@ -629,8 +577,12 @@ if (sel.value=="3"){
   @if(old("pratocinio_gratuito") == 3)
     <!-F5 1>
   <div id="cualF6" {{ $errors->has('letrado_designado') ? 'has-error' : ''}}>
+    @else
+  <div id="cualF6" style="display: none">
+   @endif
+<div id="designado">
   <label for="letrado_designado">F 5 I. Nombre y Apellido del letrado designado:</label>
-  <input type="text" class="form-control" name="letrado_designado" id="designado" value="{{old("letrado_designado")}}">
+  <input type="text" class="form-control" name="letrado_designado" id="letrado_designado"  value="{{old("letrado_designado")}}">
   <label  class="form-check-label">Se desconoce</label>
   <input type="checkbox" id="bloqueof7" name="letrado_designado" value="Se desconoce" onchange="checkC111(this)">
   
@@ -650,6 +602,7 @@ if (sel.value=="3"){
                                  }
                      }
                   </script>
+                </div>
   <br><br>
     <!-F5 2>
   <div class="form-group " id="conformidad" {{ $errors->has('pratocinio_conformidad') ? 'has-error' : ''}}>
@@ -683,81 +636,137 @@ if (sel.value=="3"){
   </div>
   <br>
     <!-F5 4>
-  <div class="form-group" id="fecha_designacion" {{ $errors->has('fecha_designacion') ? 'has-error' : ''}}>
-  <label for="">F 5 IV. Fecha de designación: </label>
-  <input type="date" class="form-control" id="fecha_designacion_del_letrado" name="fecha_designacion" value="{{old("fecha_designacion")}}" ><br>
-  {!! $errors->first('fecha_designacion', '<p class="help-block" style="color:red";>:message</p>') !!}
-  </div>
+ <div class="form-group" id="fecha"{{ $errors->has('fecha_designacion') ? 'has-error' : ''}}>
+     <label for="">F 5 IV. Fecha de designación:  </label>
+    <input type="date" class="form-control" id="fecha_designacion_del_letrado" name="fecha_designacion" value="{{old('fecha_designacion')}}">
+ 
 
-  @else
+      <label  class="form-check-label">Se desconoce</label>
+    <input type="checkbox" id="bloqueo54" name="fecha_designacion_desconoce" value="Se desconoce" onchange="checkB54(this)">
+<script>
+         function checkB54(checkbox)
+         {
+             if (checkbox.checked)
+             {
+                 $('#fecha_designacion_del_letrado').val('1900-01-01');
+                 document.getElementById('fecha_designacion_del_letrado').setAttribute("readonly", "readonly");
+             }else
+                 {
+                     $('#fecha_designacion_del_letrado').val('');
+                     document.getElementById('fecha_designacion_del_letrado').removeAttribute("readonly");
+                 }
+         }
+      </script>
+    {!! $errors->first('fecha_designacion', '<p class="help-block" style="color:red";>:message</p>') !!}
+    </div>
 
-  <div id="cualF6" style="display:none">
-  <label for="letrado_designado">F 5 I. Nombre y Apellido del letrado designado:</label>
-  <input type="text" class="form-control" name="letrado_designado" id="designado" value="{{old("letrado_designado")}}">
-  <label  class="form-check-label">Se desconoce</label>
-  <input type="checkbox" id="bloqueo5" name="letrado_designado" value="Se desconoce" onchange="checkC111(this)">
-  <script>
-       function checkC111(checkbox)
-       {
-           if (checkbox.checked)
-               {
-                   $('#designado').val('Se desconoce');
-                   document.getElementById('designado').setAttribute("readonly", "readonly");
-               }else
-                   {
-                       $('#designado').val('');
-                       document.getElementById('designado').removeAttribute("readonly");
-                   }
-       }
-    </script>
+
+      
   <br><br>
-  </div>
 
-  <div class="form-group " id="conformidad" style="display:none">
-  <label for="pratocinio_conformidad">F 5 II.¿La víctima está conforme con la asistencia recibida por parte del letrado designado?:</label>
-  <select class="form-control" name="pratocinio_conformidad" id="pratocinio_gratuito-designado" >
-  <option value="" selected=disabled>Seleccionar...</option>
-          <option value="1" >Sí</option>
-          <option value="2" >No</option>
-          <option value="3">Se desconoce</option>
-  </select>
-  </div>
 
-  <div class="form-group" id="colegio" style="display:none">
-  <label for="colegio_departamental">F 5 III.Colegio Departamental:</label>
-  <select class="form-control" name="colegio_departamental" id="colegio_departamental">
-    <option value=""selected=disabled>Seleccionar...</option>
-    @foreach ($departamentos as $departamento)
-      @if(old("colegio_departamental")==$departamento->id)
-      <option selected value="{{ $departamento->id }}">{{ $departamento->nombre}}</option>
-    @else <option  value="{{ $departamento->id }}">{{ $departamento->nombre}}</option>
-    @endif
-  @endforeach
-  </select>
-  </div>
-  <div class="form-group" id="colegio" style="display:none">
-  <label for="colegio_departamental">F 5 III.Colegio Departamental:</label>
-  <select class="form-control" name="colegio_departamental" id="colegio_departamental">
-    <option value="" selected=disabled>Seleccionar...</option>
-    @foreach ($departamentos as $departamento)
-      @if(old("colegio_departamental")==$departamento->id)
-      <option selected value="{{ $departamento->id }}">{{ $departamento->nombre}}</option>
-    @else <option  value="{{ $departamento->id }}">{{ $departamento->nombre}}</option>
-    @endif
-  @endforeach
-  </select>
-  </div>
-  <div class="form-group" id="fecha_designacion" style="display:none">
-  <label for="">F 5 IV. Fecha de designación: </label>
-  <input type="date" class="form-control" id="fecha_designacion_del_letrado" name="fecha_designacion" value="{{old("fecha_designacion")}}" ><br>
-</div>
-
-  @endif
-
-  </div>
 {!! $errors->first('letrado_designado', '<p class="help-block" style="color:red";>:message</p>') !!}
   </div>
+<script type="text/javascript">
+  function selectOnChangeF6(sel) {
+   if (sel.value=="1" || sel.value=="2"){
+       divf4 = document.getElementById("solicitud");
+       divf4.style.display = "";
+              $("#letrado_designado").val("");
+        divfc= document.getElementById("designado");
+        divfc.style.display = "none";
 
+document.getElementById("bloqueof7").checked=false;
+
+ $("#pratocinio_gratuito-designado").val("");
+        divfc= document.getElementById("conformidad");
+        divfc.style.display = "none";
+
+
+     $('#colegio_departamental').val('');
+
+        divf55= document.getElementById("colegio");
+       divf55.style.display = "none";
+
+
+          document.getElementById("bloqueo5").checked=false;
+
+          divfd = document.getElementById("cualF6");
+          divfd.style.display = "none";   
+
+
+$$('#fecha_designacion_del_letrado').val('');
+         document.getElementById("bloqueof54").checked=false;
+         document.getElementById('fecha_designacion_del_letrado').removeAttribute("readonly");
+
+
+    divdeg= document.getElementById("fecha_designacion");
+
+    divdeg.style.display = "none";}
+
+       else {
+         divf4 = document.getElementById("solicitud");
+         divf4.style.display = "none";
+         $('#fecha_de_solicitud').val('');
+         document.getElementById("bloqueof5").checked=false;
+         document.getElementById('fecha_de_solicitud').removeAttribute("readonly");
+
+
+       }
+
+
+if (sel.value=="3"){
+       divf5 = document.getElementById("cualF6");
+       divf5.style.display = "";
+
+ divf5 = document.getElementById("designado");
+       divf5.style.display = "";
+
+       divf5 = document.getElementById("conformidad");
+       divf5.style.display = "";
+       divf5 = document.getElementById("colegio");
+       divf5.style.display = "";
+       divf5 = document.getElementById("fecha_designacion");
+       divf5.style.display = "";}
+
+ if (sel.value=="4") {
+         $("#letrado_designado").val("");
+        divfc= document.getElementById("designado");
+        divfc.style.display = "none";
+
+document.getElementById("bloqueof7").checked=false;
+
+ $("#pratocinio_gratuito-designado").val("");
+        divfc= document.getElementById("conformidad");
+        divfc.style.display = "none";
+
+
+     $('#colegio_departamental').val('');
+
+        divf55= document.getElementById("colegio");
+       divf55.style.display = "none";
+
+
+          document.getElementById("bloqueo5").checked=false;
+
+          divfd = document.getElementById("cualF6");
+          divfd.style.display = "none";   
+
+
+$('#fecha_designacion_del_letrado').val('');
+         document.getElementById("bloqueof54").checked=false;
+         document.getElementById('fecha_designacion_del_letrado').removeAttribute("readonly");
+
+
+    divdeg= document.getElementById("fecha");
+
+    divdeg.style.display = "none";
+        }
+
+
+
+       }
+  </script>
             <script>
                function muestroCualF2I() {
                    var checkBox = document.getElementById("checkeadoF2I");
