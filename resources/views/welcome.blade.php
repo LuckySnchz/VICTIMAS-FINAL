@@ -89,7 +89,7 @@
             
           
            <p> www.whatsfarma.com.ar</p>
-          <strong> EN CONSTRUCCION</strong>  
+          <strong> EN CONSTRUCCION</strong>  <br>
           <strong><a href="https://www.facebook.com/groups/Farmaciasdeturno/">Contactanos!</a></strong><br>
             </div>
           
