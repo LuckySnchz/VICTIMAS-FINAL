@@ -86,17 +86,10 @@
 
         <div class="content">
             <div class="title mb-5">
-                Sistema de asistencia a la víctima
+            www.whatsfarma.com.ar
+            EN CONSTRUCCION
             </div>
-            <img class="m-5" src="/img/prov.png" alt=""> @if (Route::has('login'))
-            <div class="mt-5">
-                @auth
-                <a class="boton w-25 btn btn-secondary" href="{{ url('/home') }}">Home</a> @else
-                <a class="boton w-25 btn btn-secondary" href="{{ route('login') }}">Inicie sesión</a> {{-- TODAVIA NO VOY
-                A MOSTRAR EL REGISTRATE --}} {{-- <a href="{{ route('register') }}">Registrate</a> --}} @endauth
-            </div>
-            @endif
-        </div>
+          
     </div>
 </body>
 
