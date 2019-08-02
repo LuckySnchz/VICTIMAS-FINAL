@@ -86,8 +86,11 @@
 
         <div class="content">
             <div class="title mb-5">
-            www.whatsfarma.com.ar
-            EN CONSTRUCCION
+            
+          
+           <p> www.whatsfarma.com.ar</p>
+          <strong> EN CONSTRUCCION</strong>  
+          <strong><a href="@whatsfarma">FB: Contactanos!</a></strong><br>
             </div>
           
     </div>
