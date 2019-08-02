@@ -90,7 +90,7 @@
           
            <p> www.whatsfarma.com.ar</p>
           <strong> EN CONSTRUCCION</strong>  
-          <strong><a href="@whatsfarma">FB: Contactanos!</a></strong><br>
+          <strong><a href="https://www.facebook.com/groups/Farmaciasdeturno/">Contactanos!</a></strong><br>
             </div>
           
     </div>
